@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>name</key>
+        <string>Cursor</string>
+        <key>uuid</key>
+        <string>7CDD25CE-3AA9-45C2-A8D5-19A2E2998648</string>
+        <key>tabTrigger</key>
+        <string>cursor</string>
+        <key>content</key>
+        <string>cursor c_${1:cursor_name}(
+	b_${2:param} in ${3:varchar2} ) is
+	select $0
+	  from
+	 where = b_$2 ;
+var r_${1:cursor_name} c_${1:cursor_name}%rowtype ;</string>
+        <key>scope</key>
+        <string></string>
+    </dict>
+</plist>

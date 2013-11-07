@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>name</key>
+        <string>Declare</string>
+        <key>uuid</key>
+        <string>59BBB375-22CA-42A6-BBFA-E2BFD0B710E6</string>
+        <key>tabTrigger</key>
+        <string>declare</string>
+        <key>content</key>
+        <string>set serverouput on
+set lines 240
+declare
+	l_${1:myvar} ${2:varchar2(30)} ;
+begin
+	$0null ;
+exception
+	when others then
+		raise ;	
+end ;
+/
+</string>
+        <key>scope</key>
+        <string></string>
+    </dict>
+</plist>

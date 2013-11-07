@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>name</key>
+        <string>Oracle</string>
+        <key>uuid</key>
+        <string>1FEE2CB6-662E-4EBF-AD32-C968EC5A3519</string>
+        <key>mainMenu</key>
+        <dict>
+            <key>items</key>
+            <array />
+        </dict>
+    </dict>
+</plist>

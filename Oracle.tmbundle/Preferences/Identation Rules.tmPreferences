@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>name</key>
+        <string>Identation Rules</string>
+        <key>uuid</key>
+        <string>A20F491D-CC63-4C1D-ADEB-1E4DEC45C943</string>
+        <key>settings</key>
+        <dict>
+            <key>indentNextLinePattern</key>
+            <string>^(?!.*;\s*\-\-).*[^\s;\(\)]\s*$'</string>
+            <key>decreaseIndentPattern</key>
+            <string>^\s*\b(?i:end|close)\b</string>
+            <key>increaseIndentPattern</key>
+            <string>^\s*\b(?i:declare|begin|loop|exception|open|then|else|cursor|function|procedure|is|as|define)\b</string>
+        </dict>
+        <key>scope</key>
+        <string>source.oracle</string>
+    </dict>
+</plist>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>name</key>
+        <string>Package</string>
+        <key>uuid</key>
+        <string>1A18386F-F474-408B-ABF4-E45012FE2CDA</string>
+        <key>tabTrigger</key>
+        <string>package</string>
+        <key>content</key>
+        <string>set verify off
+define b_package_name = "${1:package_name}"
+create or replace package &amp;b_package_name
+authid current user
+as
+
+	procedure l(
+	    p_msg in varchar2 ) ;
+	    
+	$0
+	
+end &amp;&amp;b_package_name ;
+/
+
+show err package &amp;&amp;b_package_name
+</string>
+        <key>scope</key>
+        <string></string>
+    </dict>
+</plist>
