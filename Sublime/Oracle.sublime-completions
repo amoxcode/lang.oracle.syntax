@@ -44,6 +44,7 @@
                 "by",
                 "by",
                 "cache",
+                "canonical_to_date",
                 "cancel",
                 "cascade",
                 "case",
@@ -87,6 +88,7 @@
                 "database",
                 "datafile",
                 "date",
+                "date_to_canonical",
                 "dba",
                 "dbms_lob",
                 "dbms_output",
@@ -448,6 +450,6 @@
                 "xmltable",
                 "xmltype",
                 "xor",
-                "zone"	
+                "zone"
 	]
 }
