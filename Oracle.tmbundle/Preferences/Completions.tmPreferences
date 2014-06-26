@@ -220,9 +220,11 @@
                 <string>linesize</string>
                 <string>link</string>
                 <string>lists</string>
+                <string>loboffset</string>
                 <string>lock</string>
                 <string>logfile</string>
                 <string>long</string>
+                <string>longchunk</string>
                 <string>loop</string>
                 <string>lower</string>
                 <string>manage</string>
@@ -454,9 +456,11 @@
                 <string>wrap</string>
                 <string>write</string>
                 <string>xmlagg</string>
+                <string>xmlattributes</string>
                 <string>xmlelement</string>
                 <string>xmlforest</string>
                 <string>xmlnamespaces</string>
+                <string>xmlroot</string>
                 <string>xmltable</string>
                 <string>xmltype</string>
                 <string>xor</string>

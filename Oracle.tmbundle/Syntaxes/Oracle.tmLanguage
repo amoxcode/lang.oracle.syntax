@@ -109,7 +109,7 @@
                 <key>name</key>
                 <string>support.function.oracle</string>
                 <key>match</key>
-                <string>\b(?i:nvl|translate|rank|avg|chr|(get|create|constraint|is|init|run|put|set|validate|set|add|format|debug|update).*?(\(|\;)?|to_char|sum|to_date|extract|dbms_utility|dbms_job|greatest|least|fnd_log|fnd_date|fnd_global|trim|lpad|rpad|instr|decode|substr|xmlagg|xmlelement|xmlforest|fnd_program|fnd_file|to_number|dbms_output|dbms_lob|fnd_profile|utl_file|rtrim|ltrim|trunc|replace|abs|length|regexp_like|regexp_replace|upper|lower|extractvalue|xmlexists|passing|path|xmltable|updatexml|wf_engine|xmlnamespaces|fnd_set|dbms_application_info|max|min|count|xmlconcat|dbms_output|regexp_like|regexp_substr)\b</string>
+                <string>\b(?i:nvl|translate|rank|avg|chr|(get|create|constraint|is|init|run|put|set|validate|set|add|format|debug|update).*?(\(|\;)?|to_char|sum|to_date|extract|dbms_utility|dbms_job|greatest|least|fnd_log|fnd_date|fnd_global|trim|lpad|rpad|instr|decode|substr|xmlagg|xmlattributes|xmlroot|xmlelement|xmlforest|fnd_program|fnd_file|to_number|dbms_output|dbms_lob|fnd_profile|utl_file|rtrim|ltrim|trunc|replace|abs|length|regexp_like|regexp_replace|upper|lower|extractvalue|xmlexists|passing|path|xmltable|updatexml|wf_engine|xmlnamespaces|fnd_set|dbms_application_info|max|min|count|xmlconcat|dbms_output|regexp_like|regexp_substr)\b</string>
             </dict>
             <dict>
                 <key>name</key>
@@ -133,7 +133,7 @@
                 <key>name</key>
                 <string>keyword.control.sqlplus</string>
                 <key>match</key>
-                <string>\b(?i:noprint|lines|space|columns|center|whenever|sqlerror|oserror|failure|arraysize|disc|disconnect|conn|connect|linesize|trimspool|def|define|verify|feedback|prompt|serveroutput|rem|remark|pages|pagesize|head|time|heading|format|truncate|wrap|show|showmode|echo|timing|newpage|clear|pno|skip|ttitle|btitle|breaks|computes|new_value|err|errors|spool|off|col|termout|sqlprompt|word|wrapped|size)\b</string>
+                <string>\b(?i:tab|longc|longchunk|lobof|loboffset|noprint|lines|space|columns|center|whenever|sqlerror|oserror|failure|arraysize|disc|disconnect|conn|connect|linesize|trimspool|def|define|verify|feedback|prompt|serveroutput|rem|remark|pages|pagesize|head|time|heading|format|truncate|wrap|show|showmode|echo|timing|newpage|clear|pno|skip|ttitle|btitle|breaks|computes|new_value|err|errors|spool|off|col|termout|sqlprompt|word|wrapped|size)\b</string>
             </dict>
             <dict>
                 <key>name</key>
@@ -163,7 +163,7 @@
                 <key>name</key>
                 <string>constant.language.oracle</string>
                 <key>match</key>
-                <string>\b(?i:true|false|currval|nextval|found|notfound|rownum|null|pragma|others|no_data_found|too_many_rows|isopen|sysdate|systimestamp|user|sqlerrm|sqlcode|dual|(v|gv)\$([[:alpha:]_])*|(all|dba|user)_.*|rowid|rowcount|sql|like|itemkey|funcmode|actid|([[:alpha:]_])*_(all|vl|v|b|tl|number|code|id|source|num|level|flag|msg|status|rate|name|date|method)|itemtype)\b</string>
+                <string>\b(?i:true|false|currval|nextval|found|notfound|rownum|null|pragma|others|no_data_found|too_many_rows|isopen|sysdate|errbuf|retcode|sysdate|systimestamp|user|sqlerrm|sqlcode|dual|(v|gv)\$([[:alpha:]_])*|(all|dba|user)_([:alpha:]*)?|rowid|rowcount|sql|like|itemkey|funcmode|actid|([[:alpha:]_])*_(all|vl|v|b|tl|number|code|id|source|num|level|flag|msg|status|rate|name|date|method)|itemtype)\b</string>
             </dict>
             <dict>
                 <key>name</key>
