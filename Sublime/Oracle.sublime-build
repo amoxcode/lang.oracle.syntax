@@ -1,3 +1,5 @@
 {
-  "cmd": ["sqlplus", "scott/tiger@xe", "@$file"]
+    "cmd": ["sqlplus", "scott/tiger@xe", "@$file"]
+  , "file_regex": "^Errors for file (.*):$"
+  , "line_regex": "^([0-9]*?)/([0-9]*?)\\s+(.*)$"
 }
