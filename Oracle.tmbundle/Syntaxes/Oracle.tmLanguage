@@ -145,7 +145,7 @@
                 <key>name</key>
                 <string>keyword.other.ddl.oracle</string>
                 <key>match</key>
-                <string>\b(?i:access|alter|are|delimited|directory|enclosed|external|field|fields|load|location|missing|parameters|position|records|trigger|new|old|oracle_loader|organization|referencing|each|row|before|after|modify|disable|synonym|sequence|increment|start|authid|current_user|create|replace|table|view|column|procedure|function|package|object|comment|drop|grant|to|index|unique|check|body|compile|index|delimited)\b</string>
+                <string>\b(?i:access|alter|are|delimited|directory|enclosed|external|field|fields|load|location|missing|newline|parameters|position|records|trigger|new|old|oracle_loader|organization|referencing|each|row|before|after|modify|disable|synonym|sequence|increment|start|authid|current_user|create|replace|table|view|column|procedure|function|package|object|comment|drop|grant|to|index|unique|check|body|compile|index|delimited)\b</string>
             </dict>
             <dict>
                 <key>name</key>
@@ -163,7 +163,7 @@
                 <key>name</key>
                 <string>constant.language.oracle</string>
                 <key>match</key>
-                <string>\b(?i:true|false|currval|nextval|found|notfound|rownum|null|pragma|others|no_data_found|too_many_rows|isopen|sysdate|errbuf|retcode|sysdate|systimestamp|user|sqlerrm|sqlcode|dual|(v|gv)\$([[:alpha:]_])*|(all|dba|user)_([:alpha:]*)?|rowid|rowcount|sql|like|itemkey|funcmode|actid|([[:alpha:]_])*_(all|vl|v|b|tl|number|code|id|source|num|level|flag|msg|status|rate|name|date|method)|itemtype)\b</string>
+                <string>\b(?i:aname|avalue|systimestamp|true|false|currval|nextval|found|notfound|rownum|null|pragma|others|no_data_found|too_many_rows|isopen|sysdate|errbuf|retcode|sysdate|systimestamp|user|sqlerrm|sqlcode|dual|(v|gv)\$([[:alpha:]_])*|(all|dba|user)_([:alpha:]*)?|rowid|rowcount|sql|like|itemkey|funcmode|actid|([[:alpha:]_])*_(all|vl|v|b|tl|number|code|id|source|num|level|flag|msg|status|rate|name|date|method)|itemtype)\b</string>
             </dict>
             <dict>
                 <key>name</key>
