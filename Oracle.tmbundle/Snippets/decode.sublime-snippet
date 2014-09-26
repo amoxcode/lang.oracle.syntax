@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+decode(
+    ${1:expression}
+  , ${2:refrence_value1}, ${3:return_value1}
+  ${5:, ${6:refrence_value2}, ${7:return_value2}}
+  ${8:, ${9:refrence_value3}, ${10:return_value3}}
+  ${11:, ${12:default_return_value}} ) $0
+]]></content>
+  <description>Decode</description>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>decode</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sqlplus</scope>
+</snippet>

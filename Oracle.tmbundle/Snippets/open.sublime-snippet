@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+open ${1:name_cur}(
+         ${2:${3:b_param1} => ${4:param_value1}}
+       ${5:, ${6:b_param2} => ${7:param_value2}} ) ;
+  fetch $1 into ${8:${1/_cur$//}_rec} ;
+close $1 ;
+]]></content>
+  <description>Single Fetch</description>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>open</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sqlplus</scope>
+</snippet>

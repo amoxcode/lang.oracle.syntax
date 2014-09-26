@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+dbms_output.put_line( ${1:'${2:Hello World!}'} ) ;
+]]></content>
+  <description>Write to output</description>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dbms_output.put_line</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sqlplus</scope>
+</snippet>
