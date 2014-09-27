@@ -1,0 +1,1077 @@
+{ "name": "Oracle SQL*Plus Script",
+  "scopeName": "source.sqlplus",
+  "fileTypes": ["oracle", "pls", "plb", "buf"],
+  "patterns": [
+    { "include": "#oracle-code" }
+  ],
+  "repository": {
+    "oracle-code": {
+      "patterns": [
+        { "include": "#sqlplus-code" },
+        { "include": "#plsql-code" },
+        { "include": "#sql-code" }
+      ]
+    },
+    "sqlplus-code": {
+      "patterns": [
+        { "include": "#sqlplus-comments" },
+        { "include": "#sqlplus-strings" },
+        { "include": "#sqlplus-commands" },
+        { "include": "#sqlplus-container-sql" },
+        { "include": "#sqlplus-container-plsql" }
+      ]
+    },
+    "plsql-comments": {
+      "patterns": [
+        { "match": "\\s*(--).*$",
+          "name": "comment.line.double-dash.iso.oracle",
+          "captures": {
+              "1": { "name": "keyword.operator.delimiter.oracle" }
+            },
+          "comment": "Oracle PL/SQL single line double-dash comment."
+        },
+        { "name": "comment.block.plsql.oracle",
+          "captures": {
+              "1": { "name": "keyword.operator.delimiter.oracle" }
+            },
+          "begin": "(/\\*)",
+          "end": "(\\*/)",
+          "comment": "Oracle PL/SQL Block comment."
+        }
+      ]
+    },
+    "sql-comments": {
+      "patterns": [
+        { "name": "comment.line.double-dash.iso.oracle",
+          "begin": "\\s*(--)[^+]",
+          "beginCaptures": {
+              "1": { "name": "keyword.operator.delimiter.oracle" }
+            },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "(?=;)|\\s*$",
+          "comment": "SQL ISO Single line double-dash comment"
+        },
+        { "name": "comment.block.sql.oracle",
+          "captures": {
+              "1": { "name": "keyword.operator.delimiter.oracle" }
+            },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "begin": "(/\\*)[^+]",
+          "end": "(\\*/)",
+          "comment": "SQL Block comment."
+        }
+      ]
+    },
+    "sqlplus-comments": {
+      "patterns": [
+        { "name": "comment.line.double-dash.iso.oracle",
+          "begin": "^\\s*(--)",
+          "beginCaptures": {
+              "1": { "name": "keyword.operator.delimiter.oracle" }
+            },
+          "end": "\\s*$",
+          "comment": "ISO Single line double-dash comment."
+        },
+        { "match": "(?<!^)(?:\\s*)(--.*)$",
+          "name": "comment.line.double-dash.iso.oracle",
+          "captures": {
+              "1": { "name": "invalid.illegal" }
+            },
+          "comment": "Invalid ISO Single line double-dash comment."
+        },
+        { "name": "comment.block.sqlplus.oracle",
+          "captures": {
+              "1": { "name": "keyword.operator.delimiter.oracle" }
+            },
+          "begin": "(/\\*)\\s",
+          "end": "(\\*/)",
+          "comment": "Oracle SQ*Plus Block comment."
+        },
+        { "name": "invalid.illegal",
+          "captures": {
+              "1": { "name": "keyword.operator.delimiter.oracle" }
+            },
+          "begin": "(/\\*)[^\\s]",
+          "end": "(\\*/)",
+          "comment": "Oracle SQ*Plus Block invalid comment."
+        }
+      ]
+    },
+    "sqlplus-variable-substitution": {
+      "patterns": [
+          {  "name": "invalid.illegal",
+             "match": "(&+)((\\s*(&*))*)\\s*(\\w+)(\\.|(?=&))?",
+             "captures": {
+                 "1": { "name": "keyword.operator.substitution.sqlplus.oracle" },
+                 "2": { "name": "keyword.operator.substitution.sqlplus.oracle" },
+                 "5": { "name": "variable.substitution.sqplus.oracle" },
+                 "6": { "name": "keyword.operator.concatenation.sqlplus.oracle" }
+             }
+          }
+      ]
+    },
+    "sql-strings": {
+      "patterns": [
+        { "name": "string.quoted.single.sql.oracle",
+          "begin": "'",
+          "captures": {
+              "0": { "name": "keyword.operator.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "'"
+        },
+        { "name": "string.quoted.double.sql.oracle",
+          "begin": "\"",
+          "captures": {
+              "0": { "name": "keyword.operator.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "\""
+        }
+      ]
+    },
+    "sqlplus-command-string-parameters": {
+      "patterns": [
+        { "name": "string.quoted.single.sql.oracle",
+          "begin": "'",
+          "captures": {
+              "0": { "name": "keyword.operator.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "'"
+        },
+        { "name": "string.quoted.double.sql.oracle",
+          "begin": "\"",
+          "captures": {
+              "0": { "name": "keyword.operator.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "\""
+        }
+      ]
+    },
+    "sqlplus-strings": {
+      "patterns": [
+        { "name": "string.quoted.single.sqlplus.oracle",
+          "begin": "'",
+          "captures": {
+              "0": { "name": "keyword.operator.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "'"
+        },
+        { "name": "string.quoted.double.sqlplus.oracle",
+          "begin": "\"",
+          "captures": {
+              "0": { "name": "keyword.operator.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "\""
+        }
+      ]
+    },
+    "sqlplus-container-sql": {
+      "patterns": [
+        { "include": "#sqlplus-container-sql-dml" },
+        { "include": "#sqlplus-container-sql-ddl" },
+        { "include": "#sqlplus-container-sql-query" }
+      ]
+    },
+    "sqlplus-container-sql-dml": {
+      "patterns": [
+        { "name": "meta.block.sql.dml.container.sqplus.oracle",
+          "begin": "(?=^\\s*(?i:insert|update|delete)\\b)",
+          "patterns": [
+            {  "name": "meta.diff",
+               "match": "."
+            }
+          ],
+          "end": "^\\.?\\s*$|^\\s*/\\s*$|;"
+        }
+      ]
+    },
+    "sql-query": {
+      "patterns": [
+        { "include": "#sql-comments" },
+        { "include": "#sql-strings" },
+        { "include": "#sql-hint" },
+        {  "name": "meta.diff",
+           "match": "."
+        }
+      ]
+    },
+    "sqlplus-container-sql-query": {
+      "patterns": [
+        { "name": "meta.block.sql.dml.container.sqplus.oracle",
+          "begin": "(?=^\\s*(?i:select)\\b)",
+          "patterns": [
+            { "include": "#sql-query" }
+          ],
+          "end": "^(\\.)?\\s*$|^\\s*(/)\\s*$|(;)",
+          "endCaptures": {
+              "0": { "name": "keyword.other.delimiter.sqlplus.oracle" }
+          }
+        }
+      ]
+    },
+    "sqlplus-container-sql-ddl": {
+      "patterns": [
+        { "name": "meta.block.ddl.container.sqlplus.oracle",
+          "begin": "(?=^\\s*(?i:create\\s+(or\\s+replace\\s+)?\\b))",
+          "patterns": [
+            {  "name": "meta.diff",
+               "match": "."
+            }
+          ],
+          "end": "^\\.\\s*$|^\\s*/\\s*$"
+        }
+      ]
+    },
+    "sqlplus-container-plsql": {
+      "patterns": [
+        { "name": "meta.block.plsql.container.sqlplus.oracle",
+          "begin": "(?=^\\s*(?i:declare|begin)\\b)",
+          "patterns": [
+            {  "name": "string.quoted.single",
+               "match": "."
+            }
+          ],
+          "end": "^\\.\\s*$|^\\s*/\\s*$"
+        }
+      ]
+    },
+    "sqlplus-commands": {
+      "patterns": [
+        { "name": "meta.command.remark.sqlplus.oracle",
+          "begin": "^\\s*((?i:rem(a|ar|ark)?))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.oracle" }
+            },
+          "patterns": [
+            {  "name": "keyword.other.delimiter.plsql.oracle",
+               "match": "\\-$"
+            },
+            {  "name": "comment.line.character.sqlplus.oracle",
+               "match": "."
+            }
+          ],
+          "end": "[^\\-\\n]$|^$",
+          "endCaptures": {
+              "0": { "name": "comment.line.character.sqlplus.oracle" }
+          },
+          "comment": "SQL*Plus REM[ARK]."
+        },
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "\\b(?i:desc(ribe|rib|ri|r))\\b"
+        },
+        { "name": "meta.command.run-script.sqlplus.oracle",
+          "begin": "^\\s*(@{1,2}|(?i:start))\\s*",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-string-parameters" },
+            {  "name": "variable.parameter.sqlplus.oracle",
+               "match": "(?=\\s*)(\\S+)"
+            }
+          ],
+          "end": "(\\s*$)",
+          "comment": "Run a script"
+        },
+        { "name": "meta.command.define.sqlplus.oracle",
+          "begin": "^.*(?=(?i:def(ine|in|i)?))",
+          "patterns": [
+            { "name": "meta.command.define.name.sqlplus.oracle",
+              "begin": "((?i:def(ine|in|i)?))\\s+(?=\\S+)",
+              "beginCaptures": {
+                "1": { "name": "keyword.other.sqlplus.oracle" },
+                "3": { "name": "variable.other.sqlplus.oracle" }
+              },
+              "patterns": [
+                { "include": "#sqlplus-variable-substitution" }
+              ],
+              "end": "(?=\\s|=)"
+            },
+            { "begin": "\\s*(=)\\s*(?=\\S+)",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.operator.sqlplus.oracle" }
+              },
+              "patterns": [
+                { "include": "#sqlplus-variable-substitution" },
+                { "include": "#sqlplus-command-string-parameters" },
+                { "name": "variable.parameter.sqlplus.oracle",
+                  "match": "(\\S+)"
+                }
+              ],
+              "end": "\\s|$"
+            },
+            {  "name": "invalid.deprecated",
+               "match": "."
+            }
+          ],
+          "end": "\\.*$"
+        },
+        { "name": "meta.command.exit.sqlplus.oracle",
+          "begin": "^\\s*((?i:exit|quit)\\b)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlpls.oracle" }
+          },
+          "end": "\\s*$",
+          "comment": "SQL*Plus terminate session"
+        }
+      ]
+    },
+    "sql-hint": {
+      "patterns": [
+        { "match": "(?<=((s|S)(e|E)(l|L)(e|E)(c|C)(t|T))|((i|I)(n|N)(s|S)(e|E)(r|R)(t|T))|((u|U)(p|P)(d|D)(a|A)(t|T)(e|E))|((d|D)(e|E)(l|L)(e|E)(t|T)(e|E))|((m|M)(e|E)(r|R)(g|G)(e|E)))\\s*(--\\+).*$",
+          "name": "string.interpolated.oracle.sql",
+          "captures": {
+              "1": { "name": "keyword.operator.delimiter.oracle" }
+            },
+          "comment": "SQL Hint using double dash syntax."
+        },
+        { "name": "comment.block",
+          "begin": "(?<=((s|S)(e|E)(l|L)(e|E)(c|C)(t|T))|((i|I)(n|N)(s|S)(e|E)(r|R)(t|T))|((u|U)(p|P)(d|D)(a|A)(t|T)(e|E))|((d|D)(e|E)(l|L)(e|E)(t|T)(e|E))|((m|M)(e|E)(r|R)(g|G)(e|E))|((c|C)(r|R)(e|E)(a|A)(t|T)(e|E)))\\s*(/\\*\\+)",
+          "captures": {
+              "0": { "name": "keyword.operator.delimiter.oracle" }
+            },
+          "patterns": [
+            {  "name": "keyword.operator.delimiter.oracle",
+               "match": "(,|\\(|\\)|\\.|\\$|@)"
+            },
+            { "include": "#numeric-constant" },
+            {  "name": "keyword.other.hint.oracle",
+               "match": "\\b(?i:all_rows|append|append_values|cache|change_dupkey_error_index|cluster|cursor_sharing_exact|driving_site|dynamic_sampling|fact|first_rows|full|hash|ignore_row_on_dupkey_index|index|index_asc|index_combine|index_desc|index_ffs|index_join|index_ss|index_ss_asc|index_ss_desc|leading|merge|model_min_analysis|monitor|native_full_outer_join|no_expand|no_fact|no_index|no_index_ffs|no_index_ss|no_merge|no_monitor|no_native_full_outer_join|no_parallel|no_parallel_index|no_push_pred|no_push_subq|no_px_join_filter|no_query_transformation|no_result_cache|no_rewrite|no_star_transformation|no_statement_queuing|no_unnest|no_use_hash|no_use_merge|no_use_nl|no_xml_query_rewrite|no_xmlindex_rewrite|noappend|nocache|opt_param|ordered|parallel|parallel_index|pq_distribute|push_pred|push_subq|px_join_filter|qb_name|result_cache|retry_on_row_change|rewrite|star_transformation|statement_queuing|unnest|use_concat|use_hash|use_merge|use_nl|use_nl_with_index)\\b"
+            },
+            {  "name": "support.constant.hint.oracle",
+               "match": "\\b(?i:auto|broadcast|default|hash|local|manual|none|partition|random)\\b"
+            },
+            {  "name": "invalid.deprecated",
+               "match": "\\b(?i:noparallel|norewrite|rule)\\b"
+            }
+          ],
+          "end": "(\\*/)",
+          "comment": "SQL Hint using double dash syntax."
+        }
+      ]
+    },
+    "numeric-constant": {
+      "patterns": [
+        {
+          "match": "\\b(\\+|-)?[0-9]+((e|E)(\\+|-)?|f|F|d|D)?((\\.)[0-9]+(d|D|f|F))?\\b",
+          "name": "constant.numeric.oracle",
+          "captures": {
+              "1": { "name": "keyword.operator.oracle.delimiter" },
+              "3": { "name": "keyword.operator.oracle.delimiter" },
+              "4": { "name": "keyword.operator.oracle.delimiter" },
+              "6": { "name": "keyword.operator.oracle.delimiter" },
+              "7": { "name": "keyword.operator.oracle.delimiter" }
+          },
+          "comment": "Numeric constants in various formats (decimal, scientific)"
+        },
+        {  "name": "constant.numeric.oracle",
+           "match": "\\b(?i:binary_double_infinity|binary_double_nan|binary_float_infinity|binary_float_nan)\\b"
+        }
+      ]
+    },
+    "date-constant": {
+      "name": "constant.date.oracle",
+      "match": "\\b(?i:date|(to )?(day|hour|minute|second)|timestamp|at time zone|interval|(to )?(year|month))\\b"
+    },
+    "operators": {
+      "patterns": [
+        { "include": "#sql-operator" },
+        { "include": "#plsql-operator" }
+      ]
+    },
+    "sql-operator": {
+      "patterns": [
+        {  "name": "keyword.operator.arithmetic",
+           "match": "(\\+|-|\\*|/)"
+        },
+        {  "name": "keyword.operator.concatenation",
+           "match": "(\\|\\|)"
+        },
+        {  "name": "keyword.operator.set",
+           "match": "\\b(?i:intersect|minus|union( all)?)\\b"
+        },
+        {  "name": "keyword.operator.multiset",
+           "match": "\\b(?i:multiset (except|intercept|union)( (all|distinct))?)\\b",
+           "captures": {
+               "2": { "name": "support.constant" }
+           }
+        }
+      ]
+    },
+    "plsql-operator": {
+      "patterns": [
+        {  "name": "keyword.operator.arithmetic",
+           "match": "(\\+|-|\\*|/)"
+        },
+        {  "name": "keyword.operator.concatenation",
+           "match": "(\\|\\|)"
+        },
+        {  "name": "keyword.operator.set",
+           "match": "\\b(?i:intersect|minus|union( all)?)\\b"
+        },
+        {  "name": "keyword.operator.multiset",
+           "match": "\\b(?i:multiset (except|intercept|union)( (all|distinct))?)\\b",
+           "captures": {
+               "2": { "name": "support.constant" }
+           }
+        },
+        {  "name": "keyword.operator.oracle.delimiter",
+           "match": "(\\:=|=>|%|\\.|\\*\\*|\\(|\\)|\\:|,|<<|>>|\\.\\.|=|<>|!=|~=|\\^=|<|>|<=|>=|@)|;"
+        },
+        {  "name": "keyword.operator.oracle.expression",
+           "match": "\\b(?i:and|between|(not )?in|is (not )?null|like|not|or|escape)\\b"
+        }
+      ]
+    },
+    "plsql": {
+      "patterns": [
+        { "include": "#plsql-subprogram" },
+        { "include": "#plsql-block" }
+      ]
+    },
+    "plsql-keywords": {
+      "patterns": [
+        {  "name": "keyword.control.plsql",
+           "match": "\\b(?i:continue|exit|for|goto|then|while)\\b"
+        },
+        {  "name": "keyword.other.plsql",
+           "match": "\\b(?i:close|fetch|open)\\b"
+        }
+      ]
+    },
+    "plsql-cursor-declaration": {
+      "name": "meta.type.plsql.cursor",
+      "begin": "((?i:cursor))",
+      "beginCaptures": {
+          "1": { "name": "storage.type.oracle" }
+      },
+      "patterns": [
+        { "include": "#comments" },
+        {  "name": "variable.other",
+           "match": "(?<=(c|C)(u|U)(r|R)(s|S)(o|O)(r|R))\\s+(\\w+)"
+        },
+        {  "name": "storage.type.modifier",
+           "match": "\\b(?i:return|is)\\b"
+        },
+        {  "name": "keyword.operator.oracle.delimiter",
+           "match": "%"
+        },
+        {  "name": "storage.type.oracle",
+           "match": "(?<=(r|R)(e|E)(t|T)(u|U)(r|R)(n|N))\\s+((\\w)+)"
+        },
+        {  "name": "storage.type.oracle",
+           "match": "(?<=%)\\w+"
+        },
+        { "include": "#sql-dml-select" }
+      ],
+      "end": "(?=;)"
+    },
+    "plsql-record-declaration": {
+      "name": "meta.name.type.plsql.record",
+      "begin": "(?i:(is) (record))",
+      "beginCaptures": {
+          "1": { "name": "storage.type.oracle" },
+          "2": { "name": "storage.type.oracle" }
+      },
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        { "include": "#numeric-constant" },
+        { "include": "#operator" },
+        {  "name": "variable.other",
+           "match": "^\\s*(?!(?i:procedure|function|cursor|type))([A-Za-z]\\w*)"
+        },
+        { "include": "#plsql-storage" },
+        { "include": "#plsql-storage" },
+        {  "name": "constant.language.oracle",
+           "match": "\\b(?i:false|null|true)\\b"
+        }
+      ],
+      "end": "(?=;)"
+    },
+    "functions": {
+      "patterns": [
+        { "include": "#sql-function" },
+        { "include": "#plsql-functions" }
+      ]
+    },
+    "plsql-functions": {
+      "patterns": [
+        { "include": "#plsql-function" },
+        { "include": "#plsql-function-apps" }
+      ]
+    },
+    "plsql-function": {
+      "patterns": [
+        {  "name": "support.function.plsql.rdbms",
+           "match": "\\b(?i:dbms_output)\\b"
+        }
+      ]
+    },
+    "plsql-function-apps": {
+      "patterns": [
+        {  "name": "support.function.plsql.apps.ame",
+           "match": "\\b(?i:ame_api[1-9])\\b"
+        },
+        { "name": "support.function.plsql.apps.fnd",
+          "match": "\\b(?i:app_exception|fnd_date|fnd_global|fnd_log|fnd_log_repository|fnd_message|fnd_profile|fnd_file|mo_global)\\b"
+        },
+        { "name": "support.function.plsql.apps.wf",
+          "match": "\\b(?i:wf_core|wf_directory|wf_engine|wf_event|wf_lookup_types_pub|wf_notification)\\b"
+        }
+      ]
+    },
+    "sql-functions": {
+      "patterns": [
+        { "name": "support.function.sql.single-row.numeric",
+          "match": "\\b(?i:abs|acos|asin|atan|atan2|bitand|ceil|cos|cosh|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket)\\b"
+        },
+        {  "name": "support.function.sql.single-row.char.return-char",
+            "match": "\\b(?i:chr|concat|initcap|lower|lpad|ltrim|nchr|nls_initcap|nls_lower|nls_upper|nlssort|regexp_replace|regexp_substr|replace|rpad|rtrim|soundex|substr(b)?|translate|trim|upper)\\b"
+        },
+        {  "name": "support.function.sql.single-row.char.return-char",
+           "match": "\\b(?i:using(\\s+(char_cs|char_ns)))\\b",
+           "captures": {
+               "2": { "name": "support.constant" }
+           }
+        },
+        {  "name": "support.function.sql.single-row.char.return-number",
+            "match": "\\b(?i:ascii|instr(b)?|length(b)?|regexp_count|regexp_inst)\\b"
+        },
+        {  "name": "support.function.sql.single-row.char.return-nls",
+            "match": "\\b(?i:nls_charset_decl_len|nls_charset_id|nls_charset_name)\\b"
+        },
+        { "name": "support.function.sql.single-row.datetime",
+          "match": "\\b(?i:add_months|current_date|current_timestamp|dbtimezone|extract|from_tz|last_day|localtimestamp|months_between|new_time|next_day|numtodsinterval|numtoyminterval|ora_dst_affected|ora_dst_convert|ora_dst_error|round|sessiontimezone|sys_extract_utc|sysdate|systimestamp|to_cha |to_dsinterval|to_timestamp|to_timestamp_tz|to_yminterval|trunc|tz_offset)\\b"
+        },
+        {  "name": "support.function.sql.single-row.comparison",
+           "match": "\\b(?i:greatest|least)\\b"
+        },
+        {  "name": "support.function.sql.single-row.conversion",
+           "match": "\\b(?i:asciistr|bin_to_num|cast|chartorowid|compose|convert|decompose|hextoraw|numtodsinterval|numtoyminterval|rawtohex|rawtonhex|rowidtochar|rowidtonchar|scn_to_timestamp|timestamp_to_scn|to_binary_double|to_binary_float|to_blob|to_char|to_char|to_char|to_clob|to_date|to_dsinterval|to_lob|to_multi_byte|to_nchar|to_nchar|to_nchar|to_nclob|to_number|to_single_byte|to_timestamp|to_timestamp_tz|to_yminterval|treat|unistr)\\b"
+        },
+        {  "name": "support.function.sql.single-row.large-object",
+           "match": "\\b(?i:bfilename|empty_blob|empty_clob)\\b"
+        },
+        {  "name": "support.function.sql.single-row.collection",
+           "match": "\\b(?i:cardinality|collect|powermultiset|powermultiset_by_cardinality|set\\()\\b"
+        },
+        {  "name": "support.function.sql.single-row.hierarchichal",
+           "match": "\\b(?i:sys_connect_by_path)\\b"
+        },
+        {  "name": "support.function.sql.single-row.data-mining",
+           "match": "\\b(?i:cluster_id|cluster_probability|cluster_set|feature_id|feature_set|feature_value|prediction|prediction_bounds|prediction_cost|prediction_details|prediction_probability|prediction_set)\\b"
+        },
+        {  "name": "support.function.sql.single-row.xml",
+           "match": "\\b(?i:appendchildxml|deletexml|depth|existsnode|extract|extractvalue|insertchildxml|insertchildxmlafter|insertchildxmlbefore|insertxmlafter|insertxmlbefore|path|sys_dburigen|sys_xmlagg|sys_xmlgen|updatexml|xmlagg|xmlcast|xmlcdata|xmlcolattval|xmlcomment|xmlconcat|xmldiff|xmlelement|xmlexists|xmlforest|xmlisvalid|xmlparse|xmlpatch|xmlpi|xmlquery|xmlroot|xmlsequence|xmlserialize|xmltable|xmltransform)\\b"
+        },
+        {  "name": "support.function.sql.single-row.codec",
+           "match": "\\b(?i:decode|dump|ora_hash|vsize)\\b"
+        },
+        {  "name": "support.function.sql.single-row.null-related",
+           "match": "\\b(?i:coalesce|lnnvl|nanvl|nullif|nvl|nvl2)\\b"
+        },
+        {  "name": "support.function.sql.single-row.environment",
+           "match": "\\b(?i:sys_context|sys_guid|sys_typeid|uid|user|userenv)\\b"
+        },
+        {  "name": "support.function.sql.aggregate",
+           "match": "\\b(?i:avg|collect|corr|corr_k|corr_s|count|covar_pop|covar_samp|cume_dist|dense_rank|first|group_id|grouping|grouping_id|last|listagg|max|median|min|over|percent_rank|percentile_cont|percentile_disc|rank|regr_slope|regr_intercept|regr_count|regr_r2|regr_avgx|regr_avgy|regr_sxx|regr_syy|regr_sxy|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_indep|stats_t_test_indepu|stats_t_test_one|stats_t_test_paired|stats_wsr_test|stddev|stddev_pop|stddev_samp|sum|sys_xmlagg|var_pop|var_samp|variance|xmlagg)\\b"
+        },
+        {  "name": "support.function.sql.analytics",
+           "match": "\\b(?i:cume_dist|dense_rank|first|following|lag|last|lead|listagg|ntile|percent_rank|percentile_(cont|disc)|rank|ratio_to_report|row_number|preceding|rows|range|unbounded (preceding|following)|current row)\\b"
+        },
+        {  "name": "support.function.sql.object-reference",
+           "match": "\\b(?i:deref|make_ref|ref|reftohex|value)\\b"
+        },
+        {  "name": "support.function.sql.model",
+           "match": "\\b(?i:cv|iteration_number|presentnnv|presentv|previous)\\b"
+        },
+        {  "name": "support.function.sql.olap",
+           "match": "\\b(?i:cube_table)\\b"
+        },
+        {  "name": "support.function.sql.data-cartridge",
+           "match": "\\b(?i:dataobj_to_partition)\\b"
+        }
+      ]
+    },
+    "sql-pseudocolumn": {
+      "name": "support.variable.sql.oracle",
+      "match": "\\b((?i:column_value|connect_by_iscycle|connect_by_isleaf|currval|level|nextval|object_id|object_value|ora_rowscn|rowid|rownum|sysdate|systimestamp|versions_endscn|versions_endtime|versions_startscn|versions_starttime|versions_operation|versions_xid|xmldata))\\b"
+    },
+    "sql-dml": {
+      "patterns": [
+        { "include": "#sql-dml-select" }
+      ]
+    },
+    "sql-ddl": {
+      "patterns": [
+        { "name": "meta.diff",
+          "begin": "(?i:(create)(\\s|\\n)\\s*(?!or|package|function|procedure|trigger)(\\w+))|(?i:(create)(\\s|\\n)+(or)(\\s|\\n)+(replace)(\\s|\\n)\\s*(?!or|pa|fu|pr|tr)(\\w+))",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sql.ddl" },
+              "3": { "name": "keyword.other.sql.ddl" },
+              "4": { "name": "keyword.other.sql.ddl" },
+              "6": { "name": "keyword.other.sql.ddl" },
+              "8": { "name": "keyword.other.sql.ddl" },
+              "10": { "name": "keyword.other.sql.ddl" }
+          },
+          "end": "(;)",
+          "endCaptures": {
+              "0": { "name": "keyword.operator.oracle.delimiter" }
+          }
+        }
+      ]
+    },
+    "sql-dml-select": {
+      "name": "meta.sql.dml.select",
+      "begin": "\\b((?i:select))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.other.oracle.dml" }
+      },
+      "patterns": [
+        { "include": "#sql-dml-hint" },
+        { "include": "#sql-function" },
+        { "include": "#comments" },
+        { "include": "#strings" },
+        { "include": "#operators" },
+        { "include": "#numeric-constant" },
+        { "include": "#date-constant" },
+        { "include": "#sql-operator" },
+        { "include": "#sql-pseudocolumn" },
+        { "include": "#sql-support-function" },
+        { "include": "#sql-dml-keywords-common" },
+        { "include": "#sql-dml-keywords-select" }
+      ],
+      "end": "(?=;)|^(/|\\.)"
+    },
+    "sql-dml-keywords": {
+      "patterns": [
+        { "include": "#sql-dml-keywords-common" },
+        { "include": "#sql-dml-keywords-select" }
+      ]
+    },
+    "sql-dml-keywords-common": {
+      "patterns": [
+        {
+          "name": "keyword.other.oracle.dml.common",
+          "match": "\\b(?i:for|from|into|join|left|on|outer|partition( for)?|right|subpartition( for)?|where)\\b"
+        },
+        {  "name": "support.variable",
+           "match": "\\b(?i:nextval|currval)\\b"
+        }
+      ]
+    },
+    "sql-dml-keywords-select": {
+      "patterns": [
+        {  "name": "keyword.other.other.oracle.dml.select",
+           "match": "\\b(?i:as|connect by|select|order (siblings)?by|start with)\\b"
+        },
+        {  "name": "keyword.operator.query.hierarchichal",
+           "match": "\\b(?i:prior|connect_by_root)\\b"
+        },
+        {  "name": "support.constant",
+           "match": "\\b(asc|desc|nulls (first|last))\\b"
+        },
+        { "include": "#sql-dml-keywords-common" }
+      ]
+    },
+    "sql-dml-select-columns": {
+      "name": "meta.diff",
+      "begin": "\\b(?i:(select))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.other.oracle.dml" }
+      },
+      "patterns": [
+        { "include": "#strings" },
+        { "include": "#comments" },
+        { "include": "#operators" },
+        { "include": "#functions" },
+        { "include": "#sql-dml-select-columns" },
+        { "include": "#sql-dml-keywords-select" },
+        { "include": "#sql-dml-hint" }
+      ],
+      "end": "\\b((?i:from))\\b",
+      "endCaptures": {
+          "1": { "name": "keyword.other.oracle.dml" }
+      }
+    },
+    "plsql-block-declaration": {
+      "name": "meta.block.declaration",
+      "begin": "\\b((?i:declare))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.oracle" }
+      },
+      "patterns": [
+        { "include": "#plsql-include-declaration" }
+      ],
+      "end": "(?=(?i:begin))"
+    },
+    "plsql-block-exception": {
+      "name": "meta.block.exception",
+      "begin": "\\b((?i:exception))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.oracle.plsql" }
+      },
+      "patterns": [
+        { "name": "meta.block.exception.condition",
+          "begin": "(?i:(when)\\s+(\\S+)\\s+(then))",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql" },
+              "2": { "name": "variable.other" },
+              "3": { "name": "keyword.control.plsql" }
+          },
+          "patterns": [
+            { "include": "#plsql-block-executable-include" }
+          ],
+          "end": "(?=^\\s*(?i:end|when))"
+        }
+      ],
+      "end": "(?=^\\s*(?i:end))"
+    },
+    "plsql-block": {
+      "patterns": [
+        { "include": "#plsql-block-declaration" },
+        { "include": "#plsql-block-executable" }
+      ]
+    },
+    "plsql-block-executable-include": {
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        { "include": "#numeric-constant" },
+        { "include": "#operators" },
+        { "include": "#functions" },
+        { "include": "#plsql-keywords" },
+        { "include": "#plsql-block" },
+        { "include": "#plsql-block-control" },
+        { "include": "#sql-dml-select-columns" },
+        { "include": "#sql-dml-keywords" }
+      ]
+    },
+    "plsql-block-control": {
+      "patterns": [
+        { "include": "#plsql-block-loop" },
+        { "include": "#plsql-block-conditional" }
+      ]
+    },
+    "plsql-block-conditional": {
+      "patterns": [
+        { "include": "#plsql-block-conditional-if" }
+      ]
+    },
+    "plsql-block-loop": {
+      "name": "meta.block.control.loop",
+      "begin": "(\\b(?i:loop)\\b)",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.oracl.plsql" }
+      },
+      "patterns": [
+        { "include": "#plsql-block-executable-include" }
+      ],
+      "end": "(\\b(?i:end))\\s+(\\b(?i:loop)\\b)",
+      "endCaptures": {
+          "1": { "name": "keyword.control.oracle.plsql" },
+          "2": { "name": "keyword.control.oracle.plsql" },
+          "4": { "name": "keyword.operator" },
+          "5": { "name": "comment.block" },
+          "6": { "name": "keyword.operator" },
+          "7": { "name": "keyword.operator.oracle.delimiter" }
+      }
+    },
+    "plsql-block-conditional-if": {
+      "name": "meta.block.control.conditional.if",
+      "begin": "(\\b(?i:if)\\b)",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.plsql.conditional" }
+      },
+      "patterns": [
+        { "include": "#plsql-block-executable-include" },
+        { "name": "meta.block.control.conditional.condition",
+          "begin": "(?<=(i|I)(f|F))\\b",
+          "patterns": [
+            { "include": "#comments" },
+            { "include": "#strings" },
+            { "include": "#numeric-constant" },
+            { "include": "#operators" },
+            { "include": "#functions" }
+          ],
+          "end": "(?=\\b(?i:then)\\b)"
+        },
+        { "name": "meta.block.control.conditional.section.main",
+          "begin": "(?<=(t|T)(h|H)(e|E)(n|N))",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql.conditional" }
+          },
+          "patterns": [
+            { "include": "#plsql-block-executable-include" }
+          ],
+          "end": "(?=\\s*(?i:elsif|else|end\\s+\\if)\\b)"
+        },
+        { "name": "meta.block.control.conditional.section.elsif",
+          "begin": "\\b((?i:elsif))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql.conditional" }
+          },
+          "patterns": [
+            { "include": "#plsql-block-executable-include" }
+          ],
+          "end": "(?=\\s*(?i:elsif|else|end\\s+\\if)\\b)"
+        },
+        { "name": "meta.block.control.conditional.section.else",
+          "begin": "\\b((?i:else))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql.conditional" }
+          },
+          "patterns": [
+            { "include": "#plsql-block-executable-include" }
+          ],
+          "end": "(?=\\s*(?i:end\\s+\\if)\\b)"
+        }
+      ],
+      "end": "(\\b(?i:end))\\s+(\\b(?i:if)\\b)",
+      "endCaptures": {
+          "1": { "name": "keyword.control.oracle.plsql" },
+          "2": { "name": "keyword.control.oracle.plsql" },
+          "4": { "name": "keyword.operator" },
+          "5": { "name": "comment.block" },
+          "6": { "name": "keyword.operator" },
+          "7": { "name": "keyword.operator.oracle.delimiter" }
+      }
+    },
+    "plsql-block-executable": {
+      "name": "meta.block.executable.oracle",
+      "begin": "(\\b(?i:begin)\\b)",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.oracle.plsql" }
+      },
+      "patterns": [
+        { "include": "#plsql-block-executable-include" },
+        { "include": "#plsql-block-exception" }
+      ],
+      "end": "(\\b(?i:end))(\\s+(?!\\b(?i:if|case|loop)\\b)\\w+)?\\s*(;)",
+      "endCaptures": {
+          "1": { "name": "keyword.control.oracl.plsql" },
+          "2": { "name": "entity.name.subprogram.oracle" },
+          "3": { "name": "keyword.operator.oracle.delimiter" }
+      }
+    },
+    "plsql-include-declaration": {
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        { "include": "#plsql-cursor-declaration" },
+        { "include": "#plsql-record-declaration" },
+        { "include": "#plsql-storage" },
+        { "include": "#plsql-operator" },
+        { "include": "#numeric-constant" },
+        {  "name": "constant.language.oracle",
+           "match": "\\b(?i:false|null|true)\\b"
+        },
+        { "include": "functions" },
+        {  "name": "variable.other",
+           "match": "(?<=:=)\\s+(?!(?i:null|true|false))((?![0-9])(\\w))+\\s*(?=;)"
+        },
+        {  "name": "variable.parameter",
+           "match": "\\b(?i:(p|x)_\\w+)\\b"
+        },
+        {  "name": "variable.other",
+           "match": "(?<=(t|T)(y|Y)(p|P)(e|E))\\s+(\\w+)\\s+(?=(?i:is))"
+        },
+        { "include": "#plsql-subprogram" }
+      ]
+    },
+    "plsql-subprogram": {
+      "patterns": [
+        { "include": "#plsql-subprogram-heading" },
+        { "include": "#plsql-subprogram-declaration" },
+        { "include": "#plsql-subprogram-body" }
+      ]
+    },
+    "plsql-subprogram-body": {
+      "name": "meta.subprogram.body.oracle",
+      "begin": "((?i:begin))",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.oracl.plsql" }
+      },
+      "patterns": [
+        { "include": "#plsql-block-executable-include" },
+        { "include": "#plsql-block-exception" }
+      ],
+      "end": "(\\b(?i:end))(\\s+(?!\\b(?i:if|case|loop)\\b)\\w+)?\\s*(;)",
+      "endCaptures": {
+          "1": { "name": "keyword.control.oracl.plsql" },
+          "2": { "name": "entity.name.subprogram.oracle" },
+          "3": { "name": "keyword.operator.oracl.delimiter" }
+      }
+    },
+    "plsql-subprogram-declaration": {
+      "name": "meta.subprogram.declaration.oracle",
+      "begin": "\\b((?i:is(?!\\s*(not|null|table))|as))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.other.oracle.ddl" }
+      },
+      "patterns": [
+        { "include": "#plsql-include-declaration" }
+      ],
+      "end": "^\\s*(?=(?i:begin))"
+    },
+    "plsql-subprogram-heading": {
+      "name": "meta.subprogram.heading.oracle",
+      "begin": "\\b((?i:procedure|function))\\s+(\\w+)",
+      "beginCaptures": {
+          "0": { "name": "meta.subprogram.identifier.oracle" },
+          "1": { "name": "keyword.other.oracle.ddl" },
+          "2": { "name": "entity.name.subprogram.oracle" }
+      },
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        {  "name": "meta.subprogram.type",
+           "match": "((?i:return))\\s+((\\w|\\.)+)",
+           "captures": {
+               "1": { "name": "keyword.other.oracle.ddl" },
+               "2": { "name": "storage.type.oracle" }
+           }
+        },
+        { "include": "#plsql-storage" },
+        {  "name": "keyword.operator.oracle.delimiter",
+           "match": "(,|\\.|%|:=|\\(|\\))"
+        },
+        {  "name": "constant.language.oracle",
+           "match": "\\b(?i:false|null|true)\\b"
+        },
+        {  "name": "constant.language.oracle.apps",
+           "match": "\\b(?i:errbuf|retcode)\\b"
+        },
+        {  "name": "variable.other",
+           "match": "(?<=:=)\\s+((?![0-9])(\\w|\\.))+"
+        },
+        {  "name": "variable.other",
+           "match": "(?<=(d|E)(f|F)(a|A)(u|U)(l|L)(t|T))\\s+(?!(?i:null|true|false))((?![0-9])(\\w|\\.))+"
+        },
+        { "include": "#numeric-constant" }
+      ],
+      "end": "(;)|(?=\\s*(?i:is|as(?! language)))\\b",
+      "endCaptures": {
+          "1": { "name": "keyword.operator.oracle.delimiter" }
+      }
+    },
+    "plsql-storage": {
+      "patterns": [
+        {  "name": "storage.type.oracle",
+           "match": "\\b(?i:binary_integer|boolean|clob|date|exception|is table of|long|number|pls_integer|varchar2)\\b"
+        },
+        {  "name": "storage.type.user.oracle",
+           "match": "[A-Za-z]\\w*(?=\\.|%)|\\b(?i:type)\\b"
+        },
+        {  "name": "storage.type.user.oracle",
+           "match": "(?<=\\.)[A-Za-z]\\w*"
+        },
+        {  "name": "storage.modifier.oracle",
+           "match": "\\b(?i:constant|cursor|default|in|index by|integer|nocopy|not|out|(?<=%)type|rowtype)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+      { "name": "string.quoted.single",
+        "begin": "(?<!n|N|q|Q)(')",
+        "beginCaptures": {
+          "1": { "name": "keyword.oracle" }
+        },
+        "patterns": [
+          { "match": "&|\\:|%|\\$",
+            "name": "keyword.operator.oracle" }
+        ],
+        "end": "(')",
+        "endCaptures": {
+          "1": { "name": "keyword.oracle" }
+        },
+        "comment": "Single quote string."
+      },
+      { "name": "string.quoted.single",
+        "begin": "((n|N)')",
+        "beginCaptures": {
+          "1": { "name": "keyword.oracle" }
+        },
+        "patterns": [
+          { "match": "&|\\:|%|\\$",
+            "name": "keyword.operator.oracle" }
+        ],
+        "end": "(')",
+        "endCaptures": {
+          "1": { "name": "keyword.oracle" }
+        },
+        "comment": "Single national quote string."
+      },
+      { "name": "string.quoted.single",
+        "begin": "(n|N)?(q|Q)(')([\\[\\{<\\(])",
+        "beginCaptures": {
+          "0": { "name": "keyword.oracle" }
+        },
+        "patterns": [
+          { "match": "&|\\:|%|\\$|\\'",
+            "name": "keyword.operator.oracle" }
+        ],
+        "end": "([\\]\\}>\\)])(')",
+        "endCaptures": {
+          "0": { "name": "keyword.oracle" }
+        },
+        "comment": "Single alternative quote string matching bracket/parenthesis"
+      },
+      { "name": "string.quoted.single",
+        "begin": "(n|N)?(q|Q)(')([^\\[\\{<\\(])",
+        "beginCaptures": {
+          "0": { "name": "keyword.oracle" }
+        },
+        "patterns": [
+          { "match": "&|\\:|%|\\$|\\'",
+            "name": "keyword.operator.oracle" }
+        ],
+        "end": "(\\4)(')",
+        "endCaptures": {
+          "0": { "name": "keyword.oracle" }
+        },
+        "comment": "Single alternative quote string."
+      },
+      { "name": "string.quoted.double",
+        "begin": "(\")",
+        "beginCaptures": {
+          "1": { "name": "keyword.oracle" }
+        },
+        "patterns": [
+          { "match": "&|\\:|%|\\$",
+            "name": "keyword.operator.oracle" }
+        ],
+        "end": "(\")",
+        "endCaptures": {
+          "1": { "name": "keyword.oracle" }
+        },
+        "comment": "Double quote string."
+      }
+      ]
+    }
+  },
+  "uuid": "8d6beb42-5e2b-4aba-b98d-43ad4fc532e7"
+}
