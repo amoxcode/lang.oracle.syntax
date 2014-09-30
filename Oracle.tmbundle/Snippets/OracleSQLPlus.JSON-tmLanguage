@@ -301,7 +301,7 @@
           "begin": "^(?=\\s*(?i:def(?:ine|in|i)?)\\s+\\S.*$)",
           "patterns": [
             { "name": "string.quoted.double.untitled",
-              "begin": "^\\s*((?i:def(?:ine|in|i)?))(?=\\s+?(?:=\\S*|([^\\s=]+|(&{1,2}\\s*?[^\\s=&]+)+)+)\\s*$)",
+              "begin": "^\\s*((?i:def(?:ine|in|i)?))(?=\\s+?(?:=\\S*|([^\\s=]+|(&{1,2}\\s*?[^\\s=&]+)+)+))\\s*",
               "beginCaptures": {
                   "1": { "name": "keyword.other.sqlplus.oracle" }
               },
@@ -320,38 +320,43 @@
                    "match": "\\S"
                 }
               ],
-              "end": "(?=\\s*$)",
+              "end": "\\s+(?!=)|\\s*(=)(?!\\s*$)|$",
+              "endCaptures": {
+                  "1": { "name": "keyword.operator.sqlplus.oracle" },
+                  "2": { "name": "keyword.operator.sqlplus.oracle" }
+              },
               "comment": "Retrieve variable definition"
             },
-            { "name": "string.quoted.double.untitled",
-              "begin": "^\\s*((?i:def(?:ine|in|i)?))\\s+(?=[^\\s=]+\\s+[^\\s=].*$)",
-              "beginCaptures": {
-                  "1": { "name": "keyword.other.sqlplus.oracle" }
-              },
+            {  "name": "invalid.illegal",
+               "match": "(?<=\\s).*$|(?<==)\\s*$",
+               "comment": "Missing equal sign"
+            },
+            { "name": "string.quoted",
+              "begin": "(?<==)",
               "patterns": [
-                {  "name": "variable.other.sqlplus.oracle",
-                   "match": "(&{1,2})\\s*\\w+(\\.)?",
+                {  "name": "string.quoted.double",
+                   "begin": "(?<==)\\s*(\"|')",
                    "captures": {
-                       "1": { "name": "keyword.other.substitution.sqlplus.oracle" },
-                       "2": { "name": "keyword.operator.delimiter.sqlplus.oracle" }
-                   }
+                       "1": { "name": "keyword.operator.delimiter.sqlplus.oracle" }
+                   },
+                   "end": "(\\1)(.*)",
+                   "endCaptures": {
+                       "2": { "name": "invalid.illegal" }
+                   },
+                   "comment": "Quoted value"
                 },
-                {  "name": "string.quoted",
-                   "match": "(?:\\s+)(.*)",
+                {  "name": "keyword.operator.substitution.sqlplus.oracle",
+                   "match": "(?<==)\\s*(([^\\s&]+)|((&+\\s*)+)(\\w+)\\.?)+",
                    "captures": {
-                       "1": { "name": "invalid.illegal" }
+                       "1": { "name": "variable.other.sqlplus.oracle" },
+                       "3": { "name": "variable.other.sqlplus.oracle" }
                    }
-                },
-                {  "name": "variable.parameter",
-                   "match": "\\w"
-                },
-                {  "name": "invalid.illegal",
-                   "match": "\\W"
                 }
               ],
-              "end": "(?=\\s*$)",
-              "comment": "Missing equal sign after space"
+              "end": "$",
+              "comment": "Variable value"
             }
+
           ],
           "end": "$",
           "comment": "SQL*Plus DEFINE"
