@@ -104,12 +104,11 @@
     "sqlplus-variable-substitution": {
       "patterns": [
           {  "name": "meta.definition.substitution.sqlplus.oracle",
-             "match": "(&+)((\\s*(&*))*)\\s*(\\w+)(\\.|(?=&))?",
+             "match": "(&{1,2})\\s*(\\w+)(\\.)?",
              "captures": {
                  "1": { "name": "keyword.operator.substitution.sqlplus.oracle" },
-                 "2": { "name": "keyword.operator.substitution.sqlplus.oracle" },
-                 "5": { "name": "variable.other.substitution.sqlplus.oracle" },
-                 "6": { "name": "keyword.operator.concatenation.sqlplus.oracle" }
+                 "2": { "name": "variable.other.substitution.sqlplus.oracle" },
+                 "3": { "name": "keyword.operator.concatenation.sqlplus.oracle" }
              }
           }
       ]
@@ -297,23 +296,17 @@
           "end": "(\\s*$)",
           "comment": "Run a script"
         },
-        { "name": "meta.diff",
+        { "name": "meta.command.define.sqlplus.oracle",
           "begin": "^(?=\\s*(?i:def(?:ine|in|i)?)\\s+\\S.*$)",
           "patterns": [
-            { "name": "string.quoted.double.untitled",
+            { "name": "meta.command.variable.define.sqlplus.oracle",
               "begin": "^\\s*((?i:def(?:ine|in|i)?))(?=\\s+?(?:=\\S*|([^\\s=]+|(&{1,2}\\s*?[^\\s=&]+)+)+))\\s*",
               "beginCaptures": {
                   "1": { "name": "keyword.other.sqlplus.oracle" }
               },
               "patterns": [
+                { "include": "#sqlplus-variable-substitution" },
                 {  "name": "variable.other.sqlplus.oracle",
-                   "match": "(&{1,2})\\s*\\w+(\\.)?",
-                   "captures": {
-                       "1": { "name": "keyword.other.substitution.sqlplus.oracle" },
-                       "2": { "name": "keyword.operator.delimiter.sqlplus.oracle" }
-                   }
-                },
-                {  "name": "variable.parameter",
                    "match": "\\w"
                 },
                 {  "name": "invalid.illegal",
@@ -331,7 +324,7 @@
                "match": "(?<=\\s).*$|(?<==)\\s*$",
                "comment": "Missing equal sign"
             },
-            { "name": "string.quoted",
+            { "name": "meta.command.value.define.sqlplus.oracle",
               "begin": "(?<==)",
               "patterns": [
                 {  "name": "string.quoted.double",
@@ -341,16 +334,28 @@
                    },
                    "end": "(\\1)(.*)",
                    "endCaptures": {
-                       "2": { "name": "invalid.illegal" }
+                       "2": { "name": "comment.line.command.sqlplus" }
                    },
                    "comment": "Quoted value"
                 },
-                {  "name": "keyword.operator.substitution.sqlplus.oracle",
-                   "match": "(?<==)\\s*(([^\\s&]+)|((&+\\s*)+)(\\w+)\\.?)+",
-                   "captures": {
-                       "1": { "name": "variable.other.sqlplus.oracle" },
-                       "3": { "name": "variable.other.sqlplus.oracle" }
-                   }
+                {  "name": "string.unquoted",
+                   "begin": "(?<==)(?=\\s*[^\"'\\s])",
+                   "patterns": [
+                      { "name": "string.unquoted",
+                        "begin": "(?<==)\\s*(?=\\S.*$)",
+                        "patterns": [
+                          { "include": "#sqlplus-variable-substitution" }
+                        ],
+                        "end": "(?<!&|\\s)\\s(\\s*.*$)|&\\s(\\s*\\W.*$)|$",
+                        "endCaptures": {
+                            "0": { "name": "comment.line.command.sqlplus.oracle" }
+                        }
+                      },
+                      { "name": "comment.line.command.sqlplus.oracle",
+                        "match": "."
+                      }
+                   ],
+                   "end": "$"
                 }
               ],
               "end": "$",
