@@ -197,6 +197,70 @@
         }
       ]
     },
+    "sqlplus-command-argument-multi-line-string-quoted": {
+      "patterns": [
+        { "name": "string.quoted.single.command",
+          "begin": "(')(?=[^']*+(\\1))",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "(\\1)",
+          "comment": "within line"
+        },
+        { "name": "string.quoted.single.command",
+          "begin": "(')(?=[^']*?-\\s*+)",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" },
+            { "include": "#sqlplus-command-continuation" }
+          ],
+          "end": "(\\1)",
+          "comment": "Multi-line, proper continuation"
+        },
+        { "name": "comment.other",
+          "match": "(')[^']*?(?!-\\s*+)$",
+          "captures": {
+              "1": { "name": "invalid.illegal" }
+          },
+          "comment": "End of line, no closing quote continuation"
+        },
+        { "name": "string.quoted.double.command",
+          "begin": "(\")(?=[^\"]*+(\\1))",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "(\\1)",
+          "comment": "within line"
+        },
+        { "name": "string.quoted.double.command",
+          "begin": "(\")(?=[^\"]*?-\\s*+)",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" },
+            { "include": "#sqlplus-command-continuation" }
+          ],
+          "end": "(\\1)",
+          "comment": "Multi-line, proper continuation"
+        },
+        { "name": "comment.other",
+          "match": "(\")[^\"]*?(?!-\\s*+)$",
+          "captures": {
+              "1": { "name": "invalid.illegal" }
+          },
+          "comment": "End of line, no closing quote continuation"
+        }
+      ]
+    },
     "sqlplus-command-arguments-single-line-template": {
       "patterns": [
         {  "match": "^\\s*+((?i:comm(a|an|and)?))\\s*+$",
@@ -446,7 +510,7 @@
     "sqlplus-set-argument-keywords": {
       "patterns": [
           {  "name": "keyword.other.argument.sqlplus.oracle",
-             "match": "(\\b)(?i)(?>app(?>info|inf|in|i)?|array(?>size|siz|si|s)?|autorecovery|autop(?>rint|rin|ri|r)?|autot(?>race|rac|ra|r)?|auto(?>commit|commi|comm|com|co|c)?|baseuri|blo(?>ckterminator|ckterminato|ckterminat|cktermina|cktermin|cktermi|ckterm|ckter|ckte|ckt|ck|c)?|body|def(?>ine|in|i)?|cmds(?>ep|e)?|colinvi(?>sible|sibl|sib|si|s)?|colsep|context|con(?>cat|ca|c)?|copyc(?>ommit|ommi|omm|om|o)?|copytypecheck|def(?>ine|in|i)?|depth|describe|echo|editf(?>ile|il|i)?|emb(?>edded|edde|edd|ed|e)?|entmap|errorl(?>ogging|oggin|oggi|ogg|og|o)?|escchar|esc(?>ape|ap|a)?|exitc(?>ommit|ommit|omm|om|o)?|exp(?>lain|lai|la|l)?|feed(?>back|bac|ba|b)?|flagger|flu(?>sh|s)?|heads(?>ep|e)?|hea(?>ding|din|di|d)?|html|identifier|indent|instance|linenum|lin(?>esize|esiz|esi|es|e)?|lobof(?>fset|fse|fse|fs|f)?|logsource|longc(?>hunksize|hunksiz|hunksi|hunks|hunk|hun|hu|h)?|long|mark(?>up|u)?|newp(?>age|ag|a)?|node|null|numf(?>ormat|orma|orm|or|o)?|num(?>width|widt|wid|wi|w)?|ordering|pages(?>ize|iz|i)?|pau(?>se|s)?|pre(?>format|forma|form|for|fo|f)?|recsep(char)?|securedcol|serverout(?>put|pu|p)?|shift(?>inout|inou|ino|in|i)?|show(?>mode|mod|mo|m)?|spa(?>ce|c)?|spool|sqlbl(?>anklines|ankline|anklin|ankli|ankl|ank|an|a)?|sqlco(?>ntinue|ntinu|ntin|nti|nt|n)?|sqlc(?>ase|as|a)?|sqln(?>umber|umbe|umb|um|u)?|sqlpluscompat(?>ibility|ibilit|ibili|ibil|ibi|ib|i)?|sqlpre(?>fix|fi|f)?|sqlp(?>rompt|romp|rom|ro|r)?|sqlt(?>erminator|erminato|erminat|ermina|ermin|ermi|erm|er|e)?|stat(?>istics|istic|isti|ist|is|i)?|suf(?>fix|fi|f)?|table|tab|term(?>out|ou|o)?|timi(?>ng|n)?|ti(?>me|m)?|trims(?>pool|poo|po|p)?|trim(?>out|ou|o)?|truncate|unauth(?>orized|orize|oriz|ori|or|o)?|und(?>erline|erlin|erli|erl|er|e)?|ver(?>ify|if|i)?|wra(?>p)?|xmlopt(?>imizationcheck|imizationchec|imizationche|imizationch|imizationc|imization|imizatio|imizati|imizat|imiza|imiz|imi|im|i)?|xquery)(\\b)"
+             "match": "(\\b)(?i)(?>app(?>info|inf|in|i)?|array(?>size|siz|si|s)?|autorecovery|autop(?>rint|rin|ri|r)?|autot(?>race|rac|ra|r)?|auto(?>commit|commi|comm|com|co|c)?|baseuri|blo(?>ckterminator|ckterminato|ckterminat|cktermina|cktermin|cktermi|ckterm|ckter|ckte|ckt|ck|c)?|body|def(?>ine|in|i)?|cmds(?>ep|e)?|colinvi(?>sible|sibl|sib|si|s)?|colsep|context|con(?>cat|ca|c)?|copyc(?>ommit|ommi|omm|om|o)?|copytypecheck|def(?>ine|in|i)?|depth|describe|echo|editf(?>ile|il|i)?|emb(?>edded|edde|edd|ed|e)?|entmap|errorl(?>ogging|oggin|oggi|ogg|og|o)?|escchar|esc(?>ape|ap|a)?|exitc(?>ommit|ommit|omm|om|o)?|exp(?>lain|lai|la|l)?|feed(?>back|bac|ba|b)?|flagger|flu(?>sh|s)?|for(?>mat|ma|m)?|heads(?>ep|e)?|hea(?>ding|din|di|d)?|html|identifier|indent|instance|linenum|lin(?>esize|esiz|esi|es|e)?|lobof(?>fset|fse|fse|fs|f)?|logsource|longc(?>hunksize|hunksiz|hunksi|hunks|hunk|hun|hu|h)?|long|mark(?>up|u)?|newp(?>age|ag|a)?|node|null|numf(?>ormat|orma|orm|or|o)?|num(?>width|widt|wid|wi|w)?|ordering|pages(?>ize|iz|i)?|pau(?>se|s)?|pre(?>format|forma|form|for|fo|f)?|recsep(char)?|securedcol|serverout(?>put|pu|p)?|shift(?>inout|inou|ino|in|i)?|show(?>mode|mod|mo|m)?|size|spa(?>ce|c)?|spool|sqlbl(?>anklines|ankline|anklin|ankli|ankl|ank|an|a)?|sqlco(?>ntinue|ntinu|ntin|nti|nt|n)?|sqlc(?>ase|as|a)?|sqln(?>umber|umbe|umb|um|u)?|sqlpluscompat(?>ibility|ibilit|ibili|ibil|ibi|ib|i)?|sqlpre(?>fix|fi|f)?|sqlp(?>rompt|romp|rom|ro|r)?|sqlt(?>erminator|erminato|erminat|ermina|ermin|ermi|erm|er|e)?|stat(?>istics|istic|isti|ist|is|i)?|suf(?>fix|fi|f)?|table|tab|term(?>out|ou|o)?|timi(?>ng|n)?|ti(?>me|m)?|trims(?>pool|poo|po|p)?|trim(?>out|ou|o)?|truncate|unauth(?>orized|orize|oriz|ori|or|o)?|und(?>erline|erlin|erli|erl|er|e)?|ver(?>ify|if|i)?|wra(?>p)?|xmlopt(?>imizationcheck|imizationchec|imizationche|imizationch|imizationc|imization|imizatio|imizati|imizat|imiza|imiz|imi|im|i)?|xquery)(\\b)"
           }
         ]
     },
@@ -466,9 +530,6 @@
             }
           ],
           "end": "(?=\\s)"
-        },
-        {  "name": "keyword.other.argument.sqlplus.oracle",
-               "match": "(\\b)(?i)(for(?>mat|ma|m)?|size)(\\b)"
         },
         {  "name": "constant.language",
            "match": "\\b(?i)(?>byreference|byvalue|ea(?>ch|c)?|default|entry|full|intermed(?>iate|iat|ia|i)?|imm(?>ediate|ediat|edia|edi|ed|e)?|inv(?>isible|isibl|isib|isi|is|i)?|local|lo(?>wer|we|w)?|mix(?>ed|e)?|none|off|on|ordered|trace(?>only|onl|on|o)?|tru(?>ncated|uncate|uncat|unca|unc|un|u)?|unordered|unl(?>imited|imite|imit|imi|im|i)?|up(?>per|pe|p)?|vis(?>ible|ibl|ib|i)?|wor(d_wrapped|d_wrappe|d_wrapp|d_wrap|d_wra|d_wr|d_w|d_|d)?|wra(?>pped|ppe|pp|p)?|wr(?>apped|appe|app|ap|a)?)\\b"
@@ -492,6 +553,45 @@
         }
       ]
     },
+    "sqlplus-set-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:set))\\s*+(-)\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:set))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-set-argument-keywords" },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))"
+        },
+        { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+        {  "name": "constant.language",
+           "match": "\\b(?i)(?>byreference|byvalue|ea(?>ch|c)?|default|entry|full|intermed(?>iate|iat|ia|i)?|imm(?>ediate|ediat|edia|edi|ed|e)?|inv(?>isible|isibl|isib|isi|is|i)?|local|lo(?>wer|we|w)?|mix(?>ed|e)?|none|off|on|ordered|trace(?>only|onl|on|o)?|tru(?>ncated|uncate|uncat|unca|unc|un|u)?|unordered|unl(?>imited|imite|imit|imi|im|i)?|up(?>per|pe|p)?|vis(?>ible|ibl|ib|i)?|wor(d_wrapped|d_wrappe|d_wrapp|d_wrap|d_wra|d_wr|d_w|d_|d)?|wra(?>pped|ppe|pp|p)?|wr(?>apped|appe|app|ap|a)?)\\b"
+        },
+        { "include": "#sqlplus-set-argument-keywords" },
+        {  "name": "constant.numeric",
+           "match": "\\b(\\d++)\\b"
+        },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "string.unquoted",
+           "match": "\\w"
+        },
+        {  "name": "keyword.operator.sqlplus.oracle",
+           "match": "\\.|@|\\?|%|\\$|#|>|;|-"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
     "sqlplus-set": {
       "patterns": [
         {
@@ -501,16 +601,18 @@
             { "include": "#sqlplus-set-arguments" }
           ],
           "end": "$",
-          "comment": "SQL*Plus CONNECT"
+          "comment": "SQL*Plus SET single line"
         },
         {
           "name": "meta.command.continued.sqlplus.oracle",
-          "begin": "^\\s*+((?i:set))\\b(?=.*?-\\s*+$)",
+          "begin": "^(?=\\s*(?i:set)\\b.*?-\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
           "patterns": [
-                { "include": "#sqlplus-command-continuation" },
-                { "include": "#sqlplus-set-arguments" }
+                { "include": "#sqlplus-set-arguments-continuation" }
           ],
-          "end": "(?<!-|\\s)(?=\\s*$)",
+          "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "Command provided in multiple lines by using continuation"
         }
       ]
