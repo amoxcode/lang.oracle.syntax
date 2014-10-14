@@ -167,7 +167,8 @@
           "name": "invalid.illegal",
           "match": "(?<=p|P)(s|S)(?=://)"
         },
-        {  "name": "string.unquoted",
+        {
+         "name": "string.unquoted",
           "match": "(%)[[:xdigit:]]{1,2}",
           "captures": {
               "1": { "name": "keyword.operator.delimiter.url" }
@@ -431,7 +432,11 @@
       "name": "constant.character",
       "begin": "(?=\\S)",
       "patterns": [
-        { "include": "#sqlplus-variable-substitution" }
+        { "include": "#sqlplus-variable-substitution" },
+        {
+          "name": "comment.other",
+          "match": ";(?=\\s*+)$"
+        }
       ],
       "end": "(?=\\s)"
     },
@@ -938,6 +943,10 @@
           ],
           "end": "(?=\\s)"
         },
+        {
+          "name": "comment.other",
+          "match": ";\\s*+$"
+        },
         { "include": "#sqlplus-variable-substitution" },
         { "include": "#sqlplus-command-argument-multi-line-filename-or-url" },
         { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
@@ -961,6 +970,10 @@
             { "include": "#sqlplus-command-argument-single-line-filename-or-url" }
           ],
           "end": "(?=\\s)"
+        },
+        {
+          "name": "comment.other",
+          "match": ";\\s*+$"
         },
         { "include": "#sqlplus-variable-substitution" },
         { "include": "#sqlplus-command-argument-single-line-string-quoted" },
