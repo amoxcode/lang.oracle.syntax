@@ -597,52 +597,71 @@
         }
       ]
     },
-    "sqlplus-connect-arguments": {
+    "sqlplus-connect-identifier": {
       "patterns": [
-        {  "name": "keyword.other.command.sqlplus.oracle",
-           "match": "^\\s*((?i:conn(e|ec|ect)?)\\b)"
-        },
         { "include": "#sqlplus-variable-substitution" },
         {  "name": "keyword.operator.delimiter.sqlplus.oracle",
            "match": "/|@|\\[|]"
         },
+        {  "name": "constant.character",
+           "match": "(?<=@|\\[])\\w+|\\w+(?=/|@|]|\\[)"
+        },
+        {  "name": "invalid.illegal",
+           "match": "(?<=/)\\S+(?=;\\s*+$)"
+        },
+        {  "name": "invalid.illegal",
+           "match": "(?<=/)\\S+(?!;\\s*+$)"
+        },
+        {  "name": "constant.character",
+           "match": "\\b\\S++\\b"
+        },
+        { "include": "#sqlplus-command-argument-single-line-filename-or-url" }
+      ]
+    },
+    "sqlplus-connect-keywords": {
+      "patterns": [
         {  "name": "keyword.operator.sqlplus.oracle",
            "match": "(?i:as)"
         },
         {  "name": "constant.language.sqlplus.oracle",
-           "match": "\\b(?i:sysasm|sysbackup|sysdba|sysdg|sysoper|syskm)\\b"
-        },
-        {  "name": "variable.other.sqlplus.oracle",
-           "match": "(?<=@|\\[])\\w+|\\w+(?=/|@|]|\\[)"
-        },
-        {  "name": "invalid.illegal",
-           "match": "(?<=/)\\S+"
-        },
-        {  "name": "variable.other.sqlplus.oracle",
-           "match": "(?<=(c|C)(o|O)(n|N)(n|N)|(c|C)(o|O)(n|N)(n|N)(e|E)|(c|C)(o|O)(n|N)(n|N)(e|E)(c|C)|(c|C)(o|O)(n|N)(n|N)(e|E)(c|C)(t|T))\\s+\\w+"
-        },
-        {  "match": "\\s+((?i:edition))\\s*(=)\\s*\\w+",
+           "match": "\\b(?i:sysasm|sysbackup|sysdba|sysdg|sysoper|syskm)\\b(.*?)(?=\\s*+$)",
            "captures": {
-               "1": { "name": "keyword.other.sqlplus.oracle" },
-               "2": { "name": "keyword.operator.assignment.sqlplus.oracle"},
-               "2": { "name": "variable.other.sqlplus.oracle"}
+               "1": { "name": "invalid.illegal" }
            }
+        }
+      ]
+    },
+    "sqlplus-connect-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:conn(?>ect|ec|e)?))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:conn(?>ect|ec|e)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-connect-identifier" }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
         },
         {  "name": "comment.other",
-           "match": "\\S"
-        }
+           "match": ";\\s*+$"
+        },
+        { "include": "#sqlplus-connect-keywords" }
       ]
     },
     "sqlplus-connect": {
       "patterns": [
         {
           "name": "meta.command.sqplus.oracle",
-          "begin": "^(?=\\s*(?i:conn(e|ec|ect)?)\\b)(?=.*[^-\\s]\\s*$)",
+          "begin": "^(?=\\s*+(?i:conn(?>ect|ec|e)?)\\b(.*[^-\\s])?\\s*+$)",
           "patterns": [
             { "include": "#sqlplus-connect-arguments" }
           ],
           "end": "$",
-          "comment": "SQL*Plus CONNECT"
+          "comment": "SQL*Plus CONNECT one line"
         },
         {
           "name": "meta.command.continued.sqlplus.oracle",
@@ -799,7 +818,7 @@
       "patterns": [
         {
           "name": "meta.command.sqplus.oracle",
-          "begin": "^(?=\\s*(?i:spo(?>ol|o)?)\\b(.*?[^-\\s])?\\s*+$)",
+          "begin": "^(?=\\s*+(?i:spo(?>ol|o)?)\\b(.*?[^-\\s])?\\s*+$)",
           "patterns": [
             { "include": "#sqlplus-spool-arguments" }
           ],
