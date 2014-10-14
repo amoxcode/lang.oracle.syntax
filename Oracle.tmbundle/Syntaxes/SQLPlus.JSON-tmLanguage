@@ -178,7 +178,10 @@
             { "include": "#sqlplus-command-argument-filename-delimiters" },
             { "include": "#sqlplus-command-continuation" }
           ],
-          "end": "(\\1)",
+          "end": "(\\1)|([^-\\s])\\s*+$",
+          "endCaptures": {
+              "2": { "name": "invalid.illegal" }
+          },
           "comment": "Multi-line, proper continuation"
         },
         { "name": "comment.other",
@@ -210,7 +213,10 @@
             { "include": "#sqlplus-command-argument-filename-delimiters" },
             { "include": "#sqlplus-command-continuation" }
           ],
-          "end": "(\\1)",
+          "end": "(\\1)|([^-\\s])\\s*+$",
+          "endCaptures": {
+              "2": { "name": "invalid.illegal" }
+          },
           "comment": "Multi-line, proper continuation"
         },
         { "name": "comment.other",
@@ -300,7 +306,10 @@
             { "include": "#sqlplus-variable-substitution" },
             { "include": "#sqlplus-command-continuation" }
           ],
-          "end": "(\\1)",
+          "end": "(\\1)|([^-\\s])\\s*+$",
+          "endCaptures": {
+              "2": { "name": "invalid.illegal" }
+          },
           "comment": "Multi-line, proper continuation"
         },
         { "name": "comment.other",
@@ -330,7 +339,10 @@
             { "include": "#sqlplus-variable-substitution" },
             { "include": "#sqlplus-command-continuation" }
           ],
-          "end": "(\\1)",
+          "end": "(\\1)|([^-\\s])\\s*+$",
+          "endCaptures": {
+              "2": { "name": "invalid.illegal" }
+          },
           "comment": "Multi-line, proper continuation"
         },
         { "name": "comment.other",
