@@ -631,6 +631,38 @@
         }
       ]
     },
+    "sqlplus-connect-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:conn(?>ect|ec|e)?))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:conn(?>ect|ec|e)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-connect-identifier" }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        { "name": "meta.section.identifier.connection",
+          "begin": "(?=\\S+?[\\[@/]\\S*+)",
+          "patterns": [
+            { "include": "#sqlplus-connect-identifier" }
+          ],
+          "end": "\\s"
+        },
+        { "include": "#sqlplus-command-continuation" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        { "include": "#sqlplus-connect-keywords" }
+      ]
+    },
     "sqlplus-connect-arguments": {
       "patterns": [
         {  "name": "keyword.other.sqlplus.oracle",
@@ -665,13 +697,12 @@
         },
         {
           "name": "meta.command.continued.sqlplus.oracle",
-          "begin": "^(?=\\s*(?i:conn(e|ec|ect)?)\\b)(?=.*-\\s*$)",
+          "begin": "^(?=\\s*+(?i:conn(?>ect|ec|e)?)\\b.*?-\\s*+$)",
           "patterns": [
-                { "include": "#sqlplus-command-continuation" },
-                { "include": "#sqlplus-connect-arguments" }
+                { "include": "#sqlplus-connect-arguments-continuation" }
           ],
-          "end": "(?<!-|\\s)(?=\\s*$)",
-          "comment": "Command provided in multiple lines by using continuation"
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus CONNECT multi line"
         }
       ]
     },
