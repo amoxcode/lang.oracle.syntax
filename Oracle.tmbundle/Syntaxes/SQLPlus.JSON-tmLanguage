@@ -708,6 +708,54 @@
         }
       ]
     },
+    "sqlplus-define-value": {
+      "patterns": [
+        {
+          "begin": "(?<==)|(=)",
+          "beginCaptures": {
+              "1": { "name": "keyword.operator.sqlplus.oracle" }
+          },
+          "patterns": [
+            {
+              "begin": "(?<==)\\s*+",
+                "patterns": [
+                  { "include": "#sqlplus-command-argument-single-line-string-quoted" },
+                  { "include": "#sqlplus-command-argument-single-line-string-unquoted" }
+                ],
+              "end": "\\s|$"
+            },
+            {  "name": "comment.other",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s*+;?\\s*+)$"
+        }
+      ]
+    },
+    "sqlplus-define-value-continuation": {
+      "patterns": [
+        {
+          "begin": "(?<==)|(=)",
+          "beginCaptures": {
+              "1": { "name": "keyword.operator.sqlplus.oracle" }
+          },
+          "patterns": [
+            {
+              "begin": "(?<==)\\s*+",
+                "patterns": [
+                  { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+                  { "include": "#sqlplus-command-argument-single-line-string-unquoted" }
+                ],
+              "end": "(?=\\s)"
+            },
+            {  "name": "comment.other",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s*+;?\\s*+)$"
+        }
+      ]
+    },
     "sqlplus-define-variable": {
       "patterns": [
         { "include": "#sqlplus-variable-substitution" },
@@ -719,6 +767,56 @@
         },
         {  "name": "invalid.illegal",
            "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-define-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:def(?>ine|in|i)?))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:def(?>ine|in|i)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-continuation" },
+            { "include": "#sqlplus-define-variable" }
+          ],
+          "end": "(?=\\s|(?<==))",
+          "comment": "Grab variable name"
+        },
+        { "include": "#sqlplus-command-continuation" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        { "include": "#sqlplus-define-value-continuation" },
+        {
+          "begin": "(?=\\S.*?=)",
+          "patterns": [
+            { "include": "#sqlplus-define-variable" }
+          ],
+          "end": "(?<==)"
+        },
+        {
+          "begin": "^",
+          "patterns": [
+            {
+              "begin": "^\\s*+(?=\\S)",
+              "patterns": [
+                { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+                { "include": "#sqlplus-command-argument-single-line-string-unquoted" }
+              ],
+              "end": "\\s"
+            },
+            {  "name": "comment.other",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s*+(;|-)?\\s*+$)"
         }
       ]
     },
@@ -743,26 +841,7 @@
         {  "name": "comment.other",
            "match": ";\\s*+$"
         },
-        {
-          "begin": "(?<==)|(=)",
-          "beginCaptures": {
-              "1": { "name": "keyword.operator.sqlplus.oracle" }
-          },
-          "patterns": [
-            {
-              "begin": "(?<==)\\s*+",
-                "patterns": [
-                  { "include": "#sqlplus-command-argument-single-line-string-quoted" },
-                  { "include": "#sqlplus-command-argument-single-line-string-unquoted" }
-                ],
-              "end": "\\s|$"
-            },
-            {  "name": "comment.other",
-               "match": "\\S"
-            }
-          ],
-          "end": "(?=\\s*+;?\\s*+)$"
-        },
+        { "include": "#sqlplus-define-value" },
         {  "name": "invalid.illegal",
            "match": "\\S"
         }
