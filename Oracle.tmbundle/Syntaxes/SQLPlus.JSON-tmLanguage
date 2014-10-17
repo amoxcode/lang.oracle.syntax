@@ -84,7 +84,8 @@
         { "include": "#sqlplus-column" },
         { "include": "#sqlplus-define" },
         { "include": "#sqlplus-undefine" },
-        { "include": "#sqlplus-clear" }
+        { "include": "#sqlplus-clear" },
+        { "include": "#sqlplus-variable" }
       ]
     },
     "sqlplus-command-continuation": {
@@ -710,6 +711,105 @@
         }
       ]
     },
+    "sqlplus-variable-identifier": {
+      "patterns": [
+        {  "name": "variable.other",
+           "match": "[[:alpha:]]\\w*+"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-variable-keywords": {
+      "patterns": [
+        {  "name": "storage.type.oracle",
+           "match": "\\b(?i:bfile|binary_double|binary_float|blob|char|clob|nchar|nclob|number|nvarchar2|refcursor|varchar2\\s*+(\\()\\s*+(\\d++)(\\s++byte|char)?\\s*+(\\)))(.*?)(?=\\s*+;?\\s*+$)",
+           "captures": {
+               "1": { "name": "meta.brace.round" },
+               "2": { "name": "constant.numeric" },
+               "3": { "name": "storage_type" },
+               "4": { "name": "meta.brace.round" },
+               "5": { "name": "invalid.illegal" }
+           }
+        }
+      ]
+    },
+    "sqlplus-variable-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:var(?>iable|iabl|iab|ia|i)?))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:var(?>iable|iabl|iab|ia|i)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-identifier" }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        { "name": "meta.section.identifier.variable",
+          "begin": "(?=\\S+?[\\[@/]\\S*+)",
+          "patterns": [
+            { "include": "#sqlplus-variable-identifier" }
+          ],
+          "end": "\\s"
+        },
+        { "include": "#sqlplus-command-continuation" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        { "include": "#sqlplus-variable-keywords" }
+      ]
+    },
+    "sqlplus-variable-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:var(?>iable|iabl|iab|ia|i)?))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:var(?>iable|iabl|iab|ia|i)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-identifier" }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        { "include": "#sqlplus-variable-keywords" }
+      ]
+    },
+    "sqlplus-variable": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:var(?>iable|iabl|iab|ia|i)?)\\b(.*[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-variable-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus VARIABLE one line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:var(?>iable|iabl|iab|ia|i)?)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-variable-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus VARIABLE multi line"
+        }
+      ]
+    },
     "sqlplus-define-value": {
       "patterns": [
         {
@@ -994,7 +1094,7 @@
            "match": ";(?=\\s*+$)"
         },
         {  "name": "keyword.other.arguments.clear.sqlplus.oracle",
-           "match": "\\b(?i:bre(?>aks|ak|a)?|buff(?>er|e)?|col(?>umns|umn|um|u)?|comp(?>utes|ute|ut|u)?|scr(?>een|ee|e)?|sql\\s*+timi(?>ng|n)?|)\\b"
+           "match": "\\b(?i:bre(?>aks|ak|a)?|buff(?>er|e)?|col(?>umns|umn|um|u)?|comp(?>utes|ute|ut|u)?|scr(?>een|ee|e)?|sql|timi(?>ng|n)?|)\\b"
         },
         {  "name": "invalid.illegal",
            "match": "\\S"
