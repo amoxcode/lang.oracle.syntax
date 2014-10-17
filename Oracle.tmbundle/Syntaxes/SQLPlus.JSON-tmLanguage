@@ -82,7 +82,9 @@
         { "include": "#sqlplus-connect" },
         { "include": "#sqlplus-start" },
         { "include": "#sqlplus-column" },
-        { "include": "#sqlplus-define" }
+        { "include": "#sqlplus-define" },
+        { "include": "#sqlplus-undefine" },
+        { "include": "#sqlplus-clear" }
       ]
     },
     "sqlplus-command-continuation": {
@@ -939,6 +941,89 @@
           "patterns": [
                 { "include": "#sqlplus-command-continuation" },
                 { "include": "#sqlplus-prompt-arguments" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*$)",
+          "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-undefine-arguments": {
+      "patterns": [
+        { "include": "#sqlplus-variable-substitution" },
+        {  "name": "comment.other",
+           "match": ";(?=\\s*+$)"
+        },
+        {  "name": "variable.other",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-undefine": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^\\s*+((?i:undef(?>ine|in|i)?))\\b(?=(.*?[^-\\s])?\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-undefine-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus CONNECT"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^\\s*+((?i:undef(?>ine|in|i)?))\\b(?=.*?-\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+                { "include": "#sqlplus-command-continuation" },
+                { "include": "#sqlplus-undefine-arguments" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*$)",
+          "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-clear-arguments": {
+      "patterns": [
+        { "include": "#sqlplus-variable-substitution" },
+        {  "name": "comment.other",
+           "match": ";(?=\\s*+$)"
+        },
+        {  "name": "keyword.other.arguments.clear.sqlplus.oracle",
+           "match": "\\b(?i:bre(?>aks|ak|a)?|buff(?>er|e)?|col(?>umns|umn|um|u)?|comp(?>utes|ute|ut|u)?|scr(?>een|ee|e)?|sql\\s*+timi(?>ng|n)?|)\\b"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-clear": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^\\s*+((?i:cl(?>ear|ea|e)?))\\b(?=(.*?[^-\\s])?\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-clear-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus CLEAR"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^\\s*+((?i:cl(?>ear|ea|e)?))\\b(?=.*?-\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+                { "include": "#sqlplus-command-continuation" },
+                { "include": "#sqlplus-clear-arguments" }
           ],
           "end": "(?<!-|\\s)(?=\\s*$)",
           "comment": "Command provided in multiple lines by using continuation"
