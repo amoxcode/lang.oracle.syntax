@@ -724,14 +724,24 @@
     "sqlplus-variable-keywords": {
       "patterns": [
         {  "name": "storage.type.oracle",
-           "match": "\\b(?i:bfile|binary_double|binary_float|blob|char|clob|nchar|nclob|number|nvarchar2|refcursor|varchar2\\s*+(\\()\\s*+(\\d++)(\\s++byte|char)?\\s*+(\\)))(.*?)(?=\\s*+;?\\s*+$)",
+           "match": "\\b(?i:bfile|binary_double|binary_float|blob|char\\s*+(?:(\\()\\s*+(\\d++)(\\s++byte|char)?\\s*+(\\)))?|clob|nchar\\s*+(?:(\\()\\s*+(\\d++)\\s*+(\\)))?|nclob|number|nvarchar2|refcursor|varchar2\\s*+(\\()\\s*+(\\d++)(\\s++byte|char)?\\s*+(\\)))(.*?)(?=\\s*+;?\\s*+$)",
            "captures": {
                "1": { "name": "meta.brace.round" },
                "2": { "name": "constant.numeric" },
                "3": { "name": "storage_type" },
                "4": { "name": "meta.brace.round" },
-               "5": { "name": "invalid.illegal" }
+               "5": { "name": "meta.brace.round" },
+               "6": { "name": "constant.numeric" },
+               "7": { "name": "meta.brace.round" },
+               "8": { "name": "meta.brace.round" },
+               "9": { "name": "constant.numeric" },
+               "10": { "name": "storage_type" },
+               "11": { "name": "meta.brace.round" },
+               "12": { "name": "invalid.illegal" }
            }
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S*+(?=\\s*+;?\\s*+$)"
         }
       ]
     },
@@ -753,8 +763,9 @@
           "end": "(?=\\s|(?=-\\s*+$))",
           "comment": "Grab first parameter"
         },
+        { "include": "#sqlplus-variable-keywords" },
         { "name": "meta.section.identifier.variable",
-          "begin": "(?=\\S+?[\\[@/]\\S*+)",
+          "begin": "(?=\\S)",
           "patterns": [
             { "include": "#sqlplus-variable-identifier" }
           ],
@@ -763,8 +774,7 @@
         { "include": "#sqlplus-command-continuation" },
         {  "name": "comment.other",
            "match": ";\\s*+$"
-        },
-        { "include": "#sqlplus-variable-keywords" }
+        }
       ]
     },
     "sqlplus-variable-arguments": {
