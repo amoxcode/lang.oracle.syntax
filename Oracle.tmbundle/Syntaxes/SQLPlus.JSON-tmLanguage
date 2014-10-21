@@ -75,6 +75,7 @@
     "sqlplus-commands": {
       "patterns": [
         { "include": "#sqlplus-accept" },
+        { "include": "#sqlplus-append" },
         { "include": "#sqlplus-attribute" },
         { "include": "#sqlplus-break" },
         { "include": "#sqlplus-clear" },
@@ -714,6 +715,50 @@
           ],
           "end": "(?<![-\\s])\\s*+$",
           "comment": "SQL*Plus ACCEPT Multi"
+        }
+      ]
+    },
+    "sqlplus-append-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b(\\s*+;?\\s*+$)",
+           "captures": {
+               "1": { "name": "invalid.illegal" }
+           },
+           "comment": "Without arguments"
+        },
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b\\s*+(?=\\S)",
+           "comment": "Command"
+        },
+        {  "name": "comment.other",
+           "match": ";(?=\\s*+$)"
+        },
+        {  "name": "constant.character",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-append": {
+      "patterns": [
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b.*?[^-\\s]\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-append-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus APPEND Single line"
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b.*?-\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-command-continuation" },
+            { "include": "#sqlplus-append-arguments" }
+          ],
+          "end": "(?<![-\\s])\\s*+$",
+          "comment": "SQL*Plus APPEND Multi"
         }
       ]
     },
