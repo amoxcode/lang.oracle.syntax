@@ -89,7 +89,8 @@
         { "include": "#sqlplus-xtitle" },
         { "include": "#sqlplus-break" },
         { "include": "#sqlplus-compute" },
-        { "include": "#sqlplus-repheader" }
+        { "include": "#sqlplus-repheader" },
+        { "include": "#sqlplus-run" }
       ]
     },
     "sqlplus-command-continuation": {
@@ -1015,6 +1016,42 @@
           "patterns": [
                 { "include": "#sqlplus-command-continuation" },
                 { "include": "#sqlplus-remark-arguments" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*$)",
+          "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-run-arguments": {
+      "patterns": [
+        {  "name": "comment.line.remark",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-run": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^\\s*+((?i:r(?>un|u)?)\\b|/(?![\\b|\\*]))(?=(.*?[^-\\s])?\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-run-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus CONNECT"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^\\s*+((?i:r(?>un|u)?|/))\\b(?=.*?-\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+                { "include": "#sqlplus-command-continuation" },
+                { "include": "#sqlplus-run-arguments" }
           ],
           "end": "(?<!-|\\s)(?=\\s*$)",
           "comment": "Command provided in multiple lines by using continuation"
