@@ -618,7 +618,10 @@
     "sqlplus-accept-options": {
       "patterns": [
         {  "name": "storage.type.sqlplus.oracle",
-           "match": "\\b(?i:binary_(double|float)|char|date|num(?>ber|be|b)?)\\b"
+           "match": "(\\w++)?\\b\\s*+(?i:binary_(double|float)|char|date|num(?>ber|be|b)?)\\b",
+           "captures": {
+               "1": { "name": "variable.other" }
+           }
         },
         {  "name": "keyword.other.sqlplus.oracle",
            "match": "\\b(?i:def(?>ault|aul|au|a)?|for(?>mat|ma|m)?|hide|nopr(?>ompt|romp|rom|ro|r)?|prompt)\\b"
@@ -631,13 +634,37 @@
     "sqlplus-accept-variable": {
       "patterns": [
         { "include": "#sqlplus-variable-substitution" },
-        { "include": "#sqlplus-command-argument-single-line-string-quoted" },
         {  "name": "variable.other.sqlplus.oracle",
            "match": "\\w++"
         },
         {  "name": "invalid.illegal",
            "match": "\\S"
         }
+      ]
+    },
+    "sqlplus-accept-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:acc(?>ept|ep|e)?))\\b(?=\\s*+-\\s*+$)",
+           "captures": {
+               "1": { "name": "keyword.other.sqlplus.oracle" }
+           },
+           "comment": "continuation before arguments"
+        },
+        { "begin": "^\\s*+((?i:acc(?>ept|ep|e)?))\\b\\s*+(?=\\S)",
+          "captures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-continuation" },
+            { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+            { "include": "#sqlplus-accept-variable" }
+          ],
+          "end": "\\s",
+          "comment": "First Argument"
+        },
+        { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+        { "include": "#sqlplus-accept-options" }
       ]
     },
     "sqlplus-accept-arguments": {
@@ -654,6 +681,7 @@
               "1": { "name": "keyword.other.sqlplus.oracle" }
           },
           "patterns": [
+            { "include": "#sqlplus-command-argument-single-line-string-quoted" },
             { "include": "#sqlplus-accept-variable" }
           ],
           "end": "\\s",
@@ -682,7 +710,7 @@
           "begin": "^(?=\\s*+(?i:acc(?>ept|ep|e)?)\\b.*?-\\s*+$)",
           "patterns": [
             { "include": "#sqlplus-command-continuation" },
-            { "include": "#sqlplus-accept-arguments" }
+            { "include": "#sqlplus-accept-arguments-continuation" }
           ],
           "end": "(?<![-\\s])\\s*+$",
           "comment": "SQL*Plus ACCEPT Multi"
