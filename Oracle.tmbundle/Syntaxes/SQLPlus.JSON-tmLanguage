@@ -76,6 +76,7 @@
       "patterns": [
         { "include": "#sqlplus-accept" },
         { "include": "#sqlplus-append" },
+        { "include": "#sqlplus-archive" },
         { "include": "#sqlplus-attribute" },
         { "include": "#sqlplus-break" },
         { "include": "#sqlplus-clear" },
@@ -108,6 +109,10 @@
       "captures": {
          "1": { "name": "punctuation.separator.continuation" }
       }
+    },
+    "sqlplus-command-terminator": {
+      "name": "comment.other",
+      "match": ";(?=\\s*+$)"
     },
     "sqlplus-variable-substitution": {
       "name": "variable.other.substitution.sqlplus.oracle",
@@ -759,6 +764,43 @@
           ],
           "end": "(?<![-\\s])\\s*+$",
           "comment": "SQL*Plus APPEND Multi"
+        }
+      ]
+    },
+    "sqlplus-archive": {
+      "patterns": [
+        {
+          "name": "command.other.sqlplus.oracle",
+          "begin": "^\\s*+((?i:archive\\s*+log\\s*+list))\\b(?=.*?[^-\\s]\\s*+$)",
+          "captures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-terminator" },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "$",
+          "comment": "Single Line"
+        },
+        { "name": "meta.command.sqlplus.oracle",
+          "begin": "^\\s*+((?i:archive?))\\b(?=.*?-\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-continuation" },
+            {  "name": "keyword.other.sqlplus.oracle",
+               "match": "\\b(?i:list|log)\\b"
+            },
+            { "include": "#sqlplus-command-terminator" },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?<![-\\s])\\s*+$",
+          "comment": "Multiple lines"
         }
       ]
     },
