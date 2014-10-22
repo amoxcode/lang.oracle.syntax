@@ -911,17 +911,31 @@
            "match": "^\\s*+(?i:c(?>hange|hang|han|ha|h)?)\\b\\s*+(?=\\S)",
            "comment": "Command"
         },
+        { "include": "#sqlplus-command-terminator" },
         {  "name": "meta.change.string",
-           "match": "(/)([^/]*?)(-\\s*+)?",
+           "match": "(/)([^/]*+)(/)([^/]*+)(/)",
            "captures": {
-               "1": { "name": "keyword.operator.delimitir.sqlplus" },
-               "2": { "name": "constant.character" }
+               "1": { "name": "keyword.operator.delimiter.sqlplus" },
+               "2": { "name": "constant.character" },
+               "3": { "name": "keyword.operator.delimiter.sqlplus" },
+               "4": { "name": "constant.character" },
+               "5": { "name": "keyword.operator.delimiter.sqlplus" }
+           }
+        },
+        {  "name": "constant.character",
+           "match": "(/)[^/]*+(/)",
+           "captures": {
+               "1": { "name": "keyword.operator.delimiter" },
+               "2": { "name": "keyword.operator.delimiter" }
+           }
+        },
+        {  "name": "constant.character",
+           "match": "(/)?[^/]*?(?=[;-]\\s*+$)",
+           "captures": {
+               "1": { "name": "keyword.operator.delimiter" }
            }
         },
         {  "name": "comment.other",
-           "match": ";(?=\\s*+$)"
-        },
-        {  "name": "constant.character",
            "match": "\\S"
         }
       ]
