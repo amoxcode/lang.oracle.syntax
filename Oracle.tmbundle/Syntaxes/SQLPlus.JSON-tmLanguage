@@ -88,6 +88,7 @@
         { "include": "#sqlplus-copy" },
         { "include": "#sqlplus-define" },
         { "include": "#sqlplus-del" },
+        { "include": "#sqlplus-describe" },
         { "include": "#sqlplus-disconnect" },
         { "include": "#sqlplus-execute" },
         { "include": "#sqlplus-exit" },
@@ -466,24 +467,8 @@
       ],
       "end": "(?=\\s)"
     },
-    "sqlplus-command-argument-single-line-string-quoted": {
+    "sqlplus-command-argument-single-line-string-quoted-double": {
       "patterns": [
-        { "name": "string.quoted.single.command",
-          "begin": "(')(?=[^']*+(\\1))",
-          "captures": {
-              "1": { "name": "punctuation.definition.string.begin" }
-          },
-          "patterns": [
-            { "include": "#sqlplus-variable-substitution" }
-          ],
-          "end": "(\\1)"
-        },
-        { "name": "comment.other",
-          "match": "(')[^']*+$",
-          "captures": {
-              "1": { "name": "invalid.illegal" }
-          }
-        },
         { "name": "string.quoted.double.command",
           "begin": "(\")(?=[^\"]*+(\\1))",
           "captures": {
@@ -502,7 +487,33 @@
         }
       ]
     },
-    "sqlplus-command-argument-multi-line-string-quoted": {
+    "sqlplus-command-argument-single-line-string-quoted-single": {
+      "patterns": [
+        { "name": "string.quoted.single.command",
+          "begin": "(')(?=[^']*+(\\1))",
+          "captures": {
+              "1": { "name": "punctuation.definition.string.begin" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "(\\1)"
+        },
+        { "name": "comment.other",
+          "match": "(')[^']*+$",
+          "captures": {
+              "1": { "name": "invalid.illegal" }
+          }
+        }
+      ]
+    },
+    "sqlplus-command-argument-single-line-string-quoted": {
+      "patterns": [
+        { "include": "#sqlplus-command-argument-single-line-string-quoted-single" },
+        { "include": "#sqlplus-command-argument-single-line-string-quoted-double" }
+      ]
+    },
+    "sqlplus-command-argument-multi-line-string-quoted-single": {
       "patterns": [
         { "name": "string.quoted.single.command",
           "begin": "(')(?=[^']*+(\\1))",
@@ -536,7 +547,11 @@
               "1": { "name": "invalid.illegal" }
           },
           "comment": "End of line, no closing quote continuation"
-        },
+        }
+      ]
+    },
+    "sqlplus-command-argument-multi-line-string-quoted-double": {
+      "patterns": [
         { "name": "string.quoted.double.command",
           "begin": "(\")(?=[^\"]*+(\\1))",
           "captures": {
@@ -570,6 +585,12 @@
           },
           "comment": "End of line, no closing quote continuation"
         }
+      ]
+    },
+    "sqlplus-command-argument-multi-line-string-quoted": {
+      "patterns": [
+        { "include": "#sqlplus-command-argument-multi-line-string-quoted-single" },
+        { "include": "#sqlplus-command-argument-multi-line-string-quoted-double" }
       ]
     },
     "sqlplus-command-arguments-single-line-template": {
@@ -964,54 +985,6 @@
         }
       ]
     },
-    "sqlplus-del-arguments": {
-      "patterns": [
-        {  "name": "keyword.other.sqlplus.oracle",
-           "match": "^\\s*+(?i:del)\\b",
-           "comment": "Command"
-        },
-        {  "name": "constant.numeric",
-           "match": "\\b\\d++\\b"
-        },
-        {  "name": "keyword.operator",
-           "match": "(\\s\\*\\s|(?i:last))"
-        },
-        { "include": "#sqlplus-command-terminator" },
-        {  "name": "invalid.illegal",
-           "match": "\\S"
-        }
-      ]
-    },
-    "sqlplus-del": {
-      "patterns": [
-        {
-          "name": "keyword.other.sqlplus.oracle",
-          "match": "^\\s*+(?i:del)\\b(\\s*+)(;\\s*+)?$",
-          "captures": {
-            "2": { "name": "comment.other" }
-          }
-        },
-        {
-          "name": "meta.command.sqlplus.oracle",
-          "begin": "^(?=\\s*+(?i:del)\\b.*?[^-\\s]\\s*+$)",
-          "patterns": [
-            { "include": "#sqlplus-del-arguments" }
-          ],
-          "end": "$",
-          "comment": "SQL*Plus CHANGE Single line"
-        },
-        {
-          "name": "meta.command.sqlplus.oracle",
-          "begin": "^(?=\\s*+(?i:del)\\b.*?-\\s*+$)",
-          "patterns": [
-            { "include": "#sqlplus-command-continuation" },
-            { "include": "#sqlplus-del-arguments" }
-          ],
-          "end": "(?<![-\\s])\\s*+$",
-          "comment": "SQL*Plus CHANGE Multi"
-        }
-      ]
-    },
     "sqlplus-connect-identifier": {
       "patterns": [
         { "include": "#sqlplus-variable-substitution" },
@@ -1193,6 +1166,107 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-del-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+(?i:del)\\b",
+           "comment": "Command"
+        },
+        {  "name": "constant.numeric",
+           "match": "\\b\\d++\\b"
+        },
+        {  "name": "keyword.operator",
+           "match": "(\\s\\*\\s|(?i:last))"
+        },
+        { "include": "#sqlplus-command-terminator" },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-del": {
+      "patterns": [
+        {
+          "name": "keyword.other.sqlplus.oracle",
+          "match": "^\\s*+(?i:del)\\b(\\s*+)(;\\s*+)?$",
+          "captures": {
+            "2": { "name": "comment.other" }
+          }
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:del)\\b.*?[^-\\s]\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-del-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus CHANGE Single line"
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:del)\\b.*?-\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-command-continuation" },
+            { "include": "#sqlplus-del-arguments" }
+          ],
+          "end": "(?<![-\\s])\\s*+$",
+          "comment": "SQL*Plus CHANGE Multi"
+        }
+      ]
+    },
+    "sqlplus-describe-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+(?i:desc(?>ribe|rib|ri|r)?)\\b",
+           "comment": "Command"
+        },
+        { "include": "#sqlplus-command-terminator" },
+        {  "name": "keyword.operator.delimiter",
+           "match": "\\.|@"
+        },
+        {  "name": "constant.character",
+           "match": "(?<!@)\\b([[:alpha:]]\\w++)\\b"
+        },
+        {  "name": "variable.other",
+           "match": "(?<=@)[[:alpha:]]\\w++"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-describe": {
+      "patterns": [
+        {
+          "name": "keyword.other.sqlplus.oracle",
+          "match": "^\\s*+(?i:desc(?>ribe|rib|ri|r)?)\\b(\\s*+)(;\\s*+)?$",
+          "captures": {
+            "2": { "name": "comment.other" }
+          }
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:desc(?>ribe|rib|ri|r)?)\\b.*?[^-\\s]\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-command-argument-single-line-string-quoted-double" },
+            { "include": "#sqlplus-describe-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus CHANGE Single line"
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:desc(?>ribe|rib|ri|r)?)\\b.*?-\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-command-continuation" },
+            { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+            { "include": "#sqlplus-describe-arguments" }
+          ],
+          "end": "(?<![-\\s])\\s*+$",
+          "comment": "SQL*Plus CHANGE Multi"
         }
       ]
     },
