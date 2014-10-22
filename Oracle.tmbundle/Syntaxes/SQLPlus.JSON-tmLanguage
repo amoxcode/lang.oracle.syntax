@@ -901,15 +901,22 @@
     "sqlplus-change-arguments": {
       "patterns": [
         {  "name": "keyword.other.sqlplus.oracle",
-           "match": "^\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b(\\s*+;?\\s*+$)",
+           "match": "^\\s*+(?i:c(?>hange|hang|han|ha|h)?)\\b(\\s*+;?\\s*+$)",
            "captures": {
                "1": { "name": "invalid.illegal" }
            },
            "comment": "Without arguments"
         },
         {  "name": "keyword.other.sqlplus.oracle",
-           "match": "^\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b\\s*+(?=\\S)",
+           "match": "^\\s*+(?i:c(?>hange|hang|han|ha|h)?)\\b\\s*+(?=\\S)",
            "comment": "Command"
+        },
+        {  "name": "meta.change.string",
+           "match": "(/)([^/]*?)(-\\s*+)?",
+           "captures": {
+               "1": { "name": "keyword.operator.delimitir.sqlplus" },
+               "2": { "name": "constant.character" }
+           }
         },
         {  "name": "comment.other",
            "match": ";(?=\\s*+$)"
@@ -919,26 +926,26 @@
         }
       ]
     },
-    "sqlplus-change-arguments": {
+    "sqlplus-change": {
       "patterns": [
         {
           "name": "meta.command.sqlplus.oracle",
-          "begin": "^(?=\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b.*?[^-\\s]\\s*+$)",
+          "begin": "^(?=\\s*+(?i:c(?>hange|hang|han|ha|h)?)\\b.*?[^-\\s]\\s*+$)",
           "patterns": [
             { "include": "#sqlplus-change-arguments" }
           ],
           "end": "$",
-          "comment": "SQL*Plus APPEND Single line"
+          "comment": "SQL*Plus CHANGE Single line"
         },
         {
           "name": "meta.command.sqlplus.oracle",
-          "begin": "^(?=\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b.*?-\\s*+$)",
+          "begin": "^(?=\\s*+(?i:c(?>hange|hang|han|ha|h)?)\\b.*?-\\s*+$)",
           "patterns": [
             { "include": "#sqlplus-command-continuation" },
             { "include": "#sqlplus-change-arguments" }
           ],
           "end": "(?<![-\\s])\\s*+$",
-          "comment": "SQL*Plus APPEND Multi"
+          "comment": "SQL*Plus CHANGE Multi"
         }
       ]
     },
