@@ -79,6 +79,7 @@
         { "include": "#sqlplus-archive" },
         { "include": "#sqlplus-attribute" },
         { "include": "#sqlplus-break" },
+        { "include": "#sqlplus-change" },
         { "include": "#sqlplus-clear" },
         { "include": "#sqlplus-column" },
         { "include": "#sqlplus-command-template" },
@@ -725,20 +726,7 @@
     },
     "sqlplus-append-arguments": {
       "patterns": [
-        {  "name": "keyword.other.sqlplus.oracle",
-           "match": "^\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b(\\s*+;?\\s*+$)",
-           "captures": {
-               "1": { "name": "invalid.illegal" }
-           },
-           "comment": "Without arguments"
-        },
-        {  "name": "keyword.other.sqlplus.oracle",
-           "match": "^\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b\\s*+(?=\\S)",
-           "comment": "Command"
-        },
-        {  "name": "comment.other",
-           "match": ";(?=\\s*+$)"
-        },
+        { "include": "#sqlplus-command-terminator" },
         {  "name": "constant.character",
            "match": "\\S"
         }
@@ -747,8 +735,19 @@
     "sqlplus-append": {
       "patterns": [
         {
+          "name": "keyword.other.sqlplus.oracle",
+          "match": "^\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b(\\s*+)(;\\s*+)?$",
+          "captures": {
+            "1": { "name": "invalid.illegal" },
+            "2": { "name": "comment.other" }
+          }
+        },
+        {
           "name": "meta.command.sqlplus.oracle",
-          "begin": "^(?=\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b.*?[^-\\s]\\s*+$)",
+          "begin": "^\\s*+((?i:a(?>ppend|ppen|ppe|pp|p)?))\\b(?=.*?[^-\\s]\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
           "patterns": [
             { "include": "#sqlplus-append-arguments" }
           ],
@@ -757,7 +756,10 @@
         },
         {
           "name": "meta.command.sqlplus.oracle",
-          "begin": "^(?=\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b.*?-\\s*+$)",
+          "begin": "^\\s*+((?i:a(?>ppend|ppen|ppe|pp|p)?))\\b(?=.*?-\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
           "patterns": [
             { "include": "#sqlplus-command-continuation" },
             { "include": "#sqlplus-append-arguments" }
@@ -893,6 +895,50 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-change-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b(\\s*+;?\\s*+$)",
+           "captures": {
+               "1": { "name": "invalid.illegal" }
+           },
+           "comment": "Without arguments"
+        },
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b\\s*+(?=\\S)",
+           "comment": "Command"
+        },
+        {  "name": "comment.other",
+           "match": ";(?=\\s*+$)"
+        },
+        {  "name": "constant.character",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-change-arguments": {
+      "patterns": [
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b.*?[^-\\s]\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-change-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus APPEND Single line"
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:a(?>ppend|ppen|ppe|pp|p)?)\\b.*?-\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-command-continuation" },
+            { "include": "#sqlplus-change-arguments" }
+          ],
+          "end": "(?<![-\\s])\\s*+$",
+          "comment": "SQL*Plus APPEND Multi"
         }
       ]
     },
