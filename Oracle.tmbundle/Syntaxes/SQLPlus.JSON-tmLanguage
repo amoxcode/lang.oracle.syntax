@@ -87,6 +87,7 @@
         { "include": "#sqlplus-connect" },
         { "include": "#sqlplus-copy" },
         { "include": "#sqlplus-define" },
+        { "include": "#sqlplus-del" },
         { "include": "#sqlplus-disconnect" },
         { "include": "#sqlplus-execute" },
         { "include": "#sqlplus-exit" },
@@ -957,6 +958,54 @@
           "patterns": [
             { "include": "#sqlplus-command-continuation" },
             { "include": "#sqlplus-change-arguments" }
+          ],
+          "end": "(?<![-\\s])\\s*+$",
+          "comment": "SQL*Plus CHANGE Multi"
+        }
+      ]
+    },
+    "sqlplus-del-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+(?i:del)\\b",
+           "comment": "Command"
+        },
+        {  "name": "constant.numeric",
+           "match": "\\b\\d++\\b"
+        },
+        {  "name": "keyword.operator",
+           "match": "(\\s\\*\\s|(?i:last))"
+        },
+        { "include": "#sqlplus-command-terminator" },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-del": {
+      "patterns": [
+        {
+          "name": "keyword.other.sqlplus.oracle",
+          "match": "^\\s*+(?i:del)\\b(\\s*+)(;\\s*+)?$",
+          "captures": {
+            "2": { "name": "comment.other" }
+          }
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:del)\\b.*?[^-\\s]\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-del-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus CHANGE Single line"
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:del)\\b.*?-\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-command-continuation" },
+            { "include": "#sqlplus-del-arguments" }
           ],
           "end": "(?<![-\\s])\\s*+$",
           "comment": "SQL*Plus CHANGE Multi"
