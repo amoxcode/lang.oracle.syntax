@@ -93,6 +93,7 @@
         { "include": "#sqlplus-edit" },
         { "include": "#sqlplus-execute" },
         { "include": "#sqlplus-exit" },
+        { "include": "#sqlplus-get" },
         { "include": "#sqlplus-oserror" },
         { "include": "#sqlplus-prompt" },
         { "include": "#sqlplus-remark" },
@@ -294,6 +295,22 @@
         }
       ]
     },
+    "sqlplus-command-argument-multi-line-filename-uq": {
+      "patterns": [
+        {
+          "name": "constant.character",
+          "begin": "(?=\\S)(?!-\\s*+$)",
+          "patterns": [
+            {  "name": "comment.other",
+               "match": ";(?=\\s*+$)"
+            },
+            { "include": "#sqlplus-variable-substitution" },
+            { "include": "#sqlplus-command-argument-filename-delimiters" }
+          ],
+          "end": "(?=\\s)|(?=-\\s*+$)"
+        }
+      ]
+    },
     "sqlplus-command-argument-multi-line-filename-sq": {
       "patterns": [
         { "name": "string.quoted.single.command",
@@ -376,7 +393,7 @@
       "patterns": [
         { "include": "#sqlplus-command-argument-multi-line-filename-sq" },
         { "include": "#sqlplus-command-argument-multi-line-filename-dq" },
-        { "include": "#sqlplus-command-argument-single-line-filename-dq" }
+        { "include": "#sqlplus-command-argument-multi-line-filename-dq" }
       ]
     },
     "sqlplus-command-argument-multi-line-filename-or-url": {
@@ -1366,12 +1383,13 @@
           },
           "patterns": [
             { "include": "#sqlplus-command-argument-multi-line-filename-sq" },
-            { "include": "#sqlplus-command-argument-single-line-filename-uq" }
+            { "include": "#sqlplus-command-argument-multi-line-filename-uq" }
           ],
           "end": "(?=\\s|(?=-\\s*+$))",
           "comment": "Grab first parameter"
         },
         { "include": "#sqlplus-command-argument-multi-line-filename" },
+        { "include": "#sqlplus-command-argument-multi-line-filename-uq" },
         { "include": "#sqlplus-command-continuation" },
         { "include": "#sqlplus-command-terminator" },
         {  "name": "invalid.illegal",
@@ -1557,6 +1575,107 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "SQL*Plus EXIT multi line"
+        }
+      ]
+    },
+    "sqlplus-get-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+(?i:get)(\\s*+)(;)?\\s*+$",
+           "captures": {
+               "1": { "name": "invalid.illegal" },
+               "2": { "name": "comment.other" }
+           }
+        },
+        { "begin": "^\\s*+((?i:get))(\\s++(?i:file))?+(?:\\b|\\s++)(?=[^\"\\s])",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" },
+              "2": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            {  "name": "keyword.other.sqlplus.oracle",
+               "match": "\\b(?i:file)\\b"
+            },
+            { "include": "#sqlplus-command-argument-single-line-filename-sq" },
+            { "include": "#sqlplus-command-argument-single-line-filename-uq" }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
+        },
+        { "begin": "^\\s*+((?i:get))(\\s++(?i:file))?(?:\\b|\\s++)(\")(.*)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" },
+              "2": { "name": "keyword.other.sqlplus.oracle" },
+              "3": { "name": "invalid.illegal" },
+              "4": { "name": "comment.other" }
+          },
+          "end": "(?=\\s)",
+          "comment": "Double quote is invalid"
+        },
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "\\b(?i:(no)?list)\\b"
+        },
+        { "include": "#sqlplus-command-argument-single-line-filename-sq" },
+        { "include": "#sqlplus-command-argument-single-line-filename-uq" },
+        { "include": "#sqlplus-command-terminator" },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-get-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:get))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:get))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            {  "name": "keyword.other.sqlplus.oracle",
+               "match": "\\b(?i:file)\\b"
+            },
+            { "include": "#sqlplus-command-argument-multi-line-filename-sq" },
+            { "include": "#sqlplus-command-argument-multi-line-filename-uq" }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "\\b(?i:(no)?list)\\b"
+        },
+        { "include": "#sqlplus-command-argument-multi-line-filename" },
+        { "include": "#sqlplus-command-argument-multi-line-filename-uq" },
+        { "include": "#sqlplus-command-continuation" },
+        { "include": "#sqlplus-command-terminator" },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-get": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:get)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-get-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus EDIT single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:get)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-get-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus EDIT multi line"
         }
       ]
     },
