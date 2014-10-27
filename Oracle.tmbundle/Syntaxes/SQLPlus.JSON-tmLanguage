@@ -90,6 +90,7 @@
         { "include": "#sqlplus-del" },
         { "include": "#sqlplus-describe" },
         { "include": "#sqlplus-disconnect" },
+        { "include": "#sqlplus-edit" },
         { "include": "#sqlplus-execute" },
         { "include": "#sqlplus-exit" },
         { "include": "#sqlplus-oserror" },
@@ -129,7 +130,23 @@
       "name": "keyword.other.delimiter.sqlplus.oracle",
       "match": "/|\\\\|:|\\."
     },
-    "sqlplus-command-argument-single-line-filename": {
+    "sqlplus-command-argument-single-line-filename-uq": {
+      "patterns": [
+        {
+          "name": "constant.character",
+          "begin": "(?=\\S)",
+          "patterns": [
+            {  "name": "comment.other",
+               "match": ";(?=\\s*+$)"
+            },
+            { "include": "#sqlplus-variable-substitution" },
+            { "include": "#sqlplus-command-argument-filename-delimiters" }
+          ],
+          "end": "(?=\\s)"
+        }
+      ]
+    },
+    "sqlplus-command-argument-single-line-filename-sq": {
       "patterns": [
         { "name": "string.quoted.single.command",
           "begin": "(')(?=[^']*+(\\1))",
@@ -149,7 +166,11 @@
               "1": { "name": "invalid.illegal" }
           },
           "comment": "unmatched quote "
-        },
+        }
+      ]
+    },
+    "sqlplus-command-argument-single-line-filename-dq": {
+      "patterns": [
         { "name": "string.quoted.double.command",
           "begin": "(\")(?=[^\"]*+(\\1))",
           "captures": {
@@ -166,19 +187,14 @@
           "captures": {
               "1": { "name": "invalid.illegal" }
           }
-        },
-        {
-          "name": "constant.character",
-          "begin": "(?=\\S)",
-          "patterns": [
-            {  "name": "comment.other",
-               "match": ";(?=\\s*+$)"
-            },
-            { "include": "#sqlplus-variable-substitution" },
-            { "include": "#sqlplus-command-argument-filename-delimiters" }
-          ],
-          "end": "(?=\\s)"
         }
+      ]
+    },
+    "sqlplus-command-argument-single-line-filename": {
+      "patterns": [
+        { "include": "#sqlplus-command-argument-single-line-filename-sq" },
+        { "include": "#sqlplus-command-argument-single-line-filename-dq" },
+        { "include": "#sqlplus-command-argument-single-line-filename-dq" }
       ]
     },
     "sqlplus-command-argument-url-delimiters": {
@@ -278,7 +294,7 @@
         }
       ]
     },
-    "sqlplus-command-argument-multi-line-filename": {
+    "sqlplus-command-argument-multi-line-filename-sq": {
       "patterns": [
         { "name": "string.quoted.single.command",
           "begin": "(')(?=[^']*+(\\1))",
@@ -314,7 +330,11 @@
               "1": { "name": "invalid.illegal" }
           },
           "comment": "End of line, no closing quote continuation"
-        },
+        }
+      ]
+    },
+    "sqlplus-command-argument-multi-line-filename-dq": {
+      "patterns": [
         { "name": "string.quoted.double.command",
           "begin": "(\")(?=[^\"]*+(\\1))",
           "captures": {
@@ -349,19 +369,14 @@
               "1": { "name": "invalid.illegal" }
           },
           "comment": "End of line, no closing quote continuation"
-        },
-        {
-          "name": "constant.character",
-          "begin": "(?=\\S*?[/\\\\:\\.])",
-          "patterns": [
-            {  "name": "comment.other",
-               "match": ";(?=\\s*+$)"
-            },
-            { "include": "#sqlplus-variable-substitution" },
-            { "include": "#sqlplus-command-argument-filename-delimiters" }
-          ],
-          "end": "(?=\\s)"
         }
+      ]
+    },
+    "sqlplus-command-argument-multi-line-filename": {
+      "patterns": [
+        { "include": "#sqlplus-command-argument-multi-line-filename-sq" },
+        { "include": "#sqlplus-command-argument-multi-line-filename-dq" },
+        { "include": "#sqlplus-command-argument-single-line-filename-dq" }
       ]
     },
     "sqlplus-command-argument-multi-line-filename-or-url": {
@@ -1303,6 +1318,86 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*$)",
           "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-edit-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:ed(?>it|i)?))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:ed(?>it|i)?))(?:\\b|\\s++)(?=[^\"\\s])",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-argument-single-line-filename-sq" },
+            { "include": "#sqlplus-command-argument-single-line-filename-uq" }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
+        },
+        { "begin": "^\\s*+((?i:ed(?>it|i)?))(?:\\b|\\s++)(\")(.*)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" },
+              "2": { "name": "invalid.illegal" },
+              "3": { "name": "comment.other" }
+          },
+          "end": "(?=\\s)",
+          "comment": "Double quote is invalid"
+        },
+        { "include": "#sqlplus-command-terminator" },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-edit-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:ed(?>it|i)?))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:ed(?>it|i)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-argument-multi-line-filename-sq" },
+            { "include": "#sqlplus-command-argument-single-line-filename-uq" }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        { "include": "#sqlplus-command-argument-multi-line-filename" },
+        { "include": "#sqlplus-command-continuation" },
+        { "include": "#sqlplus-command-terminator" },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-edit": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:ed(?>it|i)?)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-edit-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus EDIT single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:ed(?>it|i)?)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-edit-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus EDIT multi line"
         }
       ]
     },
