@@ -102,6 +102,7 @@
         { "include": "#sqlplus-password" },
         { "include": "#sqlplus-pause" },
         { "include": "#sqlplus-prompt" },
+        { "include": "#sqlplus-print" },
         { "include": "#sqlplus-remark" },
         { "include": "#sqlplus-repheader" },
         { "include": "#sqlplus-run" },
@@ -201,7 +202,7 @@
       "patterns": [
         { "include": "#sqlplus-command-argument-single-line-filename-sq" },
         { "include": "#sqlplus-command-argument-single-line-filename-dq" },
-        { "include": "#sqlplus-command-argument-single-line-filename-dq" }
+        { "include": "#sqlplus-command-argument-single-line-filename-uq" }
       ]
     },
     "sqlplus-command-argument-url-delimiters": {
@@ -2034,6 +2035,47 @@
         }
       ]
     },
+    "sqlplus-print-arguments": {
+      "patterns": [
+        { "include": "#sqlplus-variable-substitution" },
+        { "include": "#sqlplus-variable-identifier" },
+        {  "name": "comment.other",
+           "match": ";(?=\\s*+$)"
+        },
+        {  "name": "string.unquoted",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-print": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^\\s*+((?i:print))\\b(?=(.*?[^-\\s])?\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-print-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus PRINT"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^\\s*+((?i:print))\\b(?=.*?-\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+                { "include": "#sqlplus-command-continuation" },
+                { "include": "#sqlplus-print-arguments" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*$)",
+          "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
     "sqlplus-variable-identifier": {
       "patterns": [
         {  "name": "variable.other",
@@ -2509,10 +2551,10 @@
               "1": { "name": "keyword.other.sqlplus.oracle" }
           },
           "patterns": [
+            { "include": "#sqlplus-command-argument-single-line-filename" },
             {  "name": "constant.language",
                "match": "\\b(?i:off|out)\\b"
-            },
-            { "include": "#sqlplus-command-argument-single-line-filename" }
+            }
           ],
           "end": "(?=\\s)",
           "comment": "Grab first parameter"
