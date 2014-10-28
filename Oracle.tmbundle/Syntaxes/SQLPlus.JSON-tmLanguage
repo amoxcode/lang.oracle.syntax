@@ -97,7 +97,9 @@
         { "include": "#sqlplus-help" },
         { "include": "#sqlplus-host" },
         { "include": "#sqlplus-input" },
+        { "include": "#sqlplus-list" },
         { "include": "#sqlplus-oserror" },
+        { "include": "#sqlplus-password" },
         { "include": "#sqlplus-prompt" },
         { "include": "#sqlplus-remark" },
         { "include": "#sqlplus-repheader" },
@@ -1854,6 +1856,140 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*$)",
           "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-list-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+(?i:l(?>ist|is|i)?)\\b",
+           "comment": "Command"
+        },
+        {  "name": "constant.numeric",
+           "match": "\\b\\d++\\b"
+        },
+        {  "name": "keyword.operator",
+           "match": "(\\s\\*\\s|(?i:last))"
+        },
+        { "include": "#sqlplus-command-terminator" },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-list": {
+      "patterns": [
+        {
+          "name": "keyword.other.sqlplus.oracle",
+          "match": "^\\s*+(?i:l(?>ist|is|i)?)\\b(\\s*+)(;\\s*+)?$",
+          "captures": {
+            "2": { "name": "comment.other" }
+          }
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:l(?>ist|is|i)?)\\b.*?[^-\\s]\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-list-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus LIST Single line"
+        },
+        {
+          "name": "meta.command.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:l(?>ist|is|i)?)\\b.*?-\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-command-continuation" },
+            { "include": "#sqlplus-list-arguments" }
+          ],
+          "end": "(?<![-\\s])\\s*+$",
+          "comment": "SQL*Plus LIST Multi"
+        },
+        {
+          "name": "keyword.other.sqlplus.oracle",
+          "match": "^\\s*+(;)(.*)$",
+          "captures": {
+            "1": { "name": "keyword.other" },
+            "2": { "name": "invalid.illegal" }
+          }
+        }
+      ]
+    },
+    "sqlplus-password-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:passw(?>ord|or|o)?))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:passw(?>ord|or|o)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-argument-single-line-string-quoted" },
+            { "include": "#sqlplus-command-argument-single-line-string-unquoted" }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "comment.other",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-password-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:passw(?>ord|or|o)?))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:passw(?>ord|or|o)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+            { "include": "#sqlplus-command-argument-multi-line-string-unquoted" }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+        {  "name": "constant.character",
+           "match": "\\b[^\\s]*+\\b(.*)",
+           "captures": {
+               "1": { "name": "comment.other" }
+           }
+        },
+        { "include": "#sqlplus-command-continuation" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        }
+      ]
+    },
+    "sqlplus-password": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:passw(?>ord|or|o)?)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-password-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus PASSWORD single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:passw(?>ord|or|o)?)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-password-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus PASSWORD multi line"
         }
       ]
     },
