@@ -107,6 +107,7 @@
         { "include": "#sqlplus-remark" },
         { "include": "#sqlplus-repheader" },
         { "include": "#sqlplus-run" },
+        { "include": "#sqlplus-save" },
         { "include": "#sqlplus-set" },
         { "include": "#sqlplus-spool" },
         { "include": "#sqlplus-sqlerror" },
@@ -2169,6 +2170,85 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-save-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:save(e)?))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:sav(e)?(\\s+file)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-argument-single-line-filename" }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "keyword.other.argument.sqlplus.oracle",
+           "match": "\\b(?i)(?>cre(?>ate|at|a)?|rep(?>lace|lac|la|l)?|app(?>end|en|e)?)\\b"
+        },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-save-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:sav(e)?(\\s+file)?))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:sav(e)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-argument-single-line-filename" }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "keyword.other.argument.sqlplus.oracle",
+           "match": "\\b(?i)(?>cre(?>ate|at|a)?|rep(?>lace|lac|la|l)?|app(?>end|en|e)?)\\b"
+        },
+        { "include": "#sqlplus-command-argument-multi-line-filename" },
+        { "include": "#sqlplus-command-continuation" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-save": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:sav(e)?)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-save-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus SAVE single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:sav(e)?)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-save-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus SAVE multi line"
         }
       ]
     },
