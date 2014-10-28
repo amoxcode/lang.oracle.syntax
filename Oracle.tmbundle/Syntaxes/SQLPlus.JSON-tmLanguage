@@ -96,6 +96,7 @@
         { "include": "#sqlplus-get" },
         { "include": "#sqlplus-help" },
         { "include": "#sqlplus-host" },
+        { "include": "#sqlplus-input" },
         { "include": "#sqlplus-oserror" },
         { "include": "#sqlplus-prompt" },
         { "include": "#sqlplus-remark" },
@@ -1801,6 +1802,55 @@
           "patterns": [
                 { "include": "#sqlplus-command-continuation" },
                 { "include": "#sqlplus-host-arguments" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*$)",
+          "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-input-arguments": {
+      "patterns": [
+        {  "name": "constant.character",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-input": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^\\s*+((?i:i(?>nput|npu|np|n)?))(\\b)(?=(.*?[^-\\s])\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-input-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus INPUT"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^\\s*+((?i:i(?>nput|npu|np|n)?))\\b(?=\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+                { "include": "#sqlplus-command-continuation" },
+                { "include": "#sqlplus-input-arguments" }
+          ],
+          "end": "(?=^\\s*+(\\.)?\\s*+$)",
+          "comment": "Command provided in multiple lines by using continuation"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^\\s*+((?i:i(?>nput|npu|np|n)?))\\b(?=.*?-\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+                { "include": "#sqlplus-command-continuation" },
+                { "include": "#sqlplus-input-arguments" }
           ],
           "end": "(?<!-|\\s)(?=\\s*$)",
           "comment": "Command provided in multiple lines by using continuation"
