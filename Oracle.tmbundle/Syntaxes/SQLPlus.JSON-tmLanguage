@@ -95,6 +95,7 @@
         { "include": "#sqlplus-exit" },
         { "include": "#sqlplus-get" },
         { "include": "#sqlplus-help" },
+        { "include": "#sqlplus-host" },
         { "include": "#sqlplus-oserror" },
         { "include": "#sqlplus-prompt" },
         { "include": "#sqlplus-remark" },
@@ -1764,6 +1765,45 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "SQL*Plus HELP multi line"
+        }
+      ]
+    },
+    "sqlplus-host-arguments": {
+      "patterns": [
+        {  "name": "keyword.operator",
+           "match": "/|\\.|\\*|\\?|\\\\|:|>|<"
+        },
+        {  "name": "constant.character",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-host": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^\\s*+((?i:ho(?>st|s)?)|\\$|!)(\\b|\\s*)(?=(.*?[^-\\s])?\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-host-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus HOST"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^\\s*+((?i:ho(?>st|s)?))\\b(?=.*?-\\s*+$)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+                { "include": "#sqlplus-command-continuation" },
+                { "include": "#sqlplus-host-arguments" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*$)",
+          "comment": "Command provided in multiple lines by using continuation"
         }
       ]
     },
