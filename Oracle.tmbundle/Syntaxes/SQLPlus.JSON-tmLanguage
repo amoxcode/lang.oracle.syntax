@@ -103,6 +103,7 @@
         { "include": "#sqlplus-pause" },
         { "include": "#sqlplus-prompt" },
         { "include": "#sqlplus-print" },
+        { "include": "#sqlplus-recover" },
         { "include": "#sqlplus-remark" },
         { "include": "#sqlplus-repheader" },
         { "include": "#sqlplus-run" },
@@ -2072,6 +2073,101 @@
                 { "include": "#sqlplus-print-arguments" }
           ],
           "end": "(?<!-|\\s)(?=\\s*$)",
+          "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-recover-argument-keywords": {
+      "patterns": [
+          {  "name": "keyword.other.argument.sqlplus.oracle",
+             "match": "(\\b)(?i)(all(ow)?|archivelog|automatic|backup|begin|cancel|change|consistent with|continue|controlfile|corruption|current|data(?>base|file)|default|disconnect|end|expire|finish|from|immediate|last|logfile|managed|next|(no)?(?>delay|parallel|timeout|wait)|no expire|session|sequence|skip|snapshot|standby|switchover|tablespace|test|thread|through|time|until|using)(\\b)"
+          }
+        ]
+    },
+    "sqlplus-recover-arguments-include": {
+      "patterns": [
+        { "include": "#sqlplus-recover-argument-keywords" },
+        {  "name": "constant.numeric",
+           "match": "\\b(\\d++)\\b"
+        },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "constant.character",
+           "match": "\\w"
+        },
+        {  "name": "keyword.operator.sqlplus.oracle",
+           "match": ",|:|\\.|@|\\?|%|\\$|#|>|;|-"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-recover-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:recover))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:recover))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-recover-argument-keywords" },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s)"
+        },
+        { "include": "#sqlplus-command-argument-single-line-string-quoted" },
+        { "include": "#sqlplus-recover-arguments-include" }
+      ]
+    },
+    "sqlplus-recover-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:recover))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:recover))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-recover-argument-keywords" },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))"
+        },
+        { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+        { "include": "#sqlplus-command-continuation" },
+        { "include": "#sqlplus-recover-arguments-include" }
+      ]
+    },
+    "sqlplus-recover": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:recover)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-recover-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus recover single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:recover)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-recover-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "Command provided in multiple lines by using continuation"
         }
       ]
