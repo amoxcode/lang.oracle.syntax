@@ -106,15 +106,17 @@
         { "include": "#sqlplus-recover" },
         { "include": "#sqlplus-remark" },
         { "include": "#sqlplus-repheader" },
-        { "include": "#sqlplus-shutdown" },
-        { "include": "#sqlplus-startup" },
         { "include": "#sqlplus-run" },
         { "include": "#sqlplus-save" },
         { "include": "#sqlplus-set" },
         { "include": "#sqlplus-show" },
+        { "include": "#sqlplus-shutdown" },
         { "include": "#sqlplus-spool" },
+        { "include": "#sqlplus-startup" },
+        { "include": "#sqlplus-store" },
         { "include": "#sqlplus-sqlerror" },
         { "include": "#sqlplus-start" },
+        { "include": "#sqlplus-timing" },
         { "include": "#sqlplus-undefine" },
         { "include": "#sqlplus-variable" },
         { "include": "#sqlplus-xtitle" }
@@ -2550,6 +2552,170 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "SQL*Plus SPOOL multi line"
+        }
+      ]
+    },
+    "sqlplus-store-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:store set))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:store set))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-argument-single-line-filename" }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "keyword.other.argument.sqlplus.oracle",
+           "match": "\\b(?i)(?>cre(?>ate|at|a)?|rep(?>lace|lac|la|l)?|app(?>end|en|e)?)\\b"
+        },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-store-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:store set))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:store set))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-command-argument-single-line-filename" }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "keyword.other.argument.sqlplus.oracle",
+           "match": "\\b(?i)(?>cre(?>ate|at|a)?|rep(?>lace|lac|la|l)?|app(?>end|en|e)?)\\b"
+        },
+        { "include": "#sqlplus-command-argument-multi-line-filename" },
+        { "include": "#sqlplus-command-continuation" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-store": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:store set)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-store-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus STORE single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:store set)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-store-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus STORE multi line"
+        }
+      ]
+    },
+    "sqlplus-timing-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:timi(?>ng|n)?))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:timi(?>ng|n)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            {  "name": "constant.language",
+               "match": "\\b(?i:stop|show|start)\\b"
+            },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "keyword.other.argument.sqlplus.oracle",
+           "match": "\\b(?i)(?>cre(?>ate|at|a)?|rep(?>lace|lac|la|l)?|app(?>end|en|e)?)\\b"
+        },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "variable.other",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-spool-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:timi(?>ng|n)?))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:timi(?>ng|n)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            {  "name": "constant.language",
+               "match": "\\b(?i:stop|show|start)\\b"
+            },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        { "include": "#sqlplus-command-continuation" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "variable.other",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-timing": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:timi(?>ng|n)?)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-timing-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus TIMING single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:timi(?>ng|n)?)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-timing-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus TIMING multi line"
         }
       ]
     },
