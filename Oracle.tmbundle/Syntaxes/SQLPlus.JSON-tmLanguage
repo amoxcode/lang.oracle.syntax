@@ -107,6 +107,7 @@
         { "include": "#sqlplus-remark" },
         { "include": "#sqlplus-repheader" },
         { "include": "#sqlplus-shutdown" },
+        { "include": "#sqlplus-startup" },
         { "include": "#sqlplus-run" },
         { "include": "#sqlplus-save" },
         { "include": "#sqlplus-set" },
@@ -2440,6 +2441,112 @@
           "begin": "^(?=\\s*+(?i:shutdown)\\b.*?-\\s*+$)",
           "patterns": [
                 { "include": "#sqlplus-shutdown-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus SPOOL multi line"
+        }
+      ]
+    },
+    "sqlplus-startup-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:startup))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:startup))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            {  "name": "constant.language",
+               "match": "\\b(?i)(?>force|mount|nomount|open|restrict|pfile|update|pluggable database|quiet)\\b"
+            },
+            {  "name": "keyword.operator.assignment",
+               "match": "="
+            },
+            {  "name": "constant.character",
+               "match": "(?<==)\\S++"
+            },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "constant.language",
+           "match": "\\b(?i)(?>force|mount|nomount|open|restrict|pfile|update|pluggable database|quiet)\\b"
+        },
+        {  "name": "keyword.operator.assignment",
+           "match": "="
+        },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "constant.character",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-startup-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:startup))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:startup))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            {  "name": "constant.language",
+               "match": "\\b(?i)(?>force|mount|nomount|open|restrict|pfile|update|pluggable database|quiet)\\b"
+            },
+            {  "name": "keyword.operator.assignment",
+               "match": "="
+            },
+            {  "name": "constant.character",
+               "match": "(?<==)\\S++"
+            },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "constant.language",
+           "match": "\\b(?i)(?>force|mount|nomount|open|restrict|pfile|update|pluggable database|quiet)\\b"
+        },
+        {  "name": "constant.language",
+           "match": "\\b(?i)(?>force|mount|nomount|open|restrict|pfile|update|pluggable database|quiet)\\b"
+        },
+        { "include": "#sqlplus-command-continuation" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "constant.character",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-startup": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:startup)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-startup-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus startup single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:startup)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-startup-arguments-continuation" }
           ],
           "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "SQL*Plus SPOOL multi line"
