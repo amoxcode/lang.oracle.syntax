@@ -106,6 +106,7 @@
         { "include": "#sqlplus-recover" },
         { "include": "#sqlplus-remark" },
         { "include": "#sqlplus-repheader" },
+        { "include": "#sqlplus-shutdown" },
         { "include": "#sqlplus-run" },
         { "include": "#sqlplus-save" },
         { "include": "#sqlplus-set" },
@@ -2354,6 +2355,94 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "Command provided in multiple lines by using continuation"
+        }
+      ]
+    },
+    "sqlplus-shutdown-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:shutdown))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:shutdown))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            {  "name": "constant.language",
+               "match": "\\b(?i)(?>abort|immediate|normal|transactional)\\b"
+            },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s)",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "keyword.other.argument.sqlplus.oracle",
+           "match": "\\b(?i)(local)\\b"
+        },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-shutdown-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:shutdown))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:shutdown))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            {  "name": "constant.language",
+               "match": "\\b(?i)(?>abort|immediate|normal|transactional)\\b"
+            },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))",
+          "comment": "Grab first parameter"
+        },
+        {  "name": "keyword.other.argument.sqlplus.oracle",
+           "match": "\\b(?i)(?>abort|immediate|local|normal|transactional)\\b"
+        },
+        { "include": "#sqlplus-command-continuation" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-shutdown": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:shutdown)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-shutdown-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus SHUTDOWN single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:shutdown)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-shutdown-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "SQL*Plus SPOOL multi line"
         }
       ]
     },
