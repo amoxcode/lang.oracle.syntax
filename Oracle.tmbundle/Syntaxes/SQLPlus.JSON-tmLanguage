@@ -109,6 +109,7 @@
         { "include": "#sqlplus-run" },
         { "include": "#sqlplus-save" },
         { "include": "#sqlplus-set" },
+        { "include": "#sqlplus-show" },
         { "include": "#sqlplus-spool" },
         { "include": "#sqlplus-sqlerror" },
         { "include": "#sqlplus-start" },
@@ -2249,6 +2250,110 @@
           ],
           "end": "(?<!-|\\s)(?=\\s*+$)",
           "comment": "SQL*Plus SAVE multi line"
+        }
+      ]
+    },
+    "sqlplus-show-argument-keywords": {
+      "patterns": [
+          {  "name": "keyword.other",
+             "match": "(\\b)(?i)(?>all|appinfo|arraysize|auto(?>commit|print|recovery|trace)|blockterminator|(b|t)ti(?>tle|tl|t)?|cmdsep|colsep|compatibility|concat|con_(?>id|name)|copy(commit|typecheck)|define|describe|echo|editfile|edition|embedded|err(?>orlogging|ors|or|o)?|escape|escchar|exitcommit|feedback|flagger|flush|heading|headsep|instance|linesize|lno|loboffset|logsource|long(chunksize)?|markup|newpage|null|numformat|numwidth|pagesize|(sp)?parameter(s?)|pause|pdbs|pno|recsep(char)?|recyc(?>lebin|lebi|leb|le|l)?|rel(?>ease|eas|ea|e)?|repf(?>ooter|oote|oot|oo|o)?|reph(?>eader|ead|ea|e)?|securedcol|serveroutput|sga|shiftinout|showmode|spoo(l)?|sql(?>blanklines|case|code|continue|number|pluscompatibility|prefix|prompt|terminator)|suffix|tab|termout|timing|trim(?>out|spool)|underline|user|verify|wrap|xmloptimizationcheck|xquery)(\\b)"
+          }
+        ]
+    },
+    "sqlplus-show-argument-constants": {
+      "patterns": [
+        {  "name": "constant.language",
+           "match": "\\b(?i)(?>function|package( body)?|procedure|trigger|view|type( body)?|dimension|java class)\\b"
+        }
+      ]
+    },
+    "sqlplus-show-arguments-include": {
+      "patterns": [
+        { "include": "#sqlplus-show-argument-constants" },
+        { "include": "#sqlplus-show-argument-keywords" },
+        {  "name": "constant.numeric",
+           "match": "\\b(\\d++)\\b"
+        },
+        { "include": "#sqlplus-variable-substitution" },
+        {  "name": "comment.other",
+           "match": ";\\s*+$"
+        },
+        {  "name": "constant.character",
+           "match": "\\w"
+        },
+        {  "name": "keyword.operator.sqlplus.oracle",
+           "match": "\\.|@|\\?|%|\\$|#|>|;|-"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\S"
+        }
+      ]
+    },
+    "sqlplus-show-arguments": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:sho(w)?))\\s*+$"
+        },
+        { "begin": "^\\s*+((?i:sho(w)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-show-argument-keywords" },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s)"
+        },
+        { "include": "#sqlplus-command-argument-single-line-string-quoted" },
+        { "include": "#sqlplus-show-arguments-include" }
+      ]
+    },
+    "sqlplus-show-arguments-continuation": {
+      "patterns": [
+        {  "name": "keyword.other.sqlplus.oracle",
+           "match": "^\\s*+((?i:sho(w)?))\\s*+(-)\\s*+$",
+           "captures": {
+               "2": { "name": "punctuation.separator.continuation" }
+           }
+        },
+        { "begin": "^\\s*+((?i:sho(w)?))(?:\\b|\\s++)(?=\\S)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sqlplus.oracle" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-show-argument-keywords" },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=\\s|(?=-\\s*+$))"
+        },
+        { "include": "#sqlplus-command-argument-multi-line-string-quoted" },
+        { "include": "#sqlplus-command-continuation" },
+        { "include": "#sqlplus-show-arguments-include" }
+      ]
+    },
+    "sqlplus-show": {
+      "patterns": [
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:sho(w)?)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "#sqlplus-show-arguments" }
+          ],
+          "end": "$",
+          "comment": "SQL*Plus SHOW single line"
+        },
+        {
+          "name": "meta.command.continued.sqlplus.oracle",
+          "begin": "^(?=\\s*+(?i:sho(w)?)\\b.*?-\\s*+$)",
+          "patterns": [
+                { "include": "#sqlplus-show-arguments-continuation" }
+          ],
+          "end": "(?<!-|\\s)(?=\\s*+$)",
+          "comment": "Command provided in multiple lines by using continuation"
         }
       ]
     },
