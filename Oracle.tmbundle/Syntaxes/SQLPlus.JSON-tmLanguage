@@ -119,6 +119,7 @@
         { "include": "#sqlplus-timing" },
         { "include": "#sqlplus-undefine" },
         { "include": "#sqlplus-variable" },
+        { "include": "#sqlplus-xquery" },
         { "include": "#sqlplus-xtitle" }
       ]
     },
@@ -4079,6 +4080,42 @@
           "comment": "SQL*Plus WHENEVER SQLERROR multi line"
         }
       ]
+    },
+    "sqlplus-xquery": {
+      "begin": "^\\s*+((?i:xquery))",
+      "captures": {
+          "1": { "name": "keyword.other.sqlplus" }
+      },
+      "patterns": [
+        {  "name": "variable.other",
+           "match": "(\\$)\\w++",
+           "captures": {
+               "1": { "name": "keyword.other.delimiter" }
+           }
+        },
+        {  "name": "keyword.operator",
+           "match": ":|/|@|<|>|,"
+        },
+        {  "name": "meta.brace.round",
+           "match": "\\(|\\)"
+        },
+        { "include": "#sqlplus-command-continuation" },
+        {
+          "name": "string.quoted.double",
+          "begin": "(\")",
+          "captures": {
+              "1": { "name": "punctuation.definition.string.begin" }
+          },
+          "patterns": [
+            {  "name": "keyword.operator",
+               "match": "/|:"
+            },
+            { "include": "#sqlplus-command-continuation" }
+          ],
+          "end": "(\")|^(?=\\s*+/|\\.\\s*+$)"
+        }
+      ],
+      "end": "^\\s*+(/|\\.)\\s*+$"
     }
   },
   "uuid": "9b69bee9-cbc6-4bb2-b681-3399f61afa37"
