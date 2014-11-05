@@ -10,11 +10,55 @@
         { "include": "#plsql-anonymous-block" }
       ]
     },
+    "plsql-comments": {
+      "patterns": [
+        { "include": "#plsql-comment-block" },
+        { "include": "#plsql-coment-double-dash" }
+      ]
+    },
+    "plsql-coment-double-dash": {
+      "name": "comment.line.double-dash",
+      "match": "(--).*$",
+      "captures": {
+          "1": { "name": "keyword.other.delimiter.plsql.oracle" }
+      }
+    },
+    "plsql-comment-block": {
+      "name": "meta.section.comment.sqlplus",
+      "begin": "(/\\*)(?![[:alpha:]])",
+      "captures": {
+          "1": { "name": "keyword.other.delimiter.oracle" }
+      },
+      "patterns": [
+        {  "name": "comment.block",
+           "match": "."
+        }
+      ],
+      "end": "(\\*/)",
+      "comment": "PL/SQL block Comment"
+    },
+    "plsql-strings": {
+      "patterns": [
+        { "include": "#plsql-string-single-quoted" }
+      ]
+    },
+    "plsql-string-single-quoted": {
+      "name": "string.quoted.single",
+      "begin": "(')",
+      "captures": {
+          "1": { "name": "punctuation.definition.string.begin" }
+      },
+      "patterns": [
+        { "include": "#sqlplus-variable-substitution" }
+      ],
+      "end": "(\\1)",
+      "comment": "Multi-line, proper continuation"
+    },
     "plsql-block": {
       "name": "meta.section.block.plsql.oracle",
-      "begin": "(?=\\s*+(?i:declare|begin))",
+      "begin": "(?=\\s*+(?i:declare|begin))\\b",
       "patterns": [
-        { "include": "plsql-anonymous-block" }
+        { "include": "#plsql-anonymous-block" }
       ],
       "end": "(?<=;)"
     },
@@ -31,6 +75,8 @@
           "1": { "name": "keyword.control.plsql.oracle" }
       },
       "patterns": [
+        { "include": "#plsql-comments" },
+        { "include": "#plsql-strings" },
         { "include": "#plsql-block-procedure" }
       ],
       "end": "(?=\\s*+(?i:begin)\\b)"
@@ -42,6 +88,8 @@
           "1": { "name": "keyword.control.plsql.oracle" }
       },
       "patterns": [
+        { "include": "#plsql-comments" },
+        { "include": "#plsql-strings" },
         { "include": "#plsql-block-exception" },
         { "include": "#plsql-block-conditional" },
         { "include": "#plsql-block" }
@@ -66,12 +114,14 @@
       "end": "(?=\\s*+(?i:end)\\b)"
     },
     "plsql-block-conditional": {
-      "name": "meta.section.block.body.plsql.oracle",
+      "name": "meta.section.block.conditional.plsql.oracle",
       "begin": "\\s*+((?i:if))\\b",
       "beginCaptures": {
           "1": { "name": "keyword.control.plsql.oracle" }
       },
       "patterns": [
+        { "include": "#plsql-comments" },
+        { "include": "#plsql-strings" },
         { "include": "#plsql-block" },
         { "include": "#plsql-block-conditional" }
       ],
@@ -82,7 +132,7 @@
       }
     },
     "plsql-block-procedure": {
-      "name": "string.quoted",
+      "name": "meta.section.block.procedure.plsql.oracle",
       "begin": "(?=\\s*+(?i:procedure))",
       "patterns": [
         { "include": "#plsql-block-body" }
