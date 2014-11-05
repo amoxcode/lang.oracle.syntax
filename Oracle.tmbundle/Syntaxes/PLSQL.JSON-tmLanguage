@@ -1,0 +1,94 @@
+{ "name": "Oracle PL/SQL",
+  "scopeName": "source.plsql",
+  "fileTypes": [""],
+  "patterns": [
+    { "include": "#plsql-code" }
+  ],
+  "repository": {
+    "plsql-code": {
+      "patterns": [
+        { "include": "#plsql-anonymous-block" }
+      ]
+    },
+    "plsql-block": {
+      "name": "meta.section.block.plsql.oracle",
+      "begin": "(?=\\s*+(?i:declare|begin))",
+      "patterns": [
+        { "include": "plsql-anonymous-block" }
+      ],
+      "end": "(?<=;)"
+    },
+    "plsql-anonymous-block": {
+      "patterns": [
+        { "include": "#plsql-block-declaration" },
+        { "include": "#plsql-block-body" }
+      ]
+    },
+    "plsql-block-declaration": {
+      "name": "meta.section.block.declaration.plsql.oracle",
+      "begin": "\\s*+((?i:declare))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.plsql.oracle" }
+      },
+      "patterns": [
+        { "include": "#plsql-block-procedure" }
+      ],
+      "end": "(?=\\s*+(?i:begin)\\b)"
+    },
+    "plsql-block-body": {
+      "name": "meta.section.block.body.plsql.oracle",
+      "begin": "\\s*+((?i:begin))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.plsql.oracle" }
+      },
+      "patterns": [
+        { "include": "#plsql-block-exception" },
+        { "include": "#plsql-block-conditional" },
+        { "include": "#plsql-block" }
+      ],
+      "end": "\\b((?i:end))\\b\\s*+(\\w++)?\\s*+(;)",
+      "endCaptures": {
+          "1": { "name": "keyword.control.plsql.oracle" },
+          "2": { "name": "entity.name.function.plsql.oracle" },
+          "3": { "name": "keyword.other.delimiter.plsql.oracle" }
+      }
+    },
+    "plsql-block-exception": {
+      "name": "meta.section.block.exception.plsql.oracle",
+      "begin": "\\s*+((?i:exception))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.plsql.oracle" }
+      },
+      "patterns": [
+        { "include": "#plsql-block" },
+        { "include": "#plsql-block-conditional" }
+      ],
+      "end": "(?=\\s*+(?i:end)\\b)"
+    },
+    "plsql-block-conditional": {
+      "name": "meta.section.block.body.plsql.oracle",
+      "begin": "\\s*+((?i:if))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.plsql.oracle" }
+      },
+      "patterns": [
+        { "include": "#plsql-block" },
+        { "include": "#plsql-block-conditional" }
+      ],
+      "end": "\\b((?i:end\\s++if))\\s*+(;)",
+      "endCaptures": {
+          "1": { "name": "keyword.control.plsql.oracle" },
+          "2": { "name": "keyword.other.delimiter.plsql.oracle" }
+      }
+    },
+    "plsql-block-procedure": {
+      "name": "string.quoted",
+      "begin": "(?=\\s*+(?i:procedure))",
+      "patterns": [
+        { "include": "#plsql-block-body" }
+      ],
+      "end": "(?<=;)"
+    }
+  },
+  "uuid": "93beb44a-597f-471d-b323-8d8a34ec2a3e"
+}

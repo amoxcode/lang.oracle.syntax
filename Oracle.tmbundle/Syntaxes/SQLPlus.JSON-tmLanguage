@@ -11,7 +11,8 @@
       "patterns": [
         { "include": "#sqlplus-commands" },
         { "include": "#sqlplus-comments" },
-        { "include": "#sqlplus-invalids" }
+        { "include": "#sqlplus-invalids" },
+        { "include": "#plsql-block" }
       ]
     },
     "sqlplus-invalids": {
@@ -123,6 +124,14 @@
         { "include": "#sqlplus-xtitle" }
       ]
     },
+    "plsql-block": {
+      "name": "meta.section.block.plsql.oracle",
+      "begin": "(?=\\s*+(?i:declare|begin))",
+      "patterns": [
+        { "include": "source.plsql" }
+      ],
+      "end": "(?=^(\\.|/)\\s*+$)"
+    },
     "sqlplus-command-continuation": {
       "name": "meta.section.continuation.command.sqlplus.oracle",
       "match": "(-)(?=\\s*+$)",
@@ -231,7 +240,7 @@
           "match": "(%)[[:xdigit:]]{1,2}",
           "captures": {
               "1": { "name": "keyword.operator.delimiter.url" }
-        }
+          }
         },
         { "name": "string.unquoted",
           "begin": "(\\?)",
@@ -3470,6 +3479,7 @@
         {  "name": "constant.language",
            "match": "\\b(?i:c(?>enter|ente|ent|en|e)?|l(?>eft|ef|e)?|off|on|r(?>ight|igh|ig|i)?|wor(?>d_wrapped|d_wrappe|d_wrapp|d_wrap|d_wra|d_wr|d_w|d_|d)?|wra(?>pped|ppe|pp|p)?)\\b"
         },
+
         {  "name": "keyword.operator",
            "match": "\\+|-|\\$|,|\\.|\\(|\\)|/|\\*"
         }
