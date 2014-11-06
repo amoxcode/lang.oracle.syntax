@@ -125,12 +125,24 @@
       ]
     },
     "plsql-block": {
-      "name": "meta.section.block.plsql.oracle",
-      "begin": "(?=\\s*+(?i:declare|begin))",
       "patterns": [
-        { "include": "source.plsql" }
-      ],
-      "end": "(?=^(\\.|/)\\s*+$)"
+        {
+          "name": "meta.section.block.plsql.oracle",
+          "begin": "(?=\\s*+(?i:declare|begin|procedure|function|package|trigger))",
+          "patterns": [
+            { "include": "source.plsql" }
+          ],
+          "end": "(?=^(\\.|/)\\s*+$)"
+        },
+        { "name": "variable.other",
+          "begin": "(<<)",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter.plsql.oracle" }
+          },
+          "end": "(>>)"
+        }
+      ]
+
     },
     "sqlplus-command-continuation": {
       "name": "meta.section.continuation.command.sqlplus.oracle",
