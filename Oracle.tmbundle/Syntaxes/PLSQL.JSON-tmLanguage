@@ -73,6 +73,13 @@
         }
       ]
     },
+    "plsql-keyword": {
+      "patterns": [
+        {  "name": "keyword.control.plsql.oracle",
+           "match": "\\b(?i)(?>continue|exit|goto)\\b"
+        }
+      ]
+    },
     "plsql-expression": {
       "patterns": [
         { "include": "#plsql-comments" },
@@ -82,16 +89,17 @@
         { "include": "#plsql-support-functions" },
         { "include": "#sqlplus-variable-substitution" },
         { "include": "#plsql-operator" },
+        { "include": "#plsql-keyword" },
         { "include": "#plsql-literal" },
         { "include": "#plsql-identifier" }
       ]
     },
     "plsql-code-executable": {
       "patterns": [
+        { "include": "#plsql-block" },
         { "include": "#plsql-expression" },
         { "include": "#plsql-block-conditional" },
-        { "include": "#plsql-block-loop" },
-        { "include": "#plsql-block" }
+        { "include": "#plsql-block-loop" }
       ]
     },
     "plsql-comments": {
@@ -236,7 +244,7 @@
            }
         },
         {  "name": "constant.language",
-           "match": "\\b(?i:access_into_null|binary_double_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|binary_float_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|case_not_found|cursor_already_open|day|dup_val_on_index|false|hour|interval|invalid_(?>cursor|number)|login_denied|minute|no_data_(?>found|needed)|not_logged_on|null|program_error|rowtype_mismatch|second|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|sysdate|systimestamp|timeout_on_resource|too_many_rows|to|true|value_error|zero_divide)\\b"
+           "match": "\\b(?i:access_into_null|binary_double_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|binary_float_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|case_not_found|cursor_already_open|day|dup_val_on_index|false|found|hour|interval|invalid_(?>cursor|number)|login_denied|minute|no_data_(?>found|needed)|notfound|not_logged_on|null|others|program_error|rowcount|rownum|rowtype_mismatch|second|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|sysdate|systimestamp|timeout_on_resource|too_many_rows|to|true|value_error|zero_divide)\\b"
         }
       ]
     },
@@ -298,7 +306,21 @@
           "1": { "name": "keyword.control.plsql.oracle" }
       },
       "patterns": [
-        { "include": "#plsql-code-executable" }
+        {
+          "name": "meta.section.block.branch.exception.plsql.oracle",
+          "begin": "\\b((?i:then))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" }
+          },
+          "patterns": [
+            { "include": "#plsql-code-executable" }
+          ],
+          "end": "(?=\\s*+(?i:end|when)\\b)"
+        },
+        {  "name": "keyword.control.plsql.oracle",
+           "match": "\\b(?i:when)\\b"
+        },
+        { "include": "#plsql-expression" }
       ],
       "end": "(?=\\s*+(?i:end)\\b)"
     },
@@ -312,6 +334,7 @@
           },
           "patterns": [
             {
+              "name": "meta.section.block.branch.conditional.plsql.oracle",
               "begin": "\\b((?i:else|then))\\b",
               "beginCaptures": {
                   "1": { "name": "keyword.control.plsql.oracle" }
@@ -343,6 +366,7 @@
                "match": "\\b(?i:when)\\b"
             },
             {
+              "name": "meta.section.block.branch.conditional.plsql.oracle",
               "begin": "\\b((?i:else|then))\\b",
               "beginCaptures": {
                   "1": { "name": "keyword.control.plsql.oracle" }
@@ -363,19 +387,68 @@
       ]
     },
     "plsql-block-loop": {
-      "name": "meta.section.block.conditional.plsql.oracle",
-      "begin": "\\s*+((?i:for|while))\\b",
-      "beginCaptures": {
-          "1": { "name": "keyword.control.plsql.oracle" }
-      },
       "patterns": [
-        { "include": "#plsql-code-executable" }
-      ],
-      "end": "\\b((?i:end\\s++loop))\\s*+(;)",
-      "endCaptures": {
-          "1": { "name": "keyword.control.plsql.oracle" },
-          "2": { "name": "keyword.other.delimiter.plsql.oracle" }
-      }
+        {
+          "name": "meta.section.block.loop.plsql.oracle",
+          "begin": "\\s*+((?i:for|while))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" }
+          },
+          "patterns": [
+            {  "name": "keyword.control.plsql.oracle",
+               "match": "\\b(?i:reverse)\\b"
+            },
+            {
+              "name": "meta.section.block.loop.plsql.oracle",
+              "begin": "\\s*+((?i:loop))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.control.plsql.oracle" }
+              },
+              "patterns": [
+                {  "name": "keyword.control.plsql.oracle",
+                   "match": "\\b(?i:continue( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when|exit( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when)\\b",
+                   "captures": {
+                       "1": { "name": "variable.other" },
+                       "2": { "name": "variable.other" }
+                   }
+                },
+                { "include": "#plsql-code-executable" }
+              ],
+              "end": "(?=(?i:end loop))"
+            },
+            { "include": "#plsql-expression" }
+          ],
+          "end": "\\b((?i:end\\s++loop))\\s*+([[:alpha:]](?:[[:alnum:]\\$#_]){,29})?(;)",
+          "endCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" },
+              "2": { "name": "variable.other" },
+              "3": { "name": "keyword.other.delimiter.plsql.oracle" }
+          }
+        },
+        {
+          "name": "meta.section.block.loop.plsql.oracle",
+          "begin": "\\s*+((?i:loop))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" }
+          },
+          "patterns": [
+            {  "name": "keyword.control.plsql.oracle",
+               "match": "\\b(?i:continue( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when|exit( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when)\\b",
+               "captures": {
+                   "1": { "name": "variable.other" },
+                   "2": { "name": "variable.other" }
+               }
+            },
+            { "include": "#plsql-code-executable" }
+          ],
+          "end": "\\b((?i:end\\s++loop))\\s*+([[:alpha:]](?:[[:alnum:]\\$#_]){,29})?(;)",
+          "endCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" },
+              "2": { "name": "variable.other" },
+              "3": { "name": "keyword.other.delimiter.plsql.oracle" }
+          }
+        }
+      ]
     },
     "plsql-named-block": {
       "patterns": [
