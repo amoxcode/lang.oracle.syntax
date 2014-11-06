@@ -1488,7 +1488,7 @@
       "patterns": [
         {
           "name": "meta.command.sqplus.oracle",
-          "begin": "^\\s*+((?i:exec(?>ute|ut|u)?))\\b(?=(.*?[^-\\s])?\\s*+$)",
+          "begin": "^\\s*+((?i:call|exec(?>ute|ut|u)?))\\b(?=(.*?[^-\\s])?\\s*+$)",
           "beginCaptures": {
               "1": { "name": "keyword.other.sqlplus.oracle" }
           },
@@ -1501,7 +1501,7 @@
         },
         {
           "name": "meta.command.continued.sqlplus.oracle",
-          "begin": "^\\s*+((?i:exec(?>ute|ut|u)?))\\b(?=.*?-\\s*+$)",
+          "begin": "^\\s*+((?i:call|exec(?>ute|ut|u)?))\\b(?=.*?-\\s*+$)",
           "beginCaptures": {
               "1": { "name": "keyword.other.sqlplus.oracle" }
           },
