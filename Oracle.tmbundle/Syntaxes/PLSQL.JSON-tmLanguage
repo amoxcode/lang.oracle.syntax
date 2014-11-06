@@ -16,7 +16,8 @@
     "plsql-code": {
       "patterns": [
         { "include": "#plsql-anonymous-block" },
-        { "include": "#plsql-named-block-procedure" }
+        { "include": "#plsql-named-block-procedure" },
+        { "include": "#plsql-named-block-function" }
       ]
     },
     "plsql-code-declaration": {
@@ -24,9 +25,31 @@
         { "include": "#plsql-comments" },
         { "include": "#plsql-strings" },
         { "include": "#plsql-delimiters" },
+        { "include": "#plsql-storage" },
         { "include": "#plsql-named-block-procedure" },
-        { "include": "#plsql-identifier" },
-        { "include": "#plsql-literal" }
+        { "include": "#plsql-named-block-function" },
+        { "include": "#plsql-operator" },
+        { "include": "#plsql-literal" },
+        { "include": "#plsql-identifier" }
+      ]
+    },
+    "plsql-storage": {
+      "patterns": [
+        {  "name": "storage.type.sql",
+           "match": "\\b(?i)(?>blob|char(acter)?|clob|integer|nchar|nclob|nvarchar2|number|raw|real|varchar(2)?)\\b"
+        },
+        {  "name": "storage.type.plsql",
+           "match": "\\b(?i)(?>binary_integer|boolean|natural(n)?|pls_integer|positive(n)?ref_cursor|rowid|simple_(?>double|integer|float)|singtype|string|urowid)\\b"
+        },
+        {  "name": "invalid.deprecated",
+           "match": "\\b(?i:long( raw)?)\\b"
+        },
+        {  "name": "storage.modifier",
+           "match": "\\b(?i:character set|constant|default|index by|is|not null|range|subtype|table of|type)\\b"
+        },
+        {  "name": "storage.modifier",
+           "match": "(?<=%)(?i:rowtype|type)"
+        }
       ]
     },
     "plsql-code-executable": {
@@ -35,9 +58,11 @@
         { "include": "#plsql-strings" },
         { "include": "#plsql-delimiters" },
         { "include": "#plsql-block-conditional" },
+        { "include": "#plsql-block-loop" },
         { "include": "#plsql-block" },
         { "include": "#plsql-support-functions" },
         { "include": "#sqlplus-variable-substitution" },
+        { "include": "#plsql-operator" },
         { "include": "#plsql-literal" },
         { "include": "#plsql-identifier" }
       ]
@@ -86,11 +111,21 @@
       "end": "(\\1)",
       "comment": "Multi-line, proper continuation"
     },
-    "plsql-delimiters": {
+    "plsql-operator": {
       "patterns": [
         {  "name": "keyword.operator.plsql.oracle",
            "match": "\\+|:=|=>|\\|\\||/|\\*\\*|\\*|\\.\\.|=|<>|!=|~=|\\^=|<|>|<=|>=|-"
         },
+        {  "name": "keyword.operator.boolean",
+           "match": "\\b(?i:and|not|or)\\b"
+        },
+        {  "name": "keyword.operator.comparison",
+           "match": "\\b(?i:between|in|is (not )?null|like)\\b"
+        }
+      ]
+    },
+    "plsql-delimiters": {
+      "patterns": [
         {  "name": "keyword.other.indicator.plsql.oracle",
            "match": "%|\\.|:|@"
         },
@@ -174,7 +209,7 @@
            }
         },
         {  "name": "constant.language",
-           "match": "\\b(?i:binary_double_(?>infinity|nan)|binary_float_(?>infinity|nan)|sysdate|systimestamp)\\b"
+           "match": "\\b(?i:binary_double_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|binary_float_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|day|false|hour|interval|minute|null|second|sys_invalid_rowid|sysdate|systimestamp|to|true)\\b"
         }
       ]
     },
@@ -203,7 +238,7 @@
     },
     "plsql-block-declaration": {
       "name": "meta.section.block.declaration.plsql.oracle",
-      "begin": "\\s*+((?i:declare))\\b",
+      "begin": "\\s*+((?i:declare|is|as))\\b",
       "beginCaptures": {
           "1": { "name": "keyword.control.plsql.oracle" }
       },
@@ -219,10 +254,10 @@
           "1": { "name": "keyword.control.plsql.oracle" }
       },
       "patterns": [
-        { "include": "#plsql-code-executable" },
-        { "include": "#plsql-block-exception" }
+        { "include": "#plsql-block-exception" },
+        { "include": "#plsql-code-executable" }
       ],
-      "end": "\\b((?i:end))\\b\\s*+(\\w++)?\\s*+(;)",
+      "end": "\\b((?i:end))\\b\\s*+(?!(?i:if|loop)\\b)(\\w++)?\\s*+(;)",
       "endCaptures": {
           "1": { "name": "keyword.control.plsql.oracle" },
           "2": { "name": "entity.name.function.plsql.oracle" },
@@ -241,25 +276,73 @@
       "end": "(?=\\s*+(?i:end)\\b)"
     },
     "plsql-block-conditional": {
+      "patterns": [
+        {
+          "name": "meta.section.block.conditional.plsql.oracle",
+          "begin": "\\s*+((?i:if))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" }
+          },
+          "patterns": [
+            { "include": "#plsql-code-executable" }
+          ],
+          "end": "\\b((?i:end\\s++if))\\s*+(;)",
+          "endCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" },
+              "2": { "name": "keyword.other.delimiter.plsql.oracle" }
+          }
+        },
+        {
+          "name": "meta.section.block.conditional.plsql.oracle",
+          "begin": "\\s*+((?i:case))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" }
+          },
+          "patterns": [
+            { "include": "#plsql-code-executable" }
+          ],
+          "end": "\\b((?i:end))\\s*+(;)",
+          "endCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" },
+              "2": { "name": "keyword.other.delimiter.plsql.oracle" }
+          }
+        }
+      ]
+    },
+    "plsql-block-loop": {
       "name": "meta.section.block.conditional.plsql.oracle",
-      "begin": "\\s*+((?i:if))\\b",
+      "begin": "\\s*+((?i:for|while))\\b",
       "beginCaptures": {
           "1": { "name": "keyword.control.plsql.oracle" }
       },
       "patterns": [
         { "include": "#plsql-code-executable" }
       ],
-      "end": "\\b((?i:end\\s++if))\\s*+(;)",
+      "end": "\\b((?i:end\\s++loop))\\s*+(;)",
       "endCaptures": {
           "1": { "name": "keyword.control.plsql.oracle" },
           "2": { "name": "keyword.other.delimiter.plsql.oracle" }
       }
     },
+    "plsql-named-block": {
+      "patterns": [
+        { "include": "#plsql-block-declaration" },
+        { "include": "#plsql-block-body" }
+      ]
+    },
     "plsql-named-block-procedure": {
       "name": "meta.section.block.procedure.plsql.oracle",
       "begin": "(?=\\s*+(?i:procedure))",
       "patterns": [
-        { "include": "#plsql-block-body" }
+        { "include": "#plsql-named-block" }
+      ],
+      "end": "(?<=;)"
+    },
+    "plsql-named-block-function": {
+      "name": "meta.section.block.function.plsql.oracle",
+      "begin": "(?=\\s*+(?i:function))",
+      "patterns": [
+        { "include": "#plsql-named-block" }
       ],
       "end": "(?<=;)"
     }
