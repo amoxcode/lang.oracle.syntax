@@ -60,23 +60,30 @@
            "match": "\\b(?i)(?>blob|char(acter)?|clob|integer|nchar|nclob|nvarchar2|number|raw|real|varchar(2)?)\\b"
         },
         {  "name": "storage.type.plsql",
-           "match": "\\b(?i)(?>binary_(?>double|integer)|boolean|exception|natural(n)?|pls_integer|positive(n)?ref_cursor|rowid|simple_(?>double|integer|float)|singtype|string|urowid)\\b"
+           "match": "\\b(?i)(?>binary_(?>double|integer)|boolean|exception|natural(n)?|pls_integer|positive(n)?ref_cursor|rowid|simple_(?>double|integer|float)|singtype|string|urowid|varray)\\b"
         },
         {  "name": "invalid.deprecated",
            "match": "\\b(?i:long( raw)?)\\b"
         },
         {  "name": "storage.modifier",
-           "match": "\\b(?i:character set|constant|default|index by|is|not null|range|subtype|table of|type)\\b"
+           "match": "\\b(?i:character set|constant|default|index by|is|not null|of|range|subtype|table of|type)\\b"
         },
         {  "name": "storage.modifier",
            "match": "(?<=%)(?i:rowtype|type)"
+        },
+        { "name": "storage.type.record.plsql.oracle",
+          "begin": "\\b(?i:record)\\b",
+          "patterns": [
+            { "include": "#plsql-code-declaration" }
+          ],
+          "end": "(?=;)"
         }
       ]
     },
     "plsql-keyword": {
       "patterns": [
         {  "name": "keyword.control.plsql.oracle",
-           "match": "\\b(?i)(?>continue|exit|goto)\\b"
+           "match": "\\b(?i)(?>continue|exit|goto|return)\\b"
         }
       ]
     },
@@ -156,6 +163,9 @@
         },
         {  "name": "keyword.operator.comparison",
            "match": "\\b(?i:between|in|is (not )?null|like|escape)\\b"
+        },
+        {  "name": "keyword.operator.plsql.oracle",
+           "match": "\\b(?i)(?>is empty|is (not )?a set|member of|multiset (?>except|intersect|union)( distinct)?|submultiset of)\\b"
         }
       ]
     },
@@ -244,7 +254,7 @@
            }
         },
         {  "name": "constant.language",
-           "match": "\\b(?i:access_into_null|binary_double_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|binary_float_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|case_not_found|cursor_already_open|day|dup_val_on_index|false|found|hour|interval|invalid_(?>cursor|number)|login_denied|minute|no_data_(?>found|needed)|notfound|not_logged_on|null|others|program_error|rowcount|rownum|rowtype_mismatch|second|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|sysdate|systimestamp|timeout_on_resource|too_many_rows|to|true|value_error|zero_divide)\\b"
+           "match": "\\b(?i:access_into_null|binary_double_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|binary_float_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|case_not_found|currval|cursor_already_open|day|dup_val_on_index|extend|false|found|hour|interval|invalid_(?>cursor|number)|limit|login_denied|minute|next(val)?|no_data_(?>found|needed)|notfound|not_logged_on|null|others|program_error|rowcount|rownum|rowtype_mismatch|second|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|sysdate|systimestamp|timeout_on_resource|too_many_rows|to|true|value_error|zero_divide|(?<=\\.)(?>count|delete|exists|first|last|prior|trim))\\b"
         }
       ]
     },
@@ -255,7 +265,7 @@
     },
     "plsql-support-functions-oracle": {
       "name": "support.function.plsql.oracle",
-      "match": "\\b(?i:(?>dbms_([[:alpha:]]([[:alnum:]\\$#_]){,24})|ht(f|p)|raise_application_error|utl_(?>file|http|smtp)|sql(?>code|errm)))\\b"
+      "match": "\\b(?i:(?>cardinality|dbms_([[:alpha:]]([[:alnum:]\\$#_]){,24})|ht(f|p)|raise_application_error|utl_(?>file|http|smtp)|sql(?>code|errm)))\\b"
     },
     "plsql-block": {
       "name": "meta.section.block.plsql.oracle",
@@ -374,11 +384,11 @@
               "patterns": [
                 { "include": "#plsql-code-executable" }
               ],
-              "end": "(?=\\s*+(?i:when|else|end (case)?)\\b)"
+              "end": "(?=\\s*+(?i:when|else|end( case)?)\\b)"
             },
             { "include": "#plsql-expression" }
           ],
-          "end": "\\b((?i:end (case)?))\\s*+(;)",
+          "end": "\\b((?i:end( case)?))",
           "endCaptures": {
               "1": { "name": "keyword.control.plsql.oracle" },
               "2": { "name": "keyword.other.delimiter.plsql.oracle" }
