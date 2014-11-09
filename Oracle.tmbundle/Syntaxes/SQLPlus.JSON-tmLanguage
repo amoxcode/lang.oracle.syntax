@@ -12,7 +12,8 @@
         { "include": "#sqlplus-commands" },
         { "include": "#sqlplus-comments" },
         { "include": "#sqlplus-invalids" },
-        { "include": "#plsql-block" }
+        { "include": "#plsql-block" },
+        { "include": "#sql-code" }
       ]
     },
     "sqlplus-invalids": {
@@ -4138,6 +4139,26 @@
         }
       ],
       "end": "^\\s*+(/|\\.)\\s*+$"
+    },
+    "sql-code": {
+      "patterns": [
+        { "include": "#sql-with" },
+        { "include": "#sql-query" },
+        { "include": "#sql-ddl" },
+        { "include": "#sql-dml" }
+      ]
+    },
+    "sql-query": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.untitled",
+          "begin": "(?=\\s*+(?i:select)\\b)",
+          "patterns": [
+            { "include": "source.sql" }
+          ],
+          "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+        }
+      ]
     }
   },
   "uuid": "9b69bee9-cbc6-4bb2-b681-3399f61afa37"

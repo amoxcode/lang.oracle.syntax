@@ -1,0 +1,239 @@
+{ "name": "Oracle SQL",
+  "scopeName": "source.sql",
+  "fileTypes": [""],
+  "patterns": [
+    { "include": "#sql-code" }
+  ],
+  "repository": {
+    "sql-code": {
+      "patterns": [
+        { "include": "#sql-query" }
+      ]
+    },
+    "sql-comments": {
+      "patterns": [
+        { "include": "#sql-comment-block" },
+        { "include": "#sql-coment-double-dash" }
+      ]
+    },
+    "sql-hint-includes": {
+      "patterns": [
+        {
+          "name": "keyword.other.hint.sql.oracle",
+          "match": "\\b(?i)(?>all_rows|append(_values)?|cache|change_dupkey_error_index|cluster(ing)?|cursor_sharing_exact|driving_site|dynamic_sampling|fact|first_rows|full|gather_optimizer_statistics|hash|ignore_row_on_dupkey_index|index(_(?>asc|combine|desc|ffs|join|ss(_(?>asc|desc))?))?|inmemory(_pruning)?|leading|merge|model_min_analysis|monitor|native_full_outer_join|no_clustering|no_expand|no_fact|no_gather_optimizer_statistics|no_index|no_index_ffs|no_index_ss|no_inmemory|no_inmemory_pruning|no_merge|no_monitor|no_native_full_outer_join|no_parallel|no_parallel_index|no_pq_concurrent_union|no_pq_skew|no_push_pred|no_push_subq|no_px_join_filter|no_query_transformation|no_result_cache|no_rewrite|no_star_transformation|no_unnest|no_use_cube|no_use_hash|no_use_merge|no_use_nl|no_xml_query_rewrite|no_xmlindex_rewrite|no_zonemap|noappend|nocache|opt_param|ordered|parallel|parallel_index|pq_concurrent_union|pq_distribute|pq_filter|pq_skew|push_pred|push_subq|px_join_filter|qb_name|result_cache|retry_on_row_change|rewrite|star_transformation|unnest|use_concat|use_cube|use_hash|use_merge|use_nl(_with_index)?)\\b"
+        },
+        {
+          "name": "variable.other",
+          "begin": "(\\()",
+          "captures": {
+              "1": { "name": "meta.brace.round" }
+          },
+          "patterns": [
+            {  "name": "variable.other",
+               "match": "(@)\\S++",
+               "captures": {
+                   "1": { "name": "keyword.operator" }
+               }
+            },
+            {  "name": "meta.brace.round",
+               "match": "\\(|\\)"
+            },
+            {  "name": "keyword.other.delimiter",
+               "match": "\\.|,"
+            },
+            {  "name": "constant.numeric",
+               "match": "\\b(\\d+)\\b"
+            },
+            {  "name": "constant.language",
+               "match": "\\b(?i)(?>auto|broadcast|default|hash|join|manual|none|partition|random(_local)?|scan|serial|partition)\\b"
+            }
+          ],
+          "end": "(\\))"
+        }
+      ]
+    },
+    "sql-coment-double-dash": {
+      "patterns": [
+        {
+          "name": "comment.line.double-dash",
+          "begin": "(--\\+)",
+          "beginCaptures": {
+              "1": { "name": "keyword.operator" }
+          },
+          "patterns": [
+            { "include": "#sql-hint-includes" }
+          ],
+          "end": "$"
+        },
+        {
+          "name": "comment.line.double-dash",
+          "match": "(--).*$",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter.plsql.oracle" }
+          }
+        }
+      ]
+    },
+    "sql-comment-block": {
+      "patterns": [
+        {
+          "name": "meta.section.hint.sqlplus",
+          "begin": "(/\\*\\+)(?=.*?\\*/)",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter.oracle" }
+          },
+          "patterns": [
+            { "include": "#sql-hint-includes" },
+            {  "name": "comment.block",
+               "match": "."
+            }
+          ],
+          "end": "(\\*/)",
+          "comment": "PL/SQL block hint"
+        },
+        {
+          "name": "meta.section.comment.sqlplus",
+          "begin": "(/\\*)",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter.oracle" }
+          },
+          "patterns": [
+            {  "name": "comment.block",
+               "match": "."
+            }
+          ],
+          "end": "(\\*/)",
+          "comment": "PL/SQL block Comment"
+        }
+      ]
+    },
+    "sql-literals": {
+      "patterns": [
+        { "name": "constant.character",
+          "begin": "(N|n)?(')",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.plsql.oracle" },
+              "2": { "name": "punctuation.definition.string.begin" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "(\\2)",
+          "endCaptures": {
+              "1": { "name": "punctuation.definition.string.end" }
+          }
+        },
+        { "name": "constant.character",
+          "begin": "(N|n)?(Q|q)(')([^\\s\\[\\{<])",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.plsql.oracle" },
+              "2": { "name": "keyword.other.plsql.oracle" },
+              "3": { "name": "punctuation.definition.string.begin" },
+              "4": { "name": "punctuation.definition.string.begin" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "(\\4\\3)",
+          "endCaptures": {
+              "1": { "name": "punctuation.definition.string.end" }
+          }
+        },
+        { "name": "constant.character",
+          "begin": "(N|n)?(Q|q)(')([\\[\\{<])",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.plsql.oracle" },
+              "2": { "name": "keyword.other.plsql.oracle" },
+              "3": { "name": "punctuation.definition.string.begin" },
+              "4": { "name": "punctuation.definition.string.begin" }
+          },
+          "patterns": [
+            { "include": "#sqlplus-variable-substitution" }
+          ],
+          "end": "([\\]\\}>]\\3)",
+          "endCaptures": {
+              "1": { "name": "punctuation.definition.string.end" }
+          }
+        },
+        {  "name": "constant.numeric",
+           "match": "((?<=\\+|-)|\\b)\\d+(d|D|e|E|f|F)?",
+           "captures": {
+               "2": { "name": "constant.character" }
+           }
+        },
+        {  "name": "constant.language",
+           "match": "\\b(?i)(?>day|false|hour|interval|minute|month|null|second|to|true|year)\\b"
+        }
+      ]
+    },
+    "sql-operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator",
+          "match": "\\+|-|\\*|/|\\|\\||=|>|>=|<|<=|!="
+        },
+        {  "name": "keyword.other.delimiter",
+           "match": ",|\\."
+        }
+      ]
+    },
+    "sql-functions": {
+      "patterns": [
+        {
+          "name": "support.function",
+          "match": "\\b(?i)(?>chartorowid|hextoraw|numto(?>dsinterval|yminterval)|rawto(?>hex|idtochar|nhex)|to_(?>binary_(?>double|float)|blob|char|clob|date|dsinterval|lob|nchar|nclob|number|timestamp(_tz)?|yminterval))\\b",
+          "comment": "Data conversion"
+        },
+        {  "name": "support.function",
+           "match": "\\b(?i:urifactory)\\b",
+          "comment": "Oracle provided"
+        },
+        {  "name": "invalid.deprecated",
+           "match": "\\b(?i)(?>sys_xml(?>agg|gen))\\b",
+          "comment": "Deprecated"
+        }
+      ]
+    },
+    "sql-parenthesis": {
+      "patterns": [
+        {
+          "begin": "(\\()",
+          "captures": {
+              "1": { "name": "meta.brace.round" }
+          },
+          "patterns": [
+            { "include": "#sql-query" },
+            { "include": "#sql-expression" }
+          ],
+          "end": "(\\))"
+        }
+      ]
+    },
+    "sql-expression": {
+      "patterns": [
+        { "include": "#sql-comments" },
+        { "include": "#sql-parenthesis" },
+        { "include": "#sql-literals" },
+        { "include": "#sql-functions" },
+        { "include": "#sql-operators" }
+
+      ]
+    },
+    "sql-query": {
+      "patterns": [
+        {
+          "name": "meta.section.query.sql.oracle",
+          "begin": "\\s*+((?i:select))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sql.oracle" }
+          },
+          "patterns": [
+            { "include": "#sql-expression" }
+          ],
+          "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+        }
+      ]
+    }
+  },
+  "uuid": "a4ca2c84-f85d-4eed-a920-649b44cbdced"
+}

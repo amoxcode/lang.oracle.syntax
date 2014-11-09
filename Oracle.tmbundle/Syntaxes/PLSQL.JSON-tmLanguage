@@ -104,6 +104,7 @@
     "plsql-code-executable": {
       "patterns": [
         { "include": "#plsql-block" },
+        { "include": "#sql-static" },
         { "include": "#plsql-expression" },
         { "include": "#plsql-block-conditional" },
         { "include": "#plsql-block-loop" }
@@ -183,7 +184,7 @@
       "patterns": [
         {
           "name": "variable.other",
-          "match": "\\b([[:alpha:]]([[:alnum:]\\$#_]){,29})"
+          "match": "\\b([[:alpha:]]([[:alnum:]\\$#_]){,29})(?=\\.)"
         },
         {
           "name": "variable.other",
@@ -254,7 +255,7 @@
            }
         },
         {  "name": "constant.language",
-           "match": "\\b(?i:access_into_null|binary_double_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|binary_float_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|case_not_found|currval|cursor_already_open|day|dup_val_on_index|extend|false|found|hour|interval|invalid_(?>cursor|number)|limit|login_denied|minute|next(val)?|no_data_(?>found|needed)|notfound|not_logged_on|null|others|program_error|rowcount|rownum|rowtype_mismatch|second|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|sysdate|systimestamp|timeout_on_resource|too_many_rows|to|true|value_error|zero_divide|(?<=\\.)(?>count|delete|exists|first|last|prior|trim))\\b"
+           "match": "\\b(?i:access_into_null|binary_double_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|binary_float_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|case_not_found|currval|cursor_already_open|day|dup_val_on_index|extend|false|found|hour|interval|invalid_(?>cursor|number)|level|limit|login_denied|minute|next(val)?|no_data_(?>found|needed)|notfound|not_logged_on|null|object_value|others|program_error|rowcount|rownum|rowtype_mismatch|second|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|sysdate|systimestamp|timeout_on_resource|too_many_rows|to|true|value_error|zero_divide|(?<=\\.)(?>count|delete|exists|first|last|prior|trim))\\b"
         }
       ]
     },
@@ -512,6 +513,82 @@
         { "include": "#plsql-named-block" }
       ],
       "end": "(?<=;)"
+    },
+    "sql-static": {
+      "patterns": [
+        { "include": "#plsql-with" },
+        { "include": "#plsql-select" }
+      ]
+    },
+    "plsql-with": {
+      "patterns": [
+        {
+          "name": "meta.section.block.with.sql.oracle",
+          "begin": "\\s*+((?i:with))\\b",
+          "beginCaptures": {
+            "1": { "name": "keyword.other.query.sql.oracle" }
+          },
+          "patterns": [
+            { "include": "#plsql-named-block-function" },
+            { "include": "#plsql-select" },
+            {  "name": "keyword.other.sql.oracle",
+               "match": "\\b(?i:as)\\b"
+            },
+            { "include": "#sql-select-include" }
+          ],
+          "end": "(?=;)"
+        }
+      ]
+    },
+    "plsql-expression-enclosed": {
+      "patterns": [
+        {
+          "begin": "(\\()",
+          "captures": {
+              "1": { "name": "meta.brace.round" }
+          },
+          "patterns": [
+            { "include": "#plsql-select" },
+            { "include": "#plsql-expression-enclosed" },
+            { "include": "#plsql-expression" }
+          ],
+          "end": "(\\))"
+        }
+      ]
+    },
+    "plsql-select": {
+      "patterns": [
+        {
+          "name": "meta.section.block.query.sql.oracle",
+          "begin": "\\s*+((?i:select))\\b",
+          "beginCaptures": {
+            "1": { "name": "keyword.other.query.sql.oracle" }
+          },
+          "patterns": [
+            { "include": "#sql-select-include" }
+          ],
+          "end": "(?=;|\\))"
+        }
+      ]
+    },
+    "sql-select-include": {
+      "patterns": [
+        { "include": "#plsql-comments" },
+        { "include": "#plsql-strings" },
+        { "include": "#plsql-delimiters" },
+        { "include": "#plsql-expression-enclosed" },
+        { "include": "#plsql-support-functions" },
+        { "include": "#sqlplus-variable-substitution" },
+        { "include": "#plsql-operator" },
+        {  "name": "keyword.other.query.sql.oracle",
+           "match": "\\b(?i)(?>all|any|apply|as( of)?|automatic|between|block|by|check option|classifier|connect( by)?|constraint|containers|cross|cube|cycle|decrement|default|define|dimension( by)?|distinct|exclude|fetch|final|first( by)?|for|from|full|grouping sets|group( by)?|having|ignore|include|increment|inner|intersect|into|in|iterate|join|keep|last|lateral|left|like|locked|main|match_number|match recognize|maxvalue|measures|minvalue|minus|model|natural|nav|next|no(?>cycle|wait)|nulls|offset|of|only|on(e)?|order( by)?|outer|partition( by)?|pattern|percent|period|permute|per match|pivot|prev|prior|read only|reference|return|right|rollup|row(s)?|rules|running|sample|seed|scn|search|select|set|sequential|siblings|single( reference)?|skip|start( with)?|subset|table|ties|timestamp|union( all)?|to|unique|unpivot|until|update(d)?|upsert|using|versions|where|wait|with|xml)\\b"
+        },
+        {  "name": "constant.language",
+           "match": "\\b(?i)(?>asc|breadth|desc|depth|first|last)\\b"
+        },
+        { "include": "#plsql-literal" },
+        { "include": "#plsql-identifier" }
+      ]
     }
   },
   "uuid": "93beb44a-597f-471d-b323-8d8a34ec2a3e"
