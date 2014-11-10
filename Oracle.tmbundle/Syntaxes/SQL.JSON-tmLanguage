@@ -197,7 +197,7 @@
            "match": "\\b(?i:is( not)? json( (lax|strict))?( with(out)?)?( unique keys)?|json_(exists|textcontains)|on error)\\b"
         },
         {  "name": "keyword.operator.comparison",
-           "match": "=|!=|^=|<>|<|>|<=|>=|(?i:all|any|exists|is( not)? of( type)?|is( not)? null|(not)? (between|in)|only|some)"
+           "match": "=|!=|^=|<>|<|>|<=|>=|\\b(?i:all|any|exists|is( not)? of( type)?|is( not)? null|(not)? (between|in)|only|some)\\b"
         },
         {  "name": "keyword.operator.comparison.negation",
            "match": "\\b(?i:not)\\b"
@@ -245,17 +245,20 @@
           "match": "\\b(?i)(?>asciistr|bin_to_num|cast|chartorowid|compose|convert|decompose|hextoraw|numto(?>ds|ym)interval|rawto(?>(n)?hex|idto(n)?char)|scn_to_timestamp|timestamp_to_scn|to_(?>binary_(?>double|float)|blob|char|clob|date|dsinterval|lob|multibyte|nchar|nclob|number|single_byte|timestamp(_tz)?|yminterval)|treat|unistr)\\b",
           "comment": "Data conversion"
         },
+        {  "name": "keyword.other.function.clauses",
+           "match": "\\b(?i:as|binary(_(?>double|float))?|char|date|interval|multiset|nchar(_cs)?|nvarchar2|number|raw|rowid|timestamp|urowid|using|varchar2|with)\\b"
+        },
         {  "name": "support.function",
            "match": "\\b(?i:systimestamp|urifactory)\\b",
           "comment": "Oracle provided"
         },
         {
           "name": "support.function.single_row.numeric",
-          "match": "\\b(?i)(?>abs|acos|asin|atan|atan2|bitand|ceil|cos|cosh|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket)\\b"
+          "match": "\\b(?i)(?>abs|acos|asin|atan(2)?|bitand|ceil|cos|cosh|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket)\\b"
         },
         {
           "name": "support.function.single_row.character",
-          "match": "\\b(?i)(?>ascii|chr|concat|instr|initcap|length|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|using|trim|upper)\\b"
+          "match": "\\b(?i)(?>ascii|chr|concat|instr|initcap|length|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|trim|upper)\\b"
         },
         {
           "name": "support.function.single_row.datetime",
@@ -291,7 +294,7 @@
         },
         {
           "name": "support.function.single_row.data_mining",
-          "match": "\\b(?i)(?>cluster_(?>details|distance|id|probability|set)|feature_(?>details|id|set|value)|prediction(_(?>bounds|cost|details|probability|set))?)\\b"
+          "match": "\\b(?i)(?>cluster_(?>details|distance|id|probability|set)|feature_(?>details|id|set|value)|prediction(_(?>bounds|cost|details|probability|set))?)(?=\\s*+\\()"
         },
         {
           "name": "support.function.single_row.xml",
@@ -316,6 +319,22 @@
         {
           "name": "keyword.other.function.analytic.constants",
           "match": "\\b(?i)(?>asc|desc|first|last)\\b"
+        },
+        {
+          "name": "support.function.object_reference",
+          "match": "\\b(?i)(?>deref|make_ref|ref(tohex)?|value)\\b"
+        },
+        {
+          "name": "support.function.model",
+          "match": "\\b(?i)(?>cv|iteration_number|present(?>nnv|tv)|previous)\\b"
+        },
+        {
+          "name": "support.function.olap",
+          "match": "\\b(?i)(?>cube_table)\\b"
+        },
+        {
+          "name": "support.function.data_cartridge",
+          "match": "\\b(?i)(?>dataobj_to_partition)\\b"
         },
         {  "name": "invalid.deprecated",
            "match": "\\b(?i)(?>sys_xml(?>agg|gen))\\b",
