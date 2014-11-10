@@ -119,7 +119,13 @@
               "2": { "name": "punctuation.definition.string.begin" }
           },
           "patterns": [
-            { "include": "#sqlplus-variable-substitution" }
+            { "include": "#sqlplus-variable-substitution" },
+            {  "name": "keyword.other.function.options",
+               "match": "(?<=')(?i)(?>COEFFICIENT|ONE_SIDED_SIG(_(POS|NEG))?|TWO_SIDED_SIG)(?=')\\b"
+            },
+            {  "name": "keyword.other.function.options",
+               "match": "(?i)(?>hierarchy|hrr)\\b"
+            }
           ],
           "end": "(\\2)",
           "endCaptures": {
@@ -165,7 +171,7 @@
            }
         },
         {  "name": "constant.language",
-           "match": "\\b(?i)(?>day|dbtimezone|error|false|hour|interval|minute|month|null|second|sessiontimezone|to|true|year)\\b"
+           "match": "\\b(?i)(?>day|dbtimezone|error|false|hour|interval|minute|month|null|second|sessiontimezone|timezone_(abbr|hour|minute|region)|to|true|year)\\b"
         },
         {  "name": "support.other.pseudocolumn",
            "match": "\\b(?i)(?>column_value|connect_by_(iscycle|isleaf)|currval|level|nextval|object_(id|value)|ora_rowscn|row(id|num)|versions_(?>end(scn|time)|operation|start(scn|time)|xid)|xmldata)\\b"
@@ -246,7 +252,7 @@
           "comment": "Data conversion"
         },
         {  "name": "keyword.other.function.clauses",
-           "match": "\\b(?i:as|binary(_(?>double|float))?|char|date|interval|multiset|nchar(_cs)?|nvarchar2|number|raw|rowid|timestamp|urowid|using|varchar2|with)\\b"
+           "match": "\\b(?i:all|as|binary(_(?>double|float))?|char|date|dense_rank|distinct|from|interval|into|multiset|nchar(_cs)?|nvarchar2|number|raw|respect|rowid|timestamp|urowid|using|varchar2|with(in group)?)\\b"
         },
         {  "name": "support.function",
            "match": "\\b(?i:systimestamp|urifactory)\\b",
@@ -254,11 +260,11 @@
         },
         {
           "name": "support.function.single_row.numeric",
-          "match": "\\b(?i)(?>abs|acos|asin|atan(2)?|bitand|ceil|cos|cosh|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket)\\b"
+          "match": "\\b(?i)(?>abs|acos|asin|atan(2)?|bitand|ceil|cos(h)?|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket)\\b"
         },
         {
           "name": "support.function.single_row.character",
-          "match": "\\b(?i)(?>ascii|chr|concat|instr|initcap|length|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|trim|upper)\\b"
+          "match": "\\b(?i)(?>ascii|chr|concat|instr|initcap|length|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|trim|upper)(?=\\s*+\\()"
         },
         {
           "name": "support.function.single_row.datetime",
@@ -278,7 +284,7 @@
         },
         {
           "name": "support.function.single_row.comparison",
-          "match": "\\b(?i)(?>greatest|least)\\b"
+          "match": "\\b(?i)(?>greatest|least)(?=\\s*+\\()"
         },
         {
           "name": "support.function.single_row.large_object",
@@ -286,7 +292,7 @@
         },
         {
           "name": "support.function.single_row.collection",
-          "match": "\\b(?i)(?>cardinality|collect|powermultiset(_by_cardinality)?|set)\\b"
+          "match": "\\b(?i)(?>cardinality|collect|powermultiset(_by_cardinality)?|set)(?=\\s*+\\()"
         },
         {
           "name": "support.function.single_row.hierarchical",
@@ -306,7 +312,7 @@
         },
         {
           "name": "support.function.aggregate",
-          "match": "\\b(?i)(?>approx_count_distinct|avg|collect|corr(_(?>s|k))?|count|covar_(?>pop|samp)|cume_dist|dense_rank|first|group_id|grouping(_id)?|last|listagg|max|median|min|percent_rank|percentile_(cont|disc)|rank|regr_(?>slope|intercept|count|r2|avg(?>x|y)|sx(x|y)|syy)|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_(?>one|paired|indep(u)?)|stats_wsr_test|stddev(_(?>pop|samp))?|sum|sys_op_zone_id|sys_xmlagg|var_(?>pop|samp)|variance|xmlagg)\\b"
+          "match": "\\b(?i)(?>approx_count_distinct|avg|collect|corr(_(?>s|k))?|count|covar_(?>pop|samp)|cume_dist|dense_rank|first|group_id|grouping(_id)?|last|listagg|max|median|min|percent_rank|percentile_(cont|disc)|rank|regr_(?>slope|intercept|count|r2|avg(?>x|y)|sx(x|y)|syy)|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_(?>one|paired|indep(u)?)|stats_wsr_test|stddev(_(?>pop|samp))?|sum|sys_op_zone_id|sys_xmlagg|var_(?>pop|samp)|variance|xmlagg)(?=\\s*+\\()"
         },
         {
           "name": "support.function.analytic",
@@ -318,11 +324,11 @@
         },
         {
           "name": "keyword.other.function.analytic.constants",
-          "match": "\\b(?i)(?>asc|desc|first|last)\\b"
+          "match": "\\b(?i)(?>abs|asc|desc|first|last)\\b"
         },
         {
           "name": "support.function.object_reference",
-          "match": "\\b(?i)(?>deref|make_ref|ref(tohex)?|value)\\b"
+          "match": "\\b(?i)(?>deref|make_ref|ref(tohex)?|value)(?=\\s*+\\()"
         },
         {
           "name": "support.function.model",
