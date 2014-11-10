@@ -264,7 +264,7 @@
         },
         {
           "name": "support.function.single_row.character",
-          "match": "\\b(?i)(?>ascii|chr|concat|instr|initcap|length|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|trim|upper)(?=\\s*+\\()"
+          "match": "\\b(?i)(?>ascii|chr|concat|instr(b|d|2|4)?|initcap|length|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|trim|upper)(?=\\s*+\\()"
         },
         {
           "name": "support.function.single_row.datetime",
