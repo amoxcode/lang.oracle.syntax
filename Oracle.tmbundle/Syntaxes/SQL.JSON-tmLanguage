@@ -165,7 +165,7 @@
            }
         },
         {  "name": "constant.language",
-           "match": "\\b(?i)(?>day|dbtimezone|false|hour|interval|minute|month|null|second|sessiontimezone|to|true|year)\\b"
+           "match": "\\b(?i)(?>day|dbtimezone|error|false|hour|interval|minute|month|null|second|sessiontimezone|to|true|year)\\b"
         },
         {  "name": "support.other.pseudocolumn",
            "match": "\\b(?i)(?>column_value|connect_by_(iscycle|isleaf)|currval|level|nextval|object_(id|value)|ora_rowscn|row(id|num)|versions_(?>end(scn|time)|operation|start(scn|time)|xid)|xmldata)\\b"
@@ -187,19 +187,25 @@
         {  "name": "keyword.operator.comparison.floating-point",
            "match": "\\b(?i:is( not)? (infinite|nan))\\b"
         },
-        {  "name": "keyword.operator.multiset",
+        {  "name": "keyword.operator.comparison.multiset",
            "match": "\\b(?i:is( not)? (a set|empty)|(not )?(member|submultiset)( of)?)\\b"
         },
-        {  "name": "keyword.operator.comparison",
-           "match": "=|!=|^=|<>|<|>|<=|>=|(?i:all|any|exists|is of|is( not)? null|like|(not)? (between|in)|some)"
+        {  "name": "keyword.operator.comparison.pattern",
+           "match": "\\b(?i:(not )?like(2|4|c)?|excape|regexp_like)\\b"
         },
-        {  "name": "keyword.operator.negation",
+        {  "name": "keyword.operator.comparison.json",
+           "match": "\\b(?i:is( not)? json( (lax|strict))?( with(out)?)?( unique keys)?|json_(exists|textcontains)|on error)\\b"
+        },
+        {  "name": "keyword.operator.comparison",
+           "match": "=|!=|^=|<>|<|>|<=|>=|(?i:all|any|exists|is of|is( not)? null|(not)? (between|in)|some)"
+        },
+        {  "name": "keyword.operator.comparison.negation",
            "match": "\\b(?i:not)\\b"
         },
-        {  "name": "keyword.operator.conjuction",
+        {  "name": "keyword.operator.comparison.conjuction",
            "match": "\\b(?i:and)\\b"
         },
-        {  "name": "keyword.operator.disjunction",
+        {  "name": "keyword.operator.comparison.disjunction",
            "match": "\\b(?i:or)\\b"
         },
         {  "name": "keyword.operator.assignment",
@@ -219,6 +225,9 @@
         },
         {  "name": "keyword.other.delimiter",
            "match": ",|\\.|@"
+        },
+        {  "name": "keyword.operator.comparison.xml",
+           "match": "\\b(?i:equals_path|under_path)\\b"
         }
       ]
     },
