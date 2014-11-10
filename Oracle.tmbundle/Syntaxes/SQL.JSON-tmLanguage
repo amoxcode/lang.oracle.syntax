@@ -197,7 +197,7 @@
            "match": "\\b(?i:is( not)? json( (lax|strict))?( with(out)?)?( unique keys)?|json_(exists|textcontains)|on error)\\b"
         },
         {  "name": "keyword.operator.comparison",
-           "match": "=|!=|^=|<>|<|>|<=|>=|(?i:all|any|exists|is of|is( not)? null|(not)? (between|in)|some)"
+           "match": "=|!=|^=|<>|<|>|<=|>=|(?i:all|any|exists|is( not)? of( type)?|is( not)? null|(not)? (between|in)|only|some)"
         },
         {  "name": "keyword.operator.comparison.negation",
            "match": "\\b(?i:not)\\b"
@@ -241,13 +241,81 @@
     "sql-functions": {
       "patterns": [
         {
-          "name": "support.function",
-          "match": "\\b(?i)(?>chartorowid|hextoraw|numto(?>dsinterval|yminterval)|rawto(?>hex|idtochar|nhex)|to_(?>binary_(?>double|float)|blob|char|clob|date|dsinterval|lob|nchar|nclob|number|timestamp(_tz)?|yminterval))\\b",
+          "name": "support.function.single_row.conversion",
+          "match": "\\b(?i)(?>asciistr|bin_to_num|cast|chartorowid|compose|convert|decompose|hextoraw|numto(?>ds|ym)interval|rawto(?>(n)?hex|idto(n)?char)|scn_to_timestamp|timestamp_to_scn|to_(?>binary_(?>double|float)|blob|char|clob|date|dsinterval|lob|multibyte|nchar|nclob|number|single_byte|timestamp(_tz)?|yminterval)|treat|unistr)\\b",
           "comment": "Data conversion"
         },
         {  "name": "support.function",
-           "match": "\\b(?i:sysdate|systimestamp|urifactory)\\b",
+           "match": "\\b(?i:systimestamp|urifactory)\\b",
           "comment": "Oracle provided"
+        },
+        {
+          "name": "support.function.single_row.numeric",
+          "match": "\\b(?i)(?>abs|acos|asin|atan|atan2|bitand|ceil|cos|cosh|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket)\\b"
+        },
+        {
+          "name": "support.function.single_row.character",
+          "match": "\\b(?i)(?>ascii|chr|concat|instr|initcap|length|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|using|trim|upper)\\b"
+        },
+        {
+          "name": "support.function.single_row.datetime",
+          "match": "\\b(?i)(?>add_months|current_date|current_timestamp|dbtimezone|extract|from_tz|last_day|localtimestamp|months_between|new_time|next_day|numtodsinterval|numtoyminterval|ora_dst_affected|ora_dst_convert|ora_dst_error|round (date)|sessiontimezone|sys_extract_utc|sysdate|systimestamp|to_char|to_dsinterval|to_timestamp|to_timestamp_tz|to_yminterval|trunc (date)|tz_offset)\\b"
+        },
+        {
+          "name": "support.function.single_row.codec",
+          "match": "\\b(?i)(?>decode|dump|ora_hash|standard_hash|vsize)\\b"
+        },
+        {
+          "name": "support.function.single_row.null_related",
+          "match": "\\b(?i)(?>coalesce|lnnvl|nanvl|nullif|nvl(2)?)\\b"
+        },
+        {
+          "name": "support.function.single_row.environment",
+          "match": "\\b(?i)(?>con_(?>dbid|guid|name|uid)_to_id|ora_invoking_user(id)?|sys_(?>context|guid|sys)|uid|user(env)?)\\b"
+        },
+        {
+          "name": "support.function.single_row.comparison",
+          "match": "\\b(?i)(?>greatest|least)\\b"
+        },
+        {
+          "name": "support.function.single_row.large_object",
+          "match": "\\b(?i)(?>bfilename|empty_(b|c)lob)\\b"
+        },
+        {
+          "name": "support.function.single_row.collection",
+          "match": "\\b(?i)(?>cardinality|collect|powermultiset(_by_cardinality)?|set)\\b"
+        },
+        {
+          "name": "support.function.single_row.hierarchical",
+          "match": "\\b(?i)(?>sys_connect_by_path)\\b"
+        },
+        {
+          "name": "support.function.single_row.data_mining",
+          "match": "\\b(?i)(?>cluster_(?>details|distance|id|probability|set)|feature_(?>details|id|set|value)|prediction(_(?>bounds|cost|details|probability|set))?)\\b"
+        },
+        {
+          "name": "support.function.single_row.xml",
+          "match": "\\b(?i)(?>appendchildxml|deletexml|depth|existsnode|extract(value)?|insertchildxml(?>after|before)?|insertxml(?>after|before)|path|sys_(?>dburigen|xml(?>agg|gen))|updatexml|xmlagg|xmlcast|xmlcdata|xmlcolattval|xmlcomment|xmlconcat|xmldiff|xmlelement|xmlexists|xmlforest|xmlisvalid|xmlparse|xmlpatch|xmlpi|xmlquery|xmlroot|xmlsequence|xmlserialize|xmltable|xmltransform)\\b"
+        },
+        {
+          "name": "support.function.single_row.json",
+          "match": "\\b(?i)(?>json_(?>query|table|value))\\b"
+        },
+        {
+          "name": "support.function.aggregate",
+          "match": "\\b(?i)(?>approx_count_distinct|avg|collect|corr(_(?>s|k))?|count|covar_(?>pop|samp)|cume_dist|dense_rank|first|group_id|grouping(_id)?|last|listagg|max|median|min|percent_rank|percentile_(cont|disc)|rank|regr_(?>slope|intercept|count|r2|avg(?>x|y)|sx(x|y)|syy)|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_(?>one|paired|indep(u)?)|stats_wsr_test|stddev(_(?>pop|samp))?|sum|sys_op_zone_id|sys_xmlagg|var_(?>pop|samp)|variance|xmlagg)\\b"
+        },
+        {
+          "name": "support.function.analytic",
+          "match": "\\b(?i)(?>first_value|lag|last_value|lead|nth_value|ntile|ratio_to_report|rownumber)\\b"
+        },
+        {
+          "name": "keyword.other.function.analytic.clauses",
+          "match": "\\b(?i)(?>by|current|following|nulls|order|over|partition|preceding|range|row(s)?|unbounded)\\b"
+        },
+        {
+          "name": "keyword.other.function.analytic.constants",
+          "match": "\\b(?i)(?>asc|desc|first|last)\\b"
         },
         {  "name": "invalid.deprecated",
            "match": "\\b(?i)(?>sys_xml(?>agg|gen))\\b",
