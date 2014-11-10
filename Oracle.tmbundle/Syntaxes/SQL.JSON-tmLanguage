@@ -33,7 +33,7 @@
           },
           "patterns": [
             {  "name": "variable.other",
-               "match": "(@)\\S++",
+               "match": "(@)\\w++",
                "captures": {
                    "1": { "name": "keyword.operator" }
                }
@@ -42,7 +42,7 @@
                "match": "\\.|,"
             },
             {  "name": "constant.numeric",
-               "match": "\\b(\\d+)\\b"
+               "match": "\\b(\\d++)\\b"
             },
             {  "name": "constant.language",
                "match": "\\b(?i)(?>auto|broadcast|default|hash|join|manual|none|partition|random(_local)?|scan|serial|partition)\\b"
@@ -165,7 +165,7 @@
            }
         },
         {  "name": "constant.language",
-           "match": "\\b(?i)(?>day|false|hour|interval|minute|month|null|second|to|true|year)\\b"
+           "match": "\\b(?i)(?>day|dbtimezone|false|hour|interval|minute|month|null|second|sessiontimezone|to|true|year)\\b"
         },
         {  "name": "support.other.pseudocolumn",
            "match": "\\b(?i)(?>column_value|connect_by_(iscycle|isleaf)|currval|level|nextval|object_(id|value)|ora_rowscn|row(id|num)|versions_(?>end(scn|time)|operation|start(scn|time)|xid)|xmldata)\\b"
@@ -183,6 +183,27 @@
         },
         {  "name": "keyword.operator.concatenation",
            "match": "\\|\\|"
+        },
+        {  "name": "keyword.operator.comparison.floating-point",
+           "match": "\\b(?i:is( not)? (infinite|nan))\\b"
+        },
+        {  "name": "keyword.operator.multiset",
+           "match": "\\b(?i:is( not)? (a set|empty)|(not )?(member|submultiset)( of)?)\\b"
+        },
+        {  "name": "keyword.operator.comparison",
+           "match": "=|!=|^=|<>|<|>|<=|>=|(?i:all|any|exists|is of|is( not)? null|like|(not)? (between|in)|some)"
+        },
+        {  "name": "keyword.operator.negation",
+           "match": "\\b(?i:not)\\b"
+        },
+        {  "name": "keyword.operator.conjuction",
+           "match": "\\b(?i:and)\\b"
+        },
+        {  "name": "keyword.operator.disjunction",
+           "match": "\\b(?i:or)\\b"
+        },
+        {  "name": "keyword.operator.assignment",
+           "match": "=>"
         },
         {  "name": "keyword.operator.hierarchical",
            "match": "\\b(?i)(?>connect by root|prior)\\b"
@@ -204,7 +225,7 @@
     "sql-keywords": {
       "patterns": [
         {  "name": "keyword.other.sqlplus.oracle",
-           "match": "\\b(?i)(?>for|partition|subpartition)\\b"
+           "match": "\\b(?i)(?>at|cursor|for|local|partition|subpartition|time zone)\\b"
         }
       ]
     },
@@ -216,7 +237,7 @@
           "comment": "Data conversion"
         },
         {  "name": "support.function",
-           "match": "\\b(?i:urifactory)\\b",
+           "match": "\\b(?i:sysdate|systimestamp|urifactory)\\b",
           "comment": "Oracle provided"
         },
         {  "name": "invalid.deprecated",
@@ -244,9 +265,47 @@
       "patterns": [
         {
           "name": "variable.other",
-          "match": "(?<=@)\\S+"
+          "match": "(?<=@)\\w++"
+        },
+        {  "name": "variable.other",
+           "match": "(:)\\w+",
+           "captures": {
+               "1": { "name": "keyword.other.delimiter" }
+           }
+        },
+        {  "name": "keyword.other",
+           "match": "\\b(?i:indicator)\\b"
         }
       ]
+    },
+    "sql-case": {
+      "name": "meta.section.block.conditional.plsql.oracle",
+      "begin": "\\s*+((?i:case))\\b",
+      "beginCaptures": {
+          "1": { "name": "keyword.control.plsql.oracle" }
+      },
+      "patterns": [
+        {  "name": "keyword.control.plsql.oracle",
+           "match": "\\b(?i:when)\\b"
+        },
+        {
+          "name": "meta.section.block.branch.conditional.plsql.oracle",
+          "begin": "\\b((?i:else|then))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.plsql.oracle" }
+          },
+          "patterns": [
+            { "include": "#sql-expression" }
+          ],
+          "end": "(?=\\s*+(?i:when|else|end( case)?)\\b)"
+        },
+        { "include": "#sql-expression" }
+      ],
+      "end": "\\b((?i:end( case)?))",
+      "endCaptures": {
+          "1": { "name": "keyword.control.plsql.oracle" },
+          "2": { "name": "keyword.other.delimiter.plsql.oracle" }
+      }
     },
     "sql-expression": {
       "patterns": [
@@ -257,7 +316,19 @@
         { "include": "#sql-operators" },
         { "include": "#sql-keywords" },
         { "include": "#sql-identifier" },
-        { "include": "#sqlplus-variable-substitution" }
+        { "include": "#sqlplus-variable-substitution" },
+        { "include": "#sql-case" },
+        { "include": "#sql-model" }
+      ]
+    },
+    "sql-model": {
+      "patterns": [
+        {  "name": "keyword.other",
+           "match": "\\b(?i)(?>all|automatic|by|dimension|ignore|in|iterate|keep|measures|model|nav|order|partition|reference|rules|sequential|single|unique|until|update|upsert)\\b"
+        },
+        {  "name": "keyword.operator.model",
+           "match": "\\b(?i:(is )?(any|present))\\b"
+        }
       ]
     },
     "sql-query": {
@@ -273,16 +344,17 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+(?i:from))"
+              "end": "(?=\\s*+(?i:from)\\b)"
             },
             { "begin": "\\s*+((?i:from))\\b",
               "beginCaptures": {
                   "1": { "name": "keyword.other.sql.oracle" }
               },
               "patterns": [
-                { "include": "#sql-parenthesis" }
+                { "include": "#sql-parenthesis" },
+                { "include": "#sql-model" }
               ],
-              "end": "(?=\\s*+(?i:connect|group|order\\s++by|start|where))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+(?i:connect|group|order\\s++by|start|where)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:where))\\b",
               "beginCaptures": {
@@ -291,7 +363,7 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+(?i:group\\s++by|order|start))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+(?i:group\\s++by|order|start)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:order))\\b",
               "beginCaptures": {
@@ -309,7 +381,7 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+(?i:connect))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+(?i:connect)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:connect))\\b",
               "beginCaptures": {
@@ -318,7 +390,7 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+(?i:order))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+(?i:order)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:group))\\b",
               "beginCaptures": {
@@ -327,7 +399,7 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+(?i:having|order))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+(?i:having|order)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:having))\\b",
               "beginCaptures": {
