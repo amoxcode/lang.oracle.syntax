@@ -4151,7 +4151,6 @@
     "sql-query": {
       "patterns": [
         {
-          "name": "string.quoted.double.untitled",
           "begin": "(?=\\s*+(?i:select)\\b)",
           "patterns": [
             { "include": "source.sql" }
