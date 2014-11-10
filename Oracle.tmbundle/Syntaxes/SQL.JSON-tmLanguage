@@ -178,8 +178,23 @@
     "sql-operators": {
       "patterns": [
         {
-          "name": "keyword.operator",
-          "match": "\\+|-|\\*|/|\\|\\||=|>|>=|<|<=|!="
+          "name": "keyword.operator.arithmetic",
+          "match": "\\+|\\-|\\*|/"
+        },
+        {  "name": "keyword.operator.concatenation",
+           "match": "\\|\\|"
+        },
+        {  "name": "keyword.operator.hierarchical",
+           "match": "\\b(?i)(?>connect by root|prior)\\b"
+        },
+        {  "name": "keyword.operator.set",
+           "match": "\\b(?i)(?>intersect|minus|union( all))\\b"
+        },
+        {  "name": "keyword.operator.multiset",
+           "match": "\\b(?i)(?>multiset (?:except|intersect|union)( (all|distinct))?)\\b",
+           "captures": {
+               "2": { "name": "constant.language" }
+           }
         },
         {  "name": "keyword.other.delimiter",
            "match": ",|\\.|@"
@@ -249,12 +264,80 @@
       "patterns": [
         {
           "name": "meta.section.query.sql.oracle",
-          "begin": "\\s*+((?i:select))\\b",
-          "beginCaptures": {
-              "1": { "name": "keyword.other.sql.oracle" }
-          },
+          "begin": "(?=\\s*+((?i:select))\\b)",
           "patterns": [
-            { "include": "#sql-expression" }
+            { "begin": "\\s*+((?i:select))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+(?i:from))"
+            },
+            { "begin": "\\s*+((?i:from))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-parenthesis" }
+              ],
+              "end": "(?=\\s*+(?i:connect|group|order\\s++by|start|where))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:where))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+(?i:group\\s++by|order|start))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:order))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:start))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+(?i:connect))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:connect))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+(?i:order))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:group))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+(?i:having|order))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:having))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+(?i:order\\s++by))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            }
           ],
           "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
         }

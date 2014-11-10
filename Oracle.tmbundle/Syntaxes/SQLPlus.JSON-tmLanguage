@@ -4155,7 +4155,10 @@
           "patterns": [
             { "include": "source.sql" }
           ],
-          "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+          "end": "(;)|(?=\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)",
+          "endCaptures": {
+              "1": { "name": "keyword.other.terminator" }
+          }
         }
       ]
     }
