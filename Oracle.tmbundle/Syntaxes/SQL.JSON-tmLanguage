@@ -121,7 +121,7 @@
           "patterns": [
             { "include": "#sqlplus-variable-substitution" },
             {  "name": "keyword.other.function.options",
-               "match": "(?<=')(?i)(?>COEFFICIENT|ONE_SIDED_SIG(_(POS|NEG))?|TWO_SIDED_SIG)(?=')\\b"
+               "match": "(?<=')(?i)(?>(a|b|c|e|h|m|p|y)(d|s)t|bcoefficient|gmt|nst|one_sided_sig(_(pos|neg))?|two_sided_sig)(?=')\\b"
             },
             {  "name": "keyword.other.function.options",
                "match": "(?i)(?>hierarchy|hrr)\\b"
@@ -171,7 +171,7 @@
            }
         },
         {  "name": "constant.language",
-           "match": "\\b(?i)(?>day|dbtimezone|error|false|hour|interval|minute|month|null|second|sessiontimezone|timezone_(abbr|hour|minute|region)|to|true|year)\\b"
+           "match": "\\b(?i)(?>day|dbtimezone|empty|error|false|hour|interval|minute|month|null|second|sessiontimezone|timezone_(abbr|hour|minute|region)|to|true|year)\\b"
         },
         {  "name": "support.other.pseudocolumn",
            "match": "\\b(?i)(?>column_value|connect_by_(iscycle|isleaf)|currval|level|nextval|object_(id|value)|ora_rowscn|row(id|num)|versions_(?>end(scn|time)|operation|start(scn|time)|xid)|xmldata)\\b"
@@ -252,7 +252,7 @@
           "comment": "Data conversion"
         },
         {  "name": "keyword.other.function.clauses",
-           "match": "\\b(?i:all|as|binary(_(?>double|float))?|char|date|dense_rank|distinct|from|interval|into|multiset|nchar(_cs)?|nvarchar2|number|raw|respect|rowid|timestamp|urowid|using|varchar2|with(in group)?)\\b"
+           "match": "\\b(?i:all|array|as(cii)?|binary(_(?>double|float))?|byte|char|columns|conditional|date|default|dense_rank|distinct|exists|for(mat)?|from|interval|into|json|multiset|nchar(_cs)?|nested|nvarchar2|number|ordinality|path|pretty|raw|respect|returning|rowid|timestamp|unconditional|urowid|using|varchar2|with(?>in group|out)?|wrapper)\\b"
         },
         {  "name": "support.function",
            "match": "\\b(?i:systimestamp|urifactory)\\b",
@@ -264,7 +264,7 @@
         },
         {
           "name": "support.function.single_row.character",
-          "match": "\\b(?i)(?>ascii|chr|concat|instr(b|d|2|4)?|initcap|length|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|trim|upper)(?=\\s*+\\()"
+          "match": "\\b(?i)(?>ascii|chr|concat|instr(b|d|2|4)?|initcap|length(b|d|2|4)?|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|trim|upper)(?=\\s*+\\()"
         },
         {
           "name": "support.function.single_row.datetime",
@@ -304,7 +304,7 @@
         },
         {
           "name": "support.function.single_row.xml",
-          "match": "\\b(?i)(?>appendchildxml|deletexml|depth|existsnode|extract(value)?|insertchildxml(?>after|before)?|insertxml(?>after|before)|path|sys_(?>dburigen|xml(?>agg|gen))|updatexml|xmlagg|xmlcast|xmlcdata|xmlcolattval|xmlcomment|xmlconcat|xmldiff|xmlelement|xmlexists|xmlforest|xmlisvalid|xmlparse|xmlpatch|xmlpi|xmlquery|xmlroot|xmlsequence|xmlserialize|xmltable|xmltransform)\\b"
+          "match": "\\b(?i)(?>appendchildxml|deletexml|depth|existsnode|extract(value)?|insertchildxml(?>after|before)?|insertxml(?>after|before)|path|sys_(?>dburigen|xml(?>agg|gen))|updatexml|xmlagg|xmlcast|xmlcdata|xmlcolattval|xmlcomment|xmlconcat|xmldiff|xmlelement|xmlexists|xmlforest|xmlisvalid|xmlparse|xmlpatch|xmlpi|xmlquery|xmlroot|xmlsequence|xmlserialize|xmltable|xmltransform)(?=\\s*+\\()"
         },
         {
           "name": "support.function.single_row.json",
@@ -367,6 +367,14 @@
       "patterns": [
         {
           "name": "variable.other",
+          "begin": "(\")",
+          "captures": {
+              "1": { "name": "punctuation.definition.string.end" }
+          },
+          "end": "(\")"
+        },
+        {
+          "name": "variable.other",
           "match": "(?<=@)\\w++"
         },
         {  "name": "variable.other",
@@ -377,6 +385,9 @@
         },
         {  "name": "keyword.other",
            "match": "\\b(?i:indicator)\\b"
+        },
+        {  "name": "variable.other",
+           "match": "\\b(?<=(a|A)(S|s))\\s*+\\w++"
         }
       ]
     },
@@ -423,6 +434,23 @@
         { "include": "#sql-model" }
       ]
     },
+    "sql-from-keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other",
+          "match": "\\b(?i:as)\\b"
+        }
+      ]
+    },
+    "sql-from-include": {
+      "patterns": [
+        { "include": "#sql-parenthesis" },
+        { "include": "#sql-model" },
+        { "include": "#sql-json-table" },
+        { "include": "#sql-identifier" },
+        { "include": "#sql-from-keywords" }
+      ]
+    },
     "sql-model": {
       "patterns": [
         {  "name": "keyword.other",
@@ -430,6 +458,14 @@
         },
         {  "name": "keyword.operator.model",
            "match": "\\b(?i:(is )?(any|present))\\b"
+        }
+      ]
+    },
+    "sql-json-table": {
+      "patterns": [
+        {
+          "name": "support.function.single_row.json",
+          "match": "\\b(?i:json_table)\\b"
         }
       ]
     },
@@ -453,8 +489,7 @@
                   "1": { "name": "keyword.other.sql.oracle" }
               },
               "patterns": [
-                { "include": "#sql-parenthesis" },
-                { "include": "#sql-model" }
+                { "include": "#sql-from-include" }
               ],
               "end": "(?=\\s*+(?i:connect|group|order\\s++by|start|where)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
