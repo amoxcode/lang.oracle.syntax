@@ -123,8 +123,20 @@
             {  "name": "keyword.other.function.options",
                "match": "(?<=')(?i)(?>(a|b|c|e|h|m|p|y)(d|s)t|bcoefficient|gmt|nst|one_sided_sig(_(pos|neg))?|two_sided_sig)(?=')\\b"
             },
+            {  "name": "constant.language",
+               "match": "(?<=')(?i)(?>day|hour|minute|month|second|year)(?=')\\b"
+            },
+            {  "name": "constant.language",
+               "match": "(?<=:)alnum|alpha"
+            },
+            {  "name": "constant.numeric",
+               "match": "\\b\\d++\\b"
+            },
             {  "name": "keyword.other.function.options",
-               "match": "(?i)(?>hierarchy|hrr)\\b"
+               "match": "(?i)(?>hierarchy|hrr|nls_sort\\s*+=\\s*+)\\b"
+            },
+            {  "name": "keyword.other",
+               "match": "[\\[\\]\\{\\}:/\\\\\\(\\)\\.\\-\\,\\^\\$\\+\\?]"
             }
           ],
           "end": "(\\2)",
@@ -252,7 +264,10 @@
           "comment": "Data conversion"
         },
         {  "name": "keyword.other.function.clauses",
-           "match": "\\b(?i:all|array|as(cii)?|binary(_(?>double|float))?|byte|char|columns|conditional|date|default|dense_rank|distinct|exists|for(mat)?|from|interval|into|json|multiset|nchar(_cs)?|nested|nvarchar2|number|ordinality|path|pretty|raw|respect|returning|rowid|timestamp|unconditional|urowid|using|varchar2|with(?>in group|out)?|wrapper)\\b"
+           "match": "\\b(?i:all|anomaly|array|as(cii)?|auto|binary(_(?>double|float))?|byte|char|columns|conditional|cost|date|default|dense_rank|distinct|exists|for(mat)?|from|interval|into|json|multiset|nchar(_cs)?|nested|nvarchar2|number|of|ordinality|path|pretty|raw|respect|returning|rowid|timestamp|unconditional|urowid|using|varchar2|with(?>in group|out)?|wrapper)\\b"
+        },
+        {  "name": "variable.other.field.function",
+           "match": "(?<=\\.)(?i:lower|upper)\\b"
         },
         {  "name": "support.function",
            "match": "\\b(?i:systimestamp|urifactory)\\b",
@@ -260,11 +275,11 @@
         },
         {
           "name": "support.function.single_row.numeric",
-          "match": "\\b(?i)(?>abs|acos|asin|atan(2)?|bitand|ceil|cos(h)?|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket)\\b"
+          "match": "\\b(?i)(?>abs|acos|asin|atan(2)?|bitand|ceil|cos(h)?|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket)(?=\\s*+\\()"
         },
         {
           "name": "support.function.single_row.character",
-          "match": "\\b(?i)(?>ascii|chr|concat|instr(b|d|2|4)?|initcap|length(b|d|2|4)?|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(dcl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|trim|upper)(?=\\s*+\\()"
+          "match": "\\b(?i)(?>ascii|chr|concat|instr(b|d|2|4)?|initcap|length(b|d|2|4)?|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(decl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr|translate|trim|upper)(?=\\s*+\\()"
         },
         {
           "name": "support.function.single_row.datetime",
@@ -323,7 +338,7 @@
           "match": "\\b(?i)(?>by|current|following|nulls|order|over|partition|preceding|range|row(s)?|unbounded)\\b"
         },
         {
-          "name": "keyword.other.function.analytic.constants",
+          "name": "constant.language",
           "match": "\\b(?i)(?>abs|asc|desc|first|last)\\b"
         },
         {
@@ -332,7 +347,7 @@
         },
         {
           "name": "support.function.model",
-          "match": "\\b(?i)(?>cv|iteration_number|present(?>nnv|tv)|previous)\\b"
+          "match": "\\b(?i)(?>cv|iteration_number|present(?>nnv|v)|previous)\\b"
         },
         {
           "name": "support.function.olap",
@@ -372,6 +387,10 @@
               "1": { "name": "punctuation.definition.string.end" }
           },
           "end": "(\")"
+        },
+        {
+          "name": "variable.other",
+          "match": "\\b([[:alpha:]]([[:alnum:]\\$#_]){,29})(?=\\.)"
         },
         {
           "name": "variable.other",
