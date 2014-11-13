@@ -176,7 +176,7 @@
     "sql-interval-literals": {
       "patterns": [
         {  "name": "constant.language",
-           "match": "(?<=')\\s*+(?i:day|hour|minute|month|year)|(?i)(\\bto (date|hour|minute|month|second))\\b"
+           "match": "(?<='|\\))\\s*+(?i:day|hour|minute|month|year)|(?i)(\\bto (date|hour|minute|month|second))\\b"
         }
       ]
     },
@@ -282,13 +282,20 @@
            "match": "(?<=')(?i)(?>action|audited_cursorid|authenticated_identity|authentication_(?>data|method)|bg_job_id|cdb_name|chisq_(?>df|obs|sig)|client_(?>identifier|info|program|name)|coefficient|cohens_k|cont_coefficient|con_(?>id_name)|cramers_v|current_(?>bind|edition_(?>id|name)|schema(id)?|sql(_lenght)?|user(id)?)|database_role|day|db(?>domain|name|supplemental_log_level|unique_name)|dblink_info|df_(?>between|den|num|within)?|entryid|enterprise_identity|exact_prob|f_ratio|fg_job_id|global_(?>context_memory|uid)|host|hour|identification_type|instance(_name)?|ip_address|is(?>_(?>apply_server|dg_rolling_upgrade)|dba)|lang(uage)?|mean_squares_(?>between|within)|md5|minute|module|month|network_protocol|nls(?>calendar|currency|date_(format|language)|sort|territory)|one_sided_(?>prob_or_(?>less|more)|oracle_home|os_user|phi_coefficient|platform_slash|policy_invoker|proxy_(?>nterprise_identity|user(id)?|)|rn|sig(_(pos|neg))?)|second|scheduler_job|server_host|service_name|session(?>id|_(?>edition_(?>id|name)|user(id)?))|sha(1|256|384|512)|sid|sig|statementid|statistic|sum_squares_(?>between|within)|sys_session_roles|terminal|two_sided_(?>prob|sig)|tm(9|e)|unified_audit_sessionid|userenv|year|(0|FM)?X++|(FM)?([09\\$UBCLS])([9,\\.0DGPRNrnV])++(EEEE|MI|PR|S)?)(?=')\\b"
         },
         {  "name": "constant.language",
-           "match": "(?i)(?>dd|mon|yyyy|(?<=:)alnum|alpha)"
+           "match": "(?i)(?>day|dd((sp|th){1,2})?|f(m|x)|hh(12|24)?|mm|mon(th)?|(rr){1,2}|(s)?yyyy|(?<=:)alnum|alpha)"
         },
         {  "name": "keyword.other.function.options",
            "match": "(?i)(?>hierarchy|hrr|nls_sort\\s*+=\\s*+)\\b"
         },
         {  "name": "keyword.other",
-           "match": "[\\[\\]\\{\\}:/\\\\\\(\\)\\.\\-\\,\\^\\$\\+\\?%<>]"
+           "match": "[\\[\\]\\{\\}:;/\\\\\\(\\)\\.\\-\\,\\^\\$\\+\\?%<>]"
+        },
+        { "name": "string.quoted.double.untitled",
+          "begin": "(\")(?=[^\"']*+\\1)",
+          "captures": {
+              "1": { "name": "punctuation.definition.string.begin" }
+          },
+          "end": "(\\1)"
         }
       ]
     },
@@ -344,32 +351,42 @@
     },
     "sql-function-arguments": {
       "patterns": [
-        { "include": "#sql-functions" },
-        { "include": "#sql-case" },
-        { "include": "#sql-function-text-literals" },
-        {  "name": "keyword.other.function.clauses",
-           "match": "\\b(?i:all|anomaly|array|as(cii)?|auto|binary(_(?>double|float))?|byte|char|columns|conditional|cost|date|default|dense_rank|distinct|exists|for(mat)?|from|interval|into|json|multiset|nchar(_cs)?|nested|nvarchar2|number|of|ordinality|path|pretty|raw|respect|returning|rowid|timestamp|unconditional|urowid|using|varchar2|without|with( local)? time zone|wrapper)\\b"
-        },
-        { "include": "#sql-parenthesis" },
-        { "include": "#sql-operators" },
-        { "include": "#sql-numeric-literals" },
-        { "include": "#sql-identifier" },
-        { "include": "#sql-language-literals" }
+        {
+          "begin": "(\\()",
+          "captures": {
+              "1": { "name": "meta.brace.round" }
+          },
+          "patterns": [
+            { "include": "#sql-query" },
+            { "include": "#sql-functions" },
+            { "include": "#sql-function-arguments" },
+            { "include": "#sql-case" },
+            { "include": "#sql-function-text-literals" },
+            {  "name": "keyword.other.function.clauses",
+               "match": "\\b(?i:all|anomaly|array|as(cii)?|auto|binary(_(?>double|float))?|byte|by|char|columns|conditional|cost|date|default|dense_rank|distinct|exists|for(mat)?|from|interval|into|json|model|multiset|nchar(_cs)?|nested|nvarchar2|number|of|order|ordinality|path|pretty|raw|respect|returning|rowid|timestamp|unconditional|urowid|using|varchar2|without|with( local)? time zone|wrapper)\\b"
+            },
+            { "include": "#sql-operators" },
+            { "include": "#sql-numeric-literals" },
+            { "include": "#sql-interval-literals" },
+            { "include": "#sql-identifier" },
+            { "include": "#sql-language-literals" }
+          ],
+          "end": "(\\))"
+        }
       ]
     },
     "sql-functions": {
       "patterns": [
         {
           "name": "meta.section.function.function.single_row.conversion",
-          "begin": "\\b(?i)((?>asciistr|bin_to_num|cast|chartorowid|compose|convert|decompose|hextoraw|numto(?>ds|ym)interval|rawto(?>(n)?hex|idto(n)?char)|rowidto(n)?char|scn_to_timestamp|timestamp_to_scn|to_(?>binary_(?>double|float)|blob|char|clob|date|dsinterval|lob|multibyte|nchar|nclob|number|single_byte|timestamp(_tz)?|yminterval)|treat|unistr))\\s*+(\\()",
+          "begin": "\\b(?i)((?>asciistr|bin_to_num|cast|chartorowid|compose|convert|decompose|hextoraw|numto(?>ds|ym)interval|rawto(?>(n)?hex|idto(n)?char)|rowidto(n)?char|scn_to_timestamp|timestamp_to_scn|to_(?>binary_(?>double|float)|blob|char|clob|date|dsinterval|lob|multibyte|nchar|nclob|number|single_byte|timestamp(_tz)?|yminterval)|treat|unistr))\\b(?=\\s*+\\()",
           "beginCaptures": {
-              "1": { "name": "support.function" },
-              "2": { "name": "meta.round.brace" }
+              "1": { "name": "support.function" }
           },
           "patterns": [
             { "include": "#sql-function-arguments" }
           ],
-          "end": "(\\))",
+          "end": "(?<=\\))",
           "comment": "Data conversion"
         },
         {  "name": "variable.other.field.function",
@@ -381,43 +398,88 @@
         },
         {
           "name": "meta.section.function.single_row.numeric",
-          "begin": "\\b(?i)((?>abs|acos|asin|atan(2)?|bitand|ceil|cos(h)?|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket))\\s*+(\\()",
+          "begin": "\\b(?i)((?>abs|acos|asin|atan(2)?|bitand|ceil|cos(h)?|exp|floor|ln|log|mod|nanvl|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc|width_bucket))\\b(?=\\s*+\\()",
           "beginCaptures": {
-              "1": { "name": "support.function" },
-              "2": { "name": "meta.round.brace" }
+              "1": { "name": "support.function" }
           },
           "patterns": [
             { "include": "#sql-function-arguments" }
           ],
-          "end": "(\\))"
+          "end": "(?<=\\))"
         },
         {
-          "name": "support.function.single_row.character",
-          "match": "\\b(?i)(?>ascii|chr|concat|instr(b|d|2|4)?|initcap|length(b|d|2|4)?|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(decl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr(b|d|2|4)?|translate|trim|upper)(?=\\s*+\\()"
+          "name": "meta.section.function.single_row.character",
+          "begin": "\\b(?i)((?>ascii|chr|concat|instr(b|d|2|4)?|initcap|length(b|d|2|4)?|lower|lpad|ltrim|nchr|nls_initcap|nls_(lower|charset_(decl_len|id|name))|nls_upper|nlssort|regexp_(?>count|instr|replace|substr)|replace|rpad|rtrim|soundex|substr(b|d|2|4)?|translate|trim|upper))\\b(?=\\s*+\\()",
+          "beginCaptures": {
+              "1": { "name": "support.function" }
+          },
+          "patterns": [
+            { "include": "#sql-function-arguments" }
+          ],
+          "end": "(?<=\\))"
         },
         {
           "name": "support.function.single_row.datetime",
-          "match": "\\b(?i)(?>add_months|current_date|current_timestamp|dbtimezone|extract|from_tz|last_day|localtimestamp|months_between|new_time|next_day|numtodsinterval|numtoyminterval|ora_dst_affected|ora_dst_convert|ora_dst_error|round (date)|sessiontimezone|sys_extract_utc|sysdate|systimestamp|to_char|to_dsinterval|to_timestamp|to_timestamp_tz|to_yminterval|trunc (date)|tz_offset)\\b"
+          "match": "\\b(?i:sys(date|timestamp))\\b"
         },
         {
-          "name": "support.function.single_row.codec",
-          "match": "\\b(?i)(?>decode|dump|ora_hash|standard_hash|vsize)\\b"
+          "name": "meta.section.function.single_row.datetime",
+          "begin": "\\b(?i)((?>add_months|current_date|current_timestamp|dbtimezone|extract|from_tz|last_day|localtimestamp|months_between|new_time|next_day|numtodsinterval|numtoyminterval|ora_dst_affected|ora_dst_convert|ora_dst_error|round|sessiontimezone|sys_extract_utc|to_char|to_dsinterval|to_timestamp|to_timestamp_tz|to_yminterval|trunc|tz_offset))\\b(?=\\s*+\\()",
+          "beginCaptures": {
+              "1": { "name": "support.function" }
+          },
+          "patterns": [
+            { "include": "#sql-function-arguments" }
+          ],
+          "end": "(?<=\\))"
         },
         {
-          "name": "support.function.single_row.null_related",
-          "match": "\\b(?i)(?>coalesce|lnnvl|nanvl|nullif|nvl(2)?)\\b"
+          "name": "meta.section.function.single_row.codec",
+          "begin": "\\b(?i)((?>decode|dump|ora_hash|standard_hash|vsize))\\b(?=\\s*+\\()",
+          "beginCaptures": {
+              "1": { "name": "support.function" }
+          },
+          "patterns": [
+            { "include": "#sql-function-arguments" }
+          ],
+          "end": "(?<=\\))"
         },
         {
-          "name": "support.function.single_row.environment",
-          "match": "\\b(?i)(?>con_(?>dbid|guid|name|uid)_to_id|ora_invoking_user(id)?|sys_(?>context|guid|sys)|uid|user(env)?)\\b"
+          "name": "meta.section.function.single_row.null_related",
+          "begin": "\\b(?i)((?>coalesce|lnnvl|nanvl|nullif|nvl(2)?))\\b(?=\\s*+\\()",
+          "beginCaptures": {
+              "1": { "name": "support.function" }
+          },
+          "patterns": [
+            { "include": "#sql-function-arguments" }
+          ],
+          "end": "(?<=\\))"
         },
         {
-          "name": "support.function.single_row.comparison",
-          "match": "\\b(?i)(?>greatest|least)(?=\\s*+\\()"
+          "name": "meta.section.function.single_row.environment",
+          "begin": "\\b(?i)((?>con_(?>dbid|guid|name|uid)_to_id|ora_invoking_user(id)?|sys_(?>context|guid|sys)|uid|user(env)?))\\b(?=\\s*+\\()",
+          "beginCaptures": {
+              "1": { "name": "support.function" }
+          },
+          "patterns": [
+            { "include": "#sql-function-arguments" }
+          ],
+          "end": "(?<=\\))"
+        },
+        {
+          "name": "meta.section.function.single_row.comparison",
+          "begin": "\\b(?i)((?>greatest|least))\\b(?=\\s*+\\()",
+          "beginCaptures": {
+              "1": { "name": "support.function" }
+          },
+          "patterns": [
+            { "include": "#sql-function-arguments" }
+          ],
+          "end": "(?<=\\))"
         },
         {
           "name": "meta.section.function.single_row.large_object",
-          "begin": "\\b(?i)((?>bfilename|empty_(b|c)lob))\\s*+(\\()",
+          "begin": "\\b(?i)((?>bfilename|empty_(b|c)lob))\\b(?=\\s*+\\()",
           "beginCaptures": {
               "1": { "name": "support.function" },
               "2": { "name": "meta.round.brace" }
@@ -425,11 +487,18 @@
           "patterns": [
             { "include": "#sql-function-arguments" }
           ],
-          "end": "(\\))"
+          "end": "(?<=\\))"
         },
         {
-          "name": "support.function.single_row.collection",
-          "match": "\\b(?i)(?>cardinality|collect|powermultiset(_by_cardinality)?|set)(?=\\s*+\\()"
+          "name": "meta.section.function.single_row.collection",
+          "begin": "\\b(?i)((?>cardinality|collect|powermultiset(_by_cardinality)?|set))\\b(?=\\s*+\\()",
+          "beginCaptures": {
+              "1": { "name": "support.function" }
+          },
+          "patterns": [
+            { "include": "#sql-function-arguments" }
+          ],
+          "end": "(?<=\\))"
         },
         {
           "name": "support.function.single_row.hierarchical",
@@ -437,19 +506,18 @@
         },
         {
           "name": "meta.section.function.single_row.data_mining",
-          "begin": "\\b(?i)((?>cluster_(?>details|distance|id|probability|set)|feature_(?>details|id|set|value)|prediction(_(?>bounds|cost|details|probability|set))?))\\s*+(\\()",
+          "begin": "\\b(?i)((?>cluster_(?>details|distance|id|probability|set)|feature_(?>details|id|set|value)|prediction(_(?>bounds|cost|details|probability|set))?))\\b(?=\\s*+\\()",
           "beginCaptures": {
-              "1": { "name": "support.function" },
-              "2": { "name": "meta.round.brace" }
+              "1": { "name": "support.function" }
           },
           "patterns": [
             { "include": "#sql-function-arguments" }
           ],
-          "end": "(\\))"
+          "end": "(?<=\\))"
         },
         {
           "name": "meta.section.function.single_row.xml",
-          "begin": "\\b(?i)((?>appendchildxml|deletexml|depth|existsnode|extract(value)?|insertchildxml(?>after|before)?|insertxml(?>after|before)|path|sys_(?>dburigen|xml(?>agg|gen))|updatexml|xmlagg|xmlcast|xmlcdata|xmlcolattval|xmlcomment|xmlconcat|xmldiff|xmlelement|xmlexists|xmlforest|xmlisvalid|xmlparse|xmlpatch|xmlpi|xmlquery|xmlroot|xmlsequence|xmlserialize|xmltable|xmltransform))\\s*+(\\()",
+          "begin": "\\b(?i)((?>appendchildxml|deletexml|depth|existsnode|extract(value)?|insertchildxml(?>after|before)?|insertxml(?>after|before)|path|sys_(?>dburigen|xml(?>agg|gen))|updatexml|xmlagg|xmlcast|xmlcdata|xmlcolattval|xmlcomment|xmlconcat|xmldiff|xmlelement|xmlexists|xmlforest|xmlisvalid|xmlparse|xmlpatch|xmlpi|xmlquery|xmlroot|xmlsequence|xmlserialize|xmltable|xmltransform))\\b(?=\\s*+\\()",
           "beginCaptures": {
               "1": { "name": "support.function" },
               "2": { "name": "meta.round.brace" }
@@ -457,23 +525,22 @@
           "patterns": [
             { "include": "#sql-function-arguments" }
           ],
-          "end": "(\\))"
+          "end": "(?<=\\))"
         },
         {
           "name": "support.function.single_row.json",
-          "match": "\\b(?i)(?>json_(?>query|table|value))\\b"
+          "match": "\\b(?i)(?>json_(?>query|table|value))\\b(?=\\s*+\\()"
         },
         {
           "name": "meta.section.function.aggregate",
-          "begin": "\\b(?i)((?>approx_count_distinct|avg|collect|corr(_(?>s|k))?|count|covar_(?>pop|samp)|cume_dist|dense_rank|first|group_id|grouping(_id)?|last|listagg|max|median|min|percent_rank|percentile_(cont|disc)|rank|regr_(?>slope|intercept|count|r2|avg(?>x|y)|sx(x|y)|syy)|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_(?>one|paired|indep(u)?)|stats_wsr_test|stddev(_(?>pop|samp))?|sum|sys_op_zone_id|sys_xmlagg|var_(?>pop|samp)|variance|xmlagg))\\s*+(\\()",
+          "begin": "\\b(?i)((?>approx_count_distinct|avg|collect|corr(_(?>s|k))?|count|covar_(?>pop|samp)|cume_dist|dense_rank|first|group_id|grouping(_id)?|last|listagg|max|median|min|percent_rank|percentile_(cont|disc)|rank|regr_(?>slope|intercept|count|r2|avg(?>x|y)|sx(x|y)|syy)|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_(?>one|paired|indep(u)?)|stats_wsr_test|stddev(_(?>pop|samp))?|sum|sys_op_zone_id|sys_xmlagg|var_(?>pop|samp)|variance|xmlagg))(?=\\s*+\\()",
           "beginCaptures": {
-              "1": { "name": "support.function" },
-              "2": { "name": "meta.round.brace" }
+              "1": { "name": "support.function" }
           },
           "patterns": [
             { "include": "#sql-function-arguments" }
           ],
-          "end": "(\\))"
+          "end": "(?<=\\))"
         },
         {
           "name": "support.function.analytic",
@@ -619,7 +686,7 @@
     "sql-expression": {
       "patterns": [
         { "include": "#sql-comments" },
-        { "include": "#sql-parenthesis" },
+        { "include": "#sql-function-arguments" },
         { "include": "#sql-functions" },
         { "include": "#sql-literals" },
         { "include": "#sql-operators" },
@@ -659,16 +726,7 @@
             {  "name": "keyword.other",
                "match": "\\b(?i)(?>dimension by|ignore nav|in|iterate|keep nav|main|measures|on|order|partition by|reference|return (all|updated) rows|rules( (update|upsert( all)?))?( (automatic|sequential) order)?|single|unique (dimension|single reference)|until)\\b"
             },
-            {
-              "begin": "(\\()",
-              "captures": {
-                  "1": { "name": "meta.brace.round" }
-              },
-              "patterns": [
-                { "include": "#sql-function-arguments" }
-              ],
-              "end": "(\\))"
-            }
+            { "include": "#sql-function-arguments" }
           ],
           "end": "(?=\\s*+(?i:connect|group|order|start|where)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
         }
