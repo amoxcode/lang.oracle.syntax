@@ -550,7 +550,7 @@
           "end": "(?<=\\))"
         },
         {
-          "name": "support.function.analytic",
+          "name": "meta.section.function.analytic",
           "begin": "\\b(?i)((?>first_value|lag|last_value|lead|nth_value|ntile|ratio_to_report|row_number))\\b(?=\\s*+\\()",
           "beginCaptures": {
               "1": { "name": "support.function" }
