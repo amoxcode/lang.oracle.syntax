@@ -282,13 +282,13 @@
            "match": "(?<=')(?i)(?>action|audited_cursorid|authenticated_identity|authentication_(?>data|method)|bg_job_id|canonical|cdb_name|chisq_(?>df|obs|sig)|client_(?>identifier|info|program|name)|coefficient|cohens_k|compatibility|cont_coefficient|con_(?>id_name)|cramers_v|current_(?>bind|edition_(?>id|name)|schema(id)?|sql(_lenght)?|user(id)?)|database_role|day|db(?>domain|name|supplemental_log_level|unique_name)|dblink_info|df_(?>between|den|num|within)?|entryid|enterprise_identity|exact_prob|f_ratio|fg_job_id|global_(?>context_memory|uid)|host|hour|identification_type|instance(_name)?|ip_address|is(?>_(?>apply_server|dg_rolling_upgrade)|dba)|lang(uage)?|mean_squares_(?>between|within)|md5|minute|module|month|network_protocol|nls(?>calendar|currency|date_(format|language)|sort|territory)|one_sided_(?>prob_or_(?>less|more)|oracle_home|os_user|phi_coefficient|platform_slash|policy_invoker|proxy_(?>nterprise_identity|user(id)?|)|rn|sig(_(pos|neg))?)|second|scheduler_job|server_host|service_name|session(?>id|_(?>edition_(?>id|name)|user(id)?))|sha(1|256|384|512)|sid|sig|statementid|statistic|sum_squares_(?>between|within)|sys_session_roles|terminal|two_sided_(?>prob|sig)|tm(9|e)|unified_audit_sessionid|userenv|year|(0|FM)?X++|(FM)?([09\\$UBCLS])([9,\\.0DGPRNrnV])++(EEEE|MI|PR|S)?)(?=')\\b"
         },
         {  "name": "constant.language",
-           "match": "(?i)(?>day|ddd|dd((sp|th){1,2})|d(l|s)|ff([0-9]+)|f(m|x)|hh(12|24)?|iw|i(y){1,3}|mon(th)?|p(\\.)?m(\\.)?|rrrr|sssss|(s)?yyyy|yy|(?<=:)alnum|alpha)"
+           "match": "(?i)(?>ddd|dd((sp|th){1,2})|d(l|s)|ff([0-9]+)|f(m|x)|hh(12|24)?|iw|i(y){1,3}|mon(th)?|p(\\.)?m(\\.)?|rrrr|sssss|(s)?yyyy|yy|(?<=:)alnum|alpha)"
         },
         {  "name": "keyword.other.function.options",
            "match": "(?i)(?>hierarchy|hrr|nls_sort\\s*+=\\s*+)\\b"
         },
         {  "name": "keyword.other",
-           "match": "[\\[\\]\\{\\}:;/\\\\\\(\\)\\.\\-\\,\\^\\$\\+\\?%<>]"
+           "match": "[\\[\\]\\{\\}\\|:;/\\\\\\(\\)\\.\\-\\,\\^\\$\\+\\*\\?%<>]"
         },
         { "name": "string.quoted.double.untitled",
           "begin": "(\")(?=[^\"']*+\\1)",
@@ -427,7 +427,7 @@
         },
         {
           "name": "meta.section.function.single_row.datetime",
-          "begin": "\\b(?i)((?>add_months|dbtimezone|extract|from_tz|last_day|localtimestamp|months_between|new_time|next_day|numtodsinterval|numtoyminterval|ora_dst_affected|ora_dst_convert|ora_dst_error|round|sessiontimezone|sys_extract_utc|to_char|to_dsinterval|to_timestamp|to_timestamp_tz|to_yminterval|trunc|tz_offset))\\b(?=\\s*+\\()",
+          "begin": "\\b(?i)((?>add_months|dbtimezone|extract|from_tz|last_day|months_between|new_time|next_day|numtodsinterval|numtoyminterval|ora_dst_affected|ora_dst_convert|ora_dst_error|round|sessiontimezone|sys_extract_utc|to_char|to_dsinterval|to_timestamp|to_timestamp_tz|to_yminterval|trunc|tz_offset))\\b(?=\\s*+\\()",
           "beginCaptures": {
               "1": { "name": "support.function" }
           },
@@ -438,7 +438,7 @@
         },
         {
           "name": "support.function",
-          "match": "\\b(?i)(?>current_date|current_timestamp)\\b"
+          "match": "\\b(?i)(?>current_date|current_timestamp|localtimestamp|ora_invoking_user(id)?)\\b"
         },
         {
           "name": "meta.section.function.single_row.codec",
@@ -464,7 +464,7 @@
         },
         {
           "name": "meta.section.function.single_row.environment",
-          "begin": "\\b(?i)((?>con_(?>dbid|guid|name|uid)_to_id|ora_invoking_user(id)?|sys_(?>context|guid|sys)|uid|user(env)?))\\b(?=\\s*+\\()",
+          "begin": "\\b(?i)((?>con_(?>dbid|guid|name|uid)_to_id|sys_(?>context|guid|sys)|uid|user(env)?))\\b(?=\\s*+\\()",
           "beginCaptures": {
               "1": { "name": "support.function" }
           },
