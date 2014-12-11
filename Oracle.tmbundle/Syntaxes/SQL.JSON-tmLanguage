@@ -369,7 +369,7 @@
             { "include": "#sql-case" },
             { "include": "#sql-function-text-literals" },
             {  "name": "keyword.other.function.clauses",
-               "match": "\\b(?i:all|anomaly|array|as(cii)?|auto|binary(_(?>double|float))?|byte|by|char(_cs)?|columns|conditional|cost|date|default|dense_rank|distinct|exists|for(mat)?|from|interval|into|json|model|multiset|nchar(_cs)?|nested|nvarchar(2)?|number|of|order|ordinality|path|pretty|raw|respect|returning|rowid|timestamp|unconditional|urowid|using|varchar(2)?|with(out)?|with( local)? time zone|wrapper)\\b"
+               "match": "\\b(?i)(?>all|anomaly|array|as(cii)?|auto|binary(_(?>double|float))?|both|by(te)?|char(_cs)?|columns|conditional|cost|date|default|dense_rank|distinct|entityescaping|evalname|exists|for(mat)?|from|interval|into|json|leading|model|multiset|nchar(_cs)?|name|nested|noentityescaping|noschemacheck|nvarchar(2)?|number|of|order|ordinality|path|pretty|raw|respect|returning|rowid|schemacheck|timestamp|trailing|unconditional|urowid|using|varchar(2)?|with( local)? time zone|with(out)?|wrapper)\\b"
             },
             {  "name": "constant.language",
                "match": "\\b(?i)(?>day|hour|minute|month|second|timezone(?>abbr|hour|minute|region)|year)(?=\\s*+(?i:from))"
@@ -402,7 +402,7 @@
            "match": "(?<=\\.)(?i:lower|upper)\\b"
         },
         {  "name": "support.function",
-           "match": "\\b(?i:systimestamp|urifactory)\\b",
+           "match": "\\b(?i)(?>systimestamp|urifactory|uid|user)\\b",
           "comment": "Oracle provided"
         },
         {
@@ -670,7 +670,10 @@
            "match": "\\b(?i:indicator)\\b"
         },
         {  "name": "variable.other",
-           "match": "\\b(?<=(a|A)(S|s))\\s*+(?!(?i:timestamp|varchar2))\\w++"
+           "match": "\\b(?<=(a|A)(S|s))\\s++(?!(?i:timestamp|varchar2))((?i:ref\\s++)?)\\w++",
+           "captures": {
+               "1": { "name": "keyword.other" }
+           }
         },
         {  "name": "variable.other",
            "match": "\\w++(?=\\[)"
