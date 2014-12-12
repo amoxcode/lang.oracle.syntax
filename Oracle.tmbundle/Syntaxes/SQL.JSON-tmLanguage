@@ -579,7 +579,7 @@
           "end": "(?<=\\))"
         },
         { "name": "meta.section.parameters.analytic.function",
-          "begin": "(?<=\\))\\s*+((?i:keep|over|within group))|\\b((?i:over|within group))\\s*+(?=\\()",
+          "begin": "(?<=\\))\\s*+((?i:keep|over|within group))\\b|\\b((?i:over|within group))\\s*+(?=\\()",
           "beginCaptures": {
               "1": { "name": "keyword.other" },
               "2": { "name": "keyword.other" }

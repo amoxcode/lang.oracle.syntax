@@ -125,13 +125,69 @@
         { "include": "#plsql-identifier" }
       ]
     },
+    "plsql-statements": {
+      "patterns": [
+        { "name": "meta.section.open.statement.plsql.oracle",
+          "begin": "\\b(?=(?i:open))\\b",
+          "patterns": [
+            {  "name": "keyword.other",
+               "match": "\\b(?i:open)\\s++(\\w++)",
+               "captures": {
+                   "1": { "name": "variable.other" }
+               }
+            }
+          ],
+          "end": "(?=;)"
+        },
+        { "name": "meta.section.open.statement.plsql.oracle",
+          "begin": "\\b(?=(?i:close))\\b",
+          "patterns": [
+            {  "name": "keyword.other",
+               "match": "\\b(?i:close)\\s++(\\w++)",
+               "captures": {
+                   "1": { "name": "variable.other" }
+               }
+            },
+            {  "name": "keyword.operator",
+               "match": ":"
+            }
+          ],
+          "end": "(?=;)"
+        },
+        { "name": "meta.section.open.statement.plsql.oracle",
+          "begin": "\\b(?=(?i:fetch))\\b",
+          "patterns": [
+            {  "name": "keyword.other",
+               "match": "\\b(?i:fetch)\\s++(\\w++)",
+               "captures": {
+                   "1": { "name": "variable.other" }
+               }
+            },
+            {  "name": "keyword.other",
+               "match": "\\b(?i:bulk collect|into|limit)\\b"
+            },
+            {  "name": "constant.numeric",
+               "match": "\\b\\d++\\b"
+            },
+            {  "name": "variable.other",
+               "match": "\\w++"
+            },
+            {  "name": "keyword.operator.delimiter",
+               "match": ",|:"
+            }
+          ],
+          "end": "(?=;)"
+        }
+      ]
+    },
     "plsql-code-executable": {
       "patterns": [
         { "include": "#plsql-block" },
         { "include": "#sql-static" },
         { "include": "#plsql-expression" },
         { "include": "#plsql-block-conditional" },
-        { "include": "#plsql-block-loop" }
+        { "include": "#plsql-block-loop" },
+        { "include": "#plsql-statements" }
       ]
     },
     "plsql-comments": {
