@@ -560,12 +560,9 @@
       "patterns": [
         {
           "name": "meta.section.block.query.sql.oracle",
-          "begin": "\\s*+((?i:select))\\b",
-          "beginCaptures": {
-            "1": { "name": "keyword.other.query.sql.oracle" }
-          },
+          "begin": "(?=\\s*+(?i:select)\\b)",
           "patterns": [
-            { "include": "#sql-select-include" }
+            { "include": "source.sql" }
           ],
           "end": "(?=;|\\))"
         }

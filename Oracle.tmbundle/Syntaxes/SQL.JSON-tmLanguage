@@ -826,6 +826,22 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
+              "end": "(?=\\s*+(?i:from|(bulk collect )?into)\\b)"
+            },
+            { "begin": "\\s*+((?i:(bulk collect )?into))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-identifier" },
+                {
+                  "name": "variable.other",
+                  "match": "\\b([[:alpha:]]([[:alnum:]\\$#_]){,29})\\b"
+                },
+                {  "name": "keyword.operator.delimiter",
+                   "match": ","
+                }
+              ],
               "end": "(?=\\s*+(?i:from)\\b)"
             },
             { "begin": "\\s*+((?i:from))\\b",
