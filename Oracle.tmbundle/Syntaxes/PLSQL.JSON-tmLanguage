@@ -71,10 +71,34 @@
         {  "name": "storage.modifier",
            "match": "(?<=%)(?i:rowtype|type)"
         },
-        { "name": "storage.type.record.plsql.oracle",
+        { "name": "meta.section.type.record.plsql.oracle",
           "begin": "\\b(?i:record)\\b",
           "patterns": [
             { "include": "#plsql-code-declaration" }
+          ],
+          "end": "(?=;)"
+        },
+        { "name": "meta.section.cursor.plsql.oracle",
+          "begin": "\\b(?=(?i:cursor))\\b",
+          "patterns": [
+            { "include": "#plsql-select" },
+            {  "name": "storage.type.plsql",
+               "match": "\\b(?i:cursor)\\s++(\\w++)",
+               "captures": {
+                   "1": { "name": "variable.other" }
+               }
+            },
+            {  "name": "keyword.other.plsql",
+               "match": "\\b(?i)(?>is|return)\\b"
+            },
+            {  "name": "meta.section.return.clause",
+               "match": "(\\w++)((%)(\\w++))?",
+               "captures": {
+                   "1": { "name": "variable.other" },
+                   "2": { "name": "keyword.operator.delimiter" },
+                   "2": { "name": "storage.modifier" }
+               }
+            }
           ],
           "end": "(?=;)"
         }
