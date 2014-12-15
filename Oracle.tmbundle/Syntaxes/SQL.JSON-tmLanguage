@@ -234,7 +234,7 @@
            "match": "\\b(?i:is( not)? json( (lax|strict))?( with(out)?)?( unique keys)?|json_(exists|textcontains)|on error)\\b"
         },
         {  "name": "keyword.operator.comparison",
-           "match": "=|!=|^=|<>|<|>|<=|>=|\\b(?i:all|any|exists|is( not)? of( type)?|is( not)? (null|present)|(not)? (between|in)|only|some)\\b"
+           "match": "=|!=|^=|<>|<|>|<=|>=|\\b(?i:all|any|exists|is( not)? of( type)?|is( not)? (null|present)|(not )?(between|in)|only|some)\\b"
         },
         {  "name": "keyword.operator.comparison.negation",
            "match": "\\b(?i:not)\\b"
@@ -639,7 +639,7 @@
         },
         {
           "name": "meta.section.function.single_row.user_defined",
-          "begin": "\\b(?i)(\\w++)\\b(?=\\s*+\\()",
+          "begin": "\\b(?i)(?!and|or|not|exists|in|any|all)(\\w++)\\b(?=\\s*+\\()",
           "beginCaptures": {
               "1": { "name": "support.function" }
           },

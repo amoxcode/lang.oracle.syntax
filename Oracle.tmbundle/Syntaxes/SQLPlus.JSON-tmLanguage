@@ -1,6 +1,6 @@
 { "name": "Oracle SQL*Plus",
   "scopeName": "source.sqlplus",
-  "fileTypes": ["buf", "lst", "sql"],
+  "fileTypes": ["buf", "lst", "sql", "oracle"],
   "patterns": [
     {
         "include": "#sqlplus-code"

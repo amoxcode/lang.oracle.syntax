@@ -57,7 +57,7 @@
     "plsql-storage": {
       "patterns": [
         {  "name": "storage.type.sql",
-           "match": "\\b(?i)(?>blob|char(acter)?|clob|integer|nchar|nclob|nvarchar2|number|raw|real|varchar(2)?)\\b"
+           "match": "\\b(?i)(?>blob|char(acter)?|clob|date|integer|nchar|nclob|nvarchar2|number|raw|real|varchar(2)?)\\b"
         },
         {  "name": "storage.type.plsql",
            "match": "\\b(?i)(?>binary_(?>double|integer)|boolean|exception|natural(n)?|pls_integer|positive(n)?ref_cursor|rowid|simple_(?>double|integer|float)|singtype|string|urowid|varray)\\b"
@@ -173,7 +173,7 @@
                "match": "\\w++"
             },
             {  "name": "keyword.operator.delimiter",
-               "match": ",|:"
+               "match": ",|:|\\(|\\)|\\."
             }
           ],
           "end": "(?=;)"
@@ -205,7 +205,7 @@
     },
     "plsql-comment-block": {
       "name": "meta.section.comment.sqlplus",
-      "begin": "(/\\*)(?![[:alpha:]])",
+      "begin": "(/\\*)",
       "captures": {
           "1": { "name": "keyword.other.delimiter.oracle" }
       },
@@ -364,7 +364,7 @@
     },
     "plsql-block-declaration": {
       "name": "meta.section.block.declaration.plsql.oracle",
-      "begin": "\\s*+((?i:declare|is|as))\\b",
+      "begin": "\\s*+\\b((?i:declare|is|as))\\b",
       "beginCaptures": {
           "1": { "name": "keyword.control.plsql.oracle" }
       },
@@ -497,7 +497,7 @@
               },
               "patterns": [
                 {  "name": "keyword.control.plsql.oracle",
-                   "match": "\\b(?i:continue( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when|exit( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when)\\b",
+                   "match": "\\b(?i:continue( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when|exit( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})?\\s++when)\\b",
                    "captures": {
                        "1": { "name": "variable.other" },
                        "2": { "name": "variable.other" }
@@ -524,7 +524,7 @@
           },
           "patterns": [
             {  "name": "keyword.control.plsql.oracle",
-               "match": "\\b(?i:continue( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when|exit( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when)\\b",
+               "match": "\\b(?i:continue( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})? when|exit( [[:alpha:]](?:[[:alnum:]\\$#_]){,29})?\\s++when)\\b",
                "captures": {
                    "1": { "name": "variable.other" },
                    "2": { "name": "variable.other" }
@@ -549,7 +549,7 @@
     },
     "plsql-named-block-procedure": {
       "name": "meta.section.block.procedure.plsql.oracle",
-      "begin": "(?=\\s*+(?i:procedure))",
+      "begin": "(?=\\s*+\\b(?i:procedure))",
       "patterns": [
         { "include": "#plsql-named-block" }
       ],
@@ -576,7 +576,7 @@
           "patterns": [
             { "include": "#plsql-code-declaration" }
           ],
-          "end": "(?=\\s*+(?i:end)\\b.*?;)"
+          "end": "(?=\\s*+(?i:begin)\\b.*?;)"
         }
       ],
       "end": "\\b((?i:end))\\b\\s*+(?!(?i:if|loop)\\b)(\\w++)?\\s*+(;)",
@@ -640,7 +640,7 @@
       "patterns": [
         {
           "name": "meta.section.block.query.sql.oracle",
-          "begin": "(?=\\s*+(?i:select)\\b)",
+          "begin": "(?=\\s*+\\b(?i:select)\\b)",
           "patterns": [
             { "include": "source.sql" }
           ],

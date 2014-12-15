@@ -184,8 +184,8 @@
         <string>source.oracle</string>
         <key>fileTypes</key>
         <array>
-            <string>sql</string>
-            <string>SQL</string>
+            <string>sqlx</string>
+            <string>SQLx</string>
             <string>pls</string>
             <string>PLS</string>
             <string>pks</string>
