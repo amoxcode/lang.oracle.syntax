@@ -56,6 +56,12 @@
     },
     "plsql-storage": {
       "patterns": [
+        { "include": "#plsql-storage-basic" },
+        { "include": "#plsql-storage-composite" }
+      ]
+    },
+    "plsql-storage-basic": {
+      "patterns": [
         {  "name": "storage.type.sql",
            "match": "\\b(?i)(?>blob|char(acter)?|clob|date|integer|nchar|nclob|nvarchar2|number|raw|real|varchar(2)?)\\b"
         },
@@ -70,7 +76,11 @@
         },
         {  "name": "storage.modifier",
            "match": "(?<=%)(?i:rowtype|type)"
-        },
+        }
+      ]
+    },
+    "plsql-storage-composite": {
+      "patterns": [
         { "name": "meta.section.type.record.plsql.oracle",
           "begin": "\\b(?i:record)\\b",
           "patterns": [
@@ -98,7 +108,8 @@
                    "2": { "name": "keyword.operator.delimiter" },
                    "2": { "name": "storage.modifier" }
                }
-            }
+            },
+            { "include": "#plsql-parameter-definition" }
           ],
           "end": "(?=;)"
         }
@@ -268,6 +279,10 @@
         },
         {
           "name": "variable.other",
+          "match": "\\b([[:alpha:]]([[:alnum:]\\$#_]){,29})(?i)(?=%(?>bulk_(?>exceptions|rowcount)|found|isopen|notfound|rowcount))"
+        },
+        {
+          "name": "variable.other",
           "begin": "(\")(?=([^\"]){,30}\")",
           "captures": {
               "1": { "name": "punctuation.definition.string.begin" }
@@ -335,7 +350,22 @@
            }
         },
         {  "name": "constant.language",
-           "match": "\\b(?i:access_into_null|binary_double_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|binary_float_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|case_not_found|currval|cursor_already_open|day|dup_val_on_index|extend|false|found|hour|interval|invalid_(?>cursor|number)|level|limit|login_denied|minute|next(val)?|no_data_(?>found|needed)|notfound|not_logged_on|null|object_value|others|program_error|rowcount|rownum|rowtype_mismatch|second|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|sysdate|systimestamp|timeout_on_resource|too_many_rows|to|true|value_error|zero_divide|(?<=\\.)(?>count|delete|exists|first|last|prior|trim))\\b"
+           "match": "\\b(?i:access_into_null|binary_double_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|binary_float_(?>infinity|max_normal|max_subnormal|min_normal|min_subnormal|nan)|case_not_found|currval|cursor_already_open|day|dup_val_on_index|extend|false|found|hour|interval|invalid_(?>cursor|number)|level|limit|login_denied|minute|next(val)?|no_data_(?>found|needed)|notfound|not_logged_on|null|object_value|others|program_error|rowcount|rownum|rowtype_mismatch|second|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|sysdate|systimestamp|timeout_on_resource|too_many_rows|to|true|value_error|zero_divide|(?<=\\.)(?>count|delete|exists|first|last|prior|trim)|(?<=%)(?>bulk_(?>exceptions|rowcount)|found|isopen|notfound|rowcount))\\b"
+        }
+      ]
+    },
+    "plsql-parameter-definition": {
+      "patterns": [
+        {
+          "begin": "(\\()",
+          "captures": {
+              "1": { "name": "meta.brace.round" }
+          },
+          "patterns": [
+            { "include": "#plsql-literal" },
+            { "include": "#plsql-storage-basic" }
+          ],
+          "end": "(\\))"
         }
       ]
     },
