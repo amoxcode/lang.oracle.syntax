@@ -380,7 +380,10 @@
             { "include": "#sql-numeric-literals" },
             { "include": "#sql-interval-literals" },
             { "include": "#sql-identifier" },
-            { "include": "#sql-language-literals" }
+            { "include": "#sql-language-literals" },
+            {  "name": "variable.other",
+               "match": "(?<!\\.)\\b\\w++(?=\\s*+=)"
+            }
           ],
           "end": "(\\))"
         }
@@ -751,7 +754,7 @@
       "patterns": [
         {
           "name": "keyword.other",
-          "match": "\\b(?i:as)\\b"
+          "match": "\\b(?i)(?>and|as (of)?|between|block|for|maxvalue|minvalue|partition|period|sample|scn|seed|subpartition|timestamp|versions)\\b"
         }
       ]
     },
@@ -826,7 +829,10 @@
                   "1": { "name": "keyword.other.sql.oracle" }
               },
               "patterns": [
-                { "include": "#sql-expression" }
+                { "include": "#sql-expression" },
+                {  "name": "keyword.other.sql",
+                   "match": "\\b(?i:distinct|unique)\\b"
+                }
               ],
               "end": "(?=\\s*+(?i:from|(bulk collect )?into)\\b)"
             },
@@ -853,7 +859,7 @@
               "patterns": [
                 { "include": "#sql-from-include" }
               ],
-              "end": "(?=\\s*+\\b(?i:connect|group|order|start|union|minus|where)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:connect|fetch|group|intersect|offset|order|start|union|minus|where)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:where))\\b",
               "beginCaptures": {
@@ -862,16 +868,34 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+\\b(?i:group|order|start|union|minus)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:fetch|group|intersect|offset|order|start|union|minus)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:order))\\b",
               "beginCaptures": {
                   "1": { "name": "keyword.other.sql.oracle" }
               },
               "patterns": [
-                { "include": "#sql-expression" }
+                { "include": "#sql-expression" },
+                {  "name": "keyword.other.sql",
+                   "match": "\\b(?i:by)\\b"
+                }
               ],
-              "end": "(?=\\s*+\\b(?i:union|minus)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:offset|fetch|intersect|union|minus)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:fetch|offset))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" },
+                {  "name": "keyword.other.sql",
+                   "match": "\\b(?i:fetch|row(s)?)\\b"
+                },
+                {  "name": "constant.language",
+                   "match": "\\b(?i:next|only|percent|ties|with)\\b"
+                }
+              ],
+              "end": "(?=\\s*+\\b(?i:intersect|union|minus)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:start))\\b",
               "beginCaptures": {
@@ -880,25 +904,31 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+\\b(?i:connect|minus|union)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:connect|intersect|minus|union)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:connect))\\b",
               "beginCaptures": {
                   "1": { "name": "keyword.other.sql.oracle" }
               },
               "patterns": [
-                { "include": "#sql-expression" }
+                { "include": "#sql-expression" },
+                {  "name": "keyword.other.sql",
+                   "match": "\\b(?i:by)\\b"
+                }
               ],
-              "end": "(?=\\s*+\\b(?i:order)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:fetch|offset|order)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:group))\\b",
               "beginCaptures": {
                   "1": { "name": "keyword.other.sql.oracle" }
               },
               "patterns": [
-                { "include": "#sql-expression" }
+                { "include": "#sql-expression" },
+                {  "name": "keyword.other.sql",
+                   "match": "\\b(?i:by( cube)?|grouping sets|rollup)\\b"
+                }
               ],
-              "end": "(?=\\s*+(?i:having|minus|order|union)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+(?i:having|intersect|minus|order|union)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:having))\\b",
               "beginCaptures": {
@@ -907,7 +937,10 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+(?i:minus|order|union))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+(?i:fetch|intersect|minus|offset|order|union))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            {  "name": "keyword.operator.sql.query",
+               "match": "\\b(?i:all|intersect|minus|union)\\b"
             }
           ],
           "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
