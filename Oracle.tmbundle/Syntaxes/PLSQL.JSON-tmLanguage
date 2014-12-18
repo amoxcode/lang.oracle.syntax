@@ -717,8 +717,21 @@
                "match": "\\b\\w++\\s++(?=(a|A)(s|S))"
             },
             {  "name": "keyword.other.sql.oracle",
-               "match": "\\b(?i:as)\\b"
-            }
+               "match": "\\b(?i)(?>as|by|cycle|default|first|nulls|search|set|to)\\b"
+            },
+            {  "name": "constant.language",
+               "match": "\\b(?i)(?>asc|breadth|depth|desc|first|last)\\b"
+            },
+            {  "name": "variable.other.alias",
+               "match": "(?<=(b|B)(y|Y))\\s++\\w++"
+            },
+            {  "name": "variable.other.alias",
+               "match": "(?<=(s|S)(e|E)(t|T))\\s++\\w++"
+            },
+            {  "name": "variable.other.alias",
+               "match": "(?<=\\s(c|C)(y|Y)(c|C)(l|L)(e|E))\\s++\\w++"
+            },
+            { "include": "#plsql-literal" }
           ],
           "end": "(?=;)"
         }
