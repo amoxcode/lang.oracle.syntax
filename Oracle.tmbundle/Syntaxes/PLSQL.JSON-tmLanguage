@@ -686,14 +686,15 @@
     "sql-static": {
       "patterns": [
         { "include": "#plsql-with" },
-        { "include": "#plsql-select" },
+        { "include": "#sql-select" },
+        { "include": "#sql-dml" },
         { "include": "#sql-transaction" }
       ]
     },
     "sql-transaction": {
       "patterns": [
         {
-          "begin": "(?=\\b(?i:commit|rollback|savepoint)\\b)",
+          "begin": "(?=\\b(?i:commit|lock table|rollback|savepoint|set transaction)\\b)",
           "patterns": [
             { "include": "source.sql" }
           ],
@@ -704,18 +705,20 @@
     "plsql-with": {
       "patterns": [
         {
-          "name": "meta.section.block.with.sql.oracle",
+          "name": "meta.section.block.with.plsql.oracle",
           "begin": "\\s*+((?i:with))\\b",
           "beginCaptures": {
             "1": { "name": "keyword.other.query.sql.oracle" }
           },
           "patterns": [
             { "include": "#plsql-named-block-function" },
-            { "include": "#plsql-select" },
+            { "include": "source.sql" },
+            {  "name": "variable.other",
+               "match": "\\b\\w++\\s++(?=(a|A)(s|S))"
+            },
             {  "name": "keyword.other.sql.oracle",
                "match": "\\b(?i:as)\\b"
-            },
-            { "include": "#sql-select-include" }
+            }
           ],
           "end": "(?=;)"
         }
@@ -737,11 +740,23 @@
         }
       ]
     },
-    "plsql-select": {
+    "sql-select": {
       "patterns": [
         {
           "name": "meta.section.block.query.sql.oracle",
           "begin": "(?=\\s*+\\b(?i:select)\\b)",
+          "patterns": [
+            { "include": "source.sql" }
+          ],
+          "end": "(?=;|\\))"
+        }
+      ]
+    },
+    "sql-dml": {
+      "patterns": [
+        {
+          "name": "meta.section.block.query.sql.oracle",
+          "begin": "(?=\\s*+\\b(?i)(?>delete|insert|update)\\b)",
           "patterns": [
             { "include": "source.sql" }
           ],

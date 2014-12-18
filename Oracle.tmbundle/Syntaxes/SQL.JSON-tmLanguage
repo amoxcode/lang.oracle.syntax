@@ -8,6 +8,7 @@
     "sql-code": {
       "patterns": [
         { "include": "#sql-query" },
+        { "include": "#sql-dml" },
         { "include": "#sql-transaction" }
       ]
     },
@@ -913,6 +914,40 @@
         }
       ]
     },
+    "sql-dml": {
+      "patterns": [
+        { "include": "#sql-insert" },
+        { "include": "#sql-update" },
+        { "include": "#sql-delete" }
+      ]
+    },
+    "sql-update": {
+      "patterns": [
+        {
+          "name": "meta.section.query.sql.oracle",
+          "begin": "(?=\\s*+((?i:update))\\b)",
+          "patterns": [
+            { "begin": "\\s*+((?i:update))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-comments" },
+                { "include": "#sql-query" },
+                {  "name": "keyword.other.sql",
+                   "match": "\\b(?i:for|only|partition|subpartition|table)\\b"
+                },
+                {  "name": "keyword.operator.delimiter",
+                   "match": "[@\\.]"
+                }
+              ],
+              "end": "(?=\\s*+(?i:set)\\b)"
+            }
+          ],
+          "end": "(?=;)|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+        }
+      ]
+    },
     "sql-transaction": {
       "patterns": [
         { "name": "meta.section.commit",
@@ -955,6 +990,42 @@
             }
           ],
           "end": "(?=/|;)"
+        },
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "\\b((?i:set transaction))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.sql" }
+          },
+          "patterns": [
+            { "include": "#sql-literals" },
+            {  "name": "keyword.other.sql",
+               "match": "\\b(?i)(?>committed|isolation|level|name|only|read|rollback|segment|serializable|use|write)\\b"
+            }
+          ],
+          "end": "(?=;|/)",
+          "comment": "SQL SET single line"
+        },
+        {
+          "name": "meta.command.sqplus.oracle",
+          "begin": "\\b((?i:lock table))\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control.sql" }
+          },
+          "patterns": [
+            { "include": "#sql-literals" },
+            {  "name": "keyword.other.sql",
+               "match": "\\b(?i)(?>exclusive|for|in|mode|nowait|partition|row|share|subpartition|update|wait)\\b"
+            },
+            {  "name": "keyword.operator",
+               "match": "[,\\.@]"
+            },
+            {  "name": "variable.other",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=;|/)",
+          "comment": "SQL lock table"
         }
       ]
     }

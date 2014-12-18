@@ -12,8 +12,8 @@
         { "include": "#sqlplus-commands" },
         { "include": "#sqlplus-comments" },
         { "include": "#sqlplus-invalids" },
-        { "include": "#plsql-block" },
-        { "include": "#sql-code" }
+        { "include": "#sql-code" },
+        { "include": "#plsql-block" }
       ]
     },
     "sqlplus-invalids": {
@@ -3381,6 +3381,15 @@
       "patterns": [
         {
           "name": "meta.command.sqplus.oracle",
+          "begin": "^(?=\\s*+(?i:set transaction)\\b(.*?[^-\\s])?\\s*+$)",
+          "patterns": [
+            { "include": "source.sql" }
+          ],
+          "end": "(?=;|/)",
+          "comment": "SQL SET single line"
+        },
+        {
+          "name": "meta.command.sqplus.oracle",
           "begin": "^(?=\\s*+(?i:set)\\b(.*?[^-\\s])?\\s*+$)",
           "patterns": [
             { "include": "#sqlplus-set-arguments" }
@@ -4148,6 +4157,39 @@
         { "include": "#sql-transaction" }
       ]
     },
+    "sql-with": {
+      "patterns": [
+        {
+          "name": "meta.diffs",
+          "begin": "(\\s*+(?i:with)\\b)",
+          "beginCaptures": {
+              "1": { "name": "keyword.other.sql" }
+          },
+          "patterns": [
+            {
+              "name": "meta.section.block.function.plsql.oracle",
+              "begin": "(?=\\s*+(?i:function))",
+              "patterns": [
+                { "include": "source.plsql" }
+              ],
+              "end": "(?<=;)"
+            },
+            { "include": "source.sql" },
+            {  "name": "variable.other",
+               "match": "\\b\\w++\\s++(?=(a|A)(s|S))"
+            },
+            {  "name": "keyword.other.sql.oracle",
+               "match": "\\b(?i:as)\\b"
+            }
+          ],
+          "end": "(;)|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)",
+          "endCaptures": {
+              "1": { "name": "keyword.other.terminator" }
+          }
+
+        }
+      ]
+    },
     "sql-query": {
       "patterns": [
         {
@@ -4162,10 +4204,24 @@
         }
       ]
     },
+    "sql-dml": {
+      "patterns": [
+        {
+          "begin": "(?=\\s*+(?i)(?>delete|insert|update)\\b)",
+          "patterns": [
+            { "include": "source.sql" }
+          ],
+          "end": "(;)|(?=\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)",
+          "endCaptures": {
+              "1": { "name": "keyword.other.terminator" }
+          }
+        }
+      ]
+    },
     "sql-transaction": {
       "patterns": [
         {
-          "begin": "(?=\\b(?i:commit|rollback|savepoint)\\b)",
+          "begin": "(?=\\b(?i:commit|lock table|rollback|savepoint|set|transaction)\\b)",
           "patterns": [
             { "include": "source.sql" }
           ],
