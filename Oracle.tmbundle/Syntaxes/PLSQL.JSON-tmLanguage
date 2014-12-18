@@ -56,8 +56,8 @@
     },
     "plsql-storage": {
       "patterns": [
-        { "include": "#plsql-storage-basic" },
-        { "include": "#plsql-storage-composite" }
+        { "include": "#plsql-storage-composite" },
+        { "include": "#plsql-storage-basic" }
       ]
     },
     "plsql-storage-basic": {
@@ -66,13 +66,13 @@
            "match": "\\b(?i)(?>blob|char(acter)?|clob|date|integer|nchar|nclob|nvarchar2|number|raw|real|varchar(2)?)\\b"
         },
         {  "name": "storage.type.plsql",
-           "match": "\\b(?i)(?>binary_(?>double|integer)|boolean|exception|natural(n)?|pls_integer|positive(n)?ref_cursor|rowid|simple_(?>double|integer|float)|singtype|string|urowid|varray)\\b"
+           "match": "\\b(?i)(?>binary_(?>double|integer)|boolean|exception|natural(n)?|pls_integer|positive(n)?ref_cursor|rowid|simple_(?>double|integer|float)|singtype|string|sys_refcursor|urowid|varray)\\b"
         },
         {  "name": "invalid.deprecated",
            "match": "\\b(?i:long( raw)?)\\b"
         },
         {  "name": "storage.modifier",
-           "match": "\\b(?i:character set|constant|default|index by|is|not null|of|range|subtype|table of|type)\\b"
+           "match": "\\b(?i:character set|constant|default|index by|is|not null|of|range|subtype|table of|type|ref cursor|return)\\b"
         },
         {  "name": "storage.modifier",
            "match": "(?<=%)(?i:rowtype|type)"
@@ -81,15 +81,29 @@
     },
     "plsql-storage-composite": {
       "patterns": [
-        { "name": "meta.section.type.record.plsql.oracle",
-          "begin": "\\b(?i:record)\\b",
+        { "name": "meta.section.type",
+          "begin": "^\\s*+\\b((?i:type))\\s*+(\\w++)",
+          "beginCaptures": {
+              "1": { "name": "storage.type" },
+              "2": { "name": "variable.other" }
+          },
           "patterns": [
-            { "include": "#plsql-code-declaration" }
+            { "name": "meta.section.type.record.plsql.oracle",
+              "begin": "\\b((?i:record))\\b",
+              "beginCaptures": {
+                  "1": { "name": "storage.type.plsql.oracle" }
+              },
+              "patterns": [
+                { "include": "#plsql-code-declaration" }
+              ],
+              "end": "(?=;)"
+            },
+            { "include": "#plsql-storage-basic" }
           ],
           "end": "(?=;)"
         },
         { "name": "meta.section.cursor.plsql.oracle",
-          "begin": "\\b(?=(?i:cursor))\\b",
+          "begin": "\\b(?=(?i:cursor)\\b)",
           "patterns": [
             { "include": "#plsql-select" },
             {  "name": "storage.type.plsql",
@@ -142,10 +156,22 @@
           "begin": "\\b(?=(?i:open))\\b",
           "patterns": [
             {  "name": "keyword.other",
-               "match": "\\b(?i:open)\\s++(\\w++)",
+               "match": "\\b(?i:open)\\s++(:)?(\\w++)",
                "captures": {
-                   "1": { "name": "variable.other" }
+                   "1": { "name": "keyword.other.delimiter" },
+                   "2": { "name": "variable.other" }
                }
+            },
+            { "include": "#plsql-parameter-call" },
+            {  "name": "keyword.other.plsql.oracle",
+               "match": "\\b(?i:for)\\b"
+            },
+            { "name": "meta.section.query",
+              "begin": "(?=\\b(?i:select))",
+              "patterns": [
+                { "include": "source.sql" }
+              ],
+              "end": "(?=;)"
             }
           ],
           "end": "(?=;)"
@@ -154,9 +180,10 @@
           "begin": "\\b(?=(?i:close))\\b",
           "patterns": [
             {  "name": "keyword.other",
-               "match": "\\b(?i:close)\\s++(\\w++)",
+               "match": "\\b(?i:close)\\s++(:)?(\\w++)",
                "captures": {
-                   "1": { "name": "variable.other" }
+                   "1": { "name": "keyword.other.delimiter" },
+                   "2": { "name": "variable.other" }
                }
             },
             {  "name": "keyword.operator",
@@ -362,8 +389,30 @@
               "1": { "name": "meta.brace.round" }
           },
           "patterns": [
+            { "include": "#plsql-comments" },
             { "include": "#plsql-literal" },
-            { "include": "#plsql-storage-basic" }
+            { "include": "#plsql-storage-basic" },
+            {  "name": "keyword.other",
+               "match": "\\b(?i)(?>in|out)\\b"
+            }
+          ],
+          "end": "(\\))"
+        }
+      ]
+    },
+    "plsql-parameter-call": {
+      "patterns": [
+        {
+          "begin": "(\\()",
+          "captures": {
+              "1": { "name": "meta.brace.round" }
+          },
+          "patterns": [
+            { "include": "#plsql-comments" },
+            { "include": "#plsql-literal" },
+            {  "name": "keyword.operator.delimiter",
+               "match": "=>|,"
+            }
           ],
           "end": "(\\))"
         }
@@ -519,6 +568,9 @@
             {  "name": "keyword.control.plsql.oracle",
                "match": "\\b(?i:reverse)\\b"
             },
+            {  "name": "variable.other",
+               "match": "(?<=(f|F)(o|O)(r|R))\\s++\\w++"
+            },
             {
               "name": "meta.section.block.loop.plsql.oracle",
               "begin": "\\s*+((?i:loop))\\b",
@@ -536,6 +588,13 @@
                 { "include": "#plsql-code-executable" }
               ],
               "end": "(?=(?i:end loop))"
+            },
+            { "name": "meta.section.select.query",
+              "begin": "(?=\\b(?i:select)\\b)",
+              "patterns": [
+                { "include": "source.sql" }
+              ],
+              "end": "(?=\\s*+\\))"
             },
             { "include": "#plsql-expression" }
           ],
@@ -606,7 +665,7 @@
           "patterns": [
             { "include": "#plsql-code-declaration" }
           ],
-          "end": "(?=\\s*+(?i:begin)\\b.*?;)"
+          "end": "(?=\\s*+(?i:begin|end)\\b.*?;)"
         }
       ],
       "end": "\\b((?i:end))\\b\\s*+(?!(?i:if|loop)\\b)(\\w++)?\\s*+(;)",
@@ -627,7 +686,19 @@
     "sql-static": {
       "patterns": [
         { "include": "#plsql-with" },
-        { "include": "#plsql-select" }
+        { "include": "#plsql-select" },
+        { "include": "#sql-transaction" }
+      ]
+    },
+    "sql-transaction": {
+      "patterns": [
+        {
+          "begin": "(?=\\b(?i:commit|rollback|savepoint)\\b)",
+          "patterns": [
+            { "include": "source.sql" }
+          ],
+          "end": "(?=/|;)"
+        }
       ]
     },
     "plsql-with": {

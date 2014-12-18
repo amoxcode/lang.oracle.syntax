@@ -143,7 +143,6 @@
           "end": "(>>)"
         }
       ]
-
     },
     "sqlplus-command-continuation": {
       "name": "meta.section.continuation.command.sqlplus.oracle",
@@ -4145,7 +4144,8 @@
         { "include": "#sql-with" },
         { "include": "#sql-query" },
         { "include": "#sql-ddl" },
-        { "include": "#sql-dml" }
+        { "include": "#sql-dml" },
+        { "include": "#sql-transaction" }
       ]
     },
     "sql-query": {
@@ -4159,6 +4159,17 @@
           "endCaptures": {
               "1": { "name": "keyword.other.terminator" }
           }
+        }
+      ]
+    },
+    "sql-transaction": {
+      "patterns": [
+        {
+          "begin": "(?=\\b(?i:commit|rollback|savepoint)\\b)",
+          "patterns": [
+            { "include": "source.sql" }
+          ],
+          "end": "(?=/|;)"
         }
       ]
     }

@@ -7,13 +7,14 @@
   "repository": {
     "sql-code": {
       "patterns": [
-        { "include": "#sql-query" }
+        { "include": "#sql-query" },
+        { "include": "#sql-transaction" }
       ]
     },
     "sql-comments": {
       "patterns": [
         { "include": "#sql-comment-block" },
-        { "include": "#sql-coment-double-dash" }
+        { "include": "#sql-comment-double-dash" }
       ]
     },
     "sql-hint-includes": {
@@ -55,7 +56,7 @@
         }
       ]
     },
-    "sql-coment-double-dash": {
+    "sql-comment-double-dash": {
       "patterns": [
         {
           "name": "comment.line.double-dash",
@@ -909,6 +910,51 @@
             }
           ],
           "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+        }
+      ]
+    },
+    "sql-transaction": {
+      "patterns": [
+        { "name": "meta.section.commit",
+          "begin": "\\b((?i:commit))\\b",
+          "captures": {
+              "1": { "name": "keyword.control.sql" }
+          },
+          "patterns": [
+            {  "name": "keyword.oter.sql.oracle",
+               "match": "\\b(?i:batch|comment|force|immediate|nowait|wait|work|write)\\b"
+            },
+            { "include": "#sql-literals" }
+          ],
+          "end": "(?=/|;)"
+        },
+        { "name": "meta.section.rollback",
+          "begin": "\\b((?i:rollback))\\b",
+          "captures": {
+              "1": { "name": "keyword.control.sql" }
+          },
+          "patterns": [
+            {  "name": "keyword.oter.sql.oracle",
+               "match": "\\b(?i:force|savepoint|to|work)\\b"
+            },
+            { "include": "#sql-literals" },
+            {  "name": "variable.other",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=/|;)"
+        },
+        { "name": "meta.section.savepoint",
+          "begin": "\\b((?i:savepoint))\\b",
+          "captures": {
+              "1": { "name": "keyword.control.sql" }
+          },
+          "patterns": [
+            {  "name": "variable.other",
+               "match": "\\S"
+            }
+          ],
+          "end": "(?=/|;)"
         }
       ]
     }
