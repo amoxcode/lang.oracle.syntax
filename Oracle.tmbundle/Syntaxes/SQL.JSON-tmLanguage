@@ -197,7 +197,7 @@
       "patterns": [
         {
           "name": "support.other.pseudocolumn",
-          "match": "\\b(?i)(?>column_value|connect_by_(iscycle|isleaf)|currval|level|nextval|object_(id|value)|ora_rowscn|row(id|num)|versions_(?>end(scn|time)|operation|start(scn|time)|xid)|xmldata)\\b"
+          "match": "\\b(?i)(?>column_value|connect_by_(iscycle|isleaf|root)|currval|level|nextval|object_(id|value)|ora_rowscn|row(id|num)|versions_(?>end(scn|time)|operation|start(scn|time)|xid)|xmldata)\\b"
         }
       ]
     },
@@ -865,7 +865,7 @@
               "patterns": [
                 { "include": "#sql-expression" },
                 {  "name": "keyword.other.sql",
-                   "match": "\\b(?i:distinct|unique)\\b"
+                   "match": "\\b(?i:as|distinct|unique)\\b"
                 }
               ],
               "end": "(?=\\s*+(?i:from|(bulk collect )?into)\\b)"
@@ -902,7 +902,7 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+\\b(?i:fetch|for|group|intersect|offset|order|start|union|minus|with)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:connect|fetch|for|group|intersect|offset|order|start|union|minus|with)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:order))\\b",
               "beginCaptures": {
@@ -911,7 +911,7 @@
               "patterns": [
                 { "include": "#sql-expression" },
                 {  "name": "keyword.other.sql",
-                   "match": "\\b(?i:by)\\b"
+                   "match": "\\b(?i:by|siblings)\\b"
                 }
               ],
               "end": "(?=\\s*+\\b(?i:for|offset|fetch|intersect|union|minus)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
@@ -1027,13 +1027,13 @@
         { "include": "#sql-delete" }
       ]
     },
-    "sql-update": {
+    "sql-delete": {
       "patterns": [
         {
           "name": "meta.section.query.sql.oracle",
-          "begin": "(?=\\s*+((?i:update))\\b)",
+          "begin": "(?=\\s*+((?i:delete))\\b)",
           "patterns": [
-            { "begin": "\\s*+((?i:update))\\b",
+            { "begin": "\\s*+((?i:delete))\\b",
               "beginCaptures": {
                   "1": { "name": "keyword.other.sql.oracle" }
               },
@@ -1046,6 +1046,89 @@
                 {  "name": "keyword.operator.delimiter",
                    "match": "[@\\.]"
                 }
+              ],
+              "end": "(?=\\s*+(?i:from)\\b)"
+            },
+            { "begin": "\\s*+((?i:from))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-comments" },
+                { "include": "#sql-query" },
+                {  "name": "keyword.other.sql",
+                   "match": "\\b(?i:for|only|partition|subpartition|table)\\b"
+                },
+                {  "name": "keyword.operator.delimiter",
+                   "match": "[@\\.]"
+                },
+                {  "name": "variable.other",
+                   "match": "\\w++"
+                }
+              ],
+              "end": "(?=\\s*+(?i:where|returning|return|log)\\b)|(?=;)|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:where))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+\\b(?i:return(ing)?|log)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:return(ing)?))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+\\b(?i:into)\\b)"
+            },
+            { "begin": "\\s*+((?i:into))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                {  "name": "keyword.operator.delimiter",
+                   "match": "[,:]"
+                },
+                {  "name": "variable.other",
+                   "match": "\\w++"
+                }
+              ],
+              "end": "(?=\\s*+\\b(?i:log)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:log))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                {  "name": "keyword.other",
+                   "match": "\\b(?i)(?>errors|into|limit|reject|unlimited)\\b"
+                },
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            }
+          ],
+          "end": "(?=;)|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+        }
+      ]
+    },
+    "sql-update": {
+      "patterns": [
+        {
+          "name": "meta.section.query.sql.oracle",
+          "begin": "(?=\\s*+((?i:update))\\b)",
+          "patterns": [
+            { "begin": "\\s*+((?i:update))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-comments" }
               ],
               "end": "(?=\\s*+(?i:set)\\b)"
             }
