@@ -371,7 +371,7 @@
             { "include": "#sql-case" },
             { "include": "#sql-function-text-literals" },
             {  "name": "keyword.other.function.clauses",
-               "match": "\\b(?i)(?>all|anomaly|array|as(cii)?|auto|binary(_(?>double|float))?|both|by(te)?|char(_cs)?|columns|conditional|content|cost|date|default(s)?|dense_rank|distinct|document|encoding|entityescaping|evalname|exists|for(mat)?|from|indent|interval|into|json|leading|model|multiset|nchar(_cs)?|name|nested|noentityescaping|noschemacheck|no|nvarchar(2)?|number|of|order|ordinality|path|passing|pretty|raw|ref|respect|returning|rowid|schemacheck|sequence|show|size|standalone|timestamp|trailing|unconditional|urowid|using|varchar(2)?|value|version|wellformed|with( local)? time zone|with(out)?|wrapper|yes)\\b"
+               "match": "\\b(?i)(?>all|anomaly|array|as(cii)?|auto|binary(_(?>double|float))?|both|by(te)?|char(_cs)?|columns|conditional|content|cost|date|default(s)?|dense_rank|distinct|document|encoding|entityescaping|evalname|exists|for(mat)?|from|indent|ignore|interval|into|json|leading|model|multiset|nchar(_cs)?|name|nested|noentityescaping|noschemacheck|no|nulls|number|nvarchar(2)?|of|order|ordinality|path|passing|pretty|raw|ref|respect|returning|rowid|schemacheck|sequence|show|size|standalone|timestamp|trailing|unconditional|urowid|using|varchar(2)?|value|version|wellformed|with( local)? time zone|with(out)?|wrapper|yes)\\b"
             },
             {  "name": "constant.language",
                "match": "\\b(?i)(?>day|hour|minute|month|second|timezone(?>abbr|hour|minute|region)|year)(?=\\s*+(?i:from))"
@@ -754,7 +754,7 @@
       "patterns": [
         {
           "name": "keyword.other",
-          "match": "\\b(?i)(?>and|as (of)?|between|block|for|maxvalue|minvalue|partition|period|sample|scn|seed|subpartition|timestamp|versions)\\b"
+          "match": "\\b(?i)(?>and|apply|as( of)?|between|block|by|cross|exclude|for|full|include|inner|in|join|lateral|left|maxvalue|minvalue|natural|nulls|on|outer|partition|period|pivot|right|sample|scn|seed|subpartition|table|timestamp|unpivot|using|versions)\\b"
         }
       ]
     },
@@ -766,7 +766,13 @@
         { "include": "#sql-json-table" },
         { "include": "#sql-xml-table" },
         { "include": "#sql-identifier" },
-        { "include": "#sql-from-keywords" }
+        { "include": "#sql-from-keywords" },
+        {  "name": "keyword.operator.delimiter",
+           "match": "[@\\.]"
+        },
+        {  "name": "constant.language",
+           "match": "\\b(?i:dual)\\b"
+        }
       ]
     },
     "sql-model": {
@@ -859,7 +865,7 @@
               "patterns": [
                 { "include": "#sql-from-include" }
               ],
-              "end": "(?=\\s*+\\b(?i:connect|fetch|group|intersect|offset|order|start|union|minus|where)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:connect|for|fetch|group|intersect|offset|order|start|union|minus|where|with)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:where))\\b",
               "beginCaptures": {
@@ -868,7 +874,7 @@
               "patterns": [
                 { "include": "#sql-expression" }
               ],
-              "end": "(?=\\s*+\\b(?i:fetch|group|intersect|offset|order|start|union|minus)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:fetch|for|group|intersect|offset|order|start|union|minus|with)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:order))\\b",
               "beginCaptures": {
@@ -880,7 +886,7 @@
                    "match": "\\b(?i:by)\\b"
                 }
               ],
-              "end": "(?=\\s*+\\b(?i:offset|fetch|intersect|union|minus)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:for|offset|fetch|intersect|union|minus)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:fetch|offset))\\b",
               "beginCaptures": {
@@ -902,7 +908,10 @@
                   "1": { "name": "keyword.other.sql.oracle" }
               },
               "patterns": [
-                { "include": "#sql-expression" }
+                { "include": "#sql-expression" },
+                {  "name": "keyword.other.sql",
+                   "match": "\\b(?i:with)\\b"
+                }
               ],
               "end": "(?=\\s*+\\b(?i:connect|intersect|minus|union)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
@@ -916,7 +925,7 @@
                    "match": "\\b(?i:by)\\b"
                 }
               ],
-              "end": "(?=\\s*+\\b(?i:fetch|offset|order)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+              "end": "(?=\\s*+\\b(?i:fetch|for|offset|order)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:group))\\b",
               "beginCaptures": {
@@ -938,6 +947,42 @@
                 { "include": "#sql-expression" }
               ],
               "end": "(?=\\s*+(?i:fetch|intersect|minus|offset|order|union))|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:for))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                {  "name": "keyword.other.sqlplus.oracle",
+                   "match": "\\b(?i:locked|nowai|of|skip|update|wait)\\b"
+                },
+                {  "name": "literal.numeric",
+                   "match": "\\b\\d++\\b"
+                },
+                {  "name": "keyword.operator.delimiter",
+                   "match": "\\."
+                },
+                { "include": "#sql-comments" },
+                {
+                  "name": "variable.other",
+                  "match": "\\b([[:alpha:]]([[:alnum:]\\$#_]){,29})(?=\\.)"
+                }
+              ],
+              "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:with))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                {  "name": "keyword.other.sqlplus.oracle",
+                   "match": "\\b(?i:check|constraint\\s++(\\w++)|only|option|read)\\b",
+                   "captures": {
+                       "1": { "name": "variable.other" }
+                   }
+                }
+              ],
+              "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             {  "name": "keyword.operator.sql.query",
                "match": "\\b(?i:all|intersect|minus|union)\\b"
