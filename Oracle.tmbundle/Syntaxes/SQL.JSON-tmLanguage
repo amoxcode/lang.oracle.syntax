@@ -772,6 +772,34 @@
         },
         {  "name": "constant.language",
            "match": "\\b(?i:dual)\\b"
+        },
+        { "include": "#sql-match-recognize" }
+      ]
+    },
+    "sql-match-recognize": {
+     "patterns": [
+        {
+          "name": "meta.section.model.from.query",
+          "begin": "\\b((?i:match_recognize))",
+          "beginCaptures": {
+              "1": { "name": "keyword.other" }
+          },
+          "patterns": [
+            {
+              "begin": "(\\()",
+              "captures": {
+                  "1": { "name": "meta.brace.round" }
+              },
+              "patterns": [
+                {  "name": "keyword.other",
+                   "match": "\\b(?i)(?>after|all|as|by|classifier|define|final|first|last|match(_number)?|measures|next|one|order|partition|pattern|past|permute|per|prev|row(s)?|running|skip|subset|to)\\b"
+                },
+                { "include": "#sql-expression" }
+              ],
+              "end": "(\\))"
+            }
+          ],
+          "end": "(?=\\s*+\\b(?i:connect|group|order|start|where)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
         }
       ]
     },
