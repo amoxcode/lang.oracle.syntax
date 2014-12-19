@@ -105,7 +105,7 @@
         { "name": "meta.section.cursor.plsql.oracle",
           "begin": "\\b(?=(?i:cursor)\\b)",
           "patterns": [
-            { "include": "#plsql-select" },
+            { "include": "#sql-select" },
             {  "name": "storage.type.plsql",
                "match": "\\b(?i:cursor)\\s++(\\w++)",
                "captures": {
@@ -485,14 +485,14 @@
           "patterns": [
             { "include": "#plsql-code-executable" }
           ],
-          "end": "(?=\\s*+(?i:end|when)\\b)"
+          "end": "(?=\\s*+\\b(?i:end|when)\\b)"
         },
         {  "name": "keyword.control.plsql.oracle",
            "match": "\\b(?i:when)\\b"
         },
         { "include": "#plsql-expression" }
       ],
-      "end": "(?=\\s*+(?i:end)\\b)"
+      "end": "(?=\\s*+\\b(?i:end)\\b)"
     },
     "plsql-block-conditional": {
       "patterns": [
@@ -640,6 +640,7 @@
       "name": "meta.section.block.procedure.plsql.oracle",
       "begin": "(?=\\s*+\\b(?i:procedure))",
       "patterns": [
+        { "include": "#plsql-parameter-definition" },
         { "include": "#plsql-named-block" }
       ],
       "end": "(?<=;)"
@@ -648,6 +649,7 @@
       "name": "meta.section.block.function.plsql.oracle",
       "begin": "(?=\\s*+(?i:function))",
       "patterns": [
+        { "include": "#plsql-parameter-definition" },
         { "include": "#plsql-named-block" }
       ],
       "end": "(?<=;)"
@@ -745,7 +747,7 @@
               "1": { "name": "meta.brace.round" }
           },
           "patterns": [
-            { "include": "#plsql-select" },
+            { "include": "#sql-select" },
             { "include": "#plsql-expression-enclosed" },
             { "include": "#plsql-expression" }
           ],

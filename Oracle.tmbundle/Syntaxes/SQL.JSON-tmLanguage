@@ -727,7 +727,7 @@
           "patterns": [
             { "include": "#sql-expression" }
           ],
-          "end": "(?=\\s*+(?i:when|else|end( case)?)\\b)"
+          "end": "(?=\\s*+\\b(?i:when|else|end( case)?)\\b)"
         },
         { "include": "#sql-expression" }
       ],
