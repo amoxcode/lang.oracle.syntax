@@ -393,7 +393,13 @@
             { "include": "#plsql-literal" },
             { "include": "#plsql-storage-basic" },
             {  "name": "keyword.other",
-               "match": "\\b(?i)(?>in|out)\\b"
+               "match": "\\b(?i)(?>in|nocopy|out)\\b"
+            },
+            {  "name": "variable.other",
+               "match": "\\w++(?=\\.)"
+            },
+            {  "name": "keyword.operator.assignment",
+               "match": ":=|,"
             }
           ],
           "end": "(\\))"
@@ -667,7 +673,7 @@
           "patterns": [
             { "include": "#plsql-code-declaration" }
           ],
-          "end": "(?=\\s*+(?i:begin|end)\\b.*?;)"
+          "end": "(?=\\s*+\\b(?i:begin|end)\\b.*?;)"
         }
       ],
       "end": "\\b((?i:end))\\b\\s*+(?!(?i:if|loop)\\b)(\\w++)?\\s*+(;)",
@@ -771,7 +777,7 @@
       "patterns": [
         {
           "name": "meta.section.block.query.sql.oracle",
-          "begin": "(?=\\s*+\\b(?i)(?>delete|insert|update)\\b)",
+          "begin": "^(?=\\s*+\\b(?i)(?>delete|insert|update)\\b)",
           "patterns": [
             { "include": "source.sql" }
           ],
