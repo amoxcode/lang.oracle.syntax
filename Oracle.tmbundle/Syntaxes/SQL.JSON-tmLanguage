@@ -1128,10 +1128,71 @@
                   "1": { "name": "keyword.other.sql.oracle" }
               },
               "patterns": [
-                { "include": "#sql-comments" }
+                { "include": "#sql-comments" },
+                { "include": "#sql-query" },
+                {  "name": "keyword.other.sql",
+                   "match": "\\b(?i:for|only|partition|subpartition|table)\\b"
+                },
+                {  "name": "keyword.operator.delimiter",
+                   "match": "[@\\.]"
+                }
               ],
               "end": "(?=\\s*+(?i:set)\\b)"
+            },
+            { "begin": "\\s*+((?i:set))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+(?i:where|returning|return|log)\\b)|(?=;)|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:where))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+\\b(?i:return(ing)?|log)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:return(ing)?))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=\\s*+\\b(?i:into)\\b)"
+            },
+            { "begin": "\\s*+((?i:into))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                {  "name": "keyword.operator.delimiter",
+                   "match": "[,:]"
+                },
+                {  "name": "variable.other",
+                   "match": "\\w++"
+                }
+              ],
+              "end": "(?=\\s*+\\b(?i:log)\\b)|(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
+            },
+            { "begin": "\\s*+((?i:log))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql.oracle" }
+              },
+              "patterns": [
+                {  "name": "keyword.other",
+                   "match": "\\b(?i)(?>errors|into|limit|reject|unlimited)\\b"
+                },
+                { "include": "#sql-expression" }
+              ],
+              "end": "(?=;|\\))|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             }
+
           ],
           "end": "(?=;)|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
         }
