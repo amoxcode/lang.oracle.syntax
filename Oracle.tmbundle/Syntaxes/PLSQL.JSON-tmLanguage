@@ -98,7 +98,13 @@
               ],
               "end": "(?=;)"
             },
-            { "include": "#plsql-storage-basic" }
+            { "include": "#plsql-storage-basic" },
+            {  "name": "constant.numeric",
+               "match": "((?<=\\+|-)|\\b)\\d+(d|D|e|E|f|F)?",
+               "captures": {
+                   "2": { "name": "constant.character" }
+               }
+            }
           ],
           "end": "(?=;)"
         },
@@ -164,7 +170,7 @@
             },
             { "include": "#plsql-parameter-call" },
             {  "name": "keyword.other.plsql.oracle",
-               "match": "\\b(?i:for)\\b"
+               "match": "\\b(?i:for|using)\\b"
             },
             { "name": "meta.section.query",
               "begin": "(?=\\b(?i:select))",
@@ -172,11 +178,12 @@
                 { "include": "source.sql" }
               ],
               "end": "(?=;)"
-            }
+            },
+            { "include": "#plsql-string-single-quoted" }
           ],
           "end": "(?=;)"
         },
-        { "name": "meta.section.open.statement.plsql.oracle",
+        { "name": "meta.section.close.statement.plsql.oracle",
           "begin": "\\b(?=(?i:close))\\b",
           "patterns": [
             {  "name": "keyword.other",
@@ -192,7 +199,7 @@
           ],
           "end": "(?=;)"
         },
-        { "name": "meta.section.open.statement.plsql.oracle",
+        { "name": "meta.section.fetch.statement.plsql.oracle",
           "begin": "\\b(?=(?i:fetch))\\b",
           "patterns": [
             {  "name": "keyword.other",
@@ -212,6 +219,44 @@
             },
             {  "name": "keyword.operator.delimiter",
                "match": ",|:|\\(|\\)|\\."
+            }
+          ],
+          "end": "(?=;)"
+        },
+        { "name": "meta.section.execute.statement.plsql.oracle",
+          "begin": "\\b(?=(?i:execute))\\b",
+          "patterns": [
+            {  "name": "keyword.operator",
+               "match": "\\b(?i:execute|immediate)\\b"
+            },
+            {
+              "begin": "\\b((?i:using|into))\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other.sql" }
+              },
+              "patterns": [
+                {  "name": "keyword.other",
+                   "match": "\\b(?i:in|out)\\b"
+                },
+                { "include": "#plsql-string-single-quoted" },
+                {  "name": "constant.numeric",
+                   "match": "((?<=\\+|-)|\\b)\\d+(d|D|e|E|f|F)?",
+                   "captures": {
+                       "2": { "name": "constant.character" }
+                   }
+                },
+                {  "name": "keyword.operator.delimiter",
+                   "match": "[:,]"
+                },
+                {  "name": "variable.other",
+                   "match": "\\w++"
+                }
+              ],
+              "end": "(?=(;|(?i:using)))"
+            },
+            { "include": "#plsql-string-single-quoted" },
+            {  "name": "variable.other",
+               "match": "\\w++"
             }
           ],
           "end": "(?=;)"
