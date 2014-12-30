@@ -131,7 +131,8 @@
           "name": "meta.section.block.plsql.oracle",
           "begin": "(?=\\s*+(?i:declare|begin|procedure|function|package|trigger))",
           "patterns": [
-            { "include": "source.plsql" }
+            { "include": "source.plsql" },
+            { "include": "#sqlplus-comments" }
           ],
           "end": "(?=^(\\.|/)\\s*+$)"
         },
