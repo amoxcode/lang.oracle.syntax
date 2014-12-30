@@ -1047,7 +1047,7 @@
                    "match": "[@\\.]"
                 }
               ],
-              "end": "(?=\\s*+(?i:from)\\b)"
+              "end": "(?=\\s*+(?i:from|where|returning|return|log)\\b)|(?=;)|^(?=\\s*+/\\s*+$)|^(?=\\.\\s*+$)"
             },
             { "begin": "\\s*+((?i:from))\\b",
               "beginCaptures": {
