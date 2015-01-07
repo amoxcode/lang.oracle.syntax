@@ -715,7 +715,14 @@
               "2": { "name": "entity.name.function" }
           },
           "patterns": [
-            { "include": "#plsql-parameter-definition" }
+            { "include": "#plsql-parameter-definition" },
+            { "include": "#plsql-comments" },
+            {  "name": "keyword.control.plsql.oracle",
+               "match": "\\b(?i)(?>accesible|aggregate|authid|by|deterministic|parallel_enable|pipelined|relies_on|result_cache|return|using)\\b"
+            },
+            {  "name": "constant.language",
+               "match": "\\b(?i:current_user|definer)\\b"
+            }
           ],
           "end": "(?=;)|(?=\\s*+\\b((?i:is|as))\\b)"
         },

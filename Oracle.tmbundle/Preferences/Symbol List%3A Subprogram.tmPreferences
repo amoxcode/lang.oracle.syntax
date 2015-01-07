@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>Symbol List: Subprogram</string>
+  <key>scope</key>
+  <string>source.sqlplus meta.section.block.plsql.oracle meta.section.block.procedure.plsql.oracle meta.section.block.procedure.signature.plsql.oracle, source.sqlplus meta.section.block.plsql.oracle meta.section.block.declaration.plsql.oracle meta.section.block.plsql.oracle meta.section.block.procedure.plsql.oracle meta.section.block.procedure.signature.plsql.oracle</string>
+  <key>settings</key>
+  <dict>
+    <key>showInSymbolList</key>
+    <integer>1</integer>
+    <key>symbolTransformation</key>
+    <string>
+    s/\)[^)]*$/\)/g;
+    s/(^.*$)/\L$0/g;
+    s/\s++/ /g;
+    s/ in / /g;
+    s/--.*?$//gm;
+  </string>
+  </dict>
+  <key>uuid</key>
+  <string>c7a57ae0-d142-450a-9507-d101e5e19673</string>
+</dict>
+</plist>
