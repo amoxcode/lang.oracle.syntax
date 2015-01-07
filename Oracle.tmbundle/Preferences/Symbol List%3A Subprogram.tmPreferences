@@ -13,10 +13,13 @@
     <key>symbolTransformation</key>
     <string>
     s/\)[^)]*$/\)/g;
+    s/--.*?$//gm;
+    s/\bauthid\b.*?$//gi;
     s/(^.*$)/\L$0/g;
     s/\s++/ /g;
     s/ in / /g;
     s/--.*?$//gm;
+    s/^(.{75})(.*+)/\1(?2 \.\.\.:)/g;
   </string>
   </dict>
   <key>uuid</key>
