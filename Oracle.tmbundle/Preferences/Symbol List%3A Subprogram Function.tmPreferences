@@ -5,21 +5,21 @@
   <key>name</key>
   <string>Symbol List: Subprogram</string>
   <key>scope</key>
-  <string>source.sqlplus meta.section.block.plsql.oracle meta.section.block.procedure.plsql.oracle meta.section.block.procedure.signature.plsql.oracle, source.sqlplus meta.section.block.plsql.oracle meta.section.block.declaration.plsql.oracle meta.section.block.plsql.oracle meta.section.block.procedure.plsql.oracle meta.section.block.procedure.signature.plsql.oracle</string>
+  <string>source.sqlplus meta.section.block.plsql.oracle meta.section.block.function.plsql.oracle meta.section.block.function.signature.plsql.oracle, source.sqlplus meta.section.block.plsql.oracle meta.section.block.declaration.plsql.oracle meta.section.block.plsql.oracle meta.section.block.function.plsql.oracle meta.section.block.function.signature.plsql.oracle</string>
   <key>settings</key>
   <dict>
     <key>showInSymbolList</key>
     <integer>1</integer>
     <key>symbolTransformation</key>
     <string>
-    s/\)[^)]*$/\)/g;
+    s/\)[^)]*?(return\s+\S+).*$/\) \1/gi;
     s/--.*?$//gm;
     s/\bauthid\b.*?$//gi;
     s/(^.*$)/\L$0/g;
     s/\s++/ /g;
     s/ in / /g;
     s/--.*?$//gm;
-    s/^(.{75})(.*+)/\1(?2 \.\.\. \):)/g;
+    s/^([^\)]{50})(.*?)(return\s+\S+)/\1(?2 \.\.\. \):) \3/gi;
   </string>
   </dict>
   <key>uuid</key>
