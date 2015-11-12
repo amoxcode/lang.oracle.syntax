@@ -1,0 +1,123 @@
+{
+    "uuid": "10821899-0104-48db-9438-50000877b19e",
+    "fileTypes": [ "ldt" ],
+    "name": "Oracle FNDLOAD",
+    "scopeName": "source.fndload",
+    "patterns": [
+      { "include": "#oracle-fndload" }
+    ],
+    "repository": {
+        "oracle-fndload": {
+          "patterns": [
+            { "include": "#comment-line-number" } ,
+            { "include": "#comment-block" },
+            { "include": "#string-quoted-single" },
+            { "include": "#string-quoted-double" },
+            { "include": "#keyword-other" },
+            { "include": "#meta-block-define" },
+            { "include": "#meta-block-entity" }
+          ]
+        },
+        "comment-line-number": {
+          "name": "comment.line.number-sig",
+          "match": "#.*$",
+          "comment": "Single line # comment."
+        },
+        "comment-block": {
+          "name": "comment.block",
+          "begin": "/\\*",
+          "end": "\\*/",
+          "comment": "Block comment, can span multiple lines"
+        },
+        "string-quoted-single": {
+          "name": "string.quoted.single",
+          "begin": "'",
+          "end": "'",
+          "comment": "Single quote string, multi-line aware"
+        },
+        "string-quoted-double": {
+          "name": "string.quoted.double",
+          "begin": "\"",
+          "patterns": [
+            {  "name": "keyword.operator",
+               "match": "\\\\"
+            }
+          ],
+          "end": "\"",
+          "captures": {
+              "0": { "name": "keyword.operator" }
+          },
+          "comment": "Single quote string, multi-line aware"
+        },
+        "keyword-other": {
+          "name": "keyword.other",
+          "match": "\\b(LANGUAGE|LDRCONFIG)\\b"
+        },
+        "meta-block-define": {
+          "name": "meta.block.define",
+          "begin": "^\\s*(DEFINE) (\\w++)",
+          "captures": {
+              "1": { "name": "keyword.other" },
+              "2": { "name": "variable.other"}
+          },
+          "patterns": [
+            {
+               "match": "\\b(BASE|CTX|KEY|TRANS)\\s++(\\w++)",
+               "captures": {
+                   "1": { "name": "keyword.other" },
+                   "2": { "name": "variable.other"}
+               }
+            },
+            {
+               "match": "\\b(VARCHAR2)(\\()([0-9]++)(\\))",
+               "captures": {
+                 "1": { "name": "storage.type" },
+                 "3": { "name": "constant.numeric" }
+               }
+            },
+            {
+               "match": "\\b(REFERENCES) (\\w++)",
+               "captures": {
+                 "1": { "name": "storage.modifier" },
+                 "2": { "name": "variable.other" }
+               }
+            },
+            { "include": "#meta-block-define" }
+          ],
+          "end": "^\\s*(END) (\\w++)"
+        },
+        "meta-block-entity": {
+          "name": "meta.block.define",
+          "begin": "^\\s*(BEGIN)",
+          "beginCaptures": {
+                  "1": { "name": "keyword.control" }
+          },
+          "patterns": [
+            { "name": "entity.name.function",
+              "begin": "(?<=BEGIN) (\\w++)",
+              "beginCaptures": {
+                  "1": { "name": "variable.other"}
+              },
+              "patterns": [
+                { "include": "#string-quoted-double" }
+              ],
+              "end": "$"
+            },
+            { "include": "#string-quoted-double" },
+            {
+               "match": "\\b(\\w++) (=)",
+               "captures": {
+                   "1": { "name": "variable.other" },
+                   "2": { "name": "keyword.operator"}
+               }
+            },
+            { "include": "#meta-block-entity" }
+          ],
+          "end": "^\\s*(END) (\\w++)",
+          "endCaptures": {
+              "1": { "name": "keyword.other" },
+              "2": { "name": "variable.other"}
+          }
+        }
+    }
+}

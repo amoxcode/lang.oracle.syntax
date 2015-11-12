@@ -1,0 +1,50 @@
+// [PackageDev] target_format: plist, ext: tmLanguage
+{ "name": "Oracle Script",
+  "scopeName": "source.oracle",
+  "fileTypes": [ "sql", "pkh", "pks", "pkb", "pls", "plb", "lst", "buf" ],
+  "patterns": [
+    { "include": "#syntax-oracle-all" }
+  ],
+  "repository": {
+    "syntax-oracle-all": {
+        "patterns": [
+          { "include": "#sql-statement" },
+          { "include": "#plsql-block" },
+          { "include": "source.oracle.sqlplus" }
+        ]
+    },
+    "sql-statement": {
+      "patterns": [
+        {
+          "begin": "(?=(?i)^\\s*(\\(|a(dminister|nalyze|lter|ssociate|udit)|c(all|omm(ent|it)|reate)|d(elete|isassociate|rop)|explain|flashback|grant|insert|lock|merge|noaudit|purge|r(e(name|voke)|ollback)|s(avepoint|e(t\\s++(constraint(s)?|role|transaction)|lect))|truncate|update)\\b)",
+          "patterns": [
+            { "include": "source.oracle.sql" }
+          ],
+          "end": "((?=;)|^(?=(\\.|\\s*+/)?\\s*+$))",
+          "comment": "Oracle SQL Statements, properly terminated (semicolon, slash) or truncated (empty line, single period)"
+        },
+        {
+          "begin": "(?=(?i)^\\s*(with)\\b)",
+          "patterns": [
+            { "include": "source.oracle.sql" }
+          ],
+          "end": "(?=(?i)^\\s*(select)\\b)",
+          "comment": "Handle WITH clause by itself"
+        }
+      ]
+    },
+    "plsql-block": {
+      "patterns": [
+        {
+          "begin": "^(?=(?i)\\s*+((begin|declare)(\\s|$)|<<[^<]))",
+          "patterns": [
+            { "include": "source.oracle.plsql" }
+          ],
+          "end": "(^(?=(\\s*+/\\s*+|\\.)$))",
+          "comment": "Only executable blocks in a script, CREATE handles subprogram/type/view creation"
+        }
+      ]
+    }
+  },
+  "uuid": "894b100b-de35-42f0-bde7-7eecb457bb0e"
+}
