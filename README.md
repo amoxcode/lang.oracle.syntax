@@ -33,3 +33,5 @@ Editors I've worked with supporting the syntax definitions here offered
 How
 ---
 Refer to each editor documentation on how to use the bundles, beware of operative system particularities. I can help with issues, by I can't commit to a timeline given other priorities.
+
+Credit to the creators of AAAPackageDev, which makes it way easier to create syntax files using JSON rather than XML.
