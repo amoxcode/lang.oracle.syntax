@@ -1,0 +1,496 @@
+// [PackageDev] target_format: plist, ext: tmLanguage
+{ "name": "Oracle SQL*Loader",
+  "scopeName": "source.oracle.sqlloader",
+  "fileTypes": [ "ctl" ],
+  "patterns": [
+    { "include": "#options" },
+    { "include": "#load" },
+    { "include": "#infile" },
+    { "include": "#concatenate" },
+    { "include": "#into" },
+    { "include": "#condition" },
+    { "include": "#delim" },
+    { "include": "#termination" },
+    { "include": "#enclosure" },
+    { "include": "#oid" },
+    { "include": "#sid" },
+    { "include": "#col" },
+    { "include": "#parens" },
+    { "include": "#comment" },
+    { "include": "#string" },
+    { "include": "#constant-numeric" },
+    { "include": "#delimiter" },
+    { "include": "#identifier" }
+  ],
+  "repository": {
+    "comment": {
+        "patterns": [
+          {  "name": "comment.line",
+             "match": "^\\s*+(--).*$",
+             "captures": {
+                 "1": { "name": "keyword.other" }
+             }
+          }
+        ]
+    },
+    "constant-numeric": {
+      "patterns": [
+        {  "name": "constant.numeric",
+           "match": "(?<!/)\\b(\\d++)\\b"
+        }
+      ]
+    },
+    "delimiter": {
+      "patterns": [
+        {  "name": "keyword.other.delimiter",
+           "match": "(\\.|\\*)"
+        }
+      ]
+    },
+    "identifier": {
+      "patterns": [
+        {
+          "begin": "(\")(?=([^\"]){0,30}\")",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter" }
+          },
+          "patterns": [
+            { "include": "#variable-other-substitution-oracle-sqlplus" },
+            {  "name": "variable.other",
+               "match": "."
+            }
+          ],
+          "end": "(\")"
+        },
+        { "name": "invalid.illegal",
+          "begin": "(\")(?=([^\"]){31,}\")",
+          "end": "(\")"
+        },
+        {  "name": "variable.language",
+           "match": "(?i)(?<!\\$)(\\$\\$)([[:alpha:]])(([\\w$#]){0,29})(?!([\\w$#]))",
+           "captures": {
+               "1": { "name": "keyword.other.delimiter" }
+           }
+        },
+        {  "name": "variable.other",
+           "match": "(?i)\\b([[:alpha:]])(([\\w$#]){0,29})(?!([\\w$#]))"
+        },
+        {  "name": "invalid.illegal",
+           "match": "(?i)\\b([[:alpha:]])(([\\w$#]){30,})"
+        }
+      ]
+    },
+    "string": {
+      "patterns": [
+        { "name": "string.quoted.double",
+          "begin": "(\")",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter" }
+          },
+          "patterns": [
+            {
+               "match": "(\\\\)(\")",
+               "captures": {
+                   "1": { "name": "keyword.other.delimiter" },
+                   "2": { "name": "constant.character" }
+               }
+            }
+          ],
+          "end": "(\")"
+        },
+        { "name": "string.quoted.single",
+          "begin": "((x|X)?')",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter" }
+          },
+          "patterns": [
+            {
+               "match": "(\\\\)(')",
+               "captures": {
+                   "1": { "name": "keyword.other.delimiter" },
+                   "2": { "name": "constant.character" }
+               }
+            }
+          ],
+          "end": "(')"
+        }
+      ]
+    },
+    "silent": {
+      "patterns": [
+        {  "name": "constant.language",
+           "match": "(?i)\\b(all|discards|feedback|header|errors|partitions)\\b"
+        }
+      ]
+    },
+    "size-clause": {
+      "match": "(?i)\\b(\\d++)\\s*+(E|G|K|M|P|T)\\b",
+      "captures": {
+        "1": { "name": "constant.numeric" },
+        "2": { "name": "keyword.other" }
+      }
+    },
+    "storage-clause-parens": {
+      "patterns": [
+        {  "name": "keyword.other",
+           "match": "(?i)\\b(buffer_pool|default|encrypt|f(lash_cache|reelist(s)?)|keep|groups|initial|m(axextents|inextents)|n(ext|one|ull)|optimal|pctincrease|recycle|unlimited)\\b",
+           "comment": "storage-clause-parens"
+        },
+        { "include": "#size-clause" },
+        { "include": "#maxsize-clause" }
+      ]
+    },
+    "options": {
+      "patterns": [
+        {
+          "begin": "(?i)\\b(options)\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control" }
+          },
+          "patterns": [
+            {
+              "begin": "(\\()",
+              "captures": {
+                  "1": { "name": "keyword.other.delimiter" }
+              },
+              "patterns": [
+                { "include": "#comment" },
+                { "include": "#string" },
+                {
+                  "begin": "(\\()",
+                  "captures": {
+                      "1": { "name": "keyword.other.delimiter" }
+                  },
+                  "patterns": [
+                    { "include": "#comment" },
+                    { "include": "#storage-clause-parens" },
+                    { "include": "#silent" },
+                    {  "name": "keyword.operator",
+                       "match": "(,)"
+                    },
+                    { "include": "#constant-numeric" }
+                  ],
+                  "end": "(\\))"
+                },
+                {  "name": "keyword.control",
+                   "match": "(?i)\\b(columnarrayrows|bindsize|d(ate_cache|egree_of_parallelism|irect)|e(rrors|xternal_table)|file|load|multithreading|parallel|r(e(adsize|sumable(_(name|timeout))?)|ows)|s(ilent|kip(_(index_maintenance|unusable_indexes))?|t(orage|reamsize))|trim)\\b"
+                },
+                {  "name": "constant.language",
+                   "match": "(?i)\\b(auto|default|false|none|true)\\b"
+                },
+                { "include": "#silent" },
+                {  "name": "keyword.operator",
+                   "match": "(=)"
+                },
+                { "include": "#constant-numeric" }
+              ],
+              "end": "(\\))"
+            }
+          ],
+          "end": "(?<=\\))"
+        }
+      ]
+    },
+    "load": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(append|b(lanks|yteorder(mark)?)|c(h(aracterset|eck)|ontinue_load)|data|fi(eld|le(s)?)|i(gnore|nsert)|l(ength|oad)|n(ames|ocheck)|preserve|re(ad(buffers|size)|place)semantics|truncate)\\b"
+        },
+        {  "name": "constant.language",
+           "match": "(?i)\\b(all|b(ig|yte)|char(acter)?|endian|first|little|none|recoverable|unrecoverable)\\b"
+        },
+        { "name": "string.quoted.single",
+          "begin": "(?i)\\b(begindata)\\b",
+          "beginCaptures": {
+              "1": { "name": "keyword.control" }
+          },
+          "end": "^\\s*+$"
+        }
+      ]
+    },
+    "infile": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(badfile|discardfile|infile)\\b"
+        }
+      ]
+    },
+    "concatenate": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(con(catenate|tinueif)|last|next|preserve|this)\\b"
+        }
+      ]
+    },
+    "into": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(append|blanks|c(heck_constraints|sv)|d(ate|elete|isabled_constraints)|e(mbedded|valuate|xceptions)|f(ields|ormat)|in(dexes|to)|n(o|ull(cols|if))|re(enable|place|sume)|s(inglerow|kip|orted)|t(able|imestamp|r(ailing|uncate))|using|w(hen|ith(out)?)|yes)\\b"
+        }
+      ]
+    },
+    "condition": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(and)\\b"
+        },
+        {  "name": "constant.language",
+           "match": "(?i)\\b(blanks)\\b"
+        },
+        {  "name": "keyword.operator",
+           "match": "(!|=|<|>)"
+        }
+      ]
+    },
+    "delim": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(optionally)\\b"
+        }
+      ]
+    },
+    "termination": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(by|terminated|whitespace)\\b"
+        },
+        {  "name": "constant.language",
+           "match": "(?i)\\b(eof)\\b"
+        }
+      ]
+    },
+    "enclosure": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(and|by|enclosed)\\b"
+        }
+      ]
+    },
+    "oid": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(oid)\\b"
+        }
+      ]
+    },
+    "sid": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(sid)\\b"
+        }
+      ]
+    },
+    "dgen": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(constant|expression|recnum|s(equence|ysdate))\\b"
+        }
+      ]
+    },
+    "ref": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(ref)\\b"
+        }
+      ]
+    },
+    "init": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(defaultif|nullif)\\b"
+        }
+      ]
+    },
+    "bfile": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(bfile)\\b"
+        }
+      ]
+    },
+    "filler": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(boundfiller|filler|pieced)\\b"
+        }
+      ]
+    },
+    "scalar": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(p(ieced|osition))\\b"
+        }
+      ]
+    },
+    "lobfile": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(lobfile)\\b"
+        }
+      ]
+    },
+    "datatype": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(byteint|char|d(a(te|y)|ecimal|ouble)|external|float|graphic|inte(ger|rval)|lo(cal|ng)|month|number|raw|s(econd|igned|mallint)|t(ime(stamp)?|o)|unsigned|var(char(c)?|graphic|raw(c)?)|with|year|zone(d)?)\\b"
+        },
+        { "include": "#delim" },
+        { "include": "#termination" },
+        { "include": "#condition" },
+        { "include": "#filler" },
+        { "include": "#enclosure" },
+        { "include": "#init" },
+        { "include": "#scalar" },
+        { "include": "#nested" }
+      ]
+    },
+    "col": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(as|column|object|treat)\\b"
+        }
+      ]
+    },
+    "nested": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(nested|table)\\b"
+        }
+      ]
+    },
+    "varray": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(varray)\\b"
+        }
+      ]
+    },
+    "sdf": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(sdf)\\b"
+        }
+      ]
+    },
+    "count": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(count)\\b"
+        }
+      ]
+    },
+    "collection": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(boundfiller)\\b"
+        },
+        { "include": "#nested" },
+        { "include": "#varray" },
+        { "include": "#sdf" },
+        { "include": "#count" }
+      ]
+    },
+    "parens": {
+      "patterns": [
+        {
+          "begin": "(\\()",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter" }
+          },
+          "patterns": [
+            { "include": "#string" },
+            { "include": "#constant-numeric" },
+            { "include": "#dgen" },
+            { "include": "#ref" },
+            { "include": "#sid" },
+            { "include": "#init" },
+            { "include": "#bfile" },
+            { "include": "#scalar" },
+            { "include": "#lobfile" },
+            { "include": "#datatype" },
+            { "include": "#col" },
+            { "include": "#collection" },
+            { "include": "#inner-parens" },
+            { "include": "#identifier" },
+            {  "name": "keyword.other.delimiter",
+               "match": ","
+            },
+            { "include": "#comment" }
+          ],
+          "end": "(\\))"
+        }
+      ]
+    },
+    "inner-dgen": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(count|max)\\b"
+        }
+      ]
+    },
+    "inner-ref": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(constant)\\b"
+        }
+      ]
+    },
+    "inner-bfile": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(constant)\\b"
+        }
+      ]
+    },
+    "inner-lobfile": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(byteorder(mark)?|c(h(aracterset|eck)|onstant)|length|nocheck|semantics)\\b"
+        },
+        {  "name": "constant.language",
+           "match": "(?i)\\b(b(ig|yte)|char(acter)?|endian|little)\\b"
+        }
+      ]
+    },
+    "inner-sdf": {
+      "patterns": [
+        {  "name": "keyword.control",
+           "match": "(?i)\\b(byteorder(mark)?|c(h(aracterset|eck)|onstant)|length|nocheck|readsize|semantics)\\b"
+        },
+        {  "name": "constant.language",
+           "match": "(?i)\\b(b(ig|yte)|char(acter)?|endian|little)\\b"
+        }
+      ]
+    },
+    "inner-parens": {
+      "patterns": [
+        {
+          "begin": "(\\()",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter" }
+          },
+          "patterns": [
+            { "include": "#inner-parens" },
+            { "include": "#string" },
+            { "include": "#constant-numeric" },
+            { "include": "#inner-dgen" },
+            { "include": "#inner-ref" },
+            { "include": "#inner-bfile" },
+            { "include": "#inner-lobfile" },
+            { "include": "#inner-sdf" },
+            { "include": "#filler" },
+            { "include": "#datatype" },
+            { "include": "#col" },
+            { "include": "#bfile" },
+            {  "name": "keyword.other.delimiter",
+               "match": "(,|\\*|\\+|-|:)"
+            },
+            { "include": "#identifier" }
+          ],
+          "end": "(\\))"
+        }
+      ]
+    }
+  },
+  "uuid": "8a0e417e-97a9-4442-9c87-3575a06538b6"
+}
