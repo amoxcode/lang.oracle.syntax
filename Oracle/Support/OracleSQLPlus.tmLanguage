@@ -474,7 +474,7 @@
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(?i)\b(bre(?&gt;aks|ak|a)?|buff(?&gt;er|e)?|col(?&gt;umns|umn|um|u)?|comp(?&gt;utes|ute|ut|u)?|scr(?&gt;een|ee|e)?|sql\s++timi(?&gt;ng|n)?)\b</string>
+							<string>(?i)\b(bre(?&gt;aks|ak|a)?|buff(?&gt;er|e)?|col(?&gt;umns|umn|um|u)?|comp(?&gt;utes|ute|ut|u)?|scr(?&gt;een|ee|e)?|sql|timi(?&gt;ng|n)?)\b</string>
 							<key>name</key>
 							<string>constant.language</string>
 						</dict>

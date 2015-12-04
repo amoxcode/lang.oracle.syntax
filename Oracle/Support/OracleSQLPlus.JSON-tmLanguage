@@ -566,7 +566,7 @@
           "patterns": [
             { "include": "#terminator" },
             {  "name": "constant.language",
-               "match": "(?i)\\b(bre(?>aks|ak|a)?|buff(?>er|e)?|col(?>umns|umn|um|u)?|comp(?>utes|ute|ut|u)?|scr(?>een|ee|e)?|sql\\s++timi(?>ng|n)?)\\b",
+               "match": "(?i)\\b(bre(?>aks|ak|a)?|buff(?>er|e)?|col(?>umns|umn|um|u)?|comp(?>utes|ute|ut|u)?|scr(?>een|ee|e)?|sql|timi(?>ng|n)?)\\b",
                "captures": {
                    "2": { "name": "constant.character" }
                }
