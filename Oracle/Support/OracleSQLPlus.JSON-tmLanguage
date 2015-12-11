@@ -582,10 +582,10 @@
           },
           "patterns": [
             {  "name": "keyword.other",
-               "match": "(?i)\\b(ali(?>as|a)?|cle(?>ar|a)?|entmap|fo(ld_(a(?>fter|fte|ft|f)?|b(?>efore|efor|efo|ef|e)?)|r(?>mat|ma|m)?)|hea(?>ding|din|di|d)?|jus(?>tify|tif|ti|f)?|like|n(ew(l(?>ine|in|i)?|_v(?>alue|alu|al|a)?)|opri(?>nt|n)?|ull)|old_v(?>alue|alu|al|a)?|tru(?>ncated|ncate|ncat|nca|nc|n)?|w(or(?>d_wrapped|d_wrappe|d_wrapp|d_wrap|d_wra|d_wr|d_w|d_|d)?|ra(?>pped|ppe|pp|p)?))\\b"
+               "match": "(?i)\\b(ali(?>as|a)?|cle(?>ar|a)?|entmap|fo(ld_(a(?>fter|fte|ft|f)?|b(?>efore|efor|efo|ef|e)?)|r(?>mat|ma|m)?)|hea(?>ding|din|di|d)?|jus(?>tify|tif|ti|f)?|like|n(ew(l(?>ine|in|i)?|_v(?>alue|alu|al|a)?)|opri(?>nt|n)?|ull)|old_v(?>alue|alu|al|a)?|pri(?>nt|n)?|tru(?>ncated|ncate|ncat|nca|nc|n)?|w(or(?>d_wrapped|d_wrappe|d_wrapp|d_wrap|d_wra|d_wr|d_w|d_|d)?|ra(?>pped|ppe|pp|p)?))\\b"
             },
             {  "name": "constant.language",
-               "match": "(?i)\\b(c(?>enter|ente|ent|en|e)?|l(?>eft|ef|e)?|o(ff|n)|r(>?>ight|igh|ig|i)?)\\b"
+               "match": "(?i)\\b(c(?>enter|ente|ent|en|e)?|l(?>eft|ef|e)?|o(ff|n)|r(?>ight|igh|ig|i)?)\\b"
             },
             {  "name": "keyword.operator",
                "match": "(\\+|-|\\*|/)"

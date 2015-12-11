@@ -499,13 +499,13 @@
 					<array>
 						<dict>
 							<key>match</key>
-							<string>(?i)\b(ali(?&gt;as|a)?|cle(?&gt;ar|a)?|entmap|fo(ld_(a(?&gt;fter|fte|ft|f)?|b(?&gt;efore|efor|efo|ef|e)?)|r(?&gt;mat|ma|m)?)|hea(?&gt;ding|din|di|d)?|jus(?&gt;tify|tif|ti|f)?|like|n(ew(l(?&gt;ine|in|i)?|_v(?&gt;alue|alu|al|a)?)|opri(?&gt;nt|n)?|ull)|old_v(?&gt;alue|alu|al|a)?|tru(?&gt;ncated|ncate|ncat|nca|nc|n)?|w(or(?&gt;d_wrapped|d_wrappe|d_wrapp|d_wrap|d_wra|d_wr|d_w|d_|d)?|ra(?&gt;pped|ppe|pp|p)?))\b</string>
+							<string>(?i)\b(ali(?&gt;as|a)?|cle(?&gt;ar|a)?|entmap|fo(ld_(a(?&gt;fter|fte|ft|f)?|b(?&gt;efore|efor|efo|ef|e)?)|r(?&gt;mat|ma|m)?)|hea(?&gt;ding|din|di|d)?|jus(?&gt;tify|tif|ti|f)?|like|n(ew(l(?&gt;ine|in|i)?|_v(?&gt;alue|alu|al|a)?)|opri(?&gt;nt|n)?|ull)|old_v(?&gt;alue|alu|al|a)?|pri(?&gt;nt|n)?|tru(?&gt;ncated|ncate|ncat|nca|nc|n)?|w(or(?&gt;d_wrapped|d_wrappe|d_wrapp|d_wrap|d_wra|d_wr|d_w|d_|d)?|ra(?&gt;pped|ppe|pp|p)?))\b</string>
 							<key>name</key>
 							<string>keyword.other</string>
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(?i)\b(c(?&gt;enter|ente|ent|en|e)?|l(?&gt;eft|ef|e)?|o(ff|n)|r(&gt;?&gt;ight|igh|ig|i)?)\b</string>
+							<string>(?i)\b(c(?&gt;enter|ente|ent|en|e)?|l(?&gt;eft|ef|e)?|o(ff|n)|r(?&gt;ight|igh|ig|i)?)\b</string>
 							<key>name</key>
 							<string>constant.language</string>
 						</dict>
