@@ -907,15 +907,6 @@
             {  "name": "keyword.operator",
                "match": "(,)"
             },
-            { "name": "string.unquoted",
-              "begin": "(?i)(?<=time)\\s++(?!')",
-              "patterns": [
-                {  "name": "keyword.other.delimiter",
-                   "match": "(:|-)"
-                }
-              ],
-              "end": "\\s"
-            },
             { "include": "#extended-clause" }
           ],
           "end": "(?<=[^- \\t])(?>(\\t| )*+\\n)|(?=^\\s*+$)"

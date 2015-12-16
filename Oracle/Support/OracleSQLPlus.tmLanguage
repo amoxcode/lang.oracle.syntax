@@ -1234,23 +1234,6 @@
 							<string>keyword.operator</string>
 						</dict>
 						<dict>
-							<key>begin</key>
-							<string>(?i)(?&lt;=time)\s++(?!')</string>
-							<key>end</key>
-							<string>\s</string>
-							<key>name</key>
-							<string>string.unquoted</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>match</key>
-									<string>(:|-)</string>
-									<key>name</key>
-									<string>keyword.other.delimiter</string>
-								</dict>
-							</array>
-						</dict>
-						<dict>
 							<key>include</key>
 							<string>#extended-clause</string>
 						</dict>
