@@ -21,6 +21,10 @@
 				<string>#073642</string>
                     <key>selection</key>
 				<string>#073642</string>
+                <key>gutter</key>
+                <string>#042029</string>
+                <key>gutterForeground</key>
+                <string>#586E75</string>
                 </dict>
             </dict>
             <dict>
