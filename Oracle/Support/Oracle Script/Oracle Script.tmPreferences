@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+   <key>name</key>
+   <string>Oracle Metadata</string>
+   <key>scope</key>
+   <string>source.oracle</string>
+   <key>settings</key>
+   <dict>
+      <key>shellVariables</key>
+      <array>
+         <dict>
+            <key>name</key>
+            <string>ORA_COMPANY_INFO</string>
+            <key>value</key>
+            <string>Define company info in Packages/Oracle/Support/Oracle Script/Oracle Script.tmpreferences</string>
+         </dict>
+         <dict>
+            <key>name</key>
+            <string>ORA_USERNAME</string>
+            <key>value</key>
+            <string>define_username</string>
+         </dict>
+         <dict>
+            <key>name</key>
+            <string>ORA_CASE</string>
+            <key>value</key>
+            <string>lower</string>
+         </dict>
+      </array>
+   </dict>
+</dict>
+</plist>
