@@ -1,0 +1,26 @@
+<snippet>
+	<content><![CDATA[
+REM \$Header: $TM_FILENAME \$
+REM /*=======================================================================+
+REM  | ${ORA_COMPANY_INFO:Copyright (c) 2002 Oracle Corporation Belmont, California, USA}    |
+REM  |                         All rights reserved.                          |
+REM  +=======================================================================+
+REM  |
+REM  | NAME
+REM  |   $TM_FILENAME
+REM  |
+REM  | DESCRIPTION
+REM  |   ${1:Script purpose}
+REM  |
+REM  | HISTORY
+REM  |
+REM  |   ${2:01/01/51}   ${TM_FULLNAME:${ORA_USERNAME:username}}  Created
+REM  +=======================================================================*/
+$0
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>header</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.oracle</scope>
+	<description>File header</description>
+</snippet>
