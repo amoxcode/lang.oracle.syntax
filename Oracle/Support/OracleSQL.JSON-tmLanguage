@@ -5663,7 +5663,7 @@
     "statement-dml-select": {
       "patterns": [
         { "name": "meta.section.with",
-          "begin": "(?i)\\b(with)(?!\\s++(check|read))\\b",
+          "begin": "(?i)\\b(with)(?!\\s++(check|read|object))\\b",
           "beginCaptures": {
               "1": { "name": "keyword.operator" }
           },
@@ -6021,7 +6021,7 @@
                 },
                 { "include": "#dentifier" }
               ],
-              "end": "(?=\\))"
+              "end": "((?=;|\\))|(?=^\\s*+/\\s*+$))"
             },
             { "name": "meta.section.row-limiting",
               "begin": "(?i)\\b(fetch|offset)\\b",

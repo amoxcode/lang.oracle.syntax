@@ -11762,7 +11762,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?i)\b(with)(?!\s++(check|read))\b</string>
+					<string>(?i)\b(with)(?!\s++(check|read|object))\b</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -12513,7 +12513,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?=\))</string>
+							<string>((?=;|\))|(?=^\s*+/\s*+$))</string>
 							<key>name</key>
 							<string>meta.section.subquery-restriction</string>
 							<key>patterns</key>
