@@ -2782,7 +2782,7 @@
             { "include": "#enable-disable-clause" },
             { "include": "#common-clause" }
           ],
-          "end": "((?=;)|((?=^\\s*+/$))|(?=^(\\.)?\\s*+$))"
+          "end": "(?=;)"
         }
       ]
     },
@@ -3052,7 +3052,7 @@
             },
             { "include": "#common-clause" }
           ],
-          "end": "((?=;)|((?=^\\s*+/\\s*+))|(?=^\\s*+$))|(?i)(?=(create\\s++(table)|grant))"
+          "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))|(?i)(?=(create\\s++(table)|grant))"
         }
       ]
     },
@@ -3212,8 +3212,7 @@
           "begin": "(?i)^\\s*(analyze)\\b",
           "beginCaptures": {
               "1": { "name": "keyword.other" }
-          },
-          "patterns": [
+          },          "patterns": [
             {  "name": "keyword.other",
                "match": "(?i)\\b(c(hained|luster)|delete|index|list|rows|system|statistics|table)\\b",
                "comment": "analyze"
@@ -4307,7 +4306,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++cluster)\\b",
@@ -4325,7 +4324,7 @@
                 { "include": "#deallocate-unused-clause" },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)\\b(alter\\s++database)(?!\\s++link)\\b",
@@ -4343,7 +4342,7 @@
                 { "include": "#supplemental-db-logging-clause" },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter(\\s++(public|shared)){0,2}\\s++(database\\s++link))\\b",
@@ -4356,7 +4355,7 @@
                 },
                 { "include": "#identifier" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++dimension)\\b",
@@ -4382,7 +4381,7 @@
                 },
                 { "include": "#identifier" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++diskgroup)\\b",
@@ -4416,7 +4415,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++flashback)\\b",
@@ -4431,7 +4430,7 @@
                 { "include": "#literal" },
                 { "include": "#identifier" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++(function|library|procedure))\\b",
@@ -4444,7 +4443,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++index)\\b",
@@ -4475,7 +4474,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++indextype)\\b",
@@ -4498,7 +4497,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++java)\\b",
@@ -4531,7 +4530,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++materialized\\s++view)(?!\\s++log)\\b",
@@ -4566,7 +4565,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++materialized\\s++view\\s++log)\\b",
@@ -4594,7 +4593,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++materialized\\s++zonemap)\\b",
@@ -4607,7 +4606,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++operator)\\b",
@@ -4630,7 +4629,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++outline)\\b",
@@ -4643,7 +4642,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++(package))\\b",
@@ -4656,7 +4655,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++pluggable)\\b",
@@ -4686,7 +4685,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++profile)\\b",
@@ -4702,7 +4701,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++resource)\\b",
@@ -4715,7 +4714,7 @@
                 },
                 { "include": "#literal" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++role)\\b",
@@ -4731,7 +4730,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++rollback)\\b",
@@ -4749,7 +4748,7 @@
                 { "include": "#size-clause" },
                 { "include": "#identifier" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++sequence)\\b",
@@ -4762,7 +4761,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter(\\s+public)?\\s++synonym)\\b",
@@ -4778,7 +4777,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             { "include": "#alter-table" },
             {
@@ -4846,7 +4845,7 @@
                 { "include": "#tablespace-retention-clause" },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++(trigger))\\b",
@@ -4859,7 +4858,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "(?=;)"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++type)\\b",
@@ -6022,7 +6021,7 @@
                 },
                 { "include": "#dentifier" }
               ],
-              "end": "(?i)((?=;|\\))|((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))"
+              "end": "((?=;|\\))|(?=^\\s*+/\\s*+$))"
             },
             { "name": "meta.section.row-limiting",
               "begin": "(?i)\\b(fetch|offset)\\b",
@@ -6157,7 +6156,7 @@
             },
             { "include": "#common-clause" }
           ],
-          "end": "((?=;)|((?=^\\s*+/$))|(?=^(\\.)?\\s*+$))"
+          "end": "(?=;)"
         },
         {
           "begin": "(?i)^\\s*+(set\\s++role)\\b",
@@ -6195,7 +6194,7 @@
             },
             { "include": "#common-clause" }
           ],
-          "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+          "end": "(?=;)"
         }
       ]
     },
@@ -6238,7 +6237,7 @@
            "match": "\\S"
         }
       ],
-      "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+      "end": "(?=;)"
     }
   },
   "uuid": "53e1bc07-e2f5-4df9-9d65-a8f7a9c3bf6f"
