@@ -32,7 +32,7 @@
     "constant-language": {
       "patterns": [
         {  "name": "constant.language",
-           "match": "(?i)(\\s|(?<==))(ap|fnd|en|generic|none|odf|p(ackage|df)|s(equences|oftware|qlap)|t(ables|emplate)|u(pload|s(7ascii)?)|views|yes)\\b"
+           "match": "(?i)(\\s|(?<==))(a(p|r|so)|c(e|s(c|i))|e(c|n)|f(a|nd|un|v)|g(eneric|l|ms)|hz|i(b(e|y)|cx|ex|gi|n(l|v)|tg)|j(a(i)?|g|l|tf)|none|o(df|i(e|r)|k(c|l|s|x)|nt|zf)|p(a(ckage)?|er|df|jc|o(s)?|sa|v)|qot|s(equences|oftware|qlap)|t(ables|emplate)|u(pload|s(7ascii)?)|views|wsh|x(la|tr)|yes|zx)\\b"
         }
       ]
     },
@@ -46,7 +46,7 @@
     "keyword": {
       "patterns": [
         {  "name": "keyword.other",
-           "match": "(?i)(^|\\s)(a(ctions|ru)|b(ase(d)?|egin|ug)|c(h(aracterset|eckfile)|o(mpatible|py))|e(nd|x(ec|tension))|f(eature|ixes|ndload)|genrep|includes|java|on|p(atch_type|latform|roduct)|re(cordpatch|lease|quires_translation)|sql(plus)?|trackable_entity|y)\\b"
+           "match": "(?i)(^|\\s)(a(ctions|ru)|b(ase(d)?|egin|ug)|c(h(aracterset|eckfile)|o(mpatible|py))|e(nd|x(ec|tension))|f(eature|ixes|ndload)|gen(f(orm|pll)|rep)|includes|j(ava|copy)|li(b(in|out)|nk)|on|p(atch_type|latform|roduct)|re(cordpatch|lease|quires_translation)|sql(plus)?|trackable_entity|y)\\b"
         }
       ]
     },
