@@ -12272,6 +12272,14 @@
 										</dict>
 										<dict>
 											<key>include</key>
+											<string>#statement-dml-select</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#subquery-restriction-clause</string>
+										</dict>
+										<dict>
+											<key>include</key>
 											<string>#expression</string>
 										</dict>
 									</array>

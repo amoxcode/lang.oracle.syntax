@@ -5899,6 +5899,8 @@
                   },
                   "patterns": [
                     { "include": "#rollup-cube-clause" },
+                    { "include": "#statement-dml-select" },
+                    { "include": "#subquery-restriction-clause" },
                     { "include": "#expression" }
                   ],
                   "end": "\\)"
