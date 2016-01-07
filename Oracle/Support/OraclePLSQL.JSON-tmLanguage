@@ -1,7 +1,8 @@
 // [PackageDev] target_format: plist, ext: tmLanguage
 { "name": "Oracle PL/SQL",
   "scopeName": "source.oracle.plsql",
-  "fileTypes": ["plsql"],
+  "fileTypes": [""],
+  "hidden": true,
   "patterns": [
     { "include": "#meta-block" },
     { "include": "#subprogram" }

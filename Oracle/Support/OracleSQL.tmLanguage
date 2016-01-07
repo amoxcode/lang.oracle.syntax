@@ -6,6 +6,8 @@
 	<array>
 		<string></string>
 	</array>
+	<key>hidden</key>
+	<true/>
 	<key>name</key>
 	<string>Oracle SQL</string>
 	<key>patterns</key>

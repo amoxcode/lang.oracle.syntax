@@ -2,6 +2,7 @@
 { "name": "Oracle SQL*Plus",
   "scopeName": "source.oracle.sqlplus",
   "fileTypes": [ "" ],
+  "hidden": true,
   "patterns": [
         { "include": "#comment" },
         { "include": "#command-execute" },
