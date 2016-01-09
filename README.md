@@ -49,4 +49,8 @@ How
 ---
 Refer to each editor documentation on how to use the bundles, beware of operative system particularities. I can help with issues, by I can't commit to a time-line given other priorities.
 
++ Sublime
+  Download Oracle.sublime-package from downloads/Sublime and copy to Installed Packages/ directory
+  You can find the Installed Packages directory by going to Preferences/Browse Packages... and navigate to the parent directory.
+
 Credit to the creators of AAAPackageDev, which makes it way easier to create syntax files using JSON rather than XML.
