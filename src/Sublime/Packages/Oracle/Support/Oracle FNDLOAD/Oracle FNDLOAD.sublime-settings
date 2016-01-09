@@ -5,7 +5,7 @@
 // example, in Packages/Python/Python.sublime-settings for python files.
 {
     // Sets the colors used within the text area
-    "color_scheme": "Packages/Oracle/Solarized (dark).tmTheme",
+    "color_scheme": "Packages/Oracle/Theme/Solarized (dark).tmTheme",
 
     // Note that the font_face and font_size are overridden in the platform
     // specific settings file, for example, "Preferences (Linux).sublime-settings".
