@@ -5552,6 +5552,10 @@
                    "match": "(?i)\\b(set|value)\\b",
                    "comment": "update-set-clause"
                 },
+                {  "name": "keyword.other",
+                   "match": "(?i)(\\b(current\\s++of\\b|row\\s*(?==)))",
+                   "comment": "plsql-extension"
+                },
                 { "include": "#expression" }
               ],
               "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"

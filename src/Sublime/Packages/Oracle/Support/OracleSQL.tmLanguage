@@ -11596,6 +11596,14 @@
 									<string>keyword.other</string>
 								</dict>
 								<dict>
+									<key>comment</key>
+									<string>plsql-extension</string>
+									<key>match</key>
+									<string>(?i)(\b(current\s++of\b|row\s*(?==)))</string>
+									<key>name</key>
+									<string>keyword.other</string>
+								</dict>
+								<dict>
 									<key>include</key>
 									<string>#expression</string>
 								</dict>
