@@ -8876,12 +8876,6 @@
 							<key>include</key>
 							<string>#statement-include</string>
 						</dict>
-						<dict>
-							<key>match</key>
-							<string>.</string>
-							<key>name</key>
-							<string>markup.changed</string>
-						</dict>
 					</array>
 				</dict>
 				<dict>

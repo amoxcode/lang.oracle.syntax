@@ -4285,10 +4285,7 @@
             {  "name": "keyword.other",
                "match": "(?i)\\b(create|or|replace)\\b"
             },
-            { "include": "#statement-include" },
-            {  "name": "markup.changed",
-               "match": "."
-            }
+            { "include": "#statement-include" }
           ],
           "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
         },
