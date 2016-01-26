@@ -5904,7 +5904,7 @@
 					<key>comment</key>
 					<string>returning-clause</string>
 					<key>match</key>
-					<string>(?i)\b(into|return(ing)?)\b</string>
+					<string>(?i)\b(bulk|collect|into|return(ing)?)\b</string>
 					<key>name</key>
 					<string>keyword.other</string>
 				</dict>
@@ -11881,6 +11881,14 @@
 									<string>select-list</string>
 									<key>match</key>
 									<string>(?i)\b(as)\b</string>
+									<key>name</key>
+									<string>keyword.other</string>
+								</dict>
+								<dict>
+									<key>comment</key>
+									<string>plsql-extension</string>
+									<key>match</key>
+									<string>(?i)\b(bulk|collect|into)\b</string>
 									<key>name</key>
 									<string>keyword.other</string>
 								</dict>
