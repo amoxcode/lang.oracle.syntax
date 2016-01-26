@@ -3068,7 +3068,7 @@
     "create-table": {
       "patterns": [
         {
-          "begin": "(?i)\\b(create(\\s++global\\s++temporary)?\\s++table)\\b",
+          "begin": "(?i)\\b(create(\\s++global\\s++temporary)?(\\s++/\\*\\+.+?\\*/)?\\s++table)\\b",
           "beginCaptures": {
               "1": { "name": "keyword.other" }
           },
@@ -4183,7 +4183,7 @@
               "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
             },
             {
-              "begin": "(?i)^(?=\\s*+create(\\s++global\\s++temporary)?\\s++table\\b)",
+              "begin": "(?i)^(?=\\s*+create(\\s++global\\s++temporary)?(\\s++/\\*\\+.+?\\*/)?\\s++table\\b)",
               "beginCaptures": {
                   "1": { "name": "keyword.other" }
               },
