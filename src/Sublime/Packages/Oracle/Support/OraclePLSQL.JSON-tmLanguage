@@ -282,6 +282,9 @@
         },
         {  "name": "keyword.other.terminator",
            "match": "(;)"
+        },
+        {  "name": "keyword.other",
+           "match": "(:)"
         }
       ]
     },

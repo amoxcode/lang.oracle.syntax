@@ -361,9 +361,6 @@
             "patterns": [
               { "include": "#statement-dml-select" },
               { "include": "#subquery-restriction-clause" },
-              {  "name": "keyword.other.delimiter",
-                 "match": ":"
-              },
               { "include": "#expression" }
             ],
           "end": "\\)",
@@ -403,7 +400,10 @@
         {  "name": "keyword.other.interval",
            "match": "(?i)\\b((day|year)(?=(\\s*+\\(|\\s++to))|to\\s++(month|second))\\b"
         },
-        { "include": "#identifier" }
+        { "include": "#identifier" },
+        {  "name": "keyword.other.delimiter",
+           "match": ":"
+        }
       ]
     },
     "condition": {

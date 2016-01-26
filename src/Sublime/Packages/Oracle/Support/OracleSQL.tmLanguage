@@ -3619,12 +3619,6 @@
 							<string>#subquery-restriction-clause</string>
 						</dict>
 						<dict>
-							<key>match</key>
-							<string>:</string>
-							<key>name</key>
-							<string>keyword.other.delimiter</string>
-						</dict>
-						<dict>
 							<key>include</key>
 							<string>#expression</string>
 						</dict>
@@ -3706,6 +3700,12 @@
 				<dict>
 					<key>include</key>
 					<string>#identifier</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>:</string>
+					<key>name</key>
+					<string>keyword.other.delimiter</string>
 				</dict>
 			</array>
 		</dict>

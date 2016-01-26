@@ -614,6 +614,12 @@
 					<key>name</key>
 					<string>keyword.other.terminator</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>(:)</string>
+					<key>name</key>
+					<string>keyword.other</string>
+				</dict>
 			</array>
 		</dict>
 		<key>keyword-operator</key>
