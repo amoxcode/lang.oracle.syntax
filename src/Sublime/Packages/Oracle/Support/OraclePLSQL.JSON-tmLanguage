@@ -33,19 +33,13 @@
       ]
     },
     "label": {
-      "name": "meta.block.label",
-      "begin": "^\\s*+(<<)(.+?)(?=>>)",
+      "name": "entity.name.function",
+      "match": "^\\s*+(<<)(.+?)(>>)(.*)?$",
       "captures": {
-          "1": { "name": "keyword.other.delimiter" }
-      },
-      "patterns": [
-        {  "name": "entity.name.tag",
-           "match": "\\S"
-        }
-      ],
-      "end": "(>>)",
-      "endCaptures": {
-          "2": { "name": "invalid.illegal" }
+          "1": { "name": "keyword.other.delimiter" },
+          "2": { "name": "entity.name.tag" },
+          "3": { "name": "keyword.other.delimiter" },
+          "4": { "name": "invalid.illegal" }
       }
     },
     "literal": {
@@ -517,16 +511,15 @@
     },
     "statement-block": {
       "name": "meta.block",
-      "begin": "(?=(?i)\\b(begin|declare)(\\s|$))|(?=^\\s*+<<)",
+      "begin": "(?=(?i)\\b(begin|declare)(\\s|$))",
       "patterns": [
-        { "include": "#label" },
         { "include": "#block-executable" },
         { "include": "#block-declaration" },
         {  "name": "meta.diff",
            "match": "\\S"
         }
       ],
-      "end": "(?i)(?<=;)"
+      "end": "(?<=;)"
     },
     "statement-case": {
       "name": "meta.statement.case",
@@ -874,19 +867,25 @@
       ]
     },
     "block-executable": {
-      "name": "meta.section.executable",
-      "begin": "(?i)(^|(?<= |\\t|;))begin(?=\\s)",
-      "captures": {
-          "0": { "name": "keyword.control.oracle.plsql" }
-      },
       "patterns": [
-        { "include": "#block-exception" },
-        { "include": "#statement" }
-      ],
-      "end": "(?i)(^|(?<= |\\t|;))end(?!\\s++(if|loop|case)\\b)(\\s++\\w++)?.*(;)",
-      "endCaptures": {
-          "3": { "name": "variable.other" }
-      }
+        {
+          "name": "meta.section.executable",
+          "begin": "(?i)(^|(?<= |\\t|;))begin(?=\\s)",
+          "captures": {
+              "0": { "name": "keyword.control.oracle.plsql" }
+          },
+          "patterns": [
+            { "include": "#block-exception" },
+            { "include": "#label" },
+            { "include": "#statement" }
+          ],
+          "end": "(?i)(^|(?<= |\\t|;))end(?!\\s++(if|loop|case)\\b)(\\s++\\w++)?.*(;)",
+          "endCaptures": {
+              "3": { "name": "variable.other" }
+          }
+        },
+        { "include": "#label" }
+      ]
     },
     "static-sql": {
       "patterns": [
