@@ -8861,6 +8861,12 @@
 							</array>
 						</dict>
 						<dict>
+							<key>match</key>
+							<string>(?i)\b(create|or|replace)\b</string>
+							<key>name</key>
+							<string>keyword.other</string>
+						</dict>
+						<dict>
 							<key>include</key>
 							<string>#statement-include</string>
 						</dict>
