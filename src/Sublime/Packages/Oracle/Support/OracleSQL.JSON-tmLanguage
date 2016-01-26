@@ -361,6 +361,9 @@
             "patterns": [
               { "include": "#statement-dml-select" },
               { "include": "#subquery-restriction-clause" },
+              {  "name": "keyword.other.delimiter",
+                 "match": ":"
+              },
               { "include": "#expression" }
             ],
           "end": "\\)",
