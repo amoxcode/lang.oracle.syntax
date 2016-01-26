@@ -9,26 +9,32 @@
   ],
   "repository": {
     "meta-block": {
-      "name": "meta.block.oracle.plsql",
-      "begin": "(?=(?i)\\b(begin|declare|library|package|trigger|type)(\\s|$))|(?=<<)",
       "patterns": [
-        { "include": "#label" },
-        { "include": "#subprogram" },
-        { "include": "#package" },
-        { "include": "#trigger" },
-        { "include": "#block-executable" },
-        { "include": "#block-declaration" },
-        { "include": "#library" },
-        { "include": "#type" },
-        {  "name": "meta.diff",
-           "match": "\\S"
+        {
+          "name": "meta.block.oracle.plsql",
+          "begin": "(?=(?i)\\b(begin|declare|library|package|trigger|type)(\\s|$))|(?=<<)",
+          "patterns": [
+            { "include": "#label" },
+            { "include": "#subprogram" },
+            { "include": "#package" },
+            { "include": "#trigger" },
+            { "include": "#block-executable" },
+            { "include": "#block-declaration" },
+            { "include": "#library" },
+            { "include": "#type" },
+            { "include": "#type-body" },
+            { "include": "#comment" },
+            {  "name": "invalid.illegal",
+               "match": "\\S"
+            }
+          ],
+          "end": "((?=^(\\s*+/\\s*+|\\.)$))"
         }
-      ],
-      "end": "((?=^(\\s*+/\\s*+|\\.)$))"
+      ]
     },
     "label": {
       "name": "meta.block.label",
-      "begin": "^\\s*+(<<)",
+      "begin": "^\\s*+(<<)(.+?)(?=>>)",
       "captures": {
           "1": { "name": "keyword.other.delimiter" }
       },
@@ -37,7 +43,7 @@
            "match": "\\S"
         }
       ],
-      "end": "(>>)(.*+$)",
+      "end": "(>>)",
       "endCaptures": {
           "2": { "name": "invalid.illegal" }
       }
@@ -248,8 +254,7 @@
         {  "name": "comment.line.double-dash",
            "match": "(?<!-)(--)(.*)$",
            "captures": {
-               "1": { "name": "keyword.other" },
-               "2": { "name": "string.quoted.single" }
+               "1": { "name": "keyword.other" }
            }
         },
         { "name": "comment.block",
@@ -378,7 +383,7 @@
             "patterns": [
               {
                 "name": "meta.block.statement.oracle.sql",
-                "begin": "(?i)(?=\\bselect\\s)",
+                "begin": "(?i)(?=(select)\\s)",
                   "patterns": [
                     { "include": "source.oracle.sql" }
                   ],
@@ -395,6 +400,7 @@
           }
         },
         { "include": "#literal" },
+        { "include": "#support" },
         {  "name": "keyword.other.multiset",
            "match": "(?i)\\b(multiset\\s++(except|intersect|union)(\\s++(all|distinct))?)\\b"
         },
@@ -407,7 +413,6 @@
         {  "name": "support.variable",
            "match": "(?i)(?<=%)(bulk_(exceptions|rowcount)|found|isopen|notfound|rowcount)\\b"
         },
-        { "include": "#support" },
         { "include": "#identifier" },
         { "include": "#keyword-delimiter" }
       ]
@@ -479,7 +484,7 @@
           "patterns": [
             { "include": "#statement" }
           ],
-          "end": "(?i)(^|(?<= |\\t|;))end(\\s+)loop(\\s++\\w++)?(\\s*+;)",
+          "end": "(?i)(^|(?<= |\\t|;))end(\\s++)loop(\\s++\\w++)?(\\s*;)",
           "endCaptures": {
               "3": { "name": "variable.other" }
           }
@@ -878,7 +883,7 @@
         { "include": "#block-exception" },
         { "include": "#statement" }
       ],
-      "end": "(?i)(^|(?<= |\\t|;))end(?!\\s++(if|loop|case)\\s*?;)\\s*+(\\w++)?.*(;)",
+      "end": "(?i)(^|(?<= |\\t|;))end(?!\\s++(if|loop|case)\\b)(\\s++\\w++)?.*(;)",
       "endCaptures": {
           "3": { "name": "variable.other" }
       }
@@ -887,7 +892,7 @@
       "patterns": [
         {
           "name": "meta.block.statement.oracle.sql",
-          "begin": "(?=(?i)\\b(commit|insert|(?<!\\.)delete|lock\\s++table|merge|rollback|s(avepoint|e(lect|t\\s++transaction))|update)\\b)",
+          "begin": "(?i)(?=\\s*\\b(commit|insert|(?<!\\.)delete|lock\\s++table|merge|rollback|s(avepoint|e(lect|t\\s++transaction))|update)\\b)",
             "patterns": [
               { "include": "source.oracle.sql" }
             ],
@@ -1078,7 +1083,7 @@
             { "include": "#comment" },
             { "include": "#expression" }
           ],
-          "end": "(?i)(?=(^|(?<= |\\t|;|\\)))(declare|begin|c(all|ompound))(?=\\s))"
+          "end": "(?i)(?=(^|(?<= |\\t|;|\\)))(call|declare|begin|c(all|ompound))(?=\\s))"
         },
         {
           "begin": "(?i)(^|(?<= |\\t|;|\\)))(?=compound\\s++trigger\\b)",
@@ -1131,7 +1136,8 @@
           "end": "^(?=/\\s*)"
         },
         { "include": "#block-declaration" },
-        { "include": "#block-executable" }
+        { "include": "#block-executable" },
+        { "include": "source.oracle.sql" }
       ],
       "end": "(?<=;)|^(?=/\\s*)"
     },
@@ -1192,13 +1198,13 @@
     "type": {
       "patterns": [
         { "name": "meta.block.type",
-          "begin": "(?i)(^|(?<= |\\t|;))(?=(type)\\s)",
+          "begin": "(?i)(^|(?<= |\\t|;))(?=(type)\\s++(?!body\\s))",
             "patterns": [
               { "name": "meta.block.type.heading",
                 "begin": "(?i)(^|(?<= |\\t|;))(?=(type)\\s)",
                 "patterns": [
                   { "name": "entity.name.function",
-                    "match": "(?i)\\b(type)(\\s++body)?\\s++(&?(\\w|&|\\.)++)\\b",
+                    "match": "(?i)\\b(type)(\\s++)(?!body\\s)(&?(\\w|&|\\.)++)\\b",
                     "captures": {
                         "1": { "name": "keyword.other" },
                         "2": { "name": "keyword.other" }
@@ -1330,7 +1336,7 @@
                       },
                       { "include": "#expression" }
                     ],
-                    "end": "(?=;)"
+                    "end": "(?=;)|(?=^/\\s*)"
                   },
                   {  "name": "keyword.control",
                      "match": "(?i)\\b(n(ot|ull)|of|table)\\b",
@@ -1342,13 +1348,76 @@
                   },
                   { "include": "#expression" }
                 ],
-                "end": ";",
+                "end": ";|(?=^/\\s*)",
                 "endCaptures": {
                     "0": { "name": "keyword.other.delimiter" }
                 }
               }
             ],
-          "end": "(?<=;)"
+          "end": "(?<=;)|(?=^/\\s*)"
+        }
+      ]
+    },
+    "type-body": {
+      "patterns": [
+        { "name": "meta.block.type",
+          "begin": "(?i)(^|(?<= |\\t|;))(?=(type\\s++body\\s))",
+            "patterns": [
+              { "name": "meta.block.type.heading",
+                "begin": "(?i)(^|(?<= |\\t|;))(?=(type)\\s)",
+                "patterns": [
+                  { "name": "entity.name.function",
+                    "match": "(?i)\\b(type\\s++body\\s++)(&?(\\w|&|\\.)++)\\b",
+                    "captures": {
+                        "1": { "name": "keyword.other" }
+                    }
+                  },
+                  {  "name": "keyword.other",
+                     "match": "(?i)\\b(force|oid)\\b",
+                     "comment": "plsql-type-source"
+                  },
+                  { "include": "#invoker-rights-clause" },
+                  { "include": "#accessible-by-clause" },
+                  { "include": "#expression" }
+                ],
+                "end": "(?i)(?=(^|(?<= |\\t|;))(is|as|under)(?=\\s))|(?<=;)"
+              },
+              { "name": "meta.block.declaration",
+                "begin": "(?i)(^|(?<= |\\t|;))((is|as)(\\b)|(?=under\\b))",
+                "beginCaptures": {
+                    "0": { "name": "keyword.control" }
+                },
+                "patterns": [
+                  {
+                    "begin": "(?i)\\b(constructor|member|static)\\b",
+                    "beginCaptures": {
+                        "1": { "name": "keyword.other" }
+                    },
+                    "patterns": [
+                      { "include": "#subprogram" }
+                    ],
+                    "end": "(?<=;)"
+                  },
+                  {  "name": "keyword.other",
+                     "match": "(?i)\\b(final|instantiable)\\b",
+                     "comment": "constructor-declaration"
+                  },
+                  {  "name": "keyword.other",
+                     "match": "(?i)\\b(map|order)\\b",
+                     "comment": "map-order-func-declaration"
+                  }
+                ],
+                "end": "(?i)(?=\\bend\\s*;)",
+                "endCaptures": {
+                    "0": { "name": "keyword.other.delimiter" }
+                }
+              }
+            ],
+          "end": "(?i)\\b(end)\\s*(;)",
+          "endCaptures": {
+              "1": { "name": "keyword.control" },
+              "2": { "name": "keyword.other.delimiter" }
+          }
         }
       ]
     }

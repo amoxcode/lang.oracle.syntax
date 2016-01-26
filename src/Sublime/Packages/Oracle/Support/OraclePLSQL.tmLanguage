@@ -188,7 +188,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?i)(^|(?&lt;= |\t|;))end(?!\s++(if|loop|case)\s*?;)\s*+(\w++)?.*(;)</string>
+			<string>(?i)(^|(?&lt;= |\t|;))end(?!\s++(if|loop|case)\b)(\s++\w++)?.*(;)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>3</key>
@@ -301,11 +301,6 @@
 						<dict>
 							<key>name</key>
 							<string>keyword.other</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>string.quoted.single</string>
 						</dict>
 					</dict>
 					<key>match</key>
@@ -430,7 +425,7 @@
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>(?i)(?=\bselect\s)</string>
+							<string>(?i)(?=(select)\s)</string>
 							<key>end</key>
 							<string>(?=\))</string>
 							<key>name</key>
@@ -460,6 +455,10 @@
 					<string>#literal</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#support</string>
+				</dict>
+				<dict>
 					<key>match</key>
 					<string>(?i)\b(multiset\s++(except|intersect|union)(\s++(all|distinct))?)\b</string>
 					<key>name</key>
@@ -482,10 +481,6 @@
 					<string>(?i)(?&lt;=%)(bulk_(exceptions|rowcount)|found|isopen|notfound|rowcount)\b</string>
 					<key>name</key>
 					<string>support.variable</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#support</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -635,7 +630,7 @@
 		<key>label</key>
 		<dict>
 			<key>begin</key>
-			<string>^\s*+(&lt;&lt;)</string>
+			<string>^\s*+(&lt;&lt;)(.+?)(?=&gt;&gt;)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -645,7 +640,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(&gt;&gt;)(.*+$)</string>
+			<string>(&gt;&gt;)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>2</key>
@@ -948,51 +943,64 @@
 		</dict>
 		<key>meta-block</key>
 		<dict>
-			<key>begin</key>
-			<string>(?=(?i)\b(begin|declare|library|package|trigger|type)(\s|$))|(?=&lt;&lt;)</string>
-			<key>end</key>
-			<string>((?=^(\s*+/\s*+|\.)$))</string>
-			<key>name</key>
-			<string>meta.block.oracle.plsql</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>include</key>
-					<string>#label</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#subprogram</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#package</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#trigger</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#block-executable</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#block-declaration</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#library</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#type</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\S</string>
+					<key>begin</key>
+					<string>(?=(?i)\b(begin|declare|library|package|trigger|type)(\s|$))|(?=&lt;&lt;)</string>
+					<key>end</key>
+					<string>((?=^(\s*+/\s*+|\.)$))</string>
 					<key>name</key>
-					<string>meta.diff</string>
+					<string>meta.block.oracle.plsql</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#label</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#subprogram</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#package</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#trigger</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#block-executable</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#block-declaration</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#library</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#type</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#type-body</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\S</string>
+							<key>name</key>
+							<string>invalid.illegal</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
@@ -1971,7 +1979,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?i)(^|(?&lt;= |\t|;))end(\s+)loop(\s++\w++)?(\s*+;)</string>
+					<string>(?i)(^|(?&lt;= |\t|;))end(\s++)loop(\s++\w++)?(\s*;)</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>3</key>
@@ -2055,7 +2063,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?=(?i)\b(commit|insert|(?&lt;!\.)delete|lock\s++table|merge|rollback|s(avepoint|e(lect|t\s++transaction))|update)\b)</string>
+					<string>(?i)(?=\s*\b(commit|insert|(?&lt;!\.)delete|lock\s++table|merge|rollback|s(avepoint|e(lect|t\s++transaction))|update)\b)</string>
 					<key>end</key>
 					<string>(?=;)</string>
 					<key>name</key>
@@ -2404,7 +2412,7 @@
 					<key>begin</key>
 					<string>(?i)(^|(?&lt;= |\t|;))(?=(trigger)\s)</string>
 					<key>end</key>
-					<string>(?i)(?=(^|(?&lt;= |\t|;|\)))(declare|begin|c(all|ompound))(?=\s))</string>
+					<string>(?i)(?=(^|(?&lt;= |\t|;|\)))(call|declare|begin|c(all|ompound))(?=\s))</string>
 					<key>name</key>
 					<string>meta.block.trigger.heading</string>
 					<key>patterns</key>
@@ -2557,6 +2565,10 @@
 					<key>include</key>
 					<string>#block-executable</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.oracle.sql</string>
+				</dict>
 			</array>
 		</dict>
 		<key>trigger-heading-include</key>
@@ -2577,9 +2589,9 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?i)(^|(?&lt;= |\t|;))(?=(type)\s)</string>
+					<string>(?i)(^|(?&lt;= |\t|;))(?=(type)\s++(?!body\s))</string>
 					<key>end</key>
-					<string>(?&lt;=;)</string>
+					<string>(?&lt;=;)|(?=^/\s*)</string>
 					<key>name</key>
 					<string>meta.block.type</string>
 					<key>patterns</key>
@@ -2608,7 +2620,7 @@
 										</dict>
 									</dict>
 									<key>match</key>
-									<string>(?i)\b(type)(\s++body)?\s++(&amp;?(\w|&amp;|\.)++)\b</string>
+									<string>(?i)\b(type)(\s++)(?!body\s)(&amp;?(\w|&amp;|\.)++)\b</string>
 									<key>name</key>
 									<string>entity.name.function</string>
 								</dict>
@@ -2646,7 +2658,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>;</string>
+							<string>;|(?=^/\s*)</string>
 							<key>endCaptures</key>
 							<dict>
 								<key>0</key>
@@ -2671,7 +2683,7 @@
 										</dict>
 									</dict>
 									<key>end</key>
-									<string>(?=;)</string>
+									<string>(?=;)|(?=^/\s*)</string>
 									<key>patterns</key>
 									<array>
 										<dict>
@@ -2912,6 +2924,145 @@
 								<dict>
 									<key>include</key>
 									<string>#expression</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>type-body</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?i)(^|(?&lt;= |\t|;))(?=(type\s++body\s))</string>
+					<key>end</key>
+					<string>(?i)\b(end)\s*(;)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.delimiter</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.block.type</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>(?i)(^|(?&lt;= |\t|;))(?=(type)\s)</string>
+							<key>end</key>
+							<string>(?i)(?=(^|(?&lt;= |\t|;))(is|as|under)(?=\s))|(?&lt;=;)</string>
+							<key>name</key>
+							<string>meta.block.type.heading</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>captures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>keyword.other</string>
+										</dict>
+									</dict>
+									<key>match</key>
+									<string>(?i)\b(type\s++body\s++)(&amp;?(\w|&amp;|\.)++)\b</string>
+									<key>name</key>
+									<string>entity.name.function</string>
+								</dict>
+								<dict>
+									<key>comment</key>
+									<string>plsql-type-source</string>
+									<key>match</key>
+									<string>(?i)\b(force|oid)\b</string>
+									<key>name</key>
+									<string>keyword.other</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#invoker-rights-clause</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#accessible-by-clause</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#expression</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(?i)(^|(?&lt;= |\t|;))((is|as)(\b)|(?=under\b))</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.control</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?i)(?=\bend\s*;)</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.other.delimiter</string>
+								</dict>
+							</dict>
+							<key>name</key>
+							<string>meta.block.declaration</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>begin</key>
+									<string>(?i)\b(constructor|member|static)\b</string>
+									<key>beginCaptures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>keyword.other</string>
+										</dict>
+									</dict>
+									<key>end</key>
+									<string>(?&lt;=;)</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>#subprogram</string>
+										</dict>
+									</array>
+								</dict>
+								<dict>
+									<key>comment</key>
+									<string>constructor-declaration</string>
+									<key>match</key>
+									<string>(?i)\b(final|instantiable)\b</string>
+									<key>name</key>
+									<string>keyword.other</string>
+								</dict>
+								<dict>
+									<key>comment</key>
+									<string>map-order-func-declaration</string>
+									<key>match</key>
+									<string>(?i)\b(map|order)\b</string>
+									<key>name</key>
+									<string>keyword.other</string>
 								</dict>
 							</array>
 						</dict>

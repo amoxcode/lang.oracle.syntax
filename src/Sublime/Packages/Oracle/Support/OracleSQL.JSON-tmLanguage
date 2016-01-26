@@ -25,6 +25,14 @@
           "end": "((?=;)|((?=^\\s*+/$))|(?=^(\\.)?\\s*+$))"
         },
         {
+          "name": "meta.statement.oracle.sql",
+          "begin": "(?=(?i)\\s*(select)\\b)",
+          "patterns": [
+            { "include": "#statement-dml-select" }
+          ],
+          "end": "((?=;|\\)))"
+        },
+        {
           "begin": "(?=(?i)^\\s*(with)\\b)",
           "patterns": [
             { "include": "#statement-dml-select" }
