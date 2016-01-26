@@ -257,9 +257,6 @@
             { "name": "invalid.illegal",
               "begin": "(/\\*)",
               "end": "(\\*/)"
-            },
-            {  "name": "string.quoted.single",
-               "match": "."
             }
           ],
           "end": "(\\*/)",
