@@ -5440,7 +5440,7 @@
     "returning-clause": {
       "patterns": [
         {  "name": "keyword.other",
-           "match": "(?i)\\b(into|return(ing)?)\\b",
+           "match": "(?i)\\b(bulk|collect|into|return(ing)?)\\b",
            "comment": "returning-clause"
         }
       ]
@@ -5717,6 +5717,10 @@
                 {  "name": "keyword.other",
                    "match": "(?i)\\b(as)\\b",
                    "comment": "select-list"
+                },
+                {  "name": "keyword.other",
+                   "match": "(?i)\\b(bulk|collect|into)\\b",
+                   "comment": "plsql-extension"
                 },
                 { "include": "#expression" }
               ],
