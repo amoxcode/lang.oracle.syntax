@@ -619,7 +619,7 @@
               "0": { "name": "keyword.control" }
           },
           "patterns": [
-            { "name": "meta.statement.if.statements",
+            {
               "begin": "(?i)\\b(?<=then)(\\s++)",
               "captures": {
                   "0": { "name": "keyword.control" }
@@ -629,7 +629,7 @@
               ],
               "end": "(?i)(?=(e(nd\\s++if|ls(e|if)))(\\s|;))"
             },
-            { "name": "meta.statement.if.statements",
+            {
               "begin": "(?i)\\b(?<=else)(\\s++)",
               "captures": {
                   "0": { "name": "keyword.control" }
@@ -725,7 +725,6 @@
       "patterns": [
         { "include": "#comment" },
         { "include": "#statement-block" },
-        { "include": "#statement-assignment" },
         { "include": "#statement-loop" },
         { "include": "#statement-case" },
         { "include": "#statement-continue-exit" },
@@ -737,6 +736,7 @@
                "0": { "name": "keyword.control" }
            }
         },
+        { "include": "#statement-assignment" },
         { "include": "#variable-other-substitution-oracle-sqlplus" },
         {  "name": "keyword.other.ansi.oracle.sql",
            "match": "(?i)\\b(date|timestamp)\\b"

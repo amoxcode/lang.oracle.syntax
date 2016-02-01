@@ -1340,10 +1340,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#statement-assignment</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#statement-loop</string>
 				</dict>
 				<dict>
@@ -1375,6 +1371,10 @@
 					<string>(?i)(?&lt;=^|;)\s*+(null)(?=\s*+;)</string>
 					<key>name</key>
 					<string>meta.statement.null</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#statement-assignment</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1921,8 +1921,6 @@
 							</dict>
 							<key>end</key>
 							<string>(?i)(?=(e(nd\s++if|ls(e|if)))(\s|;))</string>
-							<key>name</key>
-							<string>meta.statement.if.statements</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -1944,8 +1942,6 @@
 							</dict>
 							<key>end</key>
 							<string>(?i)(?=(\bend\s++if)(\s|;))</string>
-							<key>name</key>
-							<string>meta.statement.if.statements</string>
 							<key>patterns</key>
 							<array>
 								<dict>
