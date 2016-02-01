@@ -219,6 +219,13 @@
             {  "name": "keyword.other.storage",
                "match": "(?i)\\b(is|return)\\b"
             },
+            {
+              "begin": "(?i)(?=\\(\\s*select )",
+              "patterns": [
+                { "include": "#expression" }
+              ],
+              "end": "(?<=\\))"
+            },
             { "include": "#parameter-definition" },
             { "include": "#static-sql" },
             { "include": "#expression" }

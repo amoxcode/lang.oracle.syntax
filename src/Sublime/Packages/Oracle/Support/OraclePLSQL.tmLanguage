@@ -2171,6 +2171,19 @@
 							<string>keyword.other.storage</string>
 						</dict>
 						<dict>
+							<key>begin</key>
+							<string>(?i)(?=\(\s*select )</string>
+							<key>end</key>
+							<string>(?&lt;=\))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#expression</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
 							<key>include</key>
 							<string>#parameter-definition</string>
 						</dict>
