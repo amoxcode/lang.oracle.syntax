@@ -1905,7 +1905,7 @@
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>meta.statement.if</string>
+					<string>meta.stmt.if</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1990,7 +1990,7 @@
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>meta.statement.loop</string>
+					<string>meta.stmt.loop</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -2018,7 +2018,7 @@
 					<key>end</key>
 					<string>(?i)(?=\b(loop)\b)</string>
 					<key>name</key>
-					<string>meta.statement.loop</string>
+					<string>meta.stmt.loop</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -2047,7 +2047,7 @@
 					<key>end</key>
 					<string>(?i)(?=\b(loop)\b)</string>
 					<key>name</key>
-					<string>meta.statement.loop</string>
+					<string>meta.stmt.loop</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -2067,8 +2067,6 @@
 					<string>(?i)(?=\s*\b(commit|insert|(?&lt;!\.)delete|lock\s++table|merge|rollback|s(avepoint|e(lect|t\s++transaction))|update)\b)</string>
 					<key>end</key>
 					<string>(?=;)</string>
-					<key>name</key>
-					<string>meta.block.statement.oracle.sql</string>
 					<key>patterns</key>
 					<array>
 						<dict>

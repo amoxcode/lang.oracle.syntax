@@ -477,7 +477,7 @@
     },
     "statement-loop": {
       "patterns": [
-        {  "name": "meta.statement.loop",
+        {  "name": "meta.stmt.loop",
           "begin": "(?i)(^|(?<= |\\t|;))loop(?=\\s)",
           "captures": {
               "0": { "name": "keyword.control" }
@@ -490,7 +490,7 @@
               "3": { "name": "variable.other" }
           }
         },
-        {  "name": "meta.statement.loop",
+        {  "name": "meta.stmt.loop",
            "begin": "(?i)(^|(?<=;))\\s*+(for)\\s++(\\w++)",
            "beginCaptures": {
                "2": { "name": "keyword.control" },
@@ -504,7 +504,7 @@
            ],
            "end": "(?i)(?=\\b(loop)\\b)"
         },
-        {  "name": "meta.statement.loop",
+        {  "name": "meta.stmt.loop",
            "begin": "(?i)\\b(while)\\b",
            "beginCaptures": {
                "1": { "name": "keyword.control" }
@@ -613,7 +613,7 @@
     "statement-if": {
       "patterns": [
         {
-          "name": "meta.statement.if",
+          "name": "meta.stmt.if",
           "begin": "(?i)(^|(?<= |\\t|;))if(?=\\s)",
           "captures": {
               "0": { "name": "keyword.control" }
@@ -897,7 +897,6 @@
     "static-sql": {
       "patterns": [
         {
-          "name": "meta.block.statement.oracle.sql",
           "begin": "(?i)(?=\\s*\\b(commit|insert|(?<!\\.)delete|lock\\s++table|merge|rollback|s(avepoint|e(lect|t\\s++transaction))|update)\\b)",
             "patterns": [
               { "include": "source.oracle.sql" }
