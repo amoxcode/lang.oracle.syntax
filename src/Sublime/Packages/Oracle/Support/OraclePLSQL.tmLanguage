@@ -948,6 +948,12 @@
 					<key>name</key>
 					<string>constant.language</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(G_\w++)\b</string>
+					<key>name</key>
+					<string>constant.language</string>
+				</dict>
 			</array>
 		</dict>
 		<key>meta-block</key>
@@ -2369,13 +2375,13 @@
 						<key>3</key>
 						<dict>
 							<key>name</key>
-							<string>support.function</string>
+							<string>variable.other</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?i)\b((apex|dbms|ctx|o(rd|wa)|s(do|em)|utl|wpg)_\w++|ht(?:f|p))(\.)(\w++)</string>
+					<string>(?i)\b((?:apex|dbms|ctx|o(?:rd|wa)|s(?:do|em)|utl|wpg)_\w++|ht(?:f|p))(\.)(\w++)</string>
 					<key>name</key>
-					<string>support.class</string>
+					<string>support.function</string>
 				</dict>
 				<dict>
 					<key>captures</key>
@@ -2388,13 +2394,13 @@
 						<key>3</key>
 						<dict>
 							<key>name</key>
-							<string>support.function</string>
+							<string>variable.other</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?i)\b((?:wf|fnd)_\w++)(\.)(\w++)</string>
+					<string>(?i)\b((?:ap(?:p)?|wf|fnd|zx)_\w++)(\.)(\w++)</string>
 					<key>name</key>
-					<string>support.class.apps</string>
+					<string>support.function.apps</string>
 				</dict>
 				<dict>
 					<key>match</key>
