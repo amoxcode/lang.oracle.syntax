@@ -258,7 +258,7 @@
                 <key>settings</key>
                 <dict>
                     <key>foreground</key>
-                    <string>#268BD2</string>
+                    <string>#6C71C4</string>
                 </dict>
             </dict>
             <dict>
@@ -279,6 +279,17 @@
                 <string>support.constant</string>
                 <key>settings</key>
 			<dict/>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Library Variable</string>
+                <key>scope</key>
+                <string>support.variable</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#2AA198</string>
+                </dict>
             </dict>
             <dict>
                 <key>name</key>
