@@ -5651,7 +5651,8 @@
         {  "name": "keyword.operator.multiset",
            "match": "(?i)\\b(a\\s++set|distinct|e(mpty|xcept)|intersect|m(ember(\\s++of)?|ultiset)|submultiset(\\s++of)?|union)\\b"
         },
-        { "include": "#expression" }
+        { "include": "#expression" },
+        { "include": "#comment" }
       ]
     },
     "query-table-expression": {
@@ -6078,7 +6079,8 @@
             { "include": "#comment" }
           ],
           "end": "(?i)(?=(\\(|select\\b))"
-        }
+        },
+        { "include": "#comment" }
       ]
     },
     "statement-control-transaction": {
