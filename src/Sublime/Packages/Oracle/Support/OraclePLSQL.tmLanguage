@@ -173,6 +173,10 @@
 						</dict>
 					</array>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment</string>
+				</dict>
 			</array>
 		</dict>
 		<key>block-executable</key>
@@ -336,17 +340,6 @@
 					<string>(\*/)</string>
 					<key>name</key>
 					<string>comment.block</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>begin</key>
-							<string>(/\*)</string>
-							<key>end</key>
-							<string>(\*/)</string>
-							<key>name</key>
-							<string>invalid.illegal</string>
-						</dict>
-					</array>
 				</dict>
 			</array>
 		</dict>
@@ -950,7 +943,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(G_\w++)\b</string>
+					<string>\b((G|g)_\w++)\b</string>
 					<key>name</key>
 					<string>constant.language</string>
 				</dict>
@@ -1657,8 +1650,6 @@
 			<string>(?=(?i)\b(begin|declare)(\s|$))</string>
 			<key>end</key>
 			<string>(?&lt;=;)</string>
-			<key>name</key>
-			<string>meta.block</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -1891,7 +1882,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?i)(^|(?&lt;= |\t|;))if(?=\s)</string>
+					<string>(?i)(^|(?&lt;= |\t|;))if(?=\s|\()</string>
 					<key>captures</key>
 					<dict>
 						<key>0</key>
@@ -2398,7 +2389,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?i)\b((?:ap(?:p)?|wf|fnd|zx)_\w++)(\.)(\w++)</string>
+					<string>(?i)\b((?:ap(?:p)?|p(?:a|o)|wf|fnd|zx)_\w++)(\.)(\w++)</string>
 					<key>name</key>
 					<string>support.function.apps</string>
 				</dict>
