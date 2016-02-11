@@ -1,6 +1,6 @@
 {
     "uuid": "10821899-0104-48db-9438-50000877b19e",
-    "fileTypes": [ "ldt", "ildt" ],
+    "fileTypes": [ "ldt", "ildt", "wft" ],
     "name": "Oracle FNDLOAD",
     "scopeName": "source.fndload",
     "patterns": [

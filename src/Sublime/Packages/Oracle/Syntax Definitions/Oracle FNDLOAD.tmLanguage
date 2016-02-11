@@ -5,6 +5,8 @@
 	<key>fileTypes</key>
 	<array>
 		<string>ldt</string>
+		<string>ildt</string>
+		<string>wft</string>
 	</array>
 	<key>name</key>
 	<string>Oracle FNDLOAD</string>
