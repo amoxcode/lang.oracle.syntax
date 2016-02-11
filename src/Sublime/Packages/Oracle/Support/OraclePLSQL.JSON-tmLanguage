@@ -263,12 +263,6 @@
         },
         { "name": "comment.block",
           "begin": "(/\\*)",
-          "patterns": [
-            { "name": "invalid.illegal",
-              "begin": "(/\\*)",
-              "end": "(\\*/)"
-            }
-          ],
           "end": "(\\*/)",
           "captures": {
               "1": { "name": "keyword.other" }
