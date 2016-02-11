@@ -131,7 +131,7 @@
            "match": "(?i)\\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null|true)\\b"
         },
         {  "name": "constant.language",
-           "match": "\\b(G_\\w++)\\b"
+           "match": "\\b((G|g)_\\w++)\\b"
         }
       ]
     },
