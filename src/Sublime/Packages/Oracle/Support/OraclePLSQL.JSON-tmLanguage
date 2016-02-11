@@ -345,7 +345,7 @@
            }
         },
         {  "name": "support.function.apps",
-           "match": "(?i)\\b((?:ap(?:p)?|wf|fnd|zx)_\\w++)(\\.)(\\w++)",
+           "match": "(?i)\\b((?:ap(?:p)?|p(?:a|o)|wf|fnd|zx)_\\w++)(\\.)(\\w++)",
            "captures": {
                "2": { "name": "keyword.other.indicator" },
                "3": { "name": "variable.other" }
