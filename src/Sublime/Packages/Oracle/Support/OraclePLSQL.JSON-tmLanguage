@@ -610,7 +610,7 @@
       "patterns": [
         {
           "name": "meta.stmt.if",
-          "begin": "(?i)(^|(?<= |\\t|;))if(?=\\s)",
+          "begin": "(?i)(^|(?<= |\\t|;))if(?=\\s|\\()",
           "captures": {
               "0": { "name": "keyword.control" }
           },
