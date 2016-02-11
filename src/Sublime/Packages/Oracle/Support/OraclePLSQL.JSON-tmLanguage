@@ -941,7 +941,8 @@
             { "include": "#statement" }
           ],
           "end": "(?=(?i)\\b(end|when)(\\s|;))"
-        }
+        },
+        { "include": "#comment" }
       ],
       "end": "(?=(?i)\\b(end)(\\s|;))"
     },
