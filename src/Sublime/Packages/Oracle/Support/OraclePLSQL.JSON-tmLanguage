@@ -514,7 +514,6 @@
       ]
     },
     "statement-block": {
-      "name": "meta.block",
       "begin": "(?=(?i)\\b(begin|declare)(\\s|$))",
       "patterns": [
         { "include": "#block-executable" },
