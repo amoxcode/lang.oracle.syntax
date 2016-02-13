@@ -23,6 +23,14 @@
 		<dict>
 			<key>begin</key>
 			<string>/\*</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.delimiter</string>
+				</dict>
+			</dict>
 			<key>comment</key>
 			<string>Block comment, can span multiple lines</string>
 			<key>end</key>
@@ -32,17 +40,33 @@
 		</dict>
 		<key>comment-line-number</key>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.delimiter</string>
+				</dict>
+			</dict>
 			<key>comment</key>
 			<string>Single line # comment.</string>
 			<key>match</key>
-			<string>#.*$</string>
+			<string>(#).*$</string>
 			<key>name</key>
 			<string>comment.line.number-sig</string>
 		</dict>
 		<key>keyword-other</key>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.delimiter</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>\b(LANGUAGE|LDRCONFIG)\b</string>
+			<string>\b(\w)++ (=)</string>
 			<key>name</key>
 			<string>keyword.other</string>
 		</dict>
@@ -119,6 +143,18 @@
 					</dict>
 					<key>match</key>
 					<string>\b(REFERENCES) (\w++)</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\b(NUMBER)\b</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -213,6 +249,14 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#meta-block-define</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#meta-block-entity</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#comment-line-number</string>
 				</dict>
 				<dict>
@@ -230,14 +274,6 @@
 				<dict>
 					<key>include</key>
 					<string>#keyword-other</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#meta-block-define</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#meta-block-entity</string>
 				</dict>
 			</array>
 		</dict>
@@ -263,7 +299,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\\</string>
+					<string>\\(n)?</string>
 					<key>name</key>
 					<string>keyword.operator</string>
 				</dict>

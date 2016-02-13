@@ -9,23 +9,29 @@
     "repository": {
         "oracle-fndload": {
           "patterns": [
+            { "include": "#meta-block-define" },
+            { "include": "#meta-block-entity" },
             { "include": "#comment-line-number" } ,
             { "include": "#comment-block" },
             { "include": "#string-quoted-single" },
             { "include": "#string-quoted-double" },
-            { "include": "#keyword-other" },
-            { "include": "#meta-block-define" },
-            { "include": "#meta-block-entity" }
+            { "include": "#keyword-other" }
           ]
         },
         "comment-line-number": {
           "name": "comment.line.number-sig",
-          "match": "#.*$",
+          "match": "(#).*$",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter" }
+          },
           "comment": "Single line # comment."
         },
         "comment-block": {
           "name": "comment.block",
           "begin": "/\\*",
+          "captures": {
+              "0": { "name": "keyword.other.delimiter" }
+          },
           "end": "\\*/",
           "comment": "Block comment, can span multiple lines"
         },
@@ -40,7 +46,7 @@
           "begin": "\"",
           "patterns": [
             {  "name": "keyword.operator",
-               "match": "\\\\"
+               "match": "\\\\(n)?"
             }
           ],
           "end": "\"",
@@ -51,7 +57,10 @@
         },
         "keyword-other": {
           "name": "keyword.other",
-          "match": "\\b(LANGUAGE|LDRCONFIG)\\b"
+          "match": "\\b(\\w)++ (=)",
+          "captures": {
+              "2": { "name": "keyword.other.delimiter" }
+          }
         },
         "meta-block-define": {
           "name": "meta.block.define",
@@ -80,6 +89,12 @@
                "captures": {
                  "1": { "name": "storage.modifier" },
                  "2": { "name": "variable.other" }
+               }
+            },
+            {
+               "match": "\\b(NUMBER)\\b",
+               "captures": {
+                 "1": { "name": "storage.type" }
                }
             },
             { "include": "#meta-block-define" }
