@@ -345,7 +345,7 @@
            }
         },
         {  "name": "support.function.apps",
-           "match": "(?i)\\b((?:ap(?:p)?|p(?:a|o)|wf|fnd|zx)_\\w++)(\\.)(\\w++)",
+           "match": "(?i)\\b((?:ap(?:p)?|okc|p(?:a|o)|wf|fnd|zx)_\\w++)(\\.)(\\w++)",
            "captures": {
                "2": { "name": "keyword.other.indicator" },
                "3": { "name": "variable.other" }
@@ -640,9 +640,10 @@
             },
             { "include": "#expression" }
           ],
-          "end": "(?i)(^|(?<= |\\t|;))end\\s++if\\s*+(;)",
+          "end": "(?i)(^|(?<= |\\t|;))end\\s++if\\s*+((/\\*)(.*?)(\\*/))?(;)",
           "endCaptures": {
-              "3": { "name": "keyword.other.delimiter.oracle.plsql" }
+              "4": { "name": "comment.block" },
+              "6": { "name": "keyword.other.delimiter.oracle.plsql" }
           }
         }
       ]

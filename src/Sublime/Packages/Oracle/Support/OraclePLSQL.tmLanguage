@@ -1892,10 +1892,15 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?i)(^|(?&lt;= |\t|;))end\s++if\s*+(;)</string>
+					<string>(?i)(^|(?&lt;= |\t|;))end\s++if\s*+((/\*)(.*?)(\*/))?(;)</string>
 					<key>endCaptures</key>
 					<dict>
-						<key>3</key>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>comment.block</string>
+						</dict>
+						<key>6</key>
 						<dict>
 							<key>name</key>
 							<string>keyword.other.delimiter.oracle.plsql</string>
@@ -2389,7 +2394,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?i)\b((?:ap(?:p)?|p(?:a|o)|wf|fnd|zx)_\w++)(\.)(\w++)</string>
+					<string>(?i)\b((?:ap(?:p)?|okc|p(?:a|o)|wf|fnd|zx)_\w++)(\.)(\w++)</string>
 					<key>name</key>
 					<string>support.function.apps</string>
 				</dict>
