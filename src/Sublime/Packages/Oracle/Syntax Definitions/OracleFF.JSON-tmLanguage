@@ -1,0 +1,91 @@
+// [PackageDev] target_format: plist, ext: tmLanguage
+{ "name": "Oracle Fast Formula",
+  "scopeName": "source.oracle.ff",
+  "fileTypes": ["ff"],
+  "uuid": "53c7eec1-9710-4b82-ae67-2687d0ea06eb",
+  "patterns": [
+    { "include": "#oracle-ff" }
+  ],
+  "repository": {
+  	"oracle-ff": {
+  		"patterns": [
+  			{ "include": "#comment" },
+  			{ "include": "#constant" },
+  			{ "include": "#storage" },
+  			{ "include": "#operator" },
+  			{ "include": "#delimiter" },
+  			{ "include": "#variable" }  			
+  		]
+  	},
+  	"comment": {
+  		"patterns": [
+	  		{
+	          "name": "comment.block",
+	          "begin": "/\\*",
+	          "captures": {
+	              "0": { "name": "keyword.other.delimiter" }
+	          },
+	          "end": "\\*/",
+	          "comment": "Block comment, can span multiple lines"
+	        }
+  		]
+  	},
+  	"constant": {
+  		"patterns": [
+	  		{
+	         	"name": "string.quoted.single",
+	         	"begin": "'",
+	         	"captures": {
+	         	    "0": { "name": "keyword.other.delimiter" }
+	         	},
+	         	"patterns": [
+            		{  "name": "constant.character",
+               			"match": "('')+"
+            		}
+           		],
+           		"end": "'(?!')",
+	        	"comment": "Single quote string, multi-line aware"
+	        },
+	        { 	
+	        	"name": "constant.numeric",
+	           	"match": "(\\b\\d++)?((\\.)\\d++)?\\b",
+	           	"captures": {
+	              	"3": { "name": "keyword.other.delimiter" }
+	           }
+	        }
+  		]
+  	},
+  	"variable": {
+  		"patterns": [
+  			{  
+  				"name": "variable.other",
+  			   	"match": "\\b([[:alpha:]])\\w{,79}\\b"
+  			}
+  		]
+  	},
+  	"storage": {
+  		"patterns": [
+  			{  "name": "storage.modifier",
+  			   "match": "(?i)\\b(are|inputs)\\b"
+  			},
+  			{  "name": "storage.type",
+  			   "match": "(?i)\\b(date|numeric|text)\\b"
+  			}
+  		]
+  	},
+  	"operator": {
+  		"patterns": [
+  			{  "name": "keyword.operator",
+  			   "match": "(\\+|-|\\*|/)"
+  			}
+  		]
+  	},
+  	"delimiter": {
+  		"patterns": [
+  			{  "name": "keyword.other.delimiter",
+  			   "match": "(,|\\(|\\))"
+  			}
+  		]
+  	}
+  }
+}
