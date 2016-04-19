@@ -14,6 +14,7 @@
   			{ "include": "#storage" },
   			{ "include": "#operator" },
   			{ "include": "#delimiter" },
+  			{ "include": "#function" },
   			{ "include": "#variable" }  			
   		]
   	},
@@ -84,6 +85,37 @@
   		"patterns": [
   			{  "name": "keyword.other.delimiter",
   			   "match": "(,|\\(|\\))"
+  			}
+  		]
+  	},
+  	"function": {
+  		"patterns": [
+  			{  "name": "support.function",
+  			   "match": "(?i)\\b(chr|debug|greatest(_of)?|in(itcap|str(b)?)|l(e(ast(_of)?|nth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(anslate|rim)|upper)\\b"
+  			},
+  			{  "name": "support.function",
+  			   "match": "(?i)\\b(abs|calculate_hours_worked|floor|greatest(_of)?|least|power|round((_)?up)?|trunc(ate)?)\\b"
+  			},
+  			{  "name": "support.function",
+  			   "match": "(?i)\\b(add_(days|months|years)|greatest|l(ast_dat|east)|months_between|ne(w_time|xt_dat))\\b"
+  			},
+  			{  "name": "support.function",
+  			   "match": "(?i)\\b(convert|instr|num_to_char|to_(date|number|text))\\b"
+  			},
+  			{  "name": "support.function",
+  			   "match": "(?i)\\b(get_(lookup_meaning|table_value|ra(ise_error|test_history)))\\b"
+  			},
+  			{  "name": "support.function",
+  			   "match": "(?i)\\b(calculate_payroll_periods|get_(a(bsence|ccrual_band|s(g_inactive_days|signment_status))|carry_over|net_accrual|other_net_contribution|p(ayroll_period|eriod_dates)|start_date|working_days)|put_message)\\b"
+  			},
+  			{  "name": "support.function",
+  			   "match": "(?i)\\b(call_formula|loop_control)\\b"
+  			},
+  			{  "name": "support.function",
+  			   "match": "(?i)\\b(clear_globals|get_(date|number|text)|isnull|remove_globals|set_(date|number|text))\\b"
+  			},
+  			{  "name": "support.function",
+  			   "match": "(?i)\\b(rbc_rate_retrieval)\\b"
   			}
   		]
   	}

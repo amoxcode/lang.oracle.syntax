@@ -100,6 +100,66 @@
 				</dict>
 			</array>
 		</dict>
+		<key>function</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(chr|debug|greatest(_of)?|in(itcap|str(b)?)|l(e(ast(_of)?|nth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(anslate|rim)|upper)\b</string>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(abs|calculate_hours_worked|floor|greatest(_of)?|least|power|round((_)?up)?|trunc(ate)?)\b</string>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(add_(days|months|years)|greatest|l(ast_dat|east)|months_between|ne(w_time|xt_dat))\b</string>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(convert|instr|num_to_char|to_(date|number|text))\b</string>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(get_(lookup_meaning|table_value|ra(ise_error|test_history)))\b</string>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(calculate_payroll_periods|get_(a(bsence|ccrual_band|s(g_inactive_days|signment_status))|carry_over|net_accrual|other_net_contribution|p(ayroll_period|eriod_dates)|start_date|working_days)|put_message)\b</string>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(call_formula|loop_control)\b</string>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(clear_globals|get_(date|number|text)|isnull|remove_globals|set_(date|number|text))\b</string>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(rbc_rate_retrieval)\b</string>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+			</array>
+		</dict>
 		<key>operator</key>
 		<dict>
 			<key>patterns</key>
@@ -135,6 +195,10 @@
 				<dict>
 					<key>include</key>
 					<string>#delimiter</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function</string>
 				</dict>
 				<dict>
 					<key>include</key>
