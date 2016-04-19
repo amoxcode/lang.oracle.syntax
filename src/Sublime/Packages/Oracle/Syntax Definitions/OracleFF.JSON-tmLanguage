@@ -15,6 +15,7 @@
   			{ "include": "#operator" },
   			{ "include": "#delimiter" },
   			{ "include": "#function" },
+  			{ "include": "#control" },
   			{ "include": "#variable" }  			
   		]
   	},
@@ -71,6 +72,12 @@
   			},
   			{  "name": "storage.type",
   			   "match": "(?i)\\b(date|numeric|text)\\b"
+  			},
+  			{  "name": "storage.modifier",
+  			   "match": "(?i)\\b(alias)\\b"
+  			},
+  			{  "name": "storage.modifier",
+  			   "match": "(?i)\\b(default|for|is)\\b"
   			}
   		]
   	},
@@ -78,6 +85,15 @@
   		"patterns": [
   			{  "name": "keyword.operator",
   			   "match": "(\\+|-|\\*|/)"
+  			},
+  			{  "name": "keyword.operator",
+  			   "match": "(=)"
+  			},
+  			{  "name": "keyword.operator",
+  			   "match": "(?i)\\b(and|defaulted|like|not|or|was)\\b"
+  			},
+  			{  "name": "keyword.operator",
+  			   "match": "(!|<|>)"
   			}
   		]
   	},
@@ -116,6 +132,16 @@
   			},
   			{  "name": "support.function",
   			   "match": "(?i)\\b(rbc_rate_retrieval)\\b"
+  			}
+  		]
+  	},
+  	"control": {
+  		"patterns": [
+  			{  "name": "keyword.control",
+  			   "match": "(?i)\\b(else|if|then)\\b"
+  			},
+  			{  "name": "keyword.control",
+  			   "match": "(?i)\\b(return)\\b"
   			}
   		]
   	}

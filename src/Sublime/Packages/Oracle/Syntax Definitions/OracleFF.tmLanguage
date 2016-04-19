@@ -88,6 +88,24 @@
 				</dict>
 			</array>
 		</dict>
+		<key>control</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(else|if|then)\b</string>
+					<key>name</key>
+					<string>keyword.control</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(return)\b</string>
+					<key>name</key>
+					<string>keyword.control</string>
+				</dict>
+			</array>
+		</dict>
 		<key>delimiter</key>
 		<dict>
 			<key>patterns</key>
@@ -170,6 +188,24 @@
 					<key>name</key>
 					<string>keyword.operator</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>(=)</string>
+					<key>name</key>
+					<string>keyword.operator</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(and|defaulted|like|not|or|was)\b</string>
+					<key>name</key>
+					<string>keyword.operator</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(!|&lt;|&gt;)</string>
+					<key>name</key>
+					<string>keyword.operator</string>
+				</dict>
 			</array>
 		</dict>
 		<key>oracle-ff</key>
@@ -202,6 +238,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#control</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#variable</string>
 				</dict>
 			</array>
@@ -221,6 +261,18 @@
 					<string>(?i)\b(date|numeric|text)\b</string>
 					<key>name</key>
 					<string>storage.type</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(alias)\b</string>
+					<key>name</key>
+					<string>storage.modifier</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(default|for|is)\b</string>
+					<key>name</key>
+					<string>storage.modifier</string>
 				</dict>
 			</array>
 		</dict>
