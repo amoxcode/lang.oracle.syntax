@@ -138,7 +138,7 @@
   			 		{ "include": "#string" },
   			 		{ "include": "#asg" },
   			 		{  "name": "variable.other",
-  			   			"match": "\\b(d(ataType|efaultValue)|include_in_output|name)\\b"
+  			   			"match": "\\b(application_short_name|co(de_combination_table_alias|mment)|d(ataType|e(faultValue|scription))|full_description|i(d_flex_(code|num)|nclude_in_output)|m(etadata_type|ultiple_id_flex_num)|name|o(pera(nd(1|2)|tor)|utput_type)|s(e(curity|gments)|how_parent_segments)|type)\\b"
   					}
   			 	],  			 	
   			 	"end": "/?>",
@@ -221,7 +221,7 @@
   			 		{ "include": "#string" },
   			 		{ "include": "#asg" },
   			 		{  "name": "variable.other",
-  			   			"match": "\\b(child(Column|Query)|parent(Column|Query))\\b"
+  			   			"match": "\\b(c(hild(Column|Query)|ondition)|parent(Column|Query))\\b"
   					}
   			 	],  			 	
   			 	"end": "/?>",
@@ -286,7 +286,7 @@
   			 		{ "include": "#string" },
   			 		{ "include": "#asg" },
   			 		{  "name": "variable.other",
-  			   			"match": "\\b(function|name|value)\\b"
+  			   			"match": "\\b(function|name|source|value)\\b"
   					}
   			 	],  			 	
   			 	"end": "/?>",
