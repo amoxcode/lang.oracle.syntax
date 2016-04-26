@@ -1,0 +1,340 @@
+// [PackageDev] target_format: plist, ext: tmLanguage
+{ "name": "BIP Data Template",
+  "scopeName": "source.oracle.bip",
+  "fileTypes": ["xml"],
+  "uuid": "53b5ea64-c4ca-4502-a981-c961c58c15f7",
+
+  "patterns": [
+  	{ "include": "#main" }    
+  ],
+  "repository": {
+  	"main": {
+  		"patterns": [
+  			{ "include": "#comments" },
+  			{ "include": "#string" },
+  			{ "include": "#preprocessor" },
+  			{ "include": "#tag" },
+  			{ "include": "#cdata" }
+  		]  		
+  	},
+  	"comments": {
+  		"patterns": [
+	  		{ "name": "comment.block",
+	  		  "begin": "<!--",
+	  		  "captures": {
+	  		      "0": { "name": "keyword.other.delimiter" }
+	  		  },
+	  		  "end": "-->"
+	  		}
+	  	]
+  	},
+  	"string": {
+  		"patterns": [
+  			{ "name": "string.quoted.double",
+  			  "begin": "\"",
+	  		  "captures": {
+	  		      "0": { "name": "keyword.other.delimiter" }
+	  		  },  			  
+  			  "end": "\""
+  			}
+  		]
+  	},
+  	"tag": {
+  		"patterns": [
+  			{ 
+  			 	"begin": "(</?)\\s*+(dataTemplate)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(d(ataSourceRef|e(faultPackage|scription))|name|version)\\b"
+  					}
+  			 	],
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(properties)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(property)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(name|value)\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},			
+  			{ 
+  			 	"begin": "(</?)\\s*+(parameters)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(parameter)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(d(ataType|efaultValue)|include_in_output|name)\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},			
+  			{ 
+  			 	"begin": "(</?)\\s*+(lexicals)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(lexical)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(d(ataType|efaultValue)|include_in_output|name)\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+  			{ 
+  			 	"begin": "(</?)\\s*+(dataQuery)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(sqlStatement)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(dataSourceRef|name)\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(xml)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(expressionPath|name)\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(url)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(method|password|realm|username)\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(link)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(child(Column|Query)|parent(Column|Query))\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(dataTrigger)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(name|source)\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+  			{ 
+  			 	"begin": "(</?)\\s*+(dataStructure)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(group)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(groupFilter|name|source)\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			},
+			{ 
+  			 	"begin": "(</?)\\s*+(element)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(function|name|value)\\b"
+  					}
+  			 	],  			 	
+  			 	"end": "/?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			}
+  		]
+  	},
+  	"preprocessor": {
+  		"patterns": [
+  			{ 
+  			 	"begin": "(<\\?)\\s*+(\\w++)",
+  			 	"beginCaptures": {
+  			 	    "1": { "name": "keyword.other.delimiter" },
+  			 	    "2": { "name": "variable.other" }
+  			 	},
+  			 	"patterns": [
+  			 		{ "include": "#string" },
+  			 		{ "include": "#asg" },
+  			 		{  "name": "variable.other",
+  			   			"match": "\\b(encoding|version)\\b"
+  					}
+  			 	],
+  			 	"end": "\\?>",
+  			 	"endCaptures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	}
+  			}
+  		]
+  	},  	
+  	"asg": {
+  		"patterns": [
+  			{  "name": "keyword.other.delimiter",
+  			   "match": "="
+  			}
+  		]
+  	},
+  	"cdata": {
+  		"patterns": [
+  			{ 
+  			 	"begin": "<!\\[CDATA\\[",
+  			 	"captures": {
+  			 	    "0": { "name": "keyword.other.delimiter" }
+  			 	},
+  			 	"end": "\\]\\]>"
+  			}
+  		]
+  	}
+  }
+}
