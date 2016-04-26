@@ -221,7 +221,7 @@
   			 		{ "include": "#string" },
   			 		{ "include": "#asg" },
   			 		{  "name": "variable.other",
-  			   			"match": "\\b(c(hild(Column|Query)|ondition)|parent(Column|Query))\\b"
+  			   			"match": "\\b(c(hild(Column|Query)|ondition)|name|parent(Column|Query))\\b"
   					}
   			 	],  			 	
   			 	"end": "/?>",
@@ -332,6 +332,22 @@
   			 	"captures": {
   			 	    "0": { "name": "keyword.other.delimiter" }
   			 	},
+          "patterns": [
+            {
+              "begin": "(?=(?i)\\s*(select)\\b)",
+              "patterns": [
+                { "include": "source.oracle.sql" }
+              ],
+              "end": "(?=\\]\\]>)"
+            },
+            {
+              "begin": "(?=(?i)^\\s*(with)\\b)",
+              "patterns": [
+                { "include": "source.oracle.sql" }
+              ],
+              "end": "(?=(?i)^\\s*(select)\\b)"
+            }
+          ],
   			 	"end": "\\]\\]>"
   			}
   		]

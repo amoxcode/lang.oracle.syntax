@@ -22,7 +22,7 @@
             { "include": "#statement-embedded" },
             { "include": "#statement-key-mgmt" }
           ],
-          "end": "((?=;)|((?=^\\s*+/$))|(?=^(\\.)?\\s*+$))"
+          "end": "((?=(;|\\]\\]>))|((?=^\\s*+/$))|(?=^(\\.)?\\s*+$))"
         },
         {
           "name": "meta.statement.oracle.sql",
@@ -30,7 +30,7 @@
           "patterns": [
             { "include": "#statement-dml-select" }
           ],
-          "end": "((?=;|\\)))"
+          "end": "(?=(\\]\\]>|;|\\)))"
         },
         {
           "begin": "(?=(?i)^\\s*(with)\\b)",
@@ -408,25 +408,6 @@
     },
     "condition": {
       "patterns": [
-        { "include": "#comment" },
-        {
-          "begin": "\\(",
-            "patterns": [
-              {
-                "begin": "(?i)(?=\\bselect\\s)",
-                  "patterns": [
-                    { "include": "#statement-dml-select" }
-                  ],
-                "end": "(?=\\))"
-              },
-              { "include": "#condition" }
-            ],
-          "end": "\\)",
-          "captures": {
-              "0": { "name": "keyword.other.delimiter" }
-          }
-        },
-        { "include": "#operator-conditional" },
         { "include": "#expression" }
       ]
     },
@@ -5732,7 +5713,7 @@
                 },
                 { "include": "#expression" }
               ],
-              "end": "(?=;|\\))|((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$)|(?i)\\b(?=(from)\\s)"
+              "end": "(?=(;|\\)|\\]\\]>))|((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$)|(?i)\\b(?=(from)\\s)"
             },
             { "name": "meta.section.from",
               "begin": "(?i)\\b(from)\\b",
@@ -5886,7 +5867,7 @@
                 },
                 { "include": "#condition" }
               ],
-              "end": "(?i)\\b(?=(for|where|gr(ant|oup)|log\\s++errors|order|model|with(\\s++(check|read)))\\s)|((?=;|\\))|((?=^\\s*+/\\s*+$))|(?=^\\s*+$))|(?i)(?<!multiset)(?=((^)?\\s*+)\\b(grant|intersect|log\\s++errors|minus|union|with(\\s++(check|read)))\\b)"
+              "end": "(?=(;|\\)|\\]\\]>))|(?i)\\b(?=(for|where|gr(ant|oup)|log\\s++errors|order|model|with(\\s++(check|read)))\\s)|(((?=^\\s*+/\\s*+$))|(?=^\\s*+$))|(?i)(?<!multiset)(?=((^)?\\s*+)\\b(grant|intersect|log\\s++errors|minus|union|with(\\s++(check|read)))\\b)"
             },
             { "name": "meta.section.where",
               "begin": "(?i)\\b(where)\\b",
@@ -5896,7 +5877,7 @@
               "patterns": [
                 { "include": "#condition" }
               ],
-              "end": "(?i)\\b(?=(for|gr(ant|oup)|log\\s++errors|model|order|with(\\s++(check|read)))\\s)|((?=;|\\))|((?=^\\s*+/\\s*+$))|(?=^\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(grant|intersect|log\\s++errors|minus|union)\\b)"
+              "end": "(?=(\\]\\]>|;|\\)))|(?i)\\b(?=(for|gr(ant|oup)|log\\s++errors|model|order|with(\\s++(check|read)))\\s)|(((?=^\\s*+/\\s*+$))|(?=^\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(grant|intersect|log\\s++errors|minus|union)\\b)"
             },
             { "name": "meta.section.group_by",
               "begin": "(?i)\\b(group)\\b",
@@ -5928,7 +5909,7 @@
                 },
                 { "include": "#expression" }
               ],
-              "end": "(?i)\\b(?=(order|model)\\s)|((?=;|\\))|((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(intersect|minus|union)\\b)"
+              "end": "(?=(;|\\)|\\]\\]>))|(?i)\\b(?=(order|model)\\s)|(((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(intersect|minus|union)\\b)"
             },
             { "name": "meta.section.group_by",
               "begin": "(?i)\\b(model)\\b",
@@ -5995,7 +5976,7 @@
                 },
                 { "include": "#expression" }
               ],
-              "end": "(?i)\\b(?=(fetch|offset)\\s)|((?=;|\\))|((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(intersect|minus|union)\\b)"
+              "end": "(?=(;|\\)|\\]\\]>))|(?i)\\b(?=(fetch|offset)\\s)|(((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(intersect|minus|union)\\b)"
             },
             { "name": "meta.section.order_by",
               "begin": "(?i)\\b(order)\\b",
@@ -6013,7 +5994,7 @@
                 },
                 { "include": "#expression" }
               ],
-              "end": "(?i)\\b(?=(for|fetch|offset)\\s)|((?=;|\\))|((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(intersect|minus|union)\\b)"
+              "end": "(?=(;|\\)|\\]\\]>))|(?i)\\b(?=(for|fetch|offset)\\s)|(((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(intersect|minus|union)\\b)"
             },
             { "name": "meta.section.for-update",
               "begin": "(?i)\\b(for)\\b",
@@ -6067,7 +6048,7 @@
             },
             { "include": "#select-include" }
           ],
-          "end": "((?=;|\\))|((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(grant|intersect|log\\s++errors|minus|union|with(\\s++(check|read)))\\b)"
+          "end": "(?=(\\]\\]>|;|\\)))|(((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))|(?i)(?<!multiset)(?=(\\s++|^\\s*+)(grant|intersect|log\\s++errors|minus|union|with(\\s++(check|read)))\\b)"
         },
         {
           "name": "meta.statement.dml.select.set",

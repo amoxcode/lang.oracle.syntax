@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
@@ -2992,48 +2992,6 @@
 		<dict>
 			<key>patterns</key>
 			<array>
-				<dict>
-					<key>include</key>
-					<string>#comment</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>\(</string>
-					<key>captures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.other.delimiter</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>\)</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>begin</key>
-							<string>(?i)(?=\bselect\s)</string>
-							<key>end</key>
-							<string>(?=\))</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>#statement-dml-select</string>
-								</dict>
-							</array>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#condition</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#operator-conditional</string>
-				</dict>
 				<dict>
 					<key>include</key>
 					<string>#expression</string>
@@ -6207,7 +6165,7 @@
 					<key>begin</key>
 					<string>(?=(?i)^\s*(\(|a(dminister|nalyze|lter|ssociate|udit)|c(all|omm(ent|it)|reate)|d(elete|isassociate|rop)|explain|flashback|grant|insert|lock|merge|noaudit|purge|r(e(name|voke)|ollback)|s(avepoint|e(t|lect))|truncate|update)\b)</string>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$))|(?=^(\.)?\s*+$))</string>
+					<string>((?=(;|\]\]&gt;))|((?=^\s*+/$))|(?=^(\.)?\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.oracle.sql</string>
 					<key>patterns</key>
@@ -6250,7 +6208,7 @@
 					<key>begin</key>
 					<string>(?=(?i)\s*(select)\b)</string>
 					<key>end</key>
-					<string>((?=;|\)))</string>
+					<string>(?=(\]\]&gt;|;|\)))</string>
 					<key>name</key>
 					<string>meta.statement.oracle.sql</string>
 					<key>patterns</key>
@@ -11862,7 +11820,7 @@
 					<key>begin</key>
 					<string>(?i)(?=(select)\s)</string>
 					<key>end</key>
-					<string>((?=;|\))|((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(grant|intersect|log\s++errors|minus|union|with(\s++(check|read)))\b)</string>
+					<string>(?=(\]\]&gt;|;|\)))|(((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(grant|intersect|log\s++errors|minus|union|with(\s++(check|read)))\b)</string>
 					<key>name</key>
 					<string>meta.statement.dml.select</string>
 					<key>patterns</key>
@@ -11879,7 +11837,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?=;|\))|((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$)|(?i)\b(?=(from)\s)</string>
+							<string>(?=(;|\)|\]\]&gt;))|((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$)|(?i)\b(?=(from)\s)</string>
 							<key>name</key>
 							<string>meta.section.select</string>
 							<key>patterns</key>
@@ -11928,7 +11886,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?i)\b(?=(for|where|gr(ant|oup)|log\s++errors|order|model|with(\s++(check|read)))\s)|((?=;|\))|((?=^\s*+/\s*+$))|(?=^\s*+$))|(?i)(?&lt;!multiset)(?=((^)?\s*+)\b(grant|intersect|log\s++errors|minus|union|with(\s++(check|read)))\b)</string>
+							<string>(?=(;|\)|\]\]&gt;))|(?i)\b(?=(for|where|gr(ant|oup)|log\s++errors|order|model|with(\s++(check|read)))\s)|(((?=^\s*+/\s*+$))|(?=^\s*+$))|(?i)(?&lt;!multiset)(?=((^)?\s*+)\b(grant|intersect|log\s++errors|minus|union|with(\s++(check|read)))\b)</string>
 							<key>name</key>
 							<string>meta.section.from</string>
 							<key>patterns</key>
@@ -12246,7 +12204,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?i)\b(?=(for|gr(ant|oup)|log\s++errors|model|order|with(\s++(check|read)))\s)|((?=;|\))|((?=^\s*+/\s*+$))|(?=^\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(grant|intersect|log\s++errors|minus|union)\b)</string>
+							<string>(?=(\]\]&gt;|;|\)))|(?i)\b(?=(for|gr(ant|oup)|log\s++errors|model|order|with(\s++(check|read)))\s)|(((?=^\s*+/\s*+$))|(?=^\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(grant|intersect|log\s++errors|minus|union)\b)</string>
 							<key>name</key>
 							<string>meta.section.where</string>
 							<key>patterns</key>
@@ -12269,7 +12227,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?i)\b(?=(order|model)\s)|((?=;|\))|((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(intersect|minus|union)\b)</string>
+							<string>(?=(;|\)|\]\]&gt;))|(?i)\b(?=(order|model)\s)|(((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(intersect|minus|union)\b)</string>
 							<key>name</key>
 							<string>meta.section.group_by</string>
 							<key>patterns</key>
@@ -12345,7 +12303,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?i)\b(?=(fetch|offset)\s)|((?=;|\))|((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(intersect|minus|union)\b)</string>
+							<string>(?=(;|\)|\]\]&gt;))|(?i)\b(?=(fetch|offset)\s)|(((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(intersect|minus|union)\b)</string>
 							<key>name</key>
 							<string>meta.section.group_by</string>
 							<key>patterns</key>
@@ -12486,7 +12444,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?i)\b(?=(for|fetch|offset)\s)|((?=;|\))|((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(intersect|minus|union)\b)</string>
+							<string>(?=(;|\)|\]\]&gt;))|(?i)\b(?=(for|fetch|offset)\s)|(((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$))|(?i)(?&lt;!multiset)(?=(\s++|^\s*+)(intersect|minus|union)\b)</string>
 							<key>name</key>
 							<string>meta.section.order_by</string>
 							<key>patterns</key>

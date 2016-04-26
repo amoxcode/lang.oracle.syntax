@@ -46,6 +46,35 @@
 					</dict>
 					<key>end</key>
 					<string>\]\]&gt;</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>(?=(?i)\s*(select)\b)</string>
+							<key>end</key>
+							<string>(?=\]\]&gt;)</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>source.oracle.sql</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(?=(?i)^\s*(with)\b)</string>
+							<key>end</key>
+							<string>(?=(?i)^\s*(select)\b)</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>source.oracle.sql</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
@@ -627,7 +656,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>\b(c(hild(Column|Query)|ondition)|parent(Column|Query))\b</string>
+							<string>\b(c(hild(Column|Query)|ondition)|name|parent(Column|Query))\b</string>
 							<key>name</key>
 							<string>variable.other</string>
 						</dict>
