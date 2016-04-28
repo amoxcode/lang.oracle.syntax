@@ -12,7 +12,7 @@
     // Because of this, setting them here will have no effect: you must set them
     // in your User File Preferences.
     "font_face": "Source Code Pro Medium",
-    "font_size": 9,
+    "font_size": 10,
 
     // Valid options are "no_bold", "no_italic", "no_antialias", "gray_antialias",
     // "subpixel_antialias", "no_round" (OS X only), "gdi" (Windows only) and
@@ -41,7 +41,7 @@
     "rulers": [ 80, 100, 120 ],
 
     // Set to true to turn spell checking on by default
-    "spell_check": false,
+    "spell_check": true,
 
     // The number of spaces a tab is considered equal to
     "tab_size": 4,
@@ -94,7 +94,7 @@
     "dictionary": "Packages/Language - English/en_US.dic",
 
     // Sets which scopes are checked for spelling errors
-    "spelling_selector": "source comment, -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",
+    "spelling_selector": "source.oracle comment, -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",
 
     // Set to true to draw a border around the visible rectangle on the minimap.
     // The color of the border will be determined by the "minimapBorder" key in
@@ -211,7 +211,7 @@
     // When disabled, tab will only trigger snippets or insert a tab.
     // Shift+tab can be used to insert an explicit tab when tab_completion is
     // enabled.
-    "tab_completion": true,
+    "tab_completion": false,
 
     // Enable auto complete to be triggered automatically when typing.
     "auto_complete": true,
@@ -223,7 +223,7 @@
     "auto_complete_delay": 50,
 
     // Controls what scopes auto complete will be triggered in
-    "auto_complete_selector": "source - comment",
+    "auto_complete_selector": "source.oracle - comment",
 
     // Additional situations to trigger auto complete
     "auto_complete_triggers": [ ],
@@ -242,7 +242,7 @@
     // the auto complete window is selected: if false, the window is hidden,
     // otherwise the last item in the window is selected. Likewise for the
     // down key when the last item is selected.
-    "auto_complete_cycle": false,
+    "auto_complete_cycle": true,
 
     // Automatically close HTML and XML tags when </ is entered.
     "auto_close_tags": false,
@@ -315,10 +315,10 @@
     "enable_tab_scrolling": true,
 
     // Display file encoding in the status bar
-    "show_encoding": false,
+    "show_encoding": true,
 
     // Display line endings in the status bar
-    "show_line_endings": false,
+    "show_line_endings": true,
 
     //
     // Application Behavior Settings

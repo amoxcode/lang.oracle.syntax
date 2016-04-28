@@ -20,7 +20,7 @@
             <key>name</key>
             <string>ORA_USERNAME</string>
             <key>value</key>
-            <string>define_username</string>
+            <string>Define user name info in Packages/Oracle/Support/Oracle Script/Oracle Script.tmpreferences</string>
          </dict>
          <dict>
             <key>name</key>

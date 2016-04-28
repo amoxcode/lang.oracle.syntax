@@ -3,10 +3,10 @@
   "scopeName": "source.oracle",
   "fileTypes": [ "sql", "pkh", "pks", "pkb", "pls", "plb", "lst", "buf" ],
   "patterns": [
-    { "include": "#syntax-oracle-all" }
+    { "include": "#main" }
   ],
   "repository": {
-    "syntax-oracle-all": {
+    "main": {
         "patterns": [
           { "include": "#sql-statement" },
           { "include": "#plsql-block" },
@@ -41,7 +41,7 @@
             { "include": "source.oracle.plsql" }
           ],
           "end": "(^(?=(\\s*+/\\s*+|\\.)$))",
-          "comment": "Only executable blocks in a script, CREATE handles subprogram/type/view creation"
+          "comment": "Anonmymous blocks in a script, CREATE handles subprogram/type/view creation"
         }
       ]
     }
