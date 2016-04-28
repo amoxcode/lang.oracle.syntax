@@ -61,7 +61,7 @@
 
     // Makes auto indent a little smarter, e.g., by indenting the next line
     // after an if statement in C. Requires auto_indent to be enabled.
-    "smart_indent": true,
+    "smart_indent": false,
 
     // Adds whitespace up to the first open bracket when indenting. Requires
     // auto_indent to be enabled.
@@ -232,7 +232,7 @@
     // This setting can be used to make it complete on tab instead.
     // Completing on tab is generally a superior option, as it removes
     // ambiguity between committing the completion and inserting a newline.
-    "auto_complete_commit_on_tab": false,
+    "auto_complete_commit_on_tab": true,
 
     // Controls if auto complete is shown when snippet fields are active.
     // Only relevant if auto_complete_commit_on_tab is true.
