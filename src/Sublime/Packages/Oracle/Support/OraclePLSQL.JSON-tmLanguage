@@ -11,7 +11,7 @@
     "meta-block": {
       "patterns": [
         {
-          "name": "meta.block.oracle.plsql",
+          "name": "meta.block.plsql",
           "begin": "(?=(?i)\\b(begin|declare|library|package|trigger|type)(\\s|$))|(?=<<)",
           "patterns": [
             { "include": "#label" },
