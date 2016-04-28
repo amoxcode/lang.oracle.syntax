@@ -13,6 +13,16 @@
 			^.*\b(end(\s++\w++)?)\s*;.*$
 		|	^\s*exception\s*$
 		</string>
+		<!--
+		<string>(?x)
+		^ (.*\*/)? \s* \} ( [^}{"']* \{ | \s* while \s* \( .* )? [;\s]* (//.*|/\*.*\*/\s*)? $
+	</string> -->
+		<key>increaseIndentPattern</key>
+		<string>(?xi)
+			^\s*(begin|declare|exception)\s*$
+		|	^.*\b(begin|then|loop)\s*$
+		|	^.*\(\s*$
+		</string>
 <!-- 		<key>indentNextLinePattern</key>
 		<string>(?x)^
 		(?! .* [;:{}]                   # do not indent when line ends with ;, :, {, or }
