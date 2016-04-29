@@ -11,7 +11,7 @@
 		<key>decreaseIndentPattern</key>
 		<string>(?xi)
 			^.*\b(end(\s++\w++)?)\s*;.*$
-		|	^\s*exception\s*$
+		|	^\s*(\$end|e(ls(e|if)|xception))\s*$
 		</string>
 		<!--
 		<string>(?x)
@@ -19,20 +19,20 @@
 	</string> -->
 		<key>increaseIndentPattern</key>
 		<string>(?xi)
-			^\s*(begin|declare|exception)\s*$
-		|	^.*\b(begin|then|loop)\s*$
+			^\s*(begin|declare|e(ls(e|if)|xception))\s*$
+		|	^.*\b(begin|is|then|loop)\s*$
 		|	^.*\(\s*$
 		</string>
-<!-- 		<key>indentNextLinePattern</key>
+ 		<key>indentNextLinePattern</key>
 		<string>(?x)^
-		(?! .* [;:{}]                   # do not indent when line ends with ;, :, {, or }
-			\s* (//|/[*] .* [*]/ \s* $) #  …account for potential trailing comment
+		(?! .* [;\(\)]                   # do not indent when line ends with ;, (, or )
+			\s* (--|/[*] .* [*]/ \s* $) #  …account for potential trailing comment
 		)
-		.* [^\s;:{}] \s* $              # indent next if this one isn’t
+		.* [^\s;\(\)] \s* $              # indent next if this one isn’t
 										#  terminated with ;, :, {, or }
 	</string>
 		<key>unIndentedLinePattern</key>
-		<string>^\s*((/\*|\*/|//|#).*)?$</string> -->
+		<string>^\s*((/\*|\*/|--).*)?$</string>
 	</dict>
 	<key>uuid</key>
 	<string>CF977095-ACE3-46DB-A20E-58AEA6F67017</string>
