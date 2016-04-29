@@ -183,11 +183,7 @@
         {
           "name": "constant.language",
           "match": "\\b(?i)(failure|page|r(eport|ow)|s(uccess|ys(asm|backup|dba|dg|oper|km))|warning)\\b"
-        }
-      ]
-    },
-    "constant-language": {
-      "patterns": [
+        },
         {
           "name": "constant.language",
           "match": "\\b(?i)(all|by(value|reference)|e(a(?>ch|c)?|ntry)|default|full|i(n(v(?>isible|isibl|isib|isi|is|i)?|termed(?>iate|iat|ia|i)?)|mm(?>ediate|ediat|edia|edi|ed|d)?)|lo(?>wer|we|w)?|mix(?>ed|e)?|none|o(rdered|n|ff)|sql|tr(u(?>ncated|ncate|ncat|nca|nc|n)?|ace(?>only|onl|on|o)?)|u(p(?>per)?|n(ordered|l(?>imited|imite|imit|imi|im|i)?))|vis(?>ible|ibl|ib|i)?|w(or(?>d_wrapped|d_wrappe|d_wrappe|d_wrapp|d_wrap|d_wra|d_wr|d_w|d_|d)?|r(?>apped|appe|app)?))\\b"
