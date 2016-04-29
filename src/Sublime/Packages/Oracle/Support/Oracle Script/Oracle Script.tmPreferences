@@ -8,6 +8,8 @@
    <string>source.oracle</string>
    <key>settings</key>
    <dict>
+      <key>cancelCompletion</key>
+      <string>^(?i:c|a|l|i)$</string>
       <key>shellVariables</key>
       <array>
          <dict>
