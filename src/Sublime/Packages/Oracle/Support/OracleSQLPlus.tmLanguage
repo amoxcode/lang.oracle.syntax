@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
@@ -2210,6 +2210,12 @@
 		<dict>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(?i)(failure|page|r(eport|ow)|s(uccess|ys(asm|backup|dba|dg|oper|km))|warning)\b</string>
+					<key>name</key>
+					<string>constant.language</string>
+				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(?i)(all|by(value|reference)|e(a(?&gt;ch|c)?|ntry)|default|full|i(n(v(?&gt;isible|isibl|isib|isi|is|i)?|termed(?&gt;iate|iat|ia|i)?)|mm(?&gt;ediate|ediat|edia|edi|ed|d)?)|lo(?&gt;wer|we|w)?|mix(?&gt;ed|e)?|none|o(rdered|n|ff)|sql|tr(u(?&gt;ncated|ncate|ncat|nca|nc|n)?|ace(?&gt;only|onl|on|o)?)|u(p(?&gt;per)?|n(ordered|l(?&gt;imited|imite|imit|imi|im|i)?))|vis(?&gt;ible|ibl|ib|i)?|w(or(?&gt;d_wrapped|d_wrappe|d_wrappe|d_wrapp|d_wrap|d_wra|d_wr|d_w|d_|d)?|r(?&gt;apped|appe|app)?))\b</string>
