@@ -5,4 +5,4 @@ echo "Generating zipped Sublime Text package to downloads/Sublime/Oracle.sublime
 cd ../src/Sublime/Packages/Oracle
 rm ${PACKAGE_LOCATION}
 # Exclude JSON files used for tmlanguage XML files generation
-zip -r ${PACKAGE_LOCATION} . -x *JSON*
+zip -r ${PACKAGE_LOCATION} . -x *JSON* -x *sublime-build
