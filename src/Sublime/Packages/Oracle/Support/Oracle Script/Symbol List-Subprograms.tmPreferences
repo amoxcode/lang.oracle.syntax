@@ -13,6 +13,8 @@
       <key>symbolTransformation</key>
       <string>
       	s/\s*\(.*\)//g
+      	s/--.*?(?i:return)/return/
+      	s/--.*$//g
       	s/\s*(;)?\s*$/ /g
         s/\s++/ /g
         s/./\L($0)/g
