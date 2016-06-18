@@ -2,7 +2,12 @@
         "scope": "meta.block.plsql",
         "completions":
         [
-        	{ "trigger": "begin\tblock", "contents": "begin\n\t${0:null} ;\nexception\n\twhen others then\n\t\trollback ;\n\t\traise ;\nend ;" },
-        	{ "trigger": "declare\tblock", "contents": "declare\n\t$0\nbegin\n\tnull ;\nexception\n\twhen others then\n\t\trollback ;\n\t\traise ;\nend ;" }
+        	{ "trigger": "begin\tbegin", "contents": "begin" },
+        	{ "trigger": "begin\tanonymous block", "contents": "begin\n\t${0:null} ;\nexception\n\twhen others then\n\t\trollback ;\n\t\traise ;\nend ;" },
+        	{ "trigger": "declare\tanonymous block", "contents": "declare\n\t$0\nbegin\n\tnull ;\nexception\n\twhen others then\n\t\trollback ;\n\t\traise ;\nend ;" },
+        	{ "trigger": "if\tif..then", "contents": "if ${0:1 = 2} then\n\tnull ;\nend if;" },
+        	{ "trigger": "if\tif..then..else", "contents": "if ${0:1 = 2} then\n\tnull ;\nelse\n\tnull ;\nend if;" },
+        	{ "trigger": "if\tif..then..elsif", "contents": "if ${1:1 = 2} then\n\tnull ;\nelsif ${2:2 = 1} then\n\tnull ;\nelse\n\tnull ;\nend if;" },
+        	{ "trigger": "select\tsimple select", "contents": "select ${1:column}\n  from ${2:table tab}\n where 1 = 2 ;" }
         ]
 }        
