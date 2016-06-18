@@ -1,0 +1,8 @@
+{
+        "scope": "meta.block.plsql",
+        "completions":
+        [
+        	{ "trigger": "begin\tblock", "contents": "begin\n\t${0:null} ;\nexception\n\twhen others then\n\t\trollback ;\n\t\traise ;\nend ;" },
+        	{ "trigger": "declare\tblock", "contents": "declare\n\t$0\nbegin\n\tnull ;\nexception\n\twhen others then\n\t\trollback ;\n\t\traise ;\nend ;" }
+        ]
+}        
