@@ -9,7 +9,7 @@
    <key>settings</key>
    <dict>
       <key>cancelCompletion</key>
-      <string>\s(?i:i(n)?)\s</string>
+      <string>^.*\s+(?i:(i(n)?|o(?>ut|u)?))$</string>
       <key>shellVariables</key>
       <array>
          <dict>
