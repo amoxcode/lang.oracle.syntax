@@ -275,9 +275,6 @@
         {  "name": "keyword.operator",
            "match": "(\\+|:=|=>|%|\\|\\||/|\\*{1,2}|(?<!\\.)((\\.){1,2})(?!\\.)|=|<>|!=|~=|\\^=|<(=)?|>(=)?|-)"
         },
-        {  "name": "keyword.other.delimiter",
-           "match": "(\\(|\\))"
-        },
         {  "name": "keyword.other.separator",
            "match": "(,)"
         },
@@ -322,6 +319,9 @@
         },
         {  "name": "invalid.illegal",
            "match": "(?i)\\b([[:alpha:]])(([\\w$#]){30,})"
+        },
+        {  "name": "invalid.illegal",
+           "match": "(?i)\\b(\\d)(([a-z$#])([\\w$#])*)\\b"
         }
       ]
     },
@@ -412,7 +412,10 @@
            "match": "(?i)(?<=%)(bulk_(exceptions|rowcount)|found|isopen|notfound|rowcount)\\b"
         },
         { "include": "#identifier" },
-        { "include": "#keyword-delimiter" }
+        { "include": "#keyword-delimiter" },
+        {  "name": "invalid.illegal",
+           "match": "\\)"
+        }
       ]
     },
     "statement-assignment": {

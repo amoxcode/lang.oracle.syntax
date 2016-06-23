@@ -490,6 +490,12 @@
 					<key>include</key>
 					<string>#keyword-delimiter</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>invalid.illegal</string>
+				</dict>
 			</array>
 		</dict>
 		<key>identifier</key>
@@ -557,6 +563,12 @@
 					<key>name</key>
 					<string>invalid.illegal</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(\d)(([a-z$#])([\w$#])*)\b</string>
+					<key>name</key>
+					<string>invalid.illegal</string>
+				</dict>
 			</array>
 		</dict>
 		<key>invoker-rights-clause</key>
@@ -582,12 +594,6 @@
 					<string>(\+|:=|=&gt;|%|\|\||/|\*{1,2}|(?&lt;!\.)((\.){1,2})(?!\.)|=|&lt;&gt;|!=|~=|\^=|&lt;(=)?|&gt;(=)?|-)</string>
 					<key>name</key>
 					<string>keyword.operator</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>(\(|\))</string>
-					<key>name</key>
-					<string>keyword.other.delimiter</string>
 				</dict>
 				<dict>
 					<key>match</key>
