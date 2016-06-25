@@ -5,7 +5,7 @@
    <key>name</key>
    <string>Symbol List</string>
    <key>scope</key>
-   <string>meta.block.define meta.block.define entity.name.function</string>
+   <string>source.oracle.fndload meta.block.define meta.block.define entity.name.function</string>
    <key>settings</key>
    <dict>
       <key>showInSymbolList</key>
