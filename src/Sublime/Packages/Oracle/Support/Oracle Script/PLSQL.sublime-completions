@@ -58,8 +58,8 @@
                 { "trigger": "prior", "contents": "prior( $0 )" },                
         	{ "trigger": "select\tsimple select", "contents": "select ${1:column}\n  into ${2:var}\n  from ${3:table}\n where 1 = 2 ;" },
                 { "trigger": "submultiset", "contents": "submultiset of " },
-                { "trigger": "trim\last element", "contents": "trim" },
-                { "trigger": "trim\last n elements", "contents": "trim( $0 )" },
+                { "trigger": "trim\tlast element", "contents": "trim" },
+                { "trigger": "trim\tlast n elements", "contents": "trim( $0 )" },
                 { "trigger": "while loop\tbasic", "contents": "while ${1:condition} loop\n\tnull ;\n\texit when 1 = 1 ; -- or change the condition\nend loop ;" },
                 { "trigger": "while loop\tassoc. array", "contents": "-- Declare idx with the same type as array index\nidx := ${1:array_name}.first ;\nwhile idx is not null loop\n\tnull ;\n\tidx := ${1}.next( idx ) ; \nend loop ;" }
         ]
