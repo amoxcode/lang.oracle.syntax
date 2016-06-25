@@ -1,5 +1,5 @@
 {
-    "selector": "source.oracle",
+    "selector": "source.oracle.script",
     "cmd": ["cmd", "/c", "echo Type CTRL+SHIFT+P and then type 'Build' to list available build systems."],
     "variants": [
         {

@@ -1,5 +1,5 @@
 {
-        "scope": "source.oracle meta.block.plsql meta.section.declare, source.oracle meta.block.plsql meta.block.declaration",
+        "scope": "source.oracle.script meta.block.plsql meta.section.declare, source.oracle.script meta.block.plsql meta.block.declaration",
         "completions":
         [
                 { "trigger": "bfile", "contents": "bfile" },

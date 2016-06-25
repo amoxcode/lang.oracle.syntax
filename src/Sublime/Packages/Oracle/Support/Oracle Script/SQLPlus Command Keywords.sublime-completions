@@ -1,5 +1,5 @@
 {
-        "scope": "source.oracle meta.command.sqlplus - meta.command.sqlplus.remark - meta.command.sqlplus.prompt - meta.command.sqlplus.pause",
+        "scope": "source.oracle.script meta.command.sqlplus - meta.command.sqlplus.remark - meta.command.sqlplus.prompt - meta.command.sqlplus.pause",
         "completions":
         [
                 "_connect_identifier",

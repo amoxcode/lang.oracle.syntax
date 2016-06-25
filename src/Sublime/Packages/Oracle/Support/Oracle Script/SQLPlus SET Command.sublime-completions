@@ -1,5 +1,5 @@
 {
-        "scope": "source.oracle meta.command.sqlplus.set",
+        "scope": "source.oracle.script meta.command.sqlplus.set",
         "completions":
         [
                 { "trigger": "appinfo\tturn on", "contents": "appinfo on" },

@@ -1,5 +1,5 @@
 {
-        "scope": "source.oracle meta.block.plsql meta.section.executable - meta.section.declare - meta.block.declaration",
+        "scope": "source.oracle.script meta.block.plsql meta.section.executable - meta.section.declare - meta.block.declaration",
         "completions":
         [
         	{ "trigger": "begin", "contents": "begin" },

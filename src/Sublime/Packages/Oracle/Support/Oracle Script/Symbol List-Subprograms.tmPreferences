@@ -5,7 +5,7 @@
    <key>name</key>
    <string>Symbol List</string>
    <key>scope</key>
-   <string>source.oracle meta.block.subprogram.heading</string>
+   <string>source.oracle.script meta.block.subprogram.heading</string>
    <key>settings</key>
    <dict>
       <key>showInSymbolList</key>

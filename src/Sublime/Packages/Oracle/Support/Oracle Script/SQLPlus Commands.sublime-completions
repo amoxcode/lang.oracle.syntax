@@ -1,5 +1,5 @@
 {
-        "scope": "source.oracle - meta.block.plsql - meta.command.sqlplus - meta.statement.oracle.sql - source.oracle.ff - source.oracle.bip, meta.command.sqlplus.append, meta.command.sqlplus.change, meta.command.sqlplus.input, meta.command.sqlplus.list, meta.command.sqlplus.run",
+        "scope": "source.oracle.script - meta.block.plsql - meta.command.sqlplus - meta.statement.oracle.sql, meta.command.sqlplus.append, meta.command.sqlplus.change, meta.command.sqlplus.input, meta.command.sqlplus.list, meta.command.sqlplus.run",
         "completions":
         [
                 { "trigger": "accept\tnumber variable", "contents": "accept ${1:variable_name} number${2: format '${3:format_mask}'}${4: default ${5:default_value}}${6: prompt '${7:Enter ${1/^([[:alnum:]]++)|(_([[:alnum:]]++))/\\u\\1(?2: \\u\\3)/g}${3/(.+)/ [\\1]/}: }'}${8: ${9:hide}}\n$0"},
