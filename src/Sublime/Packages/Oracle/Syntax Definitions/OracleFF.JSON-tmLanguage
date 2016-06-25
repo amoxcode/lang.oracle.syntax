@@ -16,7 +16,7 @@
   			{ "include": "#delimiter" },
   			{ "include": "#function" },
   			{ "include": "#control" },
-  			{ "include": "#variable" }  			
+  			{ "include": "##variable" }  			
   		]
   	},
   	"comment": {
@@ -61,7 +61,7 @@
   		"patterns": [
   			{  
   				"name": "variable.other",
-  			   	"match": "\\b([[:alpha:]])\\w{,79}\\b"
+  			  "match": "(?i)\\b([[:alpha:]])\\w{,79}\\b"
   			}
   		]
   	},
@@ -74,7 +74,7 @@
   			   "match": "(?i)\\b(date|numeric|text)\\b"
   			},
   			{  "name": "storage.modifier",
-  			   "match": "(?i)\\b(alias)\\b"
+  			   "match": "(?i)\\b(a(lias|s))\\b"
   			},
   			{  "name": "storage.modifier",
   			   "match": "(?i)\\b(default|for|is)\\b"
@@ -107,7 +107,7 @@
   	"function": {
   		"patterns": [
   			{  "name": "support.function",
-  			   "match": "(?i)\\b(chr|debug|greatest(_of)?|in(itcap|str(b)?)|l(e(ast(_of)?|nth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(anslate|rim)|upper)\\b"
+  			   "match": "(?i)\\b(chr|debug|from|greatest(_of)?|in(itcap|str(b)?)|l(e(a(ding|st(_of)?)|nth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(a(iling|nslate)|im)|upper)\\b"
   			},
   			{  "name": "support.function",
   			   "match": "(?i)\\b(abs|calculate_hours_worked|floor|greatest(_of)?|least|power|round((_)?up)?|trunc(ate)?)\\b"

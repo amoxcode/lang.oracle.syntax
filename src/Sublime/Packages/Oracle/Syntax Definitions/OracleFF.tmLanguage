@@ -124,7 +124,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(chr|debug|greatest(_of)?|in(itcap|str(b)?)|l(e(ast(_of)?|nth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(anslate|rim)|upper)\b</string>
+					<string>(?i)\b(chr|debug|from|greatest(_of)?|in(itcap|str(b)?)|l(e(a(ding|st(_of)?)|nth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(a(iling|nslate)|im)|upper)\b</string>
 					<key>name</key>
 					<string>support.function</string>
 				</dict>
@@ -242,7 +242,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#variable</string>
+					<string>##variable</string>
 				</dict>
 			</array>
 		</dict>
@@ -264,7 +264,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(alias)\b</string>
+					<string>(?i)\b(a(lias|s))\b</string>
 					<key>name</key>
 					<string>storage.modifier</string>
 				</dict>
@@ -282,7 +282,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b([[:alpha:]])\w{,79}\b</string>
+					<string>(?i)\b([[:alpha:]])\w{,79}\b</string>
 					<key>name</key>
 					<string>variable.other</string>
 				</dict>
