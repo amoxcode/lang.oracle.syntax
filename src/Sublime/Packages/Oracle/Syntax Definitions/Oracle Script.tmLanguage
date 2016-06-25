@@ -101,7 +101,7 @@
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>source.oracle</string>
+	<string>source.oracle.script</string>
 	<key>uuid</key>
 	<string>894b100b-de35-42f0-bde7-7eecb457bb0e</string>
 </dict>

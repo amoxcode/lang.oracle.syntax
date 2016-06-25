@@ -1,6 +1,6 @@
 // [PackageDev] target_format: plist, ext: tmLanguage
 { "name": "Oracle Script",
-  "scopeName": "source.oracle",
+  "scopeName": "source.oracle.script",
   "fileTypes": [ "sql", "pkh", "pks", "pkb", "pls", "plb", "lst", "buf" ],
   "patterns": [
     { "include": "#main" }
