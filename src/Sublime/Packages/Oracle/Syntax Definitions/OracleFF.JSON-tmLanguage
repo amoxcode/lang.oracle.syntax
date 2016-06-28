@@ -16,6 +16,7 @@
   			{ "include": "#delimiter" },
   			{ "include": "#function" },
   			{ "include": "#control" },
+        { "include": "#parens" },
   			{ "include": "##variable" }  			
   		]
   	},
@@ -100,26 +101,26 @@
   	"delimiter": {
   		"patterns": [
   			{  "name": "keyword.other.delimiter",
-  			   "match": "(,|\\(|\\))"
+  			   "match": "(,)"
   			}
   		]
   	},
   	"function": {
   		"patterns": [
   			{  "name": "support.function",
-  			   "match": "(?i)\\b(chr|debug|from|greatest(_of)?|in(itcap|str(b)?)|l(e(a(ding|st(_of)?)|nth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(a(iling|nslate)|im)|upper)\\b"
+  			   "match": "(?i)\\b(chr|debug|from|greatest(_of)?|in(itcap|str(b)?)|l(e(a(ding|st(_of)?)|ngth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(a(iling|nslate)|im)|upper)\\b"
   			},
   			{  "name": "support.function",
-  			   "match": "(?i)\\b(abs|calculate_hours_worked|floor|greatest(_of)?|least|power|round((_)?up)?|trunc(ate)?)\\b"
+  			   "match": "(?i)\\b(abs|calculate_hours_worked|floor|greatest(_of)?|least(_of)?|power|round((_)?up)?|trunc(ate)?)\\b"
   			},
   			{  "name": "support.function",
-  			   "match": "(?i)\\b(add_(days|months|years)|greatest|l(ast_dat|east)|months_between|ne(w_time|xt_dat))\\b"
+  			   "match": "(?i)\\b(add_(days|months|years)|days_between|greatest|l(ast_day|east)|months_between|ne(w_time|xt_day))\\b"
   			},
   			{  "name": "support.function",
-  			   "match": "(?i)\\b(convert|instr|num_to_char|to_(date|number|text))\\b"
+  			   "match": "(?i)\\b(convert|date_to_text|instr|num_to_char|to_(char|date|number|text))\\b"
   			},
   			{  "name": "support.function",
-  			   "match": "(?i)\\b(get_(lookup_meaning|table_value|ra(ise_error|test_history)))\\b"
+  			   "match": "(?i)\\b(get_(lookup_meaning|table_value|ra(ise_error|tes_history)))\\b"
   			},
   			{  "name": "support.function",
   			   "match": "(?i)\\b(calculate_payroll_periods|get_(a(bsence|ccrual_band|s(g_inactive_days|signment_status))|carry_over|net_accrual|other_net_contribution|p(ayroll_period|eriod_dates)|start_date|working_days)|put_message)\\b"
@@ -144,6 +145,33 @@
   			   "match": "(?i)\\b(return)\\b"
   			}
   		]
-  	}
+  	},
+    "parens": {
+      "patterns": [
+        { "name": "meta.section.parens",
+          "begin": "\\(",
+          "captures": {
+              "0": { "name": "keyword.other.delimiter" }              
+          },
+          "patterns": [
+            { "include": "#comment" },
+            { "include": "#constant" },
+            { "include": "#storage" },
+            { "include": "#operator" },
+            { "include": "#delimiter" },
+            { "include": "#function" },
+            { "include": "#control" },
+            { "include": "#parens" },
+            {  "name": "storage.type",
+               "match": "(?i)\\b(date)\\b"
+            }
+          ],
+          "end": "\\)"
+        },
+        {  "name": "invalid.illegal",
+           "match": "\\)"
+        }        
+      ]    
+    }
   }
 }

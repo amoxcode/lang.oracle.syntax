@@ -112,7 +112,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(,|\(|\))</string>
+					<string>(,)</string>
 					<key>name</key>
 					<string>keyword.other.delimiter</string>
 				</dict>
@@ -124,31 +124,31 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(chr|debug|from|greatest(_of)?|in(itcap|str(b)?)|l(e(a(ding|st(_of)?)|nth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(a(iling|nslate)|im)|upper)\b</string>
+					<string>(?i)\b(chr|debug|from|greatest(_of)?|in(itcap|str(b)?)|l(e(a(ding|st(_of)?)|ngth(b)?)|ower|pad|trim)|r(eplace|pad|trim)|substr(b|ing)?|tr(a(iling|nslate)|im)|upper)\b</string>
 					<key>name</key>
 					<string>support.function</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(abs|calculate_hours_worked|floor|greatest(_of)?|least|power|round((_)?up)?|trunc(ate)?)\b</string>
+					<string>(?i)\b(abs|calculate_hours_worked|floor|greatest(_of)?|least(_of)?|power|round((_)?up)?|trunc(ate)?)\b</string>
 					<key>name</key>
 					<string>support.function</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(add_(days|months|years)|greatest|l(ast_dat|east)|months_between|ne(w_time|xt_dat))\b</string>
+					<string>(?i)\b(add_(days|months|years)|days_between|greatest|l(ast_day|east)|months_between|ne(w_time|xt_day))\b</string>
 					<key>name</key>
 					<string>support.function</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(convert|instr|num_to_char|to_(date|number|text))\b</string>
+					<string>(?i)\b(convert|date_to_text|instr|num_to_char|to_(char|date|number|text))\b</string>
 					<key>name</key>
 					<string>support.function</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(get_(lookup_meaning|table_value|ra(ise_error|test_history)))\b</string>
+					<string>(?i)\b(get_(lookup_meaning|table_value|ra(ise_error|tes_history)))\b</string>
 					<key>name</key>
 					<string>support.function</string>
 				</dict>
@@ -242,7 +242,80 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#parens</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>##variable</string>
+				</dict>
+			</array>
+		</dict>
+		<key>parens</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>captures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.delimiter</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>meta.section.parens</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#constant</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#storage</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#operator</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#delimiter</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#function</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#control</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#parens</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>(?i)\b(date)\b</string>
+							<key>name</key>
+							<string>storage.type</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>invalid.illegal</string>
 				</dict>
 			</array>
 		</dict>
