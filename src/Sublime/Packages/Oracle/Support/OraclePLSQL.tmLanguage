@@ -480,7 +480,7 @@
 					<key>match</key>
 					<string>(?i)(?&lt;=%)(bulk_(exceptions|rowcount)|found|isopen|notfound|rowcount)\b</string>
 					<key>name</key>
-					<string>support.variable</string>
+					<string>variable.other</string>
 				</dict>
 				<dict>
 					<key>include</key>

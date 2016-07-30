@@ -408,7 +408,7 @@
         {  "name": "support.variable",
            "match": "(?i)(?<=\\.)(currval|nextval)\\b"
         },
-        {  "name": "support.variable",
+        {  "name": "variable.other",
            "match": "(?i)(?<=%)(bulk_(exceptions|rowcount)|found|isopen|notfound|rowcount)\\b"
         },
         { "include": "#identifier" },
