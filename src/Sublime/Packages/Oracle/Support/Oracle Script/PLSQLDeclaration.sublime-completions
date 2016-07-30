@@ -77,7 +77,7 @@
                 { "trigger": "type", "contents": "type" },
                 { "trigger": "type\tassoc. array", "contents": "type ${1:type_name} is table of ${2:array_type}\n\tindex by ${3:index_type} ;" },
                 { "trigger": "type\tnested table", "contents": "type ${1:type_name} is table of ${2:array_type} ;" },
-                { "trigger": "type\trecord", "contents": "type ${1:type_name} is record(\n\t${1:element}\t${2:element_type}) ;" },
+                { "trigger": "type\trecord", "contents": "type ${1:type_name} is record(\n\t${2:element}\t${3:element_type}) ;" },
                 { "trigger": "type\tvarray", "contents": "type ${1:type_name} is varray( ${2:varray_size} ) of ${3:varray_type} ;" },
                 { "trigger": "URIType", "contents": "URIType" },
                 { "trigger": "urowid", "contents": "urowid" },
