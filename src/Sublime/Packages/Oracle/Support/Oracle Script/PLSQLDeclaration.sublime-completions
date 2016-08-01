@@ -82,6 +82,8 @@
                 { "trigger": "type\tassoc. array", "contents": "type ${1:type_name} is table of ${2:array_type}\n\tindex by ${3:index_type} ;" },
                 { "trigger": "type\tnested table", "contents": "type ${1:type_name} is table of ${2:array_type} ;" },
                 { "trigger": "type\trecord", "contents": "type ${1:type_name} is record(\n\t${2:element}\t${3:element_type}) ;" },
+                { "trigger": "type\tref cursor", "contents": "type ${1:type_name} is ref cursor ;" },
+                { "trigger": "type\tref cursor +return", "contents": "type ${1:type_name} is ref cursor return ${2:return_type} ;" },
                 { "trigger": "type\tvarray", "contents": "type ${1:type_name} is varray( ${2:varray_size} ) of ${3:varray_type} ;" },
                 { "trigger": "URIType", "contents": "URIType" },
                 { "trigger": "urowid", "contents": "urowid" },
