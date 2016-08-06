@@ -2931,7 +2931,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?=;\s*+$)|$</string>
+					<string>$</string>
 					<key>name</key>
 					<string>comment.line.double-dash</string>
 				</dict>

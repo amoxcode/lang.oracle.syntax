@@ -280,7 +280,7 @@
           "beginCaptures": {
               "1": { "name": "keyword.other" }
           },
-          "end": "(?=;\\s*+$)|$"
+          "end": "$"
         },
         { "name": "comment.block",
           "begin": "(/\\*)(?!\\+)",
