@@ -142,7 +142,7 @@
 							<key>match</key>
 							<string>(?i)\b(invalid_number|no_data_(found|needed)|others|rowtype_mismatch|too_many_rows|zero_divide)\b</string>
 							<key>name</key>
-							<string>support.variable</string>
+							<string>constant.language</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -3147,13 +3147,13 @@
 					<key>match</key>
 					<string>(?i)(?&lt;=%)(bulk_(exceptions|rowcount)|found|isopen|notfound|rowcount)\b</string>
 					<key>name</key>
-					<string>variable.other</string>
+					<string>constant.language</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(?i)\b(sys_invalid_rowid)\b</string>
 					<key>name</key>
-					<string>support.variable</string>
+					<string>constant.language</string>
 				</dict>
 			</array>
 		</dict>
