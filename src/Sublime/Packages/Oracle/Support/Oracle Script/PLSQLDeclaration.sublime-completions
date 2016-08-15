@@ -51,6 +51,7 @@
                 { "trigger": "pls_integer", "contents": "pls_integer" },
                 { "trigger": "positive", "contents": "positive" },
                 { "trigger": "positiven", "contents": "positiven" },
+                { "trigger": "pragma\tautonomous_transaction", "contents": "pragma autonomous_transaction ;" },
                 { "trigger": "raw", "contents": "raw" },
                 { "trigger": "range", "contents": "range ${1:low}..${2:high}" },
                 { "trigger": "real", "contents": "real" },
