@@ -128,7 +128,7 @@
            }
         },
         {  "name": "constant.language",
-           "match": "(?i)\\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null|true)\\b"
+           "match": "(?i)\\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|deleting|false|inserting|null|object_value|true|updating)\\b"
         },
         {  "name": "constant.language",
            "match": "\\b((G|g)_\\w++)\\b"
@@ -297,10 +297,7 @@
               "1": { "name": "keyword.other.delimiter" }
           },
           "patterns": [
-            { "include": "#variable-other-substitution-oracle-sqlplus" },
-            {  "name": "variable.other",
-               "match": "."
-            }
+            { "include": "#variable-other-substitution-oracle-sqlplus" }
           ],
           "end": "(\")"
         },
@@ -401,9 +398,6 @@
         { "include": "#support" },
         {  "name": "keyword.other.multiset",
            "match": "(?i)\\b(multiset\\s++(except|intersect|union)(\\s++(all|distinct))?)\\b"
-        },
-        {  "name": "keyword.other.predicate",
-           "match": "(?i)\\b(inserting|updating|deleting)\\b"
         },
         {  "name": "support.variable",
            "match": "(?i)(?<=\\.)(currval|nextval)\\b"
@@ -930,7 +924,7 @@
           },
           "patterns": [
             {  "name": "constant.language",
-               "match": "(?i)\\b(invalid_number|no_data_(found|needed)|others|rowtype_mismatch|too_many_rows|zero_divide)\\b"
+               "match": "(?i)\\b(deleting|in(serting|valid_number)|no_data_(found|needed)|others|rowtype_mismatch|too_many_rows|updating|zero_divide)\\b"
             },
             { "include": "#expression" }
           ],

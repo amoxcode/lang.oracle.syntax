@@ -1,0 +1,23 @@
+{
+        "scope": "source.oracle.script meta.block.trigger.heading",
+        "completions":
+        [
+                { "trigger": "after", "contents": "after" },
+                { "trigger": "before", "contents": "before" },
+                { "trigger": "compound trigger", "contents": "compound trigger" },     
+                { "trigger": "create", "contents": "create" },
+                { "trigger": "delete", "contents": "delete" },
+                { "trigger": "drop", "contents": "drop" },
+                { "trigger": "for", "contents": "for" },                
+                { "trigger": "for\teach row", "contents": "for each row" },
+                { "trigger": "insert", "contents": "insert" },   
+                { "trigger": "instead of", "contents": "instead of" },      
+                { "trigger": "referencing", "contents": "referencing" },                                   
+                { "trigger": "referencing\tas", "contents": "referencing new as ${1:new}\n            old as ${2:old}" },                                   
+                { "trigger": "servererror", "contents": "servererror" }, 
+                { "trigger": "servererror\ton database", "contents": "servererror on database" },                 
+                { "trigger": "statement", "contents": "statement" }, 
+                { "trigger": "update", "contents": "update" },
+                { "trigger": "when", "contents": "when" }                           
+        ]
+}        

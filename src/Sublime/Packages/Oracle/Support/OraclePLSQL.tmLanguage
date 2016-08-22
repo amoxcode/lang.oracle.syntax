@@ -140,7 +140,7 @@
 					<array>
 						<dict>
 							<key>match</key>
-							<string>(?i)\b(invalid_number|no_data_(found|needed)|others|rowtype_mismatch|too_many_rows|zero_divide)\b</string>
+							<string>(?i)\b(deleting|in(serting|valid_number)|no_data_(found|needed)|others|rowtype_mismatch|too_many_rows|updating|zero_divide)\b</string>
 							<key>name</key>
 							<string>constant.language</string>
 						</dict>
@@ -466,12 +466,6 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(inserting|updating|deleting)\b</string>
-					<key>name</key>
-					<string>keyword.other.predicate</string>
-				</dict>
-				<dict>
-					<key>match</key>
 					<string>(?i)(?&lt;=\.)(currval|nextval)\b</string>
 					<key>name</key>
 					<string>support.variable</string>
@@ -520,12 +514,6 @@
 						<dict>
 							<key>include</key>
 							<string>#variable-other-substitution-oracle-sqlplus</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>.</string>
-							<key>name</key>
-							<string>variable.other</string>
 						</dict>
 					</array>
 				</dict>
@@ -943,7 +931,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null|true)\b</string>
+					<string>(?i)\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|deleting|false|inserting|null|true|updating)\b</string>
 					<key>name</key>
 					<string>constant.language</string>
 				</dict>

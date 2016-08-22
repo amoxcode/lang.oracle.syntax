@@ -1,5 +1,5 @@
 {
-        "scope": "source.oracle.script meta.block.plsql meta.section.executable - meta.section.declare - meta.block.declaration - meta.statement.oracle.sql",
+        "scope": "source.oracle.script meta.block.plsql meta.section.executable - meta.section.executable meta.section.declare - meta.block.declaration",
         "completions":
         [
                 { "trigger": "begin", "contents": "begin" },
@@ -34,6 +34,7 @@
         	{ "trigger": "declare\tanonymous block", "contents": "declare\n\t$0\nbegin\n\tnull ;\nexception\n\twhen others then\n\t\trollback ;\n\t\traise ;\nend ;" },
                 { "trigger": "delete", "contents": "delete" },
                 { "trigger": "delete\telement", "contents": "delete( $0 )" },
+                { "trigger": "deleting", "contents": "deleting" },   
                 { "trigger": "execute immediate", "contents": "execute immediate ${1:sql_var} ;" }, 
                 { "trigger": "execute immediate\tusing", "contents": "execute immediate ${1:sql_var} using ${2:input_var} ;" }, 
                 { "trigger": "exists", "contents": "exists( $0 )" },                
@@ -61,6 +62,7 @@
         	{ "trigger": "if\tif..then", "contents": "if ${0:1 = 2} then\n\tnull ;\nend if;" },
         	{ "trigger": "if\tif..then..else", "contents": "if ${0:1 = 2} then\n\tnull ;\nelse\n\tnull ;\nend if;" },
         	{ "trigger": "if\tif..then..elsif", "contents": "if ${1:1 = 2} then\n\tnull ;\nelsif ${2:2 = 1} then\n\tnull ;\nelse\n\tnull ;\nend if;" },
+                { "trigger": "inserting", "contents": "inserting" },   
                 { "trigger": "isopen", "contents": "isopen" },                
                 { "trigger": "last", "contents": "last" },                
                 { "trigger": "level", "contents": "level" },
@@ -110,6 +112,7 @@
                 { "trigger": "submultiset", "contents": "submultiset of " },
                 { "trigger": "trim\tlast element", "contents": "trim" },
                 { "trigger": "trim\tlast n elements", "contents": "trim( $0 )" },
+                { "trigger": "updating", "contents": "updating" },   
                 { "trigger": "while loop\tbasic", "contents": "while ${1:condition} loop\n\tnull ;\n\texit when 1 = 1 ; -- or change the condition\nend loop ;" },
                 { "trigger": "while loop\tassoc. array", "contents": "-- Declare idx with the same type as array index\nidx := ${1:array_name}.first ;\nwhile idx is not null loop\n\tnull ;\n\tidx := ${1}.next( idx ) ; \nend loop ;" }
         ]
