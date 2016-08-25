@@ -1,0 +1,37 @@
+{
+        "scope": "source.oracle.script meta.block.plsql meta.section.executable meta.block.exception",
+        "completions":
+        [
+                { "trigger": "dbms_utility", "contents": "dbms_utility" },
+                { "trigger": "dbms_utility\tformat_error_backtrace", "contents": "dbms_utility.format_error_backtrace" },
+                { "trigger": "dbms_utility\tformat_error_stack", "contents": "dbms_utility.format_error_stack" },
+                { "trigger": "raise", "contents": "raise" },
+                { "trigger": "raise\texception_name", "contents": "raise ${1:exception_name} ;" },
+                { "trigger": "sqlcode", "contents": "sqlcode" },  
+                { "trigger": "sqlerrm", "contents": "sqlerrm" },  
+                { "trigger": "when", "contents": "when" },   
+                { "trigger": "when\taccess_into_null", "contents": "when access_into_null then\n\t${1:null} ;" },     
+                { "trigger": "when\tcase_not_found", "contents": "when case_not_found then\n\t${1:null} ;" },     
+                { "trigger": "when\tcollection_is_null", "contents": "when collection_is_null then\n\t${1:null} ;" },     
+                { "trigger": "when\tcursor_already_open", "contents": "when cursor_already_open then\n\t${1:null} ;" },     
+                { "trigger": "when\tdup_val_on_index", "contents": "when dup_val_on_index then\n\t${1:null} ;" },     
+                { "trigger": "when\tinvalid_cursor", "contents": "when invalid_cursor then\n\t${1:null} ;" },     
+                { "trigger": "when\tinvalid_number", "contents": "when invalid_number then\n\t${1:null} ;" },     
+                { "trigger": "when\tlogin_denied", "contents": "when login_denied then\n\t${1:null} ;" },     
+                { "trigger": "when\texception", "contents": "when ${1:exception_name} then\n\t${2:null} ;" },   
+                { "trigger": "when\tno_data_found", "contents": "when no_data_found then\n\t${1:null} ;" },                   
+                { "trigger": "when\tnot_logged_on", "contents": "when not_logged_on then\n\t${1:null} ;" },                                   
+                { "trigger": "when\tothers", "contents": "when others then\n\t${1:null} ;" },
+                { "trigger": "when\tprogram_error", "contents": "when program_error then\n\t${1:null} ;" },                   
+                { "trigger": "when\trowtype_mismatch", "contents": "when rowtype_mismatch then\n\t${1:null} ;" },                   
+                { "trigger": "when\tself_is_null", "contents": "when self_is_null then\n\t${1:null} ;" },                   
+                { "trigger": "when\tstorage_error", "contents": "when storage_error then\n\t${1:null} ;" },
+                { "trigger": "when\tsubscript_beyond_count", "contents": "when subscript_beyond_count then\n\t${1:null} ;" },
+                { "trigger": "when\tsubscript_outside_limit", "contents": "when subscript_outside_limit then\n\t${1:null} ;" },
+                { "trigger": "when\tsys_invalid_rowid", "contents": "when sys_invalid_rowid then\n\t${1:null} ;" },
+                { "trigger": "when\ttimeout_on_resource", "contents": "when timeout_on_resource then\n\t${1:null} ;" },
+                { "trigger": "when\ttoo_many_rows", "contents": "when too_many_rows then\n\t${1:null} ;" },
+                { "trigger": "when\tvalue_error", "contents": "when value_error then\n\t${1:null} ;" },
+                { "trigger": "when\tzero_divide", "contents": "when zero_divide then\n\t${1:null} ;" }                  
+        ]
+}        

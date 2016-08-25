@@ -1,5 +1,5 @@
 {
-        "scope": "source.oracle.script meta.block.plsql meta.section.executable - meta.section.executable meta.section.declare - meta.block.declaration",
+        "scope": "source.oracle.script meta.block.plsql meta.section.executable",
         "completions":
         [
                 { "trigger": "begin", "contents": "begin" },
@@ -30,11 +30,13 @@
                 { "trigger": "dbms_result_cache\tbypass false", "contents": "dbms_result_cache.bypass( false ) ;" },
                 { "trigger": "dbms_result_cache\tbypass true", "contents": "dbms_result_cache.bypass( true ) ;" },
                 { "trigger": "dbms_result_cache\tflush false", "contents": "dbms_result_cache.flush ;" },
-                { "trigger": "dbms_sql", "contents": "dbms_sql.put_line( '$0' ) ;" },
+                { "trigger": "dbms_sql", "contents": "dbms_sql" },
+                { "trigger": "dbms_warning", "contents": "dbms_warning" },
         	{ "trigger": "declare\tanonymous block", "contents": "declare\n\t$0\nbegin\n\tnull ;\nexception\n\twhen others then\n\t\trollback ;\n\t\traise ;\nend ;" },
                 { "trigger": "delete", "contents": "delete" },
                 { "trigger": "delete\telement", "contents": "delete( $0 )" },
                 { "trigger": "deleting", "contents": "deleting" },   
+                { "trigger": "exception", "contents": "exception" },        
                 { "trigger": "execute immediate", "contents": "execute immediate ${1:sql_var} ;" }, 
                 { "trigger": "execute immediate\tusing", "contents": "execute immediate ${1:sql_var} using ${2:input_var} ;" }, 
                 { "trigger": "exists", "contents": "exists( $0 )" },                
@@ -92,7 +94,9 @@
                 { "trigger": "open for\tquery +loop", "contents": "open ${1:cursor_variable} for \n\tselect *\n\t  from table_name\n\t where 1 = 2;\nloop\n\tfetch ${1} into ${2:var_name} ;\n\texit when ${1}%notfound ;\nend loop ;\nclose ${1} ;" }, 
                 { "trigger": "open for\tquery var +loop", "contents": "open ${1:cursor_variable} for ${2:query_variable};\nloop\n\tfetch ${1} into ${2:var_name} ;\n\texit when ${1}%notfound ;\nend loop ;\nclose ${1} ;" }, 
                 { "trigger": "prior", "contents": "prior( $0 )" },   
-                { "trigger": "rollback", "contents": "rollback ;" },             
+                { "trigger": "rollback", "contents": "rollback ;" },  
+                { "trigger": "raise\texception_name", "contents": "raise ${1:exception_name} ;" },
+                { "trigger": "raise_application_error", "contents": "raise_application_error( -${1:20000}, '${2:error_message}') ;" },           
                 { "trigger": "rollback\tto savepoint", "contents": "rollback to ${1:savepoint_name} ;" },             
                 { "trigger": "rowcount", "contents": "rowcount" },       
                 { "trigger": "savepoint", "contents": "savepoint ${1:savepoint_name} ;" },         
@@ -112,7 +116,7 @@
                 { "trigger": "submultiset", "contents": "submultiset of " },
                 { "trigger": "trim\tlast element", "contents": "trim" },
                 { "trigger": "trim\tlast n elements", "contents": "trim( $0 )" },
-                { "trigger": "updating", "contents": "updating" },   
+                { "trigger": "updating", "contents": "updating" },
                 { "trigger": "while loop\tbasic", "contents": "while ${1:condition} loop\n\tnull ;\n\texit when 1 = 1 ; -- or change the condition\nend loop ;" },
                 { "trigger": "while loop\tassoc. array", "contents": "-- Declare idx with the same type as array index\nidx := ${1:array_name}.first ;\nwhile idx is not null loop\n\tnull ;\n\tidx := ${1}.next( idx ) ; \nend loop ;" }
         ]
