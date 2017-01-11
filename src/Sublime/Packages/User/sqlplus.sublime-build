@@ -3,11 +3,11 @@
     "cmd": ["cmd", "/c", "echo Type CTRL+SHIFT+P and then type 'Build' to list available build systems."],
     "variants": [
         {
-            "name": "scott@demo.world",
+            "name": "sqlplus scott@demo.world",
             "cmd": ["sqlplus", "scott/tiger@demo.world", "@$file"]
         },
         {
-            "name": "ora1@11g",
+            "name": "sqlplus ora1@11g",
             "cmd": ["sqlplus", "ora1/oracle@11g.world", "@$file"]
         }
     ]
