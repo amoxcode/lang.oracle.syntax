@@ -1,14 +1,12 @@
 {
-    "selector": "source.oracle.script",
+    "selector": "source.oracle.script, source.sql",
     "cmd": ["cmd", "/c", "echo Type CTRL+SHIFT+P and then type 'Build' to list available build systems."],
     "variants": [
         {
-            "name": "sqlplus scott@demo.world",
-            "cmd": ["sqlplus", "scott/tiger@demo.world", "@$file"]
-        },
-        {
-            "name": "sqlplus ora1@11g",
-            "cmd": ["sqlplus", "ora1/oracle@11g.world", "@$file"]
+            "name": "scott@pdborcl",
+            "cmd": [ "start", "cmd", "/k", "sqlplus", "-s", "scott/tiger@pdborcl", "@$packages\\User\\sqlplus_script_wrapper.sql", "$file", "$file_name" ],
+            "shell": true,
+            "working_dir": "$file_dir"            
         }
     ]
 }
