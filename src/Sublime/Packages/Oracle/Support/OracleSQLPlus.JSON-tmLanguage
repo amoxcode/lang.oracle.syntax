@@ -995,7 +995,7 @@
           },
           "patterns": [
             {  "name": "keyword.control",
-               "match": "(?i)\\b(app(?>end|en|e)?|cre(?>ate|at|a)?|file|out|rep(?>lace|lac|la|l)?)\\b"
+               "match": "(?i)\\s(app(?>end|en|e)?|cre(?>ate|at|a)?|file|out|rep(?>lace|lac|la|l)?)\\b"
             },
             {  "name": "constant.language",
                "match": "(?i)\\b(off)\\b"

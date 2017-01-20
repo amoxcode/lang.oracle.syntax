@@ -1443,7 +1443,7 @@
 					<array>
 						<dict>
 							<key>match</key>
-							<string>(?i)\b(app(?&gt;end|en|e)?|cre(?&gt;ate|at|a)?|file|out|rep(?&gt;lace|lac|la|l)?)\b</string>
+							<string>(?i)\s(app(?&gt;end|en|e)?|cre(?&gt;ate|at|a)?|file|out|rep(?&gt;lace|lac|la|l)?)\b</string>
 							<key>name</key>
 							<string>keyword.control</string>
 						</dict>
