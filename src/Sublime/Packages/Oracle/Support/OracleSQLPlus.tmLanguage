@@ -613,7 +613,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(?i)(?&lt;=/)(?!\s++as)[^"][^\s@]++</string>
+							<string>(?i)(?&lt;=/)(?!\s++as)[^"&amp;][^\s@]++</string>
 							<key>name</key>
 							<string>string.unquoted</string>
 						</dict>
