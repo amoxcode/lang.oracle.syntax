@@ -3824,7 +3824,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))|(?i)(?=(create\s++(table|view)))</string>
+					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))|(?i)(?&lt;!grant)\s++(?=(create\s++(table|view)))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.grant</string>
 					<key>patterns</key>

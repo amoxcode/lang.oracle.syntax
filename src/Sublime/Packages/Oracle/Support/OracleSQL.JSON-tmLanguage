@@ -2989,7 +2989,7 @@
             { "include": "#program-unit" },
             { "include": "#expression" }
           ],
-          "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))|(?i)(?=(create\\s++(table|view)))"
+          "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))|(?i)(?<!grant)\\s++(?=(create\\s++(table|view)))"
         }
       ]
     },
