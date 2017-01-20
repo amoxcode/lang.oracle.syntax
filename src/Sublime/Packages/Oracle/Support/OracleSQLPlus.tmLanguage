@@ -2240,7 +2240,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(\b(a|S|A|B|C|L|U)?|(?&lt;=([[:digit:]]))(D|G|V))([[:digit:]])++(\b|(?=D|G|V)|(S|EEEE|MI|PR))</string>
+			<string>(\b(a|S|A|B|C|L|U)?|(?&lt;=([[:digit:]]))(D|G|V))([[:digit:]])++(\b|(?=D|G|V)|((S|EEEE|MI|PR)(?![[:alpha:]])))</string>
 			<key>name</key>
 			<string>constant.numeric</string>
 		</dict>

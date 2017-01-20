@@ -165,7 +165,7 @@
     },
     "constant-numeric": {
       "name": "constant.numeric",
-      "match": "(\\b(a|S|A|B|C|L|U)?|(?<=([[:digit:]]))(D|G|V))([[:digit:]])++(\\b|(?=D|G|V)|(S|EEEE|MI|PR))",
+      "match": "(\\b(a|S|A|B|C|L|U)?|(?<=([[:digit:]]))(D|G|V))([[:digit:]])++(\\b|(?=D|G|V)|((S|EEEE|MI|PR)(?![[:alpha:]])))",
       "captures": {
           "1": { "name": "keyword.other.indicator" },
           "4": { "name": "keyword.other.indicator" }
