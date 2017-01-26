@@ -1002,7 +1002,7 @@
                "match": "(?i)\\b(off)\\b"
             },
             {  "name": "keyword.operator",
-               "match": "(:|\\.|/|\\\\)"
+               "match": "(:|\\.|/|\\\\|@)"
             },
             { "include": "#extended-clause" }
           ],
