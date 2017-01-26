@@ -781,10 +781,11 @@
           "begin": "(?i)^\\s*+(ho(?>st|s)?|\\$|\\!)(?=\\s*+$|\\s|;)",
           "beginCaptures": {
               "1": { "name": "keyword.other" }
-          },
+          },          
           "patterns": [
+            { "include": "#variable-substitution" },
             {  "name": "keyword.operator",
-               "match": "(:|\\.|/|\\\\|\\*|%|{|}|\\$|>|<|&|-)"
+               "match": "(:|\\.|/|\\\\|\\*|%|{|}|\\$|>|<|&|-|=|,)"
             },
             { "include": "#alt-clause" }
           ],
