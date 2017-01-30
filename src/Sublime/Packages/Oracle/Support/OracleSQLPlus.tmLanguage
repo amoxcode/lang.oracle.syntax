@@ -184,8 +184,6 @@
 							<string>(?&lt;=@)\s*+</string>
 							<key>end</key>
 							<string>(?=\s)</string>
-							<key>name</key>
-							<string>variable.other</string>
 							<key>patterns</key>
 							<array>
 								<dict>

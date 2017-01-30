@@ -433,7 +433,7 @@
           "patterns": [
             { "include": "#variable-substitution" },
             { "include": "#string-quoted" },
-            { "name": "variable.other",
+            { 
               "begin": "(?<=@)\\s*+",
               "patterns": [
                 {  "name": "keyword.other",
