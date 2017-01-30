@@ -5088,7 +5088,7 @@
           "begin": "(?i)^\\s*(?=(drop)\\s)",
           "patterns": [
             {
-              "begin": "(?i)^\\s*+(drop\\s++(audit|context|d(atabase|i(mension|rectory))|f(lashback|unction)|library|o(perator|utline)|p(ackage|ro(cedure|file)|ublic)|r(estore|ol(e|lback))|s(equence|synonym)|t(able(space)?|rigger|ype)|user|view))\\b",
+              "begin": "(?i)(drop\\s++(audit|context|d(atabase|i(mension|rectory))|f(lashback|unction)|library|o(perator|utline)|p(ackage|ro(cedure|file)|ublic)|r(estore|ol(e|lback))|s(equence|synonym)|t(able(space)?|rigger|ype)|user|view))\\b",
               "beginCaptures": {
                   "1": { "name": "keyword.other" }
               },
