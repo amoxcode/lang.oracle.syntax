@@ -4103,6 +4103,39 @@
 						</dict>
 					</array>
 				</dict>
+			</array>
+		</dict>
+		<key>identifier-xxx</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(")(?=([^"]){0,30}")</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.delimiter</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(")</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#variable-other-substitution-oracle-sqlplus</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>.</string>
+							<key>name</key>
+							<string>variable.other</string>
+						</dict>
+					</array>
+				</dict>
 				<dict>
 					<key>begin</key>
 					<string>(")(?=([^"]){31,}")</string>

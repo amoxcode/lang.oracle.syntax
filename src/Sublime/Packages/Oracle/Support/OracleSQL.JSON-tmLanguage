@@ -212,6 +212,23 @@
             }
           ],
           "end": "(\")"
+        }
+      ]
+    },    
+    "identifier-xxx": {
+      "patterns": [
+        {
+          "begin": "(\")(?=([^\"]){0,30}\")",
+          "captures": {
+              "1": { "name": "keyword.other.delimiter" }
+          },
+          "patterns": [
+            { "include": "#variable-other-substitution-oracle-sqlplus" },
+            {  "name": "variable.other",
+               "match": "."
+            }
+          ],
+          "end": "(\")"
         },
         { "name": "invalid.illegal",
           "begin": "(\")(?=([^\"]){31,}\")",
