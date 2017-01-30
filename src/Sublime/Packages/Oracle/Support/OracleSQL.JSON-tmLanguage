@@ -3324,11 +3324,11 @@
         },
         {
           "name": "meta.statement.ddl.create",
-          "begin": "(?i)^\\s*(?=(create)\\s)",
+          "begin": "(?i)(?=^\\s*(create)\\s)",
           "patterns": [
             { "include": "#block-oracle-plsql" },
             {
-              "begin": "(?i)^\\s*+(create\\s++audit)\\b",
+              "begin": "(?i)^\\s*(create\\s++audit)\\b",
               "beginCaptures": {
                   "1": { "name": "keyword.other" }
               },
@@ -4184,7 +4184,7 @@
               "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
             },
             {
-              "begin": "(?i)^(?=\\s*+create(\\s++global\\s++temporary)?(\\s++/\\*\\+.+?\\*/)?\\s++table\\b)",
+              "begin": "(?i)^\\s*(?=create(\\s++global\\s++temporary)?(\\s++/\\*\\+.+?\\*/)?\\s++table\\b)",
               "beginCaptures": {
                   "1": { "name": "keyword.other" }
               },

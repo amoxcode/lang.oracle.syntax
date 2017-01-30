@@ -6779,7 +6779,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(?i)^\s*(?=(create)\s)</string>
+					<string>(?i)(?=^\s*(create)\s)</string>
 					<key>end</key>
 					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
 					<key>name</key>
@@ -6792,7 +6792,7 @@
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>(?i)^\s*+(create\s++audit)\b</string>
+							<string>(?i)^\s*(create\s++audit)\b</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>1</key>
@@ -8638,7 +8638,7 @@
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>(?i)^(?=\s*+create(\s++global\s++temporary)?(\s++/\*\+.+?\*/)?\s++table\b)</string>
+							<string>(?i)^\s*(?=create(\s++global\s++temporary)?(\s++/\*\+.+?\*/)?\s++table\b)</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>1</key>
