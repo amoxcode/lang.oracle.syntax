@@ -2047,7 +2047,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?i)^\s*+(rem(?&gt;ark|ar|a)?)(?=\s*+$|\s|;)</string>
+					<string>(?i)^\s*+(rem(?&gt;ark|ar|a)?)(?=\s*+$|\s|;|[^[:alnum:]])</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
