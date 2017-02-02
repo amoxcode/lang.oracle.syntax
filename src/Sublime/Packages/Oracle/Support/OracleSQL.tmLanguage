@@ -10293,6 +10293,41 @@
 								</dict>
 								<dict>
 									<key>begin</key>
+									<string>(?i)\b(constructor)\b</string>
+									<key>beginCaptures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>keyword.other</string>
+										</dict>
+									</dict>
+									<key>end</key>
+									<string>(?i)\b(return\s++self\s++as\s++result)\b</string>
+									<key>endCaptures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>keyword.other</string>
+										</dict>
+									</dict>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>match</key>
+											<string>(?i)\b(function)\b</string>
+											<key>name</key>
+											<string>keyword.other</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#parameter-definition</string>
+										</dict>
+									</array>
+								</dict>
+								<dict>
+									<key>begin</key>
 									<string>(?i)\b(object)(?=\s*+\()</string>
 									<key>beginCaptures</key>
 									<dict>

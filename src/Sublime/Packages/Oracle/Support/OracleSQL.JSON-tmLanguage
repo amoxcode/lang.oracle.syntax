@@ -4929,6 +4929,22 @@
                    "comment": "accesible-by-clause"
                 },
                 {
+                  "begin": "(?i)\\b(constructor)\\b",
+                  "beginCaptures": {
+                      "1": { "name": "keyword.other" }
+                  },
+                  "patterns": [
+                    {  "name": "keyword.other",
+                       "match": "(?i)\\b(function)\\b"
+                    },
+                    { "include": "#parameter-definition" }
+                  ],
+                  "end": "(?i)\\b(return\\s++self\\s++as\\s++result)\\b",
+                  "endCaptures": {
+                      "1": { "name": "keyword.other" }
+                  }                
+                },                
+                {
                   "begin": "(?i)\\b(object)(?=\\s*+\\()",
                   "beginCaptures": {
                       "1": { "name": "keyword.other" }
