@@ -49,7 +49,8 @@
            "patterns": [
             {  "name": "string.quoted.single",
                "match": "('')+"
-            }
+            },
+            { "include": "#variable-other-substitution-oracle-sqlplus" }
            ],
            "end": "'(?!')",
            "captures": {
@@ -61,7 +62,8 @@
            "patterns": [
             {  "name": "string.quoted.single",
                "match": "(')"
-            }
+            },
+            { "include": "#variable-other-substitution-oracle-sqlplus" }
            ],
            "end": "(])'",
            "captures": {
@@ -73,7 +75,8 @@
            "patterns": [
             {  "name": "string.quoted.single",
                "match": "(')"
-            }
+            },
+            { "include": "#variable-other-substitution-oracle-sqlplus" }
            ],
            "end": "(})'",
            "captures": {
@@ -85,7 +88,8 @@
            "patterns": [
             {  "name": "string.quoted.single",
                "match": "(')"
-            }
+            },
+            { "include": "#variable-other-substitution-oracle-sqlplus" }
            ],
            "end": "(>)'",
            "captures": {
@@ -97,7 +101,8 @@
            "patterns": [
             {  "name": "string.quoted.single",
                "match": "(')"
-            }
+            },
+            { "include": "#variable-other-substitution-oracle-sqlplus" }
            ],
            "end": "(\\))'",
            "captures": {
@@ -109,7 +114,8 @@
            "patterns": [
             {  "name": "string.quoted.single",
                "match": "(')"
-            }
+            },
+            { "include": "#variable-other-substitution-oracle-sqlplus" }
            ],
            "end": "(\\3)'",
            "captures": {

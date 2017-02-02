@@ -763,6 +763,10 @@
 							<key>name</key>
 							<string>string.quoted.single</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#variable-other-substitution-oracle-sqlplus</string>
+						</dict>
 					</array>
 				</dict>
 				<dict>
@@ -787,6 +791,10 @@
 							<string>(')</string>
 							<key>name</key>
 							<string>string.quoted.single</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#variable-other-substitution-oracle-sqlplus</string>
 						</dict>
 					</array>
 				</dict>
@@ -813,6 +821,10 @@
 							<key>name</key>
 							<string>string.quoted.single</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#variable-other-substitution-oracle-sqlplus</string>
+						</dict>
 					</array>
 				</dict>
 				<dict>
@@ -837,6 +849,10 @@
 							<string>(')</string>
 							<key>name</key>
 							<string>string.quoted.single</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#variable-other-substitution-oracle-sqlplus</string>
 						</dict>
 					</array>
 				</dict>
@@ -863,6 +879,10 @@
 							<key>name</key>
 							<string>string.quoted.single</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#variable-other-substitution-oracle-sqlplus</string>
+						</dict>
 					</array>
 				</dict>
 				<dict>
@@ -887,6 +907,10 @@
 							<string>(')</string>
 							<key>name</key>
 							<string>string.quoted.single</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#variable-other-substitution-oracle-sqlplus</string>
 						</dict>
 					</array>
 				</dict>
