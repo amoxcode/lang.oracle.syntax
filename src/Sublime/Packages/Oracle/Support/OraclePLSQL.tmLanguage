@@ -931,7 +931,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|deleting|false|inserting|null|true|updating)\b</string>
+					<string>(?i)\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|deleting|false|inserting|null|object_value|true|updating)\b</string>
 					<key>name</key>
 					<string>constant.language</string>
 				</dict>
@@ -1626,6 +1626,10 @@
 					<string>(?=;)</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#variable-other-substitution-oracle-sqlplus</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#expression</string>

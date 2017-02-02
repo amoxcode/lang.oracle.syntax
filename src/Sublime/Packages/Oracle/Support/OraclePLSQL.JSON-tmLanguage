@@ -422,6 +422,7 @@
               "1": { "name": "keyword.delimiter" }
           },
           "patterns": [
+            { "include": "#variable-other-substitution-oracle-sqlplus" },
             { "include": "#expression" }
           ],
           "end": "(?=;)"
