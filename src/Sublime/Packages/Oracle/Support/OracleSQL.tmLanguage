@@ -3629,6 +3629,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#variable-other-bind-oracle-sqlplus</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#operator</string>
 				</dict>
 				<dict>
@@ -3658,12 +3662,6 @@
 				<dict>
 					<key>include</key>
 					<string>#identifier</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>:</string>
-					<key>name</key>
-					<string>keyword.other.delimiter</string>
 				</dict>
 			</array>
 		</dict>
@@ -4094,6 +4092,10 @@
 						<dict>
 							<key>include</key>
 							<string>#variable-other-substitution-oracle-sqlplus</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#variable-other-bind-oracle-sqlplus</string>
 						</dict>
 						<dict>
 							<key>match</key>
@@ -11903,6 +11905,10 @@
 								</dict>
 								<dict>
 									<key>include</key>
+									<string>#variable-other-bind-oracle-sqlplus</string>
+								</dict>
+								<dict>
+									<key>include</key>
 									<string>#expression</string>
 								</dict>
 							</array>
@@ -12660,6 +12666,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#variable-other-bind-oracle-sqlplus</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#expression-oracle-sql</string>
 				</dict>
 			</array>
@@ -13351,6 +13361,21 @@
 					<string>#index-attributes</string>
 				</dict>
 			</array>
+		</dict>
+		<key>variable-other-bind-oracle-sqlplus</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.oracle.sqlplus</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(:)([[:alnum:]_])([[:alnum:]_])*+</string>
+			<key>name</key>
+			<string>variable.other.bind.oracle.sqlplus</string>
 		</dict>
 		<key>variable-other-substitution-oracle-sqlplus</key>
 		<dict>

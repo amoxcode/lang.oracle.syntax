@@ -72,6 +72,13 @@
         }
       ]
     },
+    "variable-other-bind-oracle-sqlplus": {
+      "name": "variable.other.bind.oracle.sqlplus",
+      "match": "(:)([[:alnum:]_])([[:alnum:]_])*+",
+      "captures": {
+          "1": { "name": "keyword.operator.oracle.sqlplus" }
+      }
+    },    
     "substitution-variable": {
       "patterns": [
         {  "name": "variable.other",
@@ -207,6 +214,7 @@
           },
           "patterns": [
             { "include": "#variable-other-substitution-oracle-sqlplus" },
+            { "include": "#variable-other-bind-oracle-sqlplus" },
             {  "name": "variable.other",
                "match": "."
             }
@@ -405,6 +413,7 @@
            "match": "(?i)\\b(indicator)\\b"
         },
         { "include": "#literal" },
+        { "include": "#variable-other-bind-oracle-sqlplus" },
         { "include": "#operator" },
         { "include": "#operator-conditional" },
         {  "name": "support.variable",
@@ -417,10 +426,7 @@
         {  "name": "keyword.other.interval",
            "match": "(?i)\\b((day|year)(?=(\\s*+\\(|\\s++to))|to\\s++(month|second))\\b"
         },
-        { "include": "#identifier" },
-        {  "name": "keyword.other.delimiter",
-           "match": ":"
-        }
+        { "include": "#identifier" }
       ]
     },
     "condition": {
@@ -617,6 +623,7 @@
       "patterns": [
         { "include": "#string-quoted-oracle-sql" },
         { "include": "#variable-other-substitution-oracle-sqlplus" },
+        { "include": "#variable-other-bind-oracle-sqlplus" },            
         { "include": "#expression-oracle-sql" }
       ]
     },
@@ -5728,6 +5735,7 @@
                    "match": "(?i)\\b(bulk|collect|into)\\b",
                    "comment": "plsql-extension"
                 },
+                { "include": "#variable-other-bind-oracle-sqlplus" },
                 { "include": "#expression" }
               ],
               "end": "(?=(;|\\)|\\]\\]>))|((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$)|(?i)\\b(?=(from)\\s)"
