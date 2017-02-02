@@ -2802,7 +2802,7 @@
 		<key>block-oracle-plsql</key>
 		<dict>
 			<key>begin</key>
-			<string>(?=(?i)\b(function|library|package|procedure|trigger|type)(\s|$))</string>
+			<string>(?=(?i)\b(function|package|procedure|trigger|type)(\s|$))</string>
 			<key>end</key>
 			<string>((?=^(\s*+/\s*+|\.)$))</string>
 			<key>patterns</key>
@@ -7638,6 +7638,47 @@
 								<dict>
 									<key>include</key>
 									<string>#expression</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(?i)^\s*+(create(\s++or\s++replace)?(\s++(editionable|noneditionable))?\s++library)\b</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.other</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>comment</key>
+									<string>create-library</string>
+									<key>match</key>
+									<string>(?i)\b(a(gent|s)|credential|i(n|s)|static|trusted)\b</string>
+									<key>name</key>
+									<string>keyword.other</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>(\.)</string>
+									<key>name</key>
+									<string>keyword.delimiter</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>(\w)++</string>
+									<key>name</key>
+									<string>variable.other</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#literal</string>
 								</dict>
 							</array>
 						</dict>

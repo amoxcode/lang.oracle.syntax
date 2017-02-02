@@ -457,7 +457,7 @@
       ]
     },
     "block-oracle-plsql": {
-      "begin": "(?=(?i)\\b(function|library|package|procedure|trigger|type)(\\s|$))",
+      "begin": "(?=(?i)\\b(function|package|procedure|trigger|type)(\\s|$))",
       "patterns": [
         { "include": "source.oracle.plsql" }
       ],
@@ -3732,6 +3732,26 @@
               ],
               "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
             },
+            {
+              "begin": "(?i)^\\s*+(create(\\s++or\\s++replace)?(\\s++(editionable|noneditionable))?\\s++library)\\b",
+              "beginCaptures": {
+                  "1": { "name": "keyword.other" }
+              },
+              "patterns": [
+                {  "name": "keyword.other",
+                   "match": "(?i)\\b(a(gent|s)|credential|i(n|s)|static|trusted)\\b",
+                   "comment": "create-library"
+                },
+                {  "name": "keyword.delimiter",
+                   "match": "(\\.)"
+                },
+                {  "name": "variable.other",
+                   "match": "(\\w)++"
+                },
+                { "include": "#literal" }
+              ],
+              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+            },            
             {
               "begin": "(?i)^\\s*+(create\\s++materialized\\s++view(?!\\s++log))\\b",
               "beginCaptures": {
