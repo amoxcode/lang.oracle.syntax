@@ -5706,7 +5706,7 @@
     "statement-dml-select": {
       "patterns": [
         { "name": "meta.section.with",
-          "begin": "(?i)\\b(with)(?!\\s++(check|read|object))\\b",
+          "begin": "(?i)(?<!timestamp )\\b(with)(?!\\s++(check|read|object))\\b",
           "beginCaptures": {
               "1": { "name": "keyword.operator" }
           },
