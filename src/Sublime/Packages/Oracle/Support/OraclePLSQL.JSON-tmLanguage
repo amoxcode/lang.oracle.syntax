@@ -927,7 +927,7 @@
           "0": { "name": "keyword.control.oracle.plsql" }
       },
       "patterns": [
-        { "name": "meta.block.exception.handler",
+        { 
           "begin": "(?i)\\b(when)\\b",
           "beginCaptures": {
               "1": { "name": "keyword.control" }
@@ -940,7 +940,7 @@
           ],
           "end": "(?=(?i)\\b(end|then)(\\s|;))"
         },
-        { "name": "meta.block.exception.handler",
+        { 
           "begin": "(?i)\\b(then)\\b",
           "beginCaptures": {
               "1": { "name": "keyword.control" }

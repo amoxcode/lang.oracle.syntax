@@ -134,8 +134,6 @@
 					</dict>
 					<key>end</key>
 					<string>(?=(?i)\b(end|then)(\s|;))</string>
-					<key>name</key>
-					<string>meta.block.exception.handler</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -163,8 +161,6 @@
 					</dict>
 					<key>end</key>
 					<string>(?=(?i)\b(end|when)(\s|;))</string>
-					<key>name</key>
-					<string>meta.block.exception.handler</string>
 					<key>patterns</key>
 					<array>
 						<dict>
