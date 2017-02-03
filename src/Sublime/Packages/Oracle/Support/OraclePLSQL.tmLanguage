@@ -2271,7 +2271,7 @@
 										</dict>
 									</dict>
 									<key>end</key>
-									<string>(\s|$)</string>
+									<string>(\s|$|(?=\())</string>
 									<key>name</key>
 									<string>entity.name.function</string>
 									<key>patterns</key>

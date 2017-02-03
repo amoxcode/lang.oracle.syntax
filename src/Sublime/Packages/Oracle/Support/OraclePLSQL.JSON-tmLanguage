@@ -972,7 +972,7 @@
                          "match": "(&|\"|\\.)"
                       }
                     ],
-                    "end": "(\\s|$)"
+                    "end": "(\\s|$|(?=\\())"
                   },
                   { "include": "#comment" },
                   { "include": "#parameter-definition" },
