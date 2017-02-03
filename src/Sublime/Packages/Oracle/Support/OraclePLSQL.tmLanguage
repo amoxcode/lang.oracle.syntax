@@ -2338,6 +2338,12 @@
 							<string>invalid.deprecated</string>
 						</dict>
 						<dict>
+							<key>match</key>
+							<string>(?i)\b(name)\b</string>
+							<key>name</key>
+							<string>keyword.control</string>
+						</dict>
+						<dict>
 							<key>include</key>
 							<string>#block-executable</string>
 						</dict>
@@ -2381,6 +2387,10 @@
 									<string>#expression</string>
 								</dict>
 							</array>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#identifier</string>
 						</dict>
 					</array>
 				</dict>

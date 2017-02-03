@@ -997,6 +997,9 @@
               {  "name": "invalid.deprecated",
                  "match": "(?i)\\b(external)\\b"
               },
+              {  "name": "keyword.control",
+                 "match": "(?i)\\b(name)\\b"
+              },              
               { "include": "#block-executable" },
               { "name": "meta.section.call_spec",
                 "begin": "(?i)\\s*+language\\b",
@@ -1013,8 +1016,9 @@
                 "end": ";",
                 "endCaptures": {
                     "0": { "name": "keyword.other.delimiter" }
-                }
-              }
+                }                
+              },
+              { "include": "#identifier" }
             ],
           "end": "(?<=;)|^(?=/\\s*)"
         }
