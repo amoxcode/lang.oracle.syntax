@@ -190,12 +190,20 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.delimiter</string>
+						</dict>
+					</dict>
 					<key>comment</key>
 					<string>XMLIndex-clause</string>
 					<key>match</key>
-					<string>(?i)\b(X(db|mlindex))\b</string>
+					<string>(?i)\b(xdb(.)xmlindex)\b</string>
 					<key>name</key>
-					<string>keyword.control</string>
+					<string>constant.language</string>
 				</dict>
 				<dict>
 					<key>include</key>

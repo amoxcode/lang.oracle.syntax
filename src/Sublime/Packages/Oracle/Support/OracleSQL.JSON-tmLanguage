@@ -1053,8 +1053,11 @@
     },
     "XMLIndex-clause": {
       "patterns": [
-        {  "name": "keyword.control",
-           "match": "(?i)\\b(X(db|mlindex))\\b",
+        {  "name": "constant.language",
+           "match": "(?i)\\b(xdb(.)xmlindex)\\b",
+            "captures": {
+                "2": { "name": "keyword.other.delimiter" }
+            },
            "comment": "XMLIndex-clause"
         },
         { "include": "#XMLIndex_parameters-clause" }
