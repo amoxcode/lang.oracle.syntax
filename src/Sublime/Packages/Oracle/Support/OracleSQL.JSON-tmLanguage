@@ -214,7 +214,10 @@
           },
           "patterns": [
             { "include": "#variable-other-substitution-oracle-sqlplus" },
-            { "include": "#variable-other-bind-oracle-sqlplus" }
+            { "include": "#variable-other-bind-oracle-sqlplus" },
+            {  "name": "variable.other",
+               "match": "\\S"
+            }
           ],
           "end": "(\")"
         },
