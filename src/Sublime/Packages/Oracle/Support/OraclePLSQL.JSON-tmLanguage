@@ -972,7 +972,7 @@
                   { "include": "#comment" },
                   { "include": "#parameter-definition" },
                   {  "name": "keyword.other",
-                     "match": "(?i)\\b(a(ggregate|ccessible\\s++by|uthid(\\s++(current_user|definer)))|deterministic|p(arallel_enable|ipelined)|re(sult_cache(\\s++relies_on)?|turn)|using)\\b"
+                     "match": "(?i)\\b(a(ggregate|ccessible\\s++by|uthid(\\s++(current_user|definer)))|deterministic|p(arallel_enable|ipelined)|re(sult_cache(\\s++relies_on)?|turn(\\s++self\\s++as\\s++result)?)|using)\\b"
                   },
                   { "include": "#storage" },
                   { "include": "#expression" }

@@ -2292,7 +2292,7 @@
 								</dict>
 								<dict>
 									<key>match</key>
-									<string>(?i)\b(a(ggregate|ccessible\s++by|uthid(\s++(current_user|definer)))|deterministic|p(arallel_enable|ipelined)|re(sult_cache(\s++relies_on)?|turn)|using)\b</string>
+									<string>(?i)\b(a(ggregate|ccessible\s++by|uthid(\s++(current_user|definer)))|deterministic|p(arallel_enable|ipelined)|re(sult_cache(\s++relies_on)?|turn(\s++self\s++as\s++result)?)|using)\b</string>
 									<key>name</key>
 									<string>keyword.other</string>
 								</dict>
