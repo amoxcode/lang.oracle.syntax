@@ -5578,6 +5578,12 @@
 							<key>include</key>
 							<string>#common-clause</string>
 						</dict>
+						<dict>
+							<key>match</key>
+							<string>:=</string>
+							<key>name</key>
+							<string>keyword.operator</string>
+						</dict>
 					</array>
 				</dict>
 			</array>

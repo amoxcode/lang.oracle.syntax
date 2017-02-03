@@ -2822,7 +2822,10 @@
               },
               { "include": "#keyword-delimiter" },
               { "include": "#storage" },
-              { "include": "#common-clause" }
+              { "include": "#common-clause" },
+              {  "name": "keyword.operator",
+                 "match": ":="
+              }
             ],
             "end": "(\\))"
           }
