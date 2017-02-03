@@ -3077,7 +3077,7 @@
 							<key>begin</key>
 							<string>(?i)(?&lt;=table)(\s)</string>
 							<key>end</key>
-							<string>(?i)(?=(\()|of)</string>
+							<string>(?i)(?=(\()|of|as)</string>
 							<key>patterns</key>
 							<array>
 								<dict>
