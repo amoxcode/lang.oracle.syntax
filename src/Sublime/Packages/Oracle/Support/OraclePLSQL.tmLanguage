@@ -2648,23 +2648,27 @@
 							<key>patterns</key>
 							<array>
 								<dict>
-									<key>captures</key>
+									<key>begin</key>
+									<string>(?i)\b(type)\s++((?!body\s))</string>
+									<key>beginCaptures</key>
 									<dict>
 										<key>1</key>
 										<dict>
 											<key>name</key>
 											<string>keyword.other</string>
 										</dict>
-										<key>2</key>
-										<dict>
-											<key>name</key>
-											<string>keyword.other</string>
-										</dict>
 									</dict>
-									<key>match</key>
-									<string>(?i)\b(type)(\s++)(?!body\s)(&amp;?(\w|&amp;|\.)++)\b</string>
+									<key>end</key>
+									<string>\s</string>
 									<key>name</key>
 									<string>entity.name.function</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>#identifier</string>
+										</dict>
+									</array>
 								</dict>
 								<dict>
 									<key>comment</key>
@@ -2962,6 +2966,18 @@
 									<string>(?i)\b(array|of|n(not|ull)|varray|varying)\b</string>
 									<key>name</key>
 									<string>keyword.control</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>(?i)\b(by|index)\b</string>
+									<key>name</key>
+									<string>keyword.other</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>(?i)\b(varchar2|integer|number|pls_integer)\b</string>
+									<key>name</key>
+									<string>storage.type</string>
 								</dict>
 								<dict>
 									<key>include</key>

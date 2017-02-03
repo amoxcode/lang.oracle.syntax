@@ -1214,11 +1214,14 @@
                 "begin": "(?i)(^|(?<= |\\t|;))(?=(type)\\s)",
                 "patterns": [
                   { "name": "entity.name.function",
-                    "match": "(?i)\\b(type)(\\s++)(?!body\\s)(&?(\\w|&|\\.)++)\\b",
-                    "captures": {
-                        "1": { "name": "keyword.other" },
-                        "2": { "name": "keyword.other" }
-                    }
+                    "begin": "(?i)\\b(type)\\s++((?!body\\s))",
+                    "beginCaptures": {
+                        "1": { "name": "keyword.other" }
+                    },
+                    "patterns": [                    
+                      { "include": "#identifier" }
+                    ],
+                    "end": "\\s"
                   },
                   {  "name": "keyword.other",
                      "match": "(?i)\\b(force|oid)\\b",
@@ -1355,6 +1358,12 @@
                   {  "name": "keyword.control",
                      "match": "(?i)\\b(array|of|n(not|ull)|varray|varying)\\b",
                      "comment": "varray-type-def"
+                  },
+                  {  "name": "keyword.other",
+                     "match": "(?i)\\b(by|index)\\b"
+                  },
+                  {  "name": "storage.type",
+                     "match": "(?i)\\b(varchar2|integer|number|pls_integer)\\b"
                   },
                   { "include": "#expression" }
                 ],
