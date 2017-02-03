@@ -890,7 +890,7 @@
             { "include": "#label" },
             { "include": "#statement" }
           ],
-          "end": "(?i)(^|(?<= |\\t|;))end(?!\\s++(if|loop|case)\\b)(\\s++\\w++)?.*(;)",
+          "end": "(?i)(^|(?<= |\\t|;))end(?!\\s++(if|loop|case)\\b)(\\s++([[:alpha:]])(\\w|\\$)*+)?.*(;)",
           "endCaptures": {
               "3": { "name": "variable.other" }
           }

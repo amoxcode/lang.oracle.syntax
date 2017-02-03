@@ -191,7 +191,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?i)(^|(?&lt;= |\t|;))end(?!\s++(if|loop|case)\b)(\s++\w++)?.*(;)</string>
+					<string>(?i)(^|(?&lt;= |\t|;))end(?!\s++(if|loop|case)\b)(\s++([[:alpha:]])(\w|\$)*+)?.*(;)</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>3</key>
