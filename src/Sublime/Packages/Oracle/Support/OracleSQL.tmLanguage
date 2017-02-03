@@ -4097,13 +4097,19 @@
 							<key>include</key>
 							<string>#variable-other-bind-oracle-sqlplus</string>
 						</dict>
-						<dict>
-							<key>match</key>
-							<string>.</string>
-							<key>name</key>
-							<string>variable.other</string>
-						</dict>
 					</array>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\.|@)</string>
+					<key>name</key>
+					<string>keyword.operator</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b([[:alpha:]])(\w|\$)+(?=\.|\b)</string>
+					<key>name</key>
+					<string>variable.other</string>
 				</dict>
 			</array>
 		</dict>

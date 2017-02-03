@@ -214,13 +214,16 @@
           },
           "patterns": [
             { "include": "#variable-other-substitution-oracle-sqlplus" },
-            { "include": "#variable-other-bind-oracle-sqlplus" },
-            {  "name": "variable.other",
-               "match": "."
-            }
+            { "include": "#variable-other-bind-oracle-sqlplus" }
           ],
           "end": "(\")"
-        }
+        },
+        {  "name": "keyword.operator",
+            "match": "(\\.|@)"
+        },
+        {  "name": "variable.other",
+           "match": "(?i)\\b([[:alpha:]])(\\w|\\$)+(?=\\.|\\b)"
+        }        
       ]
     },    
     "identifier-xxx": {
