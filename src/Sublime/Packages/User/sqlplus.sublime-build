@@ -2,7 +2,7 @@
     "selector": "source.oracle.script, source.sql",
     "cmd": ["start", "cmd", "/k", "sqlplus", "/nolog"],
     "shell": true,
-    "working_dir": "$file_dir",         
+    "working_dir": "$file_dir"1,         
     "variants": [
         {
             "name": "scott@pdborcl",

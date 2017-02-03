@@ -7666,9 +7666,17 @@
 									<key>comment</key>
 									<string>create-library</string>
 									<key>match</key>
-									<string>(?i)\b(a(gent|s)|credential|i(n|s)|static|trusted)\b</string>
+									<string>(?i)\b(a(gent|s)|credential|i(n|s))\b</string>
 									<key>name</key>
 									<string>keyword.other</string>
+								</dict>
+								<dict>
+									<key>comment</key>
+									<string>create-library</string>
+									<key>match</key>
+									<string>(?i)\b(static|trusted)\b</string>
+									<key>name</key>
+									<string>constant.language</string>
 								</dict>
 								<dict>
 									<key>match</key>
