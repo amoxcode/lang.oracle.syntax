@@ -4120,7 +4120,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b([[:alpha:]])(\w|\$)+(?=\.|\b)</string>
+					<string>(?i)\b([[:alpha:]])(\w|\$|#)+(?=\.|\b)</string>
 					<key>name</key>
 					<string>variable.other</string>
 				</dict>

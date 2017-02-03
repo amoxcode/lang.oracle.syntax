@@ -3092,7 +3092,7 @@
                 "patterns": [
                   { "include": "#identifier" }
                 ],
-              "end": "(?i)(?=(\\()|of)"
+              "end": "(?i)(?=(\\()|of|as)"
             },
             {  "name": "keyword.other",
                "match": "(?i)\\b(for)\\b",
