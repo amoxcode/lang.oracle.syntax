@@ -963,11 +963,16 @@
                 "begin": "(?i)(^|(?<= |\\t|;))(?=(procedure|function)\\s)",
                 "patterns": [
                   { "name": "entity.name.function",
-                    "match": "(?i)\\b(procedure|function)\\s++(\\w++)((\\.)\\w++)?\\b",
-                    "captures": {
-                        "1": { "name": "keyword.other" },
-                        "4": { "name": "keyword.other.delimiter" }
-                    }
+                    "begin": "(?i)\\b(procedure|function)\\s++",
+                    "beginCaptures": {
+                        "1": { "name": "keyword.other" }
+                    },
+                    "patterns": [
+                      {  "name": "keyword.other.delimiter",
+                         "match": "(&|\"|\\.)"
+                      }
+                    ],
+                    "end": "(\\s|$)"
                   },
                   { "include": "#comment" },
                   { "include": "#parameter-definition" },

@@ -2260,23 +2260,29 @@
 							<key>patterns</key>
 							<array>
 								<dict>
-									<key>captures</key>
+									<key>begin</key>
+									<string>(?i)\b(procedure|function)\s++</string>
+									<key>beginCaptures</key>
 									<dict>
 										<key>1</key>
 										<dict>
 											<key>name</key>
 											<string>keyword.other</string>
 										</dict>
-										<key>4</key>
+									</dict>
+									<key>end</key>
+									<string>(\s|$)</string>
+									<key>name</key>
+									<string>entity.name.function</string>
+									<key>patterns</key>
+									<array>
 										<dict>
+											<key>match</key>
+											<string>(&amp;|"|\.)</string>
 											<key>name</key>
 											<string>keyword.other.delimiter</string>
 										</dict>
-									</dict>
-									<key>match</key>
-									<string>(?i)\b(procedure|function)\s++(\w++)((\.)\w++)?\b</string>
-									<key>name</key>
-									<string>entity.name.function</string>
+									</array>
 								</dict>
 								<dict>
 									<key>include</key>
