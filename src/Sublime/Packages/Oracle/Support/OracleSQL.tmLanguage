@@ -10748,7 +10748,7 @@
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>(?i)(drop\s++(audit|context|d(atabase|i(mension|rectory))|f(lashback|unction)|library|o(perator|utline)|p(ackage|ro(cedure|file)|ublic)|r(estore|ol(e|lback))|s(equence|synonym)|t(able(space)?|rigger|ype)|user|view))\b</string>
+							<string>(?i)(drop\s++(audit|context|d(atabase|i(mension|rectory))|f(lashback|unction)|library|o(perator|utline)|p(ackage|ro(cedure|file)|ublic(\s++synonym\b)?)|r(estore|ol(e|lback))|s(equence|synonym)|t(able(space)?|rigger|ype)|user|view))\b</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>1</key>
