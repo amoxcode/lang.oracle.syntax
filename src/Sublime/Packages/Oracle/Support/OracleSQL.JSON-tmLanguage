@@ -4945,9 +4945,10 @@
                     },
                     { "include": "#parameter-definition" }
                   ],
-                  "end": "(?i)\\b(return\\s++self\\s++as\\s++result)\\b",
+                  "end": "(?i)\\b(return\\s++(self)\\s++as\\s++result)\\b",
                   "endCaptures": {
-                      "1": { "name": "keyword.other" }
+                      "1": { "name": "keyword.other" },
+                      "2": { "name": "support.variable" }
                   }                
                 },                
                 {
@@ -4985,7 +4986,10 @@
                           "patterns": [
                             { "include": "#parameter-definition" },
                             {  "name": "keyword.other",
-                               "match": "(?i)\\b(a(gent|s)|c(ontext)?|external|function|in|java|l(anguage|ibrary)|name|p(arameters|rocedure)|re(sult|turn)|self|variable|with)\\b"
+                               "match": "(?i)\\b(a(gent|s)|c(ontext)?|external|function|in|java|l(anguage|ibrary)|name|p(arameters|rocedure)|re(sult|turn)|variable|with)\\b"
+                            },
+                            {  "name": "support.variable",
+                               "match": "(?i)\\b(self)\\b"
                             },
                             { "include": "#storage" },
                             { "include": "#expression" }

@@ -10315,13 +10315,18 @@
 										</dict>
 									</dict>
 									<key>end</key>
-									<string>(?i)\b(return\s++self\s++as\s++result)\b</string>
+									<string>(?i)\b(return\s++(self)\s++as\s++result)\b</string>
 									<key>endCaptures</key>
 									<dict>
 										<key>1</key>
 										<dict>
 											<key>name</key>
 											<string>keyword.other</string>
+										</dict>
+										<key>2</key>
+										<dict>
+											<key>name</key>
+											<string>support.variable</string>
 										</dict>
 									</dict>
 									<key>patterns</key>
@@ -10424,9 +10429,15 @@
 														</dict>
 														<dict>
 															<key>match</key>
-															<string>(?i)\b(a(gent|s)|c(ontext)?|external|function|in|java|l(anguage|ibrary)|name|p(arameters|rocedure)|re(sult|turn)|self|variable|with)\b</string>
+															<string>(?i)\b(a(gent|s)|c(ontext)?|external|function|in|java|l(anguage|ibrary)|name|p(arameters|rocedure)|re(sult|turn)|variable|with)\b</string>
 															<key>name</key>
 															<string>keyword.other</string>
+														</dict>
+														<dict>
+															<key>match</key>
+															<string>(?i)\b(self)\b</string>
+															<key>name</key>
+															<string>support.variable</string>
 														</dict>
 														<dict>
 															<key>include</key>
