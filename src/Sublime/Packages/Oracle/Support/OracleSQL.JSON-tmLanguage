@@ -3087,6 +3087,13 @@
               "1": { "name": "keyword.other" }
           },
           "patterns": [
+            { 
+              "begin": "(?i)(?<=table)(\\s)",
+                "patterns": [
+                  { "include": "#identifier" }
+                ],
+              "end": "(?i)(?=(\\()|of)"
+            },
             {  "name": "keyword.other",
                "match": "(?i)\\b(for)\\b",
                "comment": "create-table"

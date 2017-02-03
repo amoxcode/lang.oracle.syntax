@@ -3074,6 +3074,19 @@
 					<key>patterns</key>
 					<array>
 						<dict>
+							<key>begin</key>
+							<string>(?i)(?&lt;=table)(\s)</string>
+							<key>end</key>
+							<string>(?i)(?=(\()|of)</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#identifier</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
 							<key>comment</key>
 							<string>create-table</string>
 							<key>match</key>
