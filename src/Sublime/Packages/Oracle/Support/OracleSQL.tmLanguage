@@ -10298,6 +10298,12 @@
 									<string>keyword.other</string>
 								</dict>
 								<dict>
+									<key>match</key>
+									<string>(?i)\b(deterministic|parallel_enable)\b</string>
+									<key>name</key>
+									<string>keyword.other</string>
+								</dict>
+								<dict>
 									<key>begin</key>
 									<string>(?i)\b(constructor)\b</string>
 									<key>beginCaptures</key>
@@ -10535,7 +10541,7 @@
 										</dict>
 										<dict>
 											<key>match</key>
-											<string>(?i)\b(a(gent|s)|c(ontext)?|external|function|in|java|l(anguage|ibrary)|name|p(arameters|rocedure)|return|variable|with)\b</string>
+											<string>(?i)\b(a(gent|s)|c(ontext)?|deterministic|external|function|in|java|l(anguage|ibrary)|name|p(ara(llel_enable|meters)|rocedure)|return|variable|with)\b</string>
 											<key>name</key>
 											<string>keyword.other</string>
 										</dict>

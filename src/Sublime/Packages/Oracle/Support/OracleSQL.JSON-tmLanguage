@@ -4931,6 +4931,9 @@
                    "match": "(?i)\\b(accessible|by)\\b",
                    "comment": "accesible-by-clause"
                 },
+                {  "name": "keyword.other",
+                   "match": "(?i)\\b(deterministic|parallel_enable)\\b"
+                },
                 {
                   "begin": "(?i)\\b(constructor)\\b",
                   "beginCaptures": {
@@ -5040,8 +5043,8 @@
                   "patterns": [
                     { "include": "#parameter-definition" },
                     {  "name": "keyword.other",
-                       "match": "(?i)\\b(a(gent|s)|c(ontext)?|external|function|in|java|l(anguage|ibrary)|name|p(arameters|rocedure)|return|variable|with)\\b"
-                    },
+                       "match": "(?i)\\b(a(gent|s)|c(ontext)?|deterministic|external|function|in|java|l(anguage|ibrary)|name|p(ara(llel_enable|meters)|rocedure)|return|variable|with)\\b"
+                    },                    
                     { "include": "#storage" },
                     { "include": "#expression" }
                   ],
