@@ -4354,7 +4354,7 @@
         },
         {
           "name": "meta.statement.ddl.alter",
-          "begin": "(?i)^\\s*(?=(alter)\\s++(?!s(ession|ystem)))",
+          "begin": "(?i)(?=^\\s*(alter)\\s++(?!s(ession|ystem)))",
           "patterns": [
             {
               "begin": "(?i)^\\s*+(alter\\s++audit)\\b",

@@ -8996,7 +8996,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(?i)^\s*(?=(alter)\s++(?!s(ession|ystem)))</string>
+					<string>(?i)(?=^\s*(alter)\s++(?!s(ession|ystem)))</string>
 					<key>end</key>
 					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
 					<key>name</key>
