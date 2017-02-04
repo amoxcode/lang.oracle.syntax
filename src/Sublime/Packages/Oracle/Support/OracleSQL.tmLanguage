@@ -6239,7 +6239,7 @@
 					<key>begin</key>
 					<string>(?=(?i)^\s*(\(|a(dminister|nalyze|lter|ssociate|udit)|c(all|omm(ent|it)|reate)|d(elete|isassociate|rop)|explain|flashback|grant|insert|lock|merge|noaudit|purge|r(e(name|voke)|ollback)|s(avepoint|e(t|lect))|truncate|update)\b)</string>
 					<key>end</key>
-					<string>((?=(;|\]\]&gt;))|((?=^\s*+/$))|(?=^(\.)?\s*+$))</string>
+					<string>((?=(;|\]\]&gt;))|((?=^\s*+/\s*+$))|(?=^(\.)?\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.oracle.sql</string>
 					<key>patterns</key>
@@ -6775,7 +6775,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.associate-statistics</string>
 					<key>patterns</key>
@@ -6822,7 +6822,7 @@
 					<key>begin</key>
 					<string>(?i)(?=^\s*(create)\s)</string>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.create</string>
 					<key>patterns</key>
@@ -8975,7 +8975,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.analyze</string>
 					<key>patterns</key>
@@ -9015,7 +9015,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>

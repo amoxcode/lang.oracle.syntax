@@ -22,7 +22,7 @@
             { "include": "#statement-embedded" },
             { "include": "#statement-key-mgmt" }
           ],
-          "end": "((?=(;|\\]\\]>))|((?=^\\s*+/$))|(?=^(\\.)?\\s*+$))"
+          "end": "((?=(;|\\]\\]>))|((?=^\\s*+/\\s*+$))|(?=^(\\.)?\\s*+$))"
         },
         {
           "name": "meta.statement.oracle.sql",
@@ -3346,7 +3346,7 @@
             { "include": "#auditing-on-clause" },
             { "include": "#common-clause" }
           ],
-          "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+          "end": "((?=;)|((?=^\\s*+/\\s*+$))|(?=^\\s*+$))"
         },
         {
           "name": "meta.statement.ddl.create",
@@ -4335,7 +4335,7 @@
             },
             { "include": "#statement-include" }
           ],
-          "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+          "end": "((?=;)|((?=^\\s*+/\\s*+$))|(?=^\\s*+$))"
         },
         {
           "name": "meta.statement.ddl.analyze",
@@ -4350,7 +4350,7 @@
             },
             { "include": "#common-clause" }
           ],
-          "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+          "end": "((?=;)|((?=^\\s*+/\\s*+$))|(?=^\\s*+$))"
         },
         {
           "name": "meta.statement.ddl.alter",
@@ -4367,7 +4367,7 @@
                 },
                 { "include": "#common-clause" }
               ],
-              "end": "((?=;)|((?=^\\s*+/$\\s*+))|(?=^\\s*+$))"
+              "end": "((?=;)|((?=^\\s*+/\\s*+$))|(?=^\\s*+$))"
             },
             {
               "begin": "(?i)^\\s*+(alter\\s++cluster)\\b",
