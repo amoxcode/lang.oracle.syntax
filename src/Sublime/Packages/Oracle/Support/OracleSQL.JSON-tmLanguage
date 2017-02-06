@@ -193,7 +193,7 @@
            "comment": "interval"
         },
         {  "name": "constant.language",
-           "match": "(?i)\\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null|sysaux|true)\\b"
+           "match": "(?i)\\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null(?!(#|\\$))|sysaux|true)\\b"
         }
       ]
     },
@@ -585,7 +585,7 @@
     "storage-clause-parens": {
       "patterns": [
         {  "name": "keyword.other",
-           "match": "(?i)\\b(buffer_pool|default|encrypt|f(lash_cache|reelist(s)?)|keep|groups|initial|m(axextents|inextents)|n(ext|one|ull)|optimal|pctincrease|recycle|unlimited)\\b",
+           "match": "(?i)\\b(buffer_pool|default|encrypt|f(lash_cache|reelist(s)?)|keep|groups|initial|m(axextents|inextents)|n(ext|one|ull(?!(#|\\$)))|optimal|pctincrease|recycle|unlimited)\\b",
            "comment": "storage-clause-parens"
         },
         { "include": "#size-clause" },
@@ -868,7 +868,7 @@
     "nested-table-col-properties": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(as|column_value|locator|nested|return|store|table|value)\\b",
+           "match": "(?i)\\b(as|column_value|locator|nested|return|store|table|value)(?!(#|\\$))\\b",
            "comment": "nested-table-col-properties"
         },
         {  "name": "constant.language",
@@ -880,7 +880,7 @@
     },
     "references-clause": {
       "name": "keyword.other",
-      "match": "(?i)\\b(cascade|delete|null|on|references|set)\\b"
+      "match": "(?i)\\b(cascade|delete|null(?!(#|\\$))|on|references|set)\\b"
     },
     "segment-attributes-clause": {
       "patterns": [
@@ -1134,7 +1134,7 @@
     "inline-constraint": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(constraint|key|n(ot|ull)|primary|unique)\\b",
+           "match": "(?i)\\b(constraint|key|n(ot|ull(?!(#|\\$)))|primary|unique)\\b",
            "comment": "inline-constraint"
         },
         { "include": "#references-clause" },
@@ -1432,7 +1432,7 @@
     "identity-clause-parens": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(by|c(ache|ycle)|increment|limit|m(axvalue|invalue)|no(c(ache|ycle)|m(axvalue|invalue)|order)|order|start|value|with(?!\\s++time))\\b",
+           "match": "(?i)\\b(by|c(ache|ycle)|increment|limit|m(axvalue|invalue)|no(c(ache|ycle)|m(axvalue|invalue)|order)|order|start|value|with(?!\\s++time))(?!(#|\\$))\\b",
            "comment": "identity-options"
         }
       ]
@@ -1440,7 +1440,7 @@
     "identity-clause": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(a(lways|s)|by|default|generated|identity|null|on)\\b",
+           "match": "(?i)\\b(a(lways|s)|by|default|generated|identity|null(?!(#|\\$))|on)\\b",
            "comment": "identity-clause"
         }
       ]
@@ -1448,7 +1448,7 @@
     "evaluation-edition-flag": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(current|e(dition|valuate)|null|using)\\b",
+           "match": "(?i)\\b(current|e(dition|valuate)|null(?!(#|\\$))|using)\\b",
            "comment": "evaluation-edition-flag"
         }
       ]
@@ -1456,7 +1456,7 @@
     "unusable-editions-clause": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(before|current|edition|null|unusable|with)\\b",
+           "match": "(?i)\\b(before|current|edition|null(?!(#|\\$))|unusable|with)\\b",
            "comment": "unusable-editions-clause"
         }
       ]
@@ -1464,7 +1464,7 @@
     "add-column-clause-parens": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(default|encrypt|invisible|null|on|sort|visible)\\b",
+           "match": "(?i)\\b(default|encrypt|invisible|null(?!(#|\\$))|on|sort|visible)\\b",
            "comment": "column-definition"
         },
         { "include": "#storage" },
@@ -1496,7 +1496,7 @@
     "evaluation-edition-clause": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(current|e(dition|valuate)|null|using)\\b",
+           "match": "(?i)\\b(current|e(dition|valuate)|null(?!(#|\\$))|using)\\b",
            "comment": "evaluation-edition-clause"
         }
       ]
@@ -1504,7 +1504,7 @@
     "modify-column-clauses-parens": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(d(e(crypt|fault)|rop)|encrypt|identity|null|on)\\b",
+           "match": "(?i)\\b(d(e(crypt|fault)|rop)|encrypt|identity|null(?!(#|\\$))|on)\\b",
            "comment": "modify-col-properties"
         },
         { "include": "#storage" },
@@ -1580,7 +1580,7 @@
            "comment": "rename-column-clause"
         },
         {  "name": "keyword.control",
-           "match": "(?i)\\b(as|locator|modify|nested|table|return|value)\\b",
+           "match": "(?i)\\b(as|locator|modify|nested|table|return|value)(?!(#|\\$))\\b",
            "comment": "modify-collection-retrieval"
         },
         {  "name": "keyword.control",

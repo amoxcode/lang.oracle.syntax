@@ -311,7 +311,7 @@
 					<key>comment</key>
 					<string>column-definition</string>
 					<key>match</key>
-					<string>(?i)\b(default|encrypt|invisible|null|on|sort|visible)\b</string>
+					<string>(?i)\b(default|encrypt|invisible|null(?!(#|\$))|on|sort|visible)\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -2883,7 +2883,7 @@
 					<key>comment</key>
 					<string>modify-collection-retrieval</string>
 					<key>match</key>
-					<string>(?i)\b(as|locator|modify|nested|table|return|value)\b</string>
+					<string>(?i)\b(as|locator|modify|nested|table|return|value)(?!(#|\$))\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -3540,7 +3540,7 @@
 					<key>comment</key>
 					<string>evaluation-edition-clause</string>
 					<key>match</key>
-					<string>(?i)\b(current|e(dition|valuate)|null|using)\b</string>
+					<string>(?i)\b(current|e(dition|valuate)|null(?!(#|\$))|using)\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -3554,7 +3554,7 @@
 					<key>comment</key>
 					<string>evaluation-edition-flag</string>
 					<key>match</key>
-					<string>(?i)\b(current|e(dition|valuate)|null|using)\b</string>
+					<string>(?i)\b(current|e(dition|valuate)|null(?!(#|\$))|using)\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -4223,7 +4223,7 @@
 					<key>comment</key>
 					<string>identity-clause</string>
 					<key>match</key>
-					<string>(?i)\b(a(lways|s)|by|default|generated|identity|null|on)\b</string>
+					<string>(?i)\b(a(lways|s)|by|default|generated|identity|null(?!(#|\$))|on)\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -4237,7 +4237,7 @@
 					<key>comment</key>
 					<string>identity-options</string>
 					<key>match</key>
-					<string>(?i)\b(by|c(ache|ycle)|increment|limit|m(axvalue|invalue)|no(c(ache|ycle)|m(axvalue|invalue)|order)|order|start|value|with(?!\s++time))\b</string>
+					<string>(?i)\b(by|c(ache|ycle)|increment|limit|m(axvalue|invalue)|no(c(ache|ycle)|m(axvalue|invalue)|order)|order|start|value|with(?!\s++time))(?!(#|\$))\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -4533,7 +4533,7 @@
 					<key>comment</key>
 					<string>inline-constraint</string>
 					<key>match</key>
-					<string>(?i)\b(constraint|key|n(ot|ull)|primary|unique)\b</string>
+					<string>(?i)\b(constraint|key|n(ot|ull(?!(#|\$)))|primary|unique)\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -4992,7 +4992,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null|sysaux|true)\b</string>
+					<string>(?i)\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null(?!(#|\$))|sysaux|true)\b</string>
 					<key>name</key>
 					<string>constant.language</string>
 				</dict>
@@ -5111,7 +5111,7 @@
 					<key>comment</key>
 					<string>modify-col-properties</string>
 					<key>match</key>
-					<string>(?i)\b(d(e(crypt|fault)|rop)|encrypt|identity|null|on)\b</string>
+					<string>(?i)\b(d(e(crypt|fault)|rop)|encrypt|identity|null(?!(#|\$))|on)\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -5225,7 +5225,7 @@
 					<key>comment</key>
 					<string>nested-table-col-properties</string>
 					<key>match</key>
-					<string>(?i)\b(as|column_value|locator|nested|return|store|table|value)\b</string>
+					<string>(?i)\b(as|column_value|locator|nested|return|store|table|value)(?!(#|\$))\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -5938,7 +5938,7 @@
 		<key>references-clause</key>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(cascade|delete|null|on|references|set)\b</string>
+			<string>(?i)\b(cascade|delete|null(?!(#|\$))|on|references|set)\b</string>
 			<key>name</key>
 			<string>keyword.other</string>
 		</dict>
@@ -12998,7 +12998,7 @@
 					<key>comment</key>
 					<string>storage-clause-parens</string>
 					<key>match</key>
-					<string>(?i)\b(buffer_pool|default|encrypt|f(lash_cache|reelist(s)?)|keep|groups|initial|m(axextents|inextents)|n(ext|one|ull)|optimal|pctincrease|recycle|unlimited)\b</string>
+					<string>(?i)\b(buffer_pool|default|encrypt|f(lash_cache|reelist(s)?)|keep|groups|initial|m(axextents|inextents)|n(ext|one|ull(?!(#|\$)))|optimal|pctincrease|recycle|unlimited)\b</string>
 					<key>name</key>
 					<string>keyword.other</string>
 				</dict>
@@ -13420,7 +13420,7 @@
 					<key>comment</key>
 					<string>unusable-editions-clause</string>
 					<key>match</key>
-					<string>(?i)\b(before|current|edition|null|unusable|with)\b</string>
+					<string>(?i)\b(before|current|edition|null(?!(#|\$))|unusable|with)\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
