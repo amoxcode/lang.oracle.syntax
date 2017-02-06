@@ -3761,7 +3761,7 @@
 					<key>comment</key>
 					<string>external-table-clause-parens</string>
 					<key>match</key>
-					<string>(?i)\b(type)\b</string>
+					<string>(?i)\b(type(?!#))\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -13094,7 +13094,7 @@
 					<key>comment</key>
 					<string>substitutable-column-clause</string>
 					<key>match</key>
-					<string>(?i)\b(all|at|element|levels||is|not|of|substitutable|type)\b</string>
+					<string>(?i)\b(all|at|element|levels||is|not|of|substitutable|type(?!#))\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>

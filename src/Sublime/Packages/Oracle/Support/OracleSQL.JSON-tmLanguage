@@ -851,7 +851,7 @@
     "substitutable-column-clause": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(all|at|element|levels||is|not|of|substitutable|type)\\b",
+           "match": "(?i)\\b(all|at|element|levels||is|not|of|substitutable|type(?!#))\\b",
            "comment": "substitutable-column-clause"
         }
       ]
@@ -1250,7 +1250,7 @@
     "external-table-clause-parens": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(type)\\b",
+           "match": "(?i)\\b(type(?!#))\\b",
            "comment": "external-table-clause-parens"
         },
         {  "name": "constant.language",
