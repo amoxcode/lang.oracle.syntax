@@ -2807,6 +2807,7 @@
             { "include": "#move_table_clause" },
             { "include": "#modify-opaque-type" },
             { "include": "#enable-disable-clause" },
+            { "include": "#storage" },
             { "include": "#common-clause" }
           ],
           "end": "((?=;)|((?=^\\s*+/$))|(?=^(\\.)?\\s*+$))"
