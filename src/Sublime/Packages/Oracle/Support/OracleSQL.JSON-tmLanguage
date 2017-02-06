@@ -193,7 +193,7 @@
            "comment": "interval"
         },
         {  "name": "constant.language",
-           "match": "(?i)\\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null|true)\\b"
+           "match": "(?i)\\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null|sysaux|true)\\b"
         }
       ]
     },

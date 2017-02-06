@@ -4988,7 +4988,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null|true)\b</string>
+					<string>(?i)\b(binary_((float|double)_(m(in_(subnormal|normal)|ax_(subnormal|normal))|infinity|nan))|false|null|sysaux|true)\b</string>
 					<key>name</key>
 					<string>constant.language</string>
 				</dict>
