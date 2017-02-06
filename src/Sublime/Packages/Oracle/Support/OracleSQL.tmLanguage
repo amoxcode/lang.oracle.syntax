@@ -10384,6 +10384,10 @@
 										</dict>
 										<dict>
 											<key>include</key>
+											<string>#identifier</string>
+										</dict>
+										<dict>
+											<key>include</key>
 											<string>#parameter-definition</string>
 										</dict>
 									</array>

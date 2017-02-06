@@ -4964,6 +4964,7 @@
                     {  "name": "keyword.other",
                        "match": "(?i)\\b(function)\\b"
                     },
+                    { "include": "#identifier" },
                     { "include": "#parameter-definition" }
                   ],
                   "end": "(?i)\\b(return\\s++(self)\\s++as\\s++result)\\b",
