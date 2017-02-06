@@ -85,6 +85,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#size-clause</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#logging-clause</string>
 				</dict>
 			</array>

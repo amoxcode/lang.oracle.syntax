@@ -801,6 +801,7 @@
         { "include": "#LOB-deduplicate-clause" },
         { "include": "#LOB-compression-clause" },
         { "include": "#encryption-spec" },
+        { "include": "#size-clause" },
         { "include": "#logging-clause" }
       ]
     },
