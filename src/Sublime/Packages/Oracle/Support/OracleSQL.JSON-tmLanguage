@@ -50,7 +50,7 @@
            "match": "(?i)\\b(binary_(double|float)|float|number)\\b"
         },
         {  "name": "invalid.deprecated",
-           "match": "(?i)\\b(long(\\s++raw)|raw)\\b"
+           "match": "(?i)\\b(long(\\s++raw)?|raw)\\b"
         },
         {  "name": "storage.type.datetime",
            "match": "(?i)\\b(date|interval\\s++(day|year)|t(o(\\s++(month|second))|imestamp)|with(\\s++local)?\\s++time\\s++zone)\\b"

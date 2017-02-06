@@ -12922,7 +12922,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(long(\s++raw)|raw)\b</string>
+					<string>(?i)\b(long(\s++raw)?|raw)\b</string>
 					<key>name</key>
 					<string>invalid.deprecated</string>
 				</dict>
