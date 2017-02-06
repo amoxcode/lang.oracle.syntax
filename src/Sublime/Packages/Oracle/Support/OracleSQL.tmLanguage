@@ -9384,6 +9384,10 @@
 									<string>#physical-attributes-clause</string>
 								</dict>
 								<dict>
+									<key>include</key>
+									<string>#logging-clause</string>
+								</dict>
+								<dict>
 									<key>begin</key>
 									<string>\(</string>
 									<key>captures</key>

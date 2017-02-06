@@ -4520,6 +4520,7 @@
                 { "include": "#allocate-extent-clause" },
                 { "include": "#parallel-clause" },
                 { "include": "#physical-attributes-clause" },
+                { "include": "#logging-clause" },
                 {
                   "begin": "\\(",
                     "patterns": [
