@@ -1145,7 +1145,7 @@
     "inline-ref-constraint": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(constraint|is|rowid|scope|with)\\b",
+           "match": "(?i)\\b(constraint|is|rowid|scope|with(?!\\s++time))\\b",
            "comment": "inline-ref-constraint"
         },
         { "include": "#references-clause" },
@@ -1165,7 +1165,7 @@
     "out-of-line-ref-constraint": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(constraint|foreign|is|rowid|scope|with)\\b",
+           "match": "(?i)\\b(constraint|foreign|is|rowid|scope|with(?!\\s++time))\\b",
            "comment": "out-of-line-ref-constraint"
         },
         { "include": "#references-clause" },
@@ -1432,7 +1432,7 @@
     "identity-clause-parens": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(by|c(ache|ycle)|increment|limit|m(axvalue|invalue)|no(c(ache|ycle)|m(axvalue|invalue)|order)|order|start|value|with)\\b",
+           "match": "(?i)\\b(by|c(ache|ycle)|increment|limit|m(axvalue|invalue)|no(c(ache|ycle)|m(axvalue|invalue)|order)|order|start|value|with(?!\\s++time))\\b",
            "comment": "identity-options"
         }
       ]

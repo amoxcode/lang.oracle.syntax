@@ -4233,7 +4233,7 @@
 					<key>comment</key>
 					<string>identity-options</string>
 					<key>match</key>
-					<string>(?i)\b(by|c(ache|ycle)|increment|limit|m(axvalue|invalue)|no(c(ache|ycle)|m(axvalue|invalue)|order)|order|start|value|with)\b</string>
+					<string>(?i)\b(by|c(ache|ycle)|increment|limit|m(axvalue|invalue)|no(c(ache|ycle)|m(axvalue|invalue)|order)|order|start|value|with(?!\s++time))\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -4551,7 +4551,7 @@
 					<key>comment</key>
 					<string>inline-ref-constraint</string>
 					<key>match</key>
-					<string>(?i)\b(constraint|is|rowid|scope|with)\b</string>
+					<string>(?i)\b(constraint|is|rowid|scope|with(?!\s++time))\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -5543,7 +5543,7 @@
 					<key>comment</key>
 					<string>out-of-line-ref-constraint</string>
 					<key>match</key>
-					<string>(?i)\b(constraint|foreign|is|rowid|scope|with)\b</string>
+					<string>(?i)\b(constraint|foreign|is|rowid|scope|with(?!\s++time))\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
