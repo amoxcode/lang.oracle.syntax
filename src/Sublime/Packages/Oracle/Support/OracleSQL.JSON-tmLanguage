@@ -2843,7 +2843,7 @@
     "system-privileges": {
       "patterns": [
         {  "name": "constant.language",
-           "match": "(?i)\\b(a(ccess|d(minister|visor)|lter|n(alize|y)|rchive|udit)|b(ackup|ecome|uid)|c(hange|l(ass|uster)|o(mm(ent|it)|n(nect|t(ainer|ext(?!\\s++namespace)))|st)|reate|ube)|d(at(abase|e)|e(bug|lete)|i(ctionary|mension|rectory)|rop)|e(dition|x(e(cute|mpt)|ternal))|f(lashback|o(lder|rce))|g(lobal|rant)|in(dex(type)?|herit|sert)|job|ke(ep|y)|l(i(brary|nk)|o(ck|gmining))|m(a(nage(ment)?|terialized)|e(asure|rge)|ining|odel)|notification|o(bject|n(?=\\s++commit)|perator|utline)|p(lugabble|olicy|r(ivilege|o(ce(dure|ss)|file|gram))|u(blic|rge_dba_recyclebin))|query|r(e(ad|daction|fresh|s(ource|tricted|umable)|write)|ol(lback|e))|s(cheduler|e(gment|lect|quence|ssion|t)|ql|y(nonym|s(backup|d(ba|g)|guid|km|oper|tem)))|t(able(space)?|ime|uning|r(ans(action|lat(e|ion))|igger)|ype)|u(n(der|limited)|pdate|ser)|view)\\b",
+           "match": "(?i)\\b(a(ccess|d(minister|visor)|lter|n(alyze|y)|rchive|udit)|b(ackup|ecome|uid)|c(hange|l(ass|uster)|o(mm(ent|it)|n(nect|t(ainer|ext(?!\\s++namespace)))|st)|reate|ube)|d(at(abase|e)|e(bug|lete)|i(ctionary|mension|rectory)|rop)|e(dition|x(e(cute|mpt)|ternal))|f(lashback|o(lder|rce))|g(lobal|rant)|in(dex(type)?|herit|sert)|job|ke(ep|y)|l(i(brary|nk)|o(ck|gmining))|m(a(nage(ment)?|terialized)|e(asure|rge)|ining|odel)|notification|o(bject|n(?=\\s++commit)|perator|utline)|p(lugabble|olicy|r(ivilege|o(ce(dure|ss)|file|gram))|u(blic|rge_dba_recyclebin))|query|r(e(ad|daction|fresh|s(ource|tricted|umable)|write)|ol(lback|e))|s(cheduler|e(gment|lect|quence|ssion|t)|ql|y(nonym|s(backup|d(ba|g)|guid|km|oper|tem)))|t(able(space)?|ime|uning|r(ans(action|lat(e|ion))|igger)|ype)|u(n(der|limited)|pdate|ser)|view)\\b",
            "comment": "system-privileges"
         }
       ]
@@ -2851,7 +2851,7 @@
     "object-privileges": {
       "patterns": [
         {  "name": "constant.language",
-           "match": "(?i)\\b(a(lter|rchive)|commit|de(bug|lete)|execute|flashback|in(dex|herit|sert)|keep|merge|on(?=\\s++commit)|privileges|query|re(ad|f(erences|resh)|write)|s(e(lect|quence)|ql)|translate|u(nder|pdate|se)|view|write)\\b",
+           "match": "(?i)\\b(a(lter|rchive)|commit|de(bug|lete)|execute|flashback|in(dex|herit|sert)|keep|merge|on(?=\\s++commit)|privileges|query|re(ad|f(erences|resh)|write)|s(e(lect|quence)|napshot|ql)|translate|u(nder|pdate|se)|view|write)\\b",
            "comment": "object-privileges"
         }
       ]
