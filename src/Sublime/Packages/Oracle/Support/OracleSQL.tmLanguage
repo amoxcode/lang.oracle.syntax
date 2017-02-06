@@ -11791,6 +11791,10 @@
 					<key>patterns</key>
 					<array>
 						<dict>
+							<key>include</key>
+							<string>#hint</string>
+						</dict>
+						<dict>
 							<key>comment</key>
 							<string>merge</string>
 							<key>match</key>

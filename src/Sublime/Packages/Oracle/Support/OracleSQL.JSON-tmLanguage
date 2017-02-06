@@ -5653,6 +5653,7 @@
               "1": { "name": "keyword.other" }
           },
           "patterns": [
+            { "include": "#hint" },
             {  "name": "keyword.other",
                "match": "(?i)\\b(into|on|using)\\b",
                "comment": "merge"
