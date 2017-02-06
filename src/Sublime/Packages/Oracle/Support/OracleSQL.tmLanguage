@@ -12962,7 +12962,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(char((\s++varying)?|acter(\s++varying)?)|d(ouble(\s++precision)?|ec(imal)?)|int(eger)?|n(ational|char(\s++varying)?|umeric)|real|smaillint|varchar)\b</string>
+					<string>(?i)\b(char((\s++varying)?|acter(\s++varying)?)|d(ouble(\s++precision)?|ec(imal)?)|int(eger)?|n(ational|char(\s++varying)?|umeric)|real|smallint|varchar)\b</string>
 					<key>name</key>
 					<string>storage.type.ansi</string>
 				</dict>

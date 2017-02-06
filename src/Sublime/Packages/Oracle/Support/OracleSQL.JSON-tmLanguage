@@ -62,7 +62,7 @@
            "match": "(?i)\\b(rowid|urowid)\\b"
         },
         {  "name": "storage.type.ansi",
-           "match": "(?i)\\b(char((\\s++varying)?|acter(\\s++varying)?)|d(ouble(\\s++precision)?|ec(imal)?)|int(eger)?|n(ational|char(\\s++varying)?|umeric)|real|smaillint|varchar)\\b"
+           "match": "(?i)\\b(char((\\s++varying)?|acter(\\s++varying)?)|d(ouble(\\s++precision)?|ec(imal)?)|int(eger)?|n(ational|char(\\s++varying)?|umeric)|real|smallint|varchar)\\b"
         },
         {  "name": "storage.type.oracle-provided",
            "match": "(?i)\\b(ord(audio|d(icom|oc)|image|video)|s(do_(geo(metry|raster)|topo_geometry)|i_(averagecolor|color(histogram)?|featurelist|positionalcolor|stillimage|texture)|ys\\.(any(data(set)?|type|)))|uritype|xmltype)\\b"
