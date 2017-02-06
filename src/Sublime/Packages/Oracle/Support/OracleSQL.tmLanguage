@@ -3078,7 +3078,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))|(?i)(?=(create\s++(table|view)|grant))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))|(?i)(?=(create\s++(table|view)|grant))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -3843,7 +3843,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))|(?i)(?&lt;!grant)\s++(?=(create\s++(table|view)))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))|(?i)(?&lt;!grant)\s++(?=(create\s++(table|view)))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.grant</string>
 					<key>patterns</key>
@@ -6357,7 +6357,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -6400,7 +6400,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -6439,7 +6439,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -6476,7 +6476,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -6505,7 +6505,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -6526,7 +6526,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -6563,7 +6563,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -6606,7 +6606,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.analyze</string>
 					<key>patterns</key>
@@ -6665,7 +6665,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.associate-statistics</string>
 					<key>patterns</key>
@@ -6744,7 +6744,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.disassociate-statistics</string>
 					<key>patterns</key>
@@ -6843,7 +6843,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -6980,7 +6980,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7033,7 +7033,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7070,7 +7070,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7119,7 +7119,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7224,7 +7224,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7261,7 +7261,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7359,7 +7359,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7388,7 +7388,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7429,7 +7429,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7458,7 +7458,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7507,7 +7507,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7564,7 +7564,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7638,7 +7638,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7692,7 +7692,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7741,7 +7741,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7887,7 +7887,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -7989,7 +7989,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8070,7 +8070,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8140,7 +8140,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8169,7 +8169,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8198,7 +8198,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8384,7 +8384,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8457,7 +8457,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8494,7 +8494,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8531,7 +8531,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8589,7 +8589,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8651,7 +8651,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8680,7 +8680,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8709,7 +8709,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8738,7 +8738,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8759,7 +8759,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8901,7 +8901,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8942,7 +8942,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -8998,7 +8998,7 @@
 					<key>begin</key>
 					<string>(?i)(?=^\s*(alter)\s++(?!s(ession|ystem)))</string>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.alter</string>
 					<key>patterns</key>
@@ -9042,7 +9042,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9089,7 +9089,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9136,7 +9136,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9163,7 +9163,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9217,7 +9217,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9292,7 +9292,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9327,7 +9327,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9354,7 +9354,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9428,7 +9428,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9476,7 +9476,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9545,7 +9545,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9635,7 +9635,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9703,7 +9703,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9730,7 +9730,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9778,7 +9778,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9805,7 +9805,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9832,7 +9832,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9902,7 +9902,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9935,7 +9935,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9962,7 +9962,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -9995,7 +9995,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10036,7 +10036,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10063,7 +10063,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10100,7 +10100,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10260,7 +10260,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10287,7 +10287,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10690,7 +10690,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10755,7 +10755,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10782,7 +10782,7 @@
 					<key>begin</key>
 					<string>(?i)^\s*(?=(drop)\s)</string>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.drop</string>
 					<key>patterns</key>
@@ -10799,7 +10799,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10924,7 +10924,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10953,7 +10953,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -10982,7 +10982,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -11011,7 +11011,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -11040,7 +11040,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -11069,7 +11069,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -11098,7 +11098,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -11143,7 +11143,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -11184,7 +11184,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.flashback</string>
 					<key>patterns</key>
@@ -11215,7 +11215,7 @@
 					<key>begin</key>
 					<string>(?i)^(?=\s*+grant\b)</string>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.grant</string>
 					<key>patterns</key>
@@ -11238,7 +11238,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.noaudit</string>
 					<key>patterns</key>
@@ -11301,7 +11301,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.purge</string>
 					<key>patterns</key>
@@ -11332,7 +11332,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.rename</string>
 					<key>patterns</key>
@@ -11363,7 +11363,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.revoke</string>
 					<key>patterns</key>
@@ -11446,7 +11446,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.truncate</string>
 					<key>patterns</key>
@@ -11477,7 +11477,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 					<key>name</key>
 					<string>meta.statement.ddl.truncate</string>
 					<key>patterns</key>
@@ -11523,7 +11523,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+							<string>((?=;)|((?=^\s*+/\s*+))|(?=^\s*+$))</string>
 							<key>name</key>
 							<string>meta.statement.dml.delete</string>
 							<key>patterns</key>
@@ -12831,7 +12831,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>((?=;)|((?=^\s*+/$\s*+))|(?=^\s*+$))</string>
+			<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))</string>
 			<key>name</key>
 			<string>meta.statement.administer-key</string>
 			<key>patterns</key>
