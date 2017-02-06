@@ -3098,7 +3098,8 @@
             { 
               "begin": "(?i)(?<=table)(\\s)",
                 "patterns": [
-                  { "include": "#identifier" }
+                  { "include": "#identifier" },
+                  { "include": "#comment" }
                 ],
               "end": "(?i)(?=(\\()|of|as)"
             },
