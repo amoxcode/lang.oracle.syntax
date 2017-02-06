@@ -5126,6 +5126,9 @@
                    "match": "(?i)\\b(element|limit|modify|type)\\b",
                    "comment": "alter-collections-clauses"
                 },
+                {  "name": "keyword.other",
+                   "match": "(?i)\\b(library|opaque|using|varying)\\b",
+                },
                 { "include": "#exceptions-clause" },
                 { "include": "#storage" },
                 { "include": "#common-clause" }

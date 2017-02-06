@@ -10728,6 +10728,13 @@
 									<string>keyword.other</string>
 								</dict>
 								<dict>
+									<key>comment</key>
+									<key>match</key>
+									<string>(?i)\b(library|opaque|using|varying)\b</string>
+									<key>name</key>
+									<string>keyword.other</string>
+								</dict>
+								<dict>
 									<key>include</key>
 									<string>#exceptions-clause</string>
 								</dict>
