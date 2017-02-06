@@ -69,6 +69,9 @@
         },
         {  "name": "storage.modifier",
            "match": "(?i)\\b(constant|default|i(n(dex\\s++by)?|s(?=\\s++table))|no(copy|t\\s++null)|o(ut|f)|r(ange|ef)|subtype)\\b"
+        },
+        {  "name": "storage.type.plsql",
+           "match": "(?i)\\b(pls_integer)\\b"
         }
       ]
     },
@@ -5128,6 +5131,7 @@
                 },
                 {  "name": "keyword.other",
                    "match": "(?i)\\b(library|opaque|using|varying)\\b",
+                   "comment": "undocumented"
                 },
                 { "include": "#exceptions-clause" },
                 { "include": "#storage" },
