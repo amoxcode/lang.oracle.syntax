@@ -5483,7 +5483,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(a(ll|n(d|y))|between|e(quals_path|scape|xists)|i(n(finite)?|s)|like(c|2|4)?|n(an|ot)|o(f|n((\s++error)?|ly)|r)|regexp_like|some|type|under_path)\b</string>
+					<string>(?i)\b(a(ll|n(d|y))|between|e(quals_path|scape|xists)|i(n(finite)?|s)|like(c|2|4)?|n(an|ot)|o(f|n((\s++error)?|ly)|r)|regexp_like|some|type(?!#)|under_path)\b</string>
 					<key>name</key>
 					<string>keyword.operator</string>
 				</dict>
@@ -12936,7 +12936,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(date|interval\s++(day|year)|t(o(\s++(month|second))|imestamp)|with(\s++local)?\s++time\s++zone)\b</string>
+					<string>(?i)\b(date|interval\s++(day|year)|t(o(\s++(month|second))|imestamp)|with(\s++local)?\s++time\s++zone)(?!#)\b</string>
 					<key>name</key>
 					<string>storage.type.datetime</string>
 				</dict>

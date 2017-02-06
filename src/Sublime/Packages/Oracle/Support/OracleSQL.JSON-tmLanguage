@@ -53,7 +53,7 @@
            "match": "(?i)\\b(long(\\s++raw)?|raw)\\b"
         },
         {  "name": "storage.type.datetime",
-           "match": "(?i)\\b(date|interval\\s++(day|year)|t(o(\\s++(month|second))|imestamp)|with(\\s++local)?\\s++time\\s++zone)\\b"
+           "match": "(?i)\\b(date|interval\\s++(day|year)|t(o(\\s++(month|second))|imestamp)|with(\\s++local)?\\s++time\\s++zone)(?!#)\\b"
         },
         {  "name": "storage.type.large-object",
            "match": "(?i)\\b(b(file|lob)|clob|nclob)\\b"
@@ -288,7 +288,7 @@
            "match": "(=|!=|<>|\\^=|<(=)?|>(=)?)"
         },
         {  "name": "keyword.operator",
-           "match": "(?i)\\b(a(ll|n(d|y))|between|e(quals_path|scape|xists)|i(n(finite)?|s)|like(c|2|4)?|n(an|ot)|o(f|n((\\s++error)?|ly)|r)|regexp_like|some|type|under_path)\\b"
+           "match": "(?i)\\b(a(ll|n(d|y))|between|e(quals_path|scape|xists)|i(n(finite)?|s)|like(c|2|4)?|n(an|ot)|o(f|n((\\s++error)?|ly)|r)|regexp_like|some|type(?!#)|under_path)\\b"
         },
         {  "name": "keyword.operator.query.hierarchical",
            "match": "(?i)\\b(c(onnect(\\s++by|_by_root)|ycle)|nocycle|prior|start\\s++with)\\b"
