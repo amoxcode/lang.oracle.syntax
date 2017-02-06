@@ -10643,6 +10643,49 @@
 									<key>patterns</key>
 									<array>
 										<dict>
+											<key>begin</key>
+											<string>(?i)\b(constructor|member|static)\b</string>
+											<key>beginCaptures</key>
+											<dict>
+												<key>1</key>
+												<dict>
+													<key>name</key>
+													<string>keyword.other</string>
+												</dict>
+											</dict>
+											<key>end</key>
+											<string>(?=,|\))</string>
+											<key>patterns</key>
+											<array>
+												<dict>
+													<key>include</key>
+													<string>#parameter-definition</string>
+												</dict>
+												<dict>
+													<key>match</key>
+													<string>(?i)\b(a(gent|s)|c(ontext)?|external|function|in|java|l(anguage|ibrary)|name|p(arameters|rocedure)|return|variable|with)\b</string>
+													<key>name</key>
+													<string>keyword.other</string>
+												</dict>
+												<dict>
+													<key>comment</key>
+													<string>constructor-spec</string>
+													<key>match</key>
+													<string>(?i)\b(as|is|re(sult|turn)|self)\b</string>
+													<key>name</key>
+													<string>keyword.other</string>
+												</dict>
+												<dict>
+													<key>include</key>
+													<string>#storage</string>
+												</dict>
+												<dict>
+													<key>include</key>
+													<string>#expression</string>
+												</dict>
+											</array>
+										</dict>
+										<dict>
 											<key>include</key>
 											<string>#storage</string>
 										</dict>

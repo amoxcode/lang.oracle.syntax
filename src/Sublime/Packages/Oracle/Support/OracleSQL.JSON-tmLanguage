@@ -5085,6 +5085,26 @@
                       "1": { "name": "keyword.other.delimiter" }
                   },
                   "patterns": [
+                          {
+                            "begin": "(?i)\\b(constructor|member|static)\\b",
+                            "beginCaptures": {
+                                "1": { "name": "keyword.other" }
+                            },
+                            "patterns": [
+                              { "include": "#parameter-definition" },
+                              {  "name": "keyword.other",
+                                 "match": "(?i)\\b(a(gent|s)|c(ontext)?|external|function|in|java|l(anguage|ibrary)|name|p(arameters|rocedure)|return|variable|with)\\b"
+                              },
+                              {  "name": "keyword.other",
+                                 "match": "(?i)\\b(as|is|re(sult|turn)|self)\\b",
+                                 "comment": "constructor-spec"
+
+                              },
+                              { "include": "#storage" },
+                              { "include": "#expression" }
+                            ],
+                            "end": "(?=,|\\))"
+                          },                  
                     { "include": "#storage" },
                     { "include": "#expression" }
                   ],
