@@ -714,6 +714,7 @@
     "ilm-clause": {
       "patterns": [
         {  "name": "keyword.control",
+           "match": "(?i)\\b(add|d(elete(_all)?|isable(_all)?)|enable(_all)?|ilm|policy(?!(\\$|#)))\\b",
            "comment": "ilm-clause"
         },
         {  "name": "keyword.control",
@@ -1292,6 +1293,7 @@
            "comment": "XMLType-column-properties"
         },
         {  "name": "keyword.control",
+           "match": "(?i)\\b(as|b(asicfile|inary)|clob|object(?!(#|\\$))|relational|s(ecurefile|tore)|xml)\\b",
            "comment": "XMLType-storage"
         },
         {  "name": "keyword.control",
@@ -2846,7 +2848,7 @@
     "system-privileges": {
       "patterns": [
         {  "name": "constant.language",
-           "match": "(?i)\\b(a(ccess|d(minister|visor)|lter|n(alyze|y)|rchive|udit)|b(ackup|ecome|uid)|c(hange|l(ass|uster)|o(mm(ent|it)|n(nect|t(ainer|ext(?!\\s++namespace)))|st)|reate|ube)|d(at(abase|e)|e(bug|lete)|i(ctionary|mension|rectory)|rop)|e(dition|x(e(cute|mpt)|ternal))|f(lashback|o(lder|rce))|g(lobal|rant)|in(dex(type)?|herit|sert)|job|ke(ep|y)|l(i(brary|nk)|o(ck|gmining))|m(a(nage(ment)?|terialized)|e(asure|rge)|ining|odel)|notification|o(bject|n(?=\\s++commit)|perator|utline)|p(lugabble|olicy|r(ivilege|o(ce(dure|ss)|file|gram))|u(blic|rge_dba_recyclebin))|query|r(e(ad|daction|fresh|s(ource|tricted|umable)|write)|ol(lback|e))|s(cheduler|e(gment|lect|quence|ssion|t)|ql|y(nonym|s(backup|d(ba|g)|guid|km|oper|tem)))|t(able(space)?|ime|uning|r(ans(action|lat(e|ion))|igger)|ype)|u(n(der|limited)|pdate|ser)|view)\\b",
+           "match": "(?i)\\b(a(ccess(\\s++policy)?|d(minister|visor)|lter|n(alyze|y)|rchive|udit)|b(ackup|ecome|uid)|dba_recyclebin|c(hange|l(ass|uster)|o(mm(ent|it)|n(nect|t(ainer|ext(?!\\s++namespace)))|st)|reate|ube)|d(at(abase|e)|e(bug|lete)|i(ctionary|mension|rectory)|rop)|e(dition|x(e(cute|mpt)|ternal))|f(lashback|o(lder|rce))|g(lobal|rant)|in(dex(type)?|herit|sert)|job|ke(ep|y)|l(i(brary|nk)|o(ck|gmining))|m(a(nage(ment)?|terialized)|e(asure|rge)|ining|odel)|notification|o(bject|n(?=\\s++commit)|perator|utline)|p(lugabble|olicy|r(ivilege|o(ce(dure|ss)|file|gram))|u(blic|rge\\s++dba_recyclebin))|query|r(e(ad|daction(\\s+policy)?|fresh|s(ource|tricted|umable)|write)|ol(lback|e))|s(cheduler|e(gment|lect|quence|ssion|t)|ql|y(nonym|s(backup|d(ba|g)|guid|km|oper|tem)))|t(able(space)?|ime|uning|r(ans(action|lat(e|ion))|igger)|ype)|u(n(der|limited)|pdate|ser)|view)\\b",
            "comment": "system-privileges"
         }
       ]
