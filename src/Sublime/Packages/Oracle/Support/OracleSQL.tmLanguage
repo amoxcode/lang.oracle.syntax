@@ -3313,6 +3313,10 @@
 							<key>patterns</key>
 							<array>
 								<dict>
+									<key>include</key>
+									<string>#statement-dml-select</string>
+								</dict>
+								<dict>
 									<key>comment</key>
 									<string>create-view</string>
 									<key>match</key>
@@ -3327,6 +3331,14 @@
 								<dict>
 									<key>include</key>
 									<string>#out-of-line-constraint</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#expression</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#subquery-restriction-clause</string>
 								</dict>
 								<dict>
 									<key>include</key>

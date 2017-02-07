@@ -3071,12 +3071,15 @@
             {
               "begin": "\\(",
                 "patterns": [
+                  { "include": "#statement-dml-select" },
                   {  "name": "keyword.other",
                      "match": "(?i)\\b(invisible|visible)\\b",
                      "comment": "create-view"
                   },
                   { "include": "#inline-constraint" },
                   { "include": "#out-of-line-constraint" },
+                  { "include": "#expression" },
+                  { "include": "#subquery-restriction-clause" },
                   { "include": "#expression" }
                 ],
               "end": "\\)",
