@@ -6971,6 +6971,14 @@
 									<string>constant.language</string>
 								</dict>
 								<dict>
+									<key>comment</key>
+									<string>actions</string>
+									<key>match</key>
+									<string>(?i)\b(logo(ff|n)|pluggable)\b</string>
+									<key>name</key>
+									<string>constant.language</string>
+								</dict>
+								<dict>
 									<key>include</key>
 									<string>#system-privileges</string>
 								</dict>

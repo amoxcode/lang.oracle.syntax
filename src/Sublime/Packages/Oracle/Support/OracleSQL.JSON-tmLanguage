@@ -3421,6 +3421,10 @@
                    "match": "(?i)\\b(access|e(rror|val)|fa(ctor|ilure|lse)|level|n(eg|ull)|r(ealm|ule)|s(et|uccess)|trust|v(alidate|iolation))\\b",
                    "comment": "component-actions-dv"
                 },
+                {  "name": "constant.language",
+                   "match": "(?i)\\b(logo(ff|n)|pluggable)\\b",
+                   "comment": "actions"
+                },
                 { "include": "#system-privileges" },
                 { "include": "#common-clause" }
               ],
