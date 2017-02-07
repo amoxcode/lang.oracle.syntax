@@ -3037,7 +3037,9 @@
 							<key>patterns</key>
 							<array>
 								<dict>
-									<key>captures</key>
+									<key>begin</key>
+									<string>(?i)\b(type\s++body\s++)</string>
+									<key>beginCaptures</key>
 									<dict>
 										<key>1</key>
 										<dict>
@@ -3045,10 +3047,17 @@
 											<string>keyword.other</string>
 										</dict>
 									</dict>
-									<key>match</key>
-									<string>(?i)\b(type\s++body\s++)(&amp;?(\w|&amp;|\.)++)\b</string>
+									<key>end</key>
+									<string>\s</string>
 									<key>name</key>
 									<string>entity.name.function</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>#identifier</string>
+										</dict>
+									</array>
 								</dict>
 								<dict>
 									<key>comment</key>
