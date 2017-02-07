@@ -13047,7 +13047,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(pls_integer)\b</string>
+					<string>(?i)\b(boolean|natural(n)?|pls_integer)\b</string>
 					<key>name</key>
 					<string>storage.type.plsql</string>
 				</dict>

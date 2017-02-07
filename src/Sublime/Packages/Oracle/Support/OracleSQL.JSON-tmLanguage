@@ -71,7 +71,7 @@
            "match": "(?i)\\b(constant|default|i(n(dex\\s++by)?|s(?=\\s++table))|no(copy|t\\s++null)|o(ut|f)|r(ange|ef)|subtype)\\b"
         },
         {  "name": "storage.type.plsql",
-           "match": "(?i)\\b(pls_integer)\\b"
+           "match": "(?i)\\b(boolean|natural(n)?|pls_integer)\\b"
         }
       ]
     },
