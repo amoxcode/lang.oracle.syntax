@@ -8684,6 +8684,10 @@
 								</dict>
 								<dict>
 									<key>include</key>
+									<string>#comment</string>
+								</dict>
+								<dict>
+									<key>include</key>
 									<string>#common-clause</string>
 								</dict>
 							</array>

@@ -4211,6 +4211,7 @@
                    "match": "(?i)\\b(by|c(ache|ycle)|global|increment|keep|m(axvalue|invalue)|no(c(ache|ycle)|keep|m(axvalue|invalue)|order)|order|s(ession|tart)|with)\\b",
                    "comment": "create-sequence"
                 },
+                { "include": "#comment" },
                 { "include": "#common-clause" }
               ],
               "end": "((?=;)|((?=^\\s*+/\\s*+$))|(?=^\\s*+$))"
