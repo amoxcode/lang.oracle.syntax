@@ -249,7 +249,7 @@
 					<key>comment</key>
 					<string>XMLType-storage</string>
 					<key>match</key>
-					<string>(?i)\b(as|b(asicfile|inary)|clob|object|relational|s(ecurefile|tore)|xml)\b</string>
+					<string>(?i)\b(as|b(asicfile|inary)|clob|object(?!(#|\$))|relational|s(ecurefile|tore)|xml)\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>
@@ -4255,7 +4255,7 @@
 					<key>comment</key>
 					<string>ilm-clause</string>
 					<key>match</key>
-					<string>(?i)\b(add|d(elete(_all)?|isable(_all)?)|enable(_all)?|ilm|policy)\b</string>
+					<string>(?i)\b(add|d(elete(_all)?|isable(_all)?)|enable(_all)?|ilm|policy(?!(\$|#)))\b</string>
 					<key>name</key>
 					<string>keyword.control</string>
 				</dict>

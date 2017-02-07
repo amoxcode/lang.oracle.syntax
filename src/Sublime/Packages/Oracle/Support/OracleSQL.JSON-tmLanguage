@@ -714,7 +714,6 @@
     "ilm-clause": {
       "patterns": [
         {  "name": "keyword.control",
-           "match": "(?i)\\b(add|d(elete(_all)?|isable(_all)?)|enable(_all)?|ilm|policy)\\b",
            "comment": "ilm-clause"
         },
         {  "name": "keyword.control",
@@ -1293,7 +1292,6 @@
            "comment": "XMLType-column-properties"
         },
         {  "name": "keyword.control",
-           "match": "(?i)\\b(as|b(asicfile|inary)|clob|object|relational|s(ecurefile|tore)|xml)\\b",
            "comment": "XMLType-storage"
         },
         {  "name": "keyword.control",
