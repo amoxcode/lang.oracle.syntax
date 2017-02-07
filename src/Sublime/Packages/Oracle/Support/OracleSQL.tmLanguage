@@ -2969,14 +2969,6 @@
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>begin</key>
-							<string>(/\*)</string>
-							<key>end</key>
-							<string>(\*/)</string>
-							<key>name</key>
-							<string>invalid.illegal</string>
-						</dict>
-						<dict>
 							<key>match</key>
 							<string>&amp;</string>
 							<key>name</key>

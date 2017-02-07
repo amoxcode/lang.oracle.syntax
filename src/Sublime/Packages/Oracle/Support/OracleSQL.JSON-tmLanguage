@@ -319,10 +319,6 @@
         { "name": "comment.block",
           "begin": "(/\\*)(?!\\+)",
           "patterns": [
-            { "name": "invalid.illegal",
-              "begin": "(/\\*)",
-              "end": "(\\*/)"
-            },
             {  "name": "invalid.illegal",
                "match": "&"
             }
