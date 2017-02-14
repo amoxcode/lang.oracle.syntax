@@ -284,7 +284,10 @@
            "match": "(?i)(?<=define)\\s*&"
         },
         {  "name": "keyword.other.delimiter",
-           "match": "(\\+|\\.|!|\\$|\\-|#|;)"
+           "match": "(\\+|\\.|!|\\-|#|;)"
+        },
+        {  "name": "keyword.other.delimiter",
+           "match": "\\W(\\$)\\W"
         },
         { "include": "#command-set-keywords" },
         { "include": "#alt-clause" }

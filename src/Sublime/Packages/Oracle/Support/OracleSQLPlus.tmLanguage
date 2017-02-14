@@ -1944,7 +1944,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\+|\.|!|\$|\-|#|;)</string>
+					<string>(\+|\.|!|\-|#|;)</string>
+					<key>name</key>
+					<string>keyword.other.delimiter</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\W(\$)\W</string>
 					<key>name</key>
 					<string>keyword.other.delimiter</string>
 				</dict>
