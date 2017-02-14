@@ -5775,7 +5775,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(initrans|pct(free|used))\b</string>
+					<string>(?i)\b(initrans|maxtrans|pct(free|used))\b</string>
 					<key>name</key>
 					<string>keyword.other</string>
 				</dict>

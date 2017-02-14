@@ -561,7 +561,7 @@
       "patterns": [
         {
           "name": "keyword.other",
-          "match": "(?i)\\b(initrans|pct(free|used))\\b"
+          "match": "(?i)\\b(initrans|maxtrans|pct(free|used))\\b"
         },
         { "include": "#storage-clause" }
       ]
