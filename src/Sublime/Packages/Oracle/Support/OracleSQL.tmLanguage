@@ -12021,7 +12021,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?i)(?&lt;!timestamp )\b(with)(?!\s++(check|read|object))\b</string>
+					<string>(?i)(?&lt;!timestamp )\b(with)(?!\s++(time|check|read|object))\b</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
