@@ -12283,7 +12283,7 @@
 									<key>comment</key>
 									<string>cross-outer-apply-clause</string>
 									<key>match</key>
-									<string>(?i)\b(apply|cross|outer)\b</string>
+									<string>(?i)\b(apply|cross|outer)(?!(\$|#))\b</string>
 									<key>name</key>
 									<string>keyword.other</string>
 								</dict>
