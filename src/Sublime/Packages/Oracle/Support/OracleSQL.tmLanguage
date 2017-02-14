@@ -13015,7 +13015,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(date|interval\s++(day|year)|t(o(\s++(month|second))|imestamp)|with(\s++local)?\s++time\s++zone)(?!#)\b</string>
+					<string>(?i)\b(date|interval\s++(day|year)|t(o(\s++(month|second))|ime(stamp|\s++zone))|with(\s++local)?\s++time\s++zone)(?!#)\b</string>
 					<key>name</key>
 					<string>storage.type.datetime</string>
 				</dict>
