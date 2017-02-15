@@ -3246,7 +3246,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>((?=;)|((?=^\s*+/\s*+))|(?=^\s*+$))|(?i)(?=(create\s++(table)|grant))</string>
+					<string>((?=;)|((?=^\s*+/\s*+$))|(?=^\s*+$))|(?i)(?=(create\s++(table)|grant))</string>
 					<key>patterns</key>
 					<array>
 						<dict>

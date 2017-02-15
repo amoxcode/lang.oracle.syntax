@@ -3049,7 +3049,7 @@
             {  "name": "keyword.other",
                "match": "(?i)\\b(as|bequeath|current_user|definer)\\b",
                "comment": "create-view"
-            },
+            },            
             { "include": "#statement-dml-select" },
             {  "name": "keyword.other",
                "match": "(?i)\\b(default|id(entifier)?|o(bject|f)|under|with)\\b",
@@ -3085,7 +3085,7 @@
             },
             { "include": "#common-clause" }
           ],
-          "end": "((?=;)|((?=^\\s*+/\\s*+))|(?=^\\s*+$))|(?i)(?=(create\\s++(table)|grant))"
+          "end": "((?=;)|((?=^\\s*+/\\s*+$))|(?=^\\s*+$))|(?i)(?=(create\\s++(table)|grant))"
         }
       ]
     },
